@@ -30,18 +30,18 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this._TepisiBaza_2018DataSet = new ExtraSjaj._TepisiBaza_2018DataSet();
-            this.musterijasBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.musterijasTableAdapter = new ExtraSjaj._TepisiBaza_2018DataSetTableAdapters.MusterijasTableAdapter();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.brojTelefonaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.brojTepihaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.musterijasBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this._TepisiBaza_2018DataSet = new ExtraSjaj._TepisiBaza_2018DataSet();
+            this.musterijasTableAdapter = new ExtraSjaj._TepisiBaza_2018DataSetTableAdapters.MusterijasTableAdapter();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this._TepisiBaza_2018DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._TepisiBaza_2018DataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -56,22 +56,8 @@
             this.dataGridView1.DataSource = this.musterijasBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(158, 57);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(240, 150);
+            this.dataGridView1.Size = new System.Drawing.Size(437, 150);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // _TepisiBaza_2018DataSet
-            // 
-            this._TepisiBaza_2018DataSet.DataSetName = "_TepisiBaza_2018DataSet";
-            this._TepisiBaza_2018DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // musterijasBindingSource
-            // 
-            this.musterijasBindingSource.DataMember = "Musterijas";
-            this.musterijasBindingSource.DataSource = this._TepisiBaza_2018DataSet;
-            // 
-            // musterijasTableAdapter
-            // 
-            this.musterijasTableAdapter.ClearBeforeFill = true;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -97,6 +83,20 @@
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
             this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            // 
+            // musterijasBindingSource
+            // 
+            this.musterijasBindingSource.DataMember = "Musterijas";
+            this.musterijasBindingSource.DataSource = this._TepisiBaza_2018DataSet;
+            // 
+            // _TepisiBaza_2018DataSet
+            // 
+            this._TepisiBaza_2018DataSet.DataSetName = "_TepisiBaza_2018DataSet";
+            this._TepisiBaza_2018DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // musterijasTableAdapter
+            // 
+            this.musterijasTableAdapter.ClearBeforeFill = true;
             // 
             // listBox1
             // 
@@ -126,8 +126,8 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this._TepisiBaza_2018DataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._TepisiBaza_2018DataSet)).EndInit();
             this.ResumeLayout(false);
 
         }
