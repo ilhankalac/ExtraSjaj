@@ -1,0 +1,10 @@
+c:\users\ilhan kalac\source\repos\ExtraSjaj\ExtraSjaj\bin\Debug\ExtraSjaj.exe.config
+c:\users\ilhan kalac\source\repos\ExtraSjaj\ExtraSjaj\bin\Debug\ExtraSjaj.exe
+c:\users\ilhan kalac\source\repos\ExtraSjaj\ExtraSjaj\bin\Debug\ExtraSjaj.pdb
+c:\users\ilhan kalac\source\repos\ExtraSjaj\ExtraSjaj\obj\Debug\ExtraSjaj.csprojAssemblyReference.cache
+c:\users\ilhan kalac\source\repos\ExtraSjaj\ExtraSjaj\obj\Debug\ExtraSjaj.Form1.resources
+c:\users\ilhan kalac\source\repos\ExtraSjaj\ExtraSjaj\obj\Debug\ExtraSjaj.Properties.Resources.resources
+c:\users\ilhan kalac\source\repos\ExtraSjaj\ExtraSjaj\obj\Debug\ExtraSjaj.csproj.GenerateResource.cache
+c:\users\ilhan kalac\source\repos\ExtraSjaj\ExtraSjaj\obj\Debug\ExtraSjaj.csproj.CoreCompileInputs.cache
+c:\users\ilhan kalac\source\repos\ExtraSjaj\ExtraSjaj\obj\Debug\ExtraSjaj.exe
+c:\users\ilhan kalac\source\repos\ExtraSjaj\ExtraSjaj\obj\Debug\ExtraSjaj.pdb
