@@ -93,12 +93,13 @@ namespace ExtraSjaj
 
         private void btnDodaj_Click(object sender, EventArgs e)
         {
+            int pom = Convert.ToInt32( comboBox1.SelectedValue);
             DataTable mojaTabela = citajTabeluMusterije();
 
             DataRow novaVrsta = mojaTabela.NewRow();
             novaVrsta["Ime i Prezime"] = textBox1.Text;
             novaVrsta["Broj Telefona"] = textBox2.Text;
-            novaVrsta["Broj Tepiha"] = 4;
+            novaVrsta["Broj Tepiha"] = pom;
             novaVrsta["Adresa"] = textBox3.Text;
 
             mojaTabela.Rows.Add(novaVrsta);
@@ -122,6 +123,12 @@ namespace ExtraSjaj
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Tepisi tepisi = new Tepisi();
+            tepisi.Show();
         }
     }
 }
