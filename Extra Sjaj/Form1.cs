@@ -36,7 +36,7 @@ namespace ExtraSjaj
         {
             SqlConnection konekcija = new SqlConnection(Konekcija.konString);
             DataSet ds = new DataSet();
-            SqlDataAdapter da = new SqlDataAdapter("select *from Musterijas", konekcija);
+             da = new SqlDataAdapter("select *from Musterijas", konekcija);
             da.MissingSchemaAction = MissingSchemaAction.AddWithKey;
 
             SqlCommandBuilder builder = new SqlCommandBuilder(da);
@@ -58,6 +58,8 @@ namespace ExtraSjaj
             DataTable mojaTabela = ds.Tables["Broj"];
             return mojaTabela;
         }
+
+       
         private void puniListuMusterija()
         {
             DataTable mojaTabela = citajTabeluMusterije();
@@ -87,11 +89,21 @@ namespace ExtraSjaj
             form2.Show();
         }
 
-      
+        private SqlDataAdapter da = null;
 
         private void btnDodaj_Click(object sender, EventArgs e)
         {
-            this.musterijasTableAdapter1.Update(_TepisiBaza_2018DataSet1);
+            DataTable mojaTabela = citajTabeluMusterije();
+
+            DataRow novaVrsta = mojaTabela.NewRow();
+            novaVrsta["Ime i Prezime"] = textBox1.Text;
+            novaVrsta["Broj Telefona"] = textBox2.Text;
+            novaVrsta["Broj Tepiha"] = 4;
+            novaVrsta["Adresa"] = textBox3.Text;
+
+            mojaTabela.Rows.Add(novaVrsta);
+            da.Update(mojaTabela);
+            this.musterijasTableAdapter1.Fill(this._TepisiBaza_2018DataSet1.Musterijas);
 
         }
 
@@ -105,6 +117,11 @@ namespace ExtraSjaj
         private void btnUpdateMusterija_Click(object sender, EventArgs e)
         {
             this.musterijasTableAdapter1.Update(_TepisiBaza_2018DataSet1);
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

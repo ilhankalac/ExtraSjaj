@@ -51,6 +51,13 @@
             this.brojTepihaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.brojTelefonaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.adresaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._TepisiBaza_2018DataSet)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -78,32 +85,33 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(78, 222);
+            this.listBox1.Location = new System.Drawing.Point(182, 373);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(360, 95);
             this.listBox1.TabIndex = 1;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(157, 347);
+            this.comboBox1.Location = new System.Drawing.Point(124, 134);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.Size = new System.Drawing.Size(35, 21);
             this.comboBox1.TabIndex = 2;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(592, 120);
+            this.button1.Location = new System.Drawing.Point(574, 154);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(117, 23);
             this.button1.TabIndex = 3;
-            this.button1.Text = "Prikazi mušterije";
+            this.button1.Text = "Prikaži sve mušterije";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnDodaj
             // 
-            this.btnDodaj.Location = new System.Drawing.Point(477, 246);
+            this.btnDodaj.Location = new System.Drawing.Point(101, 312);
             this.btnDodaj.Name = "btnDodaj";
             this.btnDodaj.Size = new System.Drawing.Size(123, 23);
             this.btnDodaj.TabIndex = 4;
@@ -113,7 +121,7 @@
             // 
             // btnBrisiMusteriju
             // 
-            this.btnBrisiMusteriju.Location = new System.Drawing.Point(477, 275);
+            this.btnBrisiMusteriju.Location = new System.Drawing.Point(586, 419);
             this.btnBrisiMusteriju.Name = "btnBrisiMusteriju";
             this.btnBrisiMusteriju.Size = new System.Drawing.Size(123, 27);
             this.btnBrisiMusteriju.TabIndex = 5;
@@ -123,7 +131,7 @@
             // 
             // btnUpdateMusterija
             // 
-            this.btnUpdateMusterija.Location = new System.Drawing.Point(477, 222);
+            this.btnUpdateMusterija.Location = new System.Drawing.Point(574, 346);
             this.btnUpdateMusterija.Name = "btnUpdateMusterija";
             this.btnUpdateMusterija.Size = new System.Drawing.Size(123, 23);
             this.btnUpdateMusterija.TabIndex = 6;
@@ -137,7 +145,7 @@
             this.kreirajMušterijuToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1301, 24);
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -168,9 +176,9 @@
             this.brojTelefonaDataGridViewTextBoxColumn,
             this.adresaDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.musterijasBindingSource3;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 39);
+            this.dataGridView1.Location = new System.Drawing.Point(715, 24);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(552, 150);
+            this.dataGridView1.Size = new System.Drawing.Size(552, 495);
             this.dataGridView1.TabIndex = 8;
             // 
             // _TepisiBaza_2018DataSet1
@@ -218,11 +226,75 @@
             this.adresaDataGridViewTextBoxColumn.HeaderText = "Adresa";
             this.adresaDataGridViewTextBoxColumn.Name = "adresaDataGridViewTextBoxColumn";
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(124, 84);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 9;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(124, 181);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(100, 20);
+            this.textBox2.TabIndex = 10;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(124, 232);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(100, 20);
+            this.textBox3.TabIndex = 11;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(38, 87);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(69, 13);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "Ime i Prezime";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(46, 137);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(61, 13);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "Broj Tepiha";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(46, 184);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(66, 13);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "Broj telefona";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(61, 236);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(40, 13);
+            this.label4.TabIndex = 15;
+            this.label4.Text = "Adresa";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1301, 534);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnUpdateMusterija);
             this.Controls.Add(this.btnBrisiMusteriju);
@@ -273,6 +345,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn brojTepihaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn brojTelefonaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn adresaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }
 
