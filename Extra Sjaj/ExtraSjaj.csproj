@@ -65,6 +65,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>_TepisiBaza_2018DataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="_TepisiBaza_2018DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>_TepisiBaza_2018DataSet1.xsd</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -99,6 +104,17 @@
     </None>
     <None Include="_TepisiBaza_2018DataSet.xss">
       <DependentUpon>_TepisiBaza_2018DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="_TepisiBaza_2018DataSet1.xsc">
+      <DependentUpon>_TepisiBaza_2018DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="_TepisiBaza_2018DataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>_TepisiBaza_2018DataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="_TepisiBaza_2018DataSet1.xss">
+      <DependentUpon>_TepisiBaza_2018DataSet1.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -23,8 +23,10 @@ namespace ExtraSjaj
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the '_TepisiBaza_2018DataSet1.Musterijas' table. You can move, or remove it, as needed.
+            this.musterijasTableAdapter1.Fill(this._TepisiBaza_2018DataSet1.Musterijas);
             // TODO: This line of code loads data into the '_TepisiBaza_2018DataSet.Musterijas' table. You can move, or remove it, as needed.
-            this.musterijasTableAdapter.Fill(this._TepisiBaza_2018DataSet.Musterijas);
+            this.musterijasTableAdapter1.Fill(this._TepisiBaza_2018DataSet1.Musterijas);
 
             puniKomboBrojeva();
             puniListuMusterija();
@@ -63,7 +65,7 @@ namespace ExtraSjaj
 
             foreach (DataRow item in mojaTabela.Rows)
             {
-                listBox1.Items.Add(item["Id"].ToString() + ". " + item["Name"].ToString() + item["BrojTelefona"].ToString() + " = " + item["BrojTepiha"].ToString());
+                listBox1.Items.Add(item["Id"].ToString() + ". " + item["Ime i Prezime"].ToString() + item["Broj Tepiha"].ToString() + " = " + item["Broj Telefona"].ToString() +" "+ item["Adresa"].ToString());
             }
 
 
@@ -89,7 +91,7 @@ namespace ExtraSjaj
 
         private void btnDodaj_Click(object sender, EventArgs e)
         {
-            this.musterijasTableAdapter.Update(_TepisiBaza_2018DataSet);
+            this.musterijasTableAdapter1.Update(_TepisiBaza_2018DataSet1);
 
         }
 
@@ -97,12 +99,12 @@ namespace ExtraSjaj
         {
             foreach (DataGridViewRow row in dataGridView1.SelectedRows)
                 dataGridView1.Rows.RemoveAt(row.Index);
-            this.musterijasTableAdapter.Update(_TepisiBaza_2018DataSet);
+            this.musterijasTableAdapter1.Update(_TepisiBaza_2018DataSet1);
         }
 
         private void btnUpdateMusterija_Click(object sender, EventArgs e)
         {
-            this.musterijasTableAdapter.Update(_TepisiBaza_2018DataSet);
+            this.musterijasTableAdapter1.Update(_TepisiBaza_2018DataSet1);
         }
     }
 }

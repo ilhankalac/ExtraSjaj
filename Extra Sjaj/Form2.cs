@@ -19,8 +19,10 @@ namespace ExtraSjaj
 
         private void Form2_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the '_TepisiBaza_2018DataSet1.Musterijas' table. You can move, or remove it, as needed.
+            this.musterijasTableAdapter1.Fill(this._TepisiBaza_2018DataSet1.Musterijas);
             // TODO: This line of code loads data into the '_TepisiBaza_2018DataSet.Musterijas' table. You can move, or remove it, as needed.
-            this.musterijasTableAdapter.Fill(this._TepisiBaza_2018DataSet.Musterijas);
+            this.musterijasTableAdapter1.Fill(this._TepisiBaza_2018DataSet1.Musterijas);
 
         }
     }
