@@ -41,6 +41,8 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.btnDodaj = new System.Windows.Forms.Button();
+            this.btnBrisiMusteriju = new System.Windows.Forms.Button();
+            this.btnUpdateMusterija = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._TepisiBaza_2018DataSet)).BeginInit();
@@ -124,6 +126,7 @@
             this.button1.TabIndex = 3;
             this.button1.Text = "Prikazi mušterije";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnDodaj
             // 
@@ -135,11 +138,33 @@
             this.btnDodaj.UseVisualStyleBackColor = true;
             this.btnDodaj.Click += new System.EventHandler(this.btnDodaj_Click);
             // 
+            // btnBrisiMusteriju
+            // 
+            this.btnBrisiMusteriju.Location = new System.Drawing.Point(477, 275);
+            this.btnBrisiMusteriju.Name = "btnBrisiMusteriju";
+            this.btnBrisiMusteriju.Size = new System.Drawing.Size(123, 27);
+            this.btnBrisiMusteriju.TabIndex = 5;
+            this.btnBrisiMusteriju.Text = "Obriši mušteriju";
+            this.btnBrisiMusteriju.UseVisualStyleBackColor = true;
+            this.btnBrisiMusteriju.Click += new System.EventHandler(this.btnBrisiMusteriju_Click);
+            // 
+            // btnUpdateMusterija
+            // 
+            this.btnUpdateMusterija.Location = new System.Drawing.Point(477, 222);
+            this.btnUpdateMusterija.Name = "btnUpdateMusterija";
+            this.btnUpdateMusterija.Size = new System.Drawing.Size(123, 23);
+            this.btnUpdateMusterija.TabIndex = 6;
+            this.btnUpdateMusterija.Text = "Izmeni mušteriju";
+            this.btnUpdateMusterija.UseVisualStyleBackColor = true;
+            this.btnUpdateMusterija.Click += new System.EventHandler(this.btnUpdateMusterija_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnUpdateMusterija);
+            this.Controls.Add(this.btnBrisiMusteriju);
             this.Controls.Add(this.btnDodaj);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.comboBox1);
@@ -169,6 +194,8 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnDodaj;
+        private System.Windows.Forms.Button btnBrisiMusteriju;
+        private System.Windows.Forms.Button btnUpdateMusterija;
     }
 }
 

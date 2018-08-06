@@ -92,6 +92,17 @@ namespace ExtraSjaj
             this.musterijasTableAdapter.Update(_TepisiBaza_2018DataSet);
 
         }
-       
+
+        private void btnBrisiMusteriju_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+                dataGridView1.Rows.RemoveAt(row.Index);
+            this.musterijasTableAdapter.Update(_TepisiBaza_2018DataSet);
+        }
+
+        private void btnUpdateMusterija_Click(object sender, EventArgs e)
+        {
+            this.musterijasTableAdapter.Update(_TepisiBaza_2018DataSet);
+        }
     }
 }
