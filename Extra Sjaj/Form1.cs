@@ -84,5 +84,14 @@ namespace ExtraSjaj
             Form2 form2 = new Form2();
             form2.Show();
         }
+
+      
+
+        private void btnDodaj_Click(object sender, EventArgs e)
+        {
+            this.musterijasTableAdapter.Update(_TepisiBaza_2018DataSet);
+
+        }
+       
     }
 }
