@@ -27,13 +27,10 @@ namespace ExtraSjaj
             //this.musterijasTableAdapter1.Fill(this._TepisiBaza_2018DataSet1.Musterijas);
             //// TODO: This line of code loads data into the '_TepisiBaza_2018DataSet.Musterijas' table. You can move, or remove it, as needed.
             //this.musterijasTableAdapter1.Fill(this._TepisiBaza_2018DataSet1.Musterijas);
-            SqlDataAdapter sda = new SqlDataAdapter("select *from Musterijas", konekcija);
+            SqlDataAdapter sda = new SqlDataAdapter("select row_number() over (order by Id) as 'Br.Mušterije', ImePrezime as 'Ime i Prezime', BrojTepiha as 'Br.Tepiha', BrojTelefona as 'Br. Tel.', Adresa from Musterijas", konekcija);
             DataTable dt = new DataTable();
             sda.Fill(dt);
             dataGridView1.DataSource = dt;
-     
-
-
             puniKomboBrojeva();
             puniListuMusterija();
         }
@@ -99,18 +96,16 @@ namespace ExtraSjaj
 
         private void btnDodaj_Click(object sender, EventArgs e)
         {
-            int pom = Convert.ToInt32( comboBox1.SelectedValue);
-            DataTable mojaTabela = citajTabeluMusterije();
+            SqlCommand komanda = new SqlCommand(@"insert into Musterijas(ImePrezime,BrojTepiha,BrojTelefona, Adresa)" +
+                "values (('" + textBox1.Text.ToString() + "')," +
+                "(" + comboBox1.SelectedValue.ToString() + ")," +
+                "('" + textBox2.Text.ToString() + "')," +
+                "('" + textBox3.Text.ToString() + "')); ", konekcija);
 
-            DataRow novaVrsta = mojaTabela.NewRow();
-            novaVrsta["ImePrezime"] = textBox1.Text;
-            novaVrsta["BrojTelefona"] = textBox2.Text;
-            novaVrsta["BrojTepiha"] = pom;
-            novaVrsta["Adresa"] = textBox3.Text;
-
-            mojaTabela.Rows.Add(novaVrsta);
-            da.Update(mojaTabela);
-            this.musterijasTableAdapter1.Fill(this._TepisiBaza_2018DataSet1.Musterijas);
+            konekcija.Open();
+            komanda.ExecuteNonQuery();
+            konekcija.Close();
+            citajTabeluMusterije();
 
         }
 

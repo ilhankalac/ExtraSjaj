@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.musterijasBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -38,8 +37,6 @@
             this.btnUpdateMusterija = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.kreirajMušterijuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.musterijasBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.musterijasBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.musterijasBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
             this._TepisiBaza_2018DataSet1 = new ExtraSjaj._TepisiBaza_2018DataSet1();
             this.musterijasTableAdapter1 = new ExtraSjaj._TepisiBaza_2018DataSet1TableAdapters.MusterijasTableAdapter();
@@ -52,18 +49,17 @@
             this.label4 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource)).BeginInit();
+            this.musterijasBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.musterijasBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.musterijasBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._TepisiBaza_2018DataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource2)).BeginInit();
             this.SuspendLayout();
-            // 
-            // musterijasBindingSource
-            // 
-            this.musterijasBindingSource.DataMember = "Musterijas";
             // 
             // listBox1
             // 
@@ -137,14 +133,6 @@
             this.kreirajMušterijuToolStripMenuItem.Name = "kreirajMušterijuToolStripMenuItem";
             this.kreirajMušterijuToolStripMenuItem.Size = new System.Drawing.Size(105, 20);
             this.kreirajMušterijuToolStripMenuItem.Text = "Kreiraj mušteriju";
-            // 
-            // musterijasBindingSource1
-            // 
-            this.musterijasBindingSource1.DataMember = "Musterijas";
-            // 
-            // musterijasBindingSource2
-            // 
-            this.musterijasBindingSource2.DataMember = "Musterijas";
             // 
             // musterijasBindingSource3
             // 
@@ -230,11 +218,23 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(722, 52);
+            this.dataGridView1.Location = new System.Drawing.Point(715, 39);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(567, 307);
+            this.dataGridView1.Size = new System.Drawing.Size(558, 296);
             this.dataGridView1.TabIndex = 17;
             this.dataGridView1.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseDoubleClick);
+            // 
+            // musterijasBindingSource
+            // 
+            this.musterijasBindingSource.DataMember = "Musterijas";
+            // 
+            // musterijasBindingSource1
+            // 
+            this.musterijasBindingSource1.DataMember = "Musterijas";
+            // 
+            // musterijasBindingSource2
+            // 
+            this.musterijasBindingSource2.DataMember = "Musterijas";
             // 
             // Form1
             // 
@@ -262,14 +262,14 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._TepisiBaza_2018DataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
