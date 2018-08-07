@@ -141,8 +141,8 @@ namespace ExtraSjaj
         {
             int rowIndex = dataGridView1.CurrentRow.Index;
             string idSelektovaneMusterije = dataGridView1.SelectedCells[0].Value.ToString();
-
-            TepisiMusterije tepisiMusterije = new TepisiMusterije(idSelektovaneMusterije);
+            string ImeSelektovanogMusterije = dataGridView1.SelectedCells[1].Value.ToString();
+            TepisiMusterije tepisiMusterije = new TepisiMusterije(idSelektovaneMusterije, ImeSelektovanogMusterije);
             tepisiMusterije.ShowDialog();
         }
     }
