@@ -19,14 +19,20 @@ namespace ExtraSjaj
             InitializeComponent();
         }
 
-      
 
+        SqlConnection konekcija = new SqlConnection(Konekcija.konString);
         private void Form1_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the '_TepisiBaza_2018DataSet1.Musterijas' table. You can move, or remove it, as needed.
-            this.musterijasTableAdapter1.Fill(this._TepisiBaza_2018DataSet1.Musterijas);
-            // TODO: This line of code loads data into the '_TepisiBaza_2018DataSet.Musterijas' table. You can move, or remove it, as needed.
-            this.musterijasTableAdapter1.Fill(this._TepisiBaza_2018DataSet1.Musterijas);
+            //this.musterijasTableAdapter1.Fill(this._TepisiBaza_2018DataSet1.Musterijas);
+            //// TODO: This line of code loads data into the '_TepisiBaza_2018DataSet.Musterijas' table. You can move, or remove it, as needed.
+            //this.musterijasTableAdapter1.Fill(this._TepisiBaza_2018DataSet1.Musterijas);
+            SqlDataAdapter sda = new SqlDataAdapter("select *from Musterijas", konekcija);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            dataGridView1.DataSource = dt;
+     
+
 
             puniKomboBrojeva();
             puniListuMusterija();
@@ -67,7 +73,7 @@ namespace ExtraSjaj
 
             foreach (DataRow item in mojaTabela.Rows)
             {
-                listBox1.Items.Add(item["Id"].ToString() + ". " + item["Ime i Prezime"].ToString() + item["Broj Tepiha"].ToString() + " = " + item["Broj Telefona"].ToString() +" "+ item["Adresa"].ToString());
+                listBox1.Items.Add(item["Id"].ToString() + ". " + item["ImePrezime"].ToString() + item["BrojTepiha"].ToString() + " = " + item["BrojTelefona"].ToString() +" "+ item["Adresa"].ToString());
             }
 
 

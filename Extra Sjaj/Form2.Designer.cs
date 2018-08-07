@@ -30,8 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.musterijasBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this._TepisiBaza_2018DataSet = new ExtraSjaj._TepisiBaza_2018DataSet();
-            this.musterijasTableAdapter = new ExtraSjaj._TepisiBaza_2018DataSetTableAdapters.MusterijasTableAdapter();
+
             this._TepisiBaza_2018DataSet1 = new ExtraSjaj._TepisiBaza_2018DataSet1();
             this.musterijasBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.musterijasTableAdapter1 = new ExtraSjaj._TepisiBaza_2018DataSet1TableAdapters.MusterijasTableAdapter();
@@ -42,7 +41,7 @@
             this.adresaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.brojTepihaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this._TepisiBaza_2018DataSet)).BeginInit();
+           
             ((System.ComponentModel.ISupportInitialize)(this._TepisiBaza_2018DataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -51,16 +50,15 @@
             // musterijasBindingSource
             // 
             this.musterijasBindingSource.DataMember = "Musterijas";
-            this.musterijasBindingSource.DataSource = this._TepisiBaza_2018DataSet;
+       
             // 
             // _TepisiBaza_2018DataSet
             // 
-            this._TepisiBaza_2018DataSet.DataSetName = "_TepisiBaza_2018DataSet";
-            this._TepisiBaza_2018DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+         
             // 
             // musterijasTableAdapter
             // 
-            this.musterijasTableAdapter.ClearBeforeFill = true;
+       
             // 
             // _TepisiBaza_2018DataSet1
             // 
@@ -138,7 +136,7 @@
             this.Text = "Form2";
             this.Load += new System.EventHandler(this.Form2_Load);
             ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this._TepisiBaza_2018DataSet)).EndInit();
+            
             ((System.ComponentModel.ISupportInitialize)(this._TepisiBaza_2018DataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -147,9 +145,9 @@
         }
 
         #endregion
-        private _TepisiBaza_2018DataSet _TepisiBaza_2018DataSet;
+      
         private System.Windows.Forms.BindingSource musterijasBindingSource;
-        private _TepisiBaza_2018DataSetTableAdapters.MusterijasTableAdapter musterijasTableAdapter;
+     
         private _TepisiBaza_2018DataSet1 _TepisiBaza_2018DataSet1;
         private System.Windows.Forms.BindingSource musterijasBindingSource1;
         private _TepisiBaza_2018DataSet1TableAdapters.MusterijasTableAdapter musterijasTableAdapter1;
