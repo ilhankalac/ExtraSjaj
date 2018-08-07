@@ -103,9 +103,9 @@ namespace ExtraSjaj
             DataTable mojaTabela = citajTabeluMusterije();
 
             DataRow novaVrsta = mojaTabela.NewRow();
-            novaVrsta["Ime i Prezime"] = textBox1.Text;
-            novaVrsta["Broj Telefona"] = textBox2.Text;
-            novaVrsta["Broj Tepiha"] = pom;
+            novaVrsta["ImePrezime"] = textBox1.Text;
+            novaVrsta["BrojTelefona"] = textBox2.Text;
+            novaVrsta["BrojTepiha"] = pom;
             novaVrsta["Adresa"] = textBox3.Text;
 
             mojaTabela.Rows.Add(novaVrsta);
@@ -136,5 +136,14 @@ namespace ExtraSjaj
             Tepisi tepisi = new Tepisi();
             tepisi.Show();
         }
+
+        private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            int rowIndex = dataGridView1.CurrentRow.Index;
+            string idSelektovaneMusterije = dataGridView1.SelectedCells[0].Value.ToString();
+
+            TepisiMusterije tepisiMusterije = new TepisiMusterije(idSelektovaneMusterije);
+            tepisiMusterije.ShowDialog();
+        }
     }
-}
+    }

@@ -84,7 +84,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(574, 154);
+            this.button1.Location = new System.Drawing.Point(592, 292);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(117, 23);
             this.button1.TabIndex = 3;
@@ -221,9 +221,9 @@
             // 
             this.button2.Location = new System.Drawing.Point(574, 232);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(107, 23);
+            this.button2.Size = new System.Drawing.Size(135, 54);
             this.button2.TabIndex = 16;
-            this.button2.Text = "Prikaži listu tepiha";
+            this.button2.Text = "Prikaži listu svih tepiha";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -234,6 +234,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(567, 307);
             this.dataGridView1.TabIndex = 17;
+            this.dataGridView1.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseDoubleClick);
             // 
             // Form1
             // 
