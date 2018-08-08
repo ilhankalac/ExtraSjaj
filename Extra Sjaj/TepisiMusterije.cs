@@ -23,22 +23,14 @@ namespace ExtraSjaj
             InitializeComponent();
             this.IdMusterije = IdMusterije;
             
-            SqlDataAdapter sda = new SqlDataAdapter("select row_number() over (order by t.MusterijaId) as 'Br. Tepiha', t.Sirina as 'Širina/m', t.Duzina as 'Dužina/m',  t.Kvadratura as 'Kvadratura/m2'  from Tepisi t join Musterijas m on m.Id = t.MusterijaId where t.MusterijaId = "+IdMusterije, konekcija);
+            SqlDataAdapter sda = new SqlDataAdapter("select t.id,row_number() over (order by t.MusterijaId) as 'Br. Tepiha', t.Sirina as 'Širina/m', t.Duzina as 'Dužina/m',  t.Kvadratura as 'Kvadratura/m2'  from Tepisi t join Musterijas m on m.Id = t.MusterijaId where t.MusterijaId = "+IdMusterije, konekcija);
             DataTable dt = new DataTable();
             sda.Fill(dt);
             
+            
             dataGridView1.DataSource = dt;
-            double racun = 0;
-
-            foreach (DataGridViewRow item in dataGridView1.Rows)
-            {
-                if (item.Cells[0].Value == null) break;
-                //var nesto = item.Cells[3].Value.ToString();
-                racun += Convert.ToDouble(item.Cells[3].Value.ToString());
-
-            }
-            label2.Text += " "+racun.ToString()+" EUR";
-            label1.Text = ImeMusterije+" - tepisi";
+            label1.Text = ImeMusterije + " - tepisi";
+            racunZaMusteriju();
 
         }
 
@@ -55,26 +47,58 @@ namespace ExtraSjaj
             komanda.ExecuteNonQuery();
             konekcija.Close();
             IscitajTabeluTepisiZaMusteriju();
+            racunZaMusteriju();
+        }
+
+        public void IscitajTabeluTepisiZaMusteriju()
+        {
+
+            SqlDataAdapter sda = new SqlDataAdapter("select t.id, m.ImePrezime , t.Sirina as 'Širina/m' , t.Duzina as 'Dužina/m'  , t.Kvadratura as 'Kvadratura/m2'  from Tepisi t join Musterijas m on m.Id = t.MusterijaId where m.Id = "+IdMusterije, konekcija);
+            DataTable dt = new DataTable();
+
+            sda.Fill(dt);
+            dataGridView1.DataSource = dt;
+        }
+
+        private void btnZaBrisanjeTepiha_Click(object sender, EventArgs e)
+        {
+          
+
+
+        }
+        void racunZaMusteriju()
+        {
+            
             label2.Text = "Račun:";
             double racun = 0;
             foreach (DataGridViewRow item in dataGridView1.Rows)
             {
                 if (item.Cells[0].Value == null) break;
                 //var nesto = item.Cells[3].Value.ToString();
-                racun += Convert.ToDouble(item.Cells[3].Value.ToString());
+                racun += Convert.ToDouble(item.Cells[4].Value.ToString());
 
             }
             label2.Text += " " + racun.ToString() + " EUR";
+           
         }
 
-        public void IscitajTabeluTepisiZaMusteriju()
+        private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            if(MessageBox.Show("Da li si siguran da zelis obrisati selektovani tepih?", "Poruka", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question)== DialogResult.Yes)
+            {
+                string idSelektovanogTepiha = dataGridView1.SelectedCells[0].Value.ToString();
+                SqlCommand komanda = new SqlCommand(@"delete from Tepisi where id = "+idSelektovanogTepiha, konekcija);
 
-            SqlDataAdapter sda = new SqlDataAdapter("select m.ImePrezime , t.Sirina as 'Širina/m' , t.Duzina as 'Dužina/m'  , t.Kvadratura as 'Kvadratura/m2'  from Tepisi t join Musterijas m on m.Id = t.MusterijaId where m.Id = "+IdMusterije, konekcija);
-            DataTable dt = new DataTable();
+                konekcija.Open();
+                komanda.ExecuteNonQuery();
+                konekcija.Close();
+                IscitajTabeluTepisiZaMusteriju();
 
-            sda.Fill(dt);
-            dataGridView1.DataSource = dt;
+
+                racunZaMusteriju();
+
+
+            }
         }
     }
 }
