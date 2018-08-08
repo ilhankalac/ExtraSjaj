@@ -64,7 +64,7 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(182, 373);
+            this.listBox1.Location = new System.Drawing.Point(49, 374);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(360, 95);
             this.listBox1.TabIndex = 1;
@@ -80,9 +80,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(592, 292);
+            this.button1.Location = new System.Drawing.Point(304, 244);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(117, 23);
+            this.button1.Size = new System.Drawing.Size(123, 23);
             this.button1.TabIndex = 3;
             this.button1.Text = "Prikaži sve mušterije";
             this.button1.UseVisualStyleBackColor = true;
@@ -100,7 +100,7 @@
             // 
             // btnBrisiMusteriju
             // 
-            this.btnBrisiMusteriju.Location = new System.Drawing.Point(586, 419);
+            this.btnBrisiMusteriju.Location = new System.Drawing.Point(304, 302);
             this.btnBrisiMusteriju.Name = "btnBrisiMusteriju";
             this.btnBrisiMusteriju.Size = new System.Drawing.Size(123, 27);
             this.btnBrisiMusteriju.TabIndex = 5;
@@ -110,7 +110,7 @@
             // 
             // btnUpdateMusterija
             // 
-            this.btnUpdateMusterija.Location = new System.Drawing.Point(574, 346);
+            this.btnUpdateMusterija.Location = new System.Drawing.Point(304, 273);
             this.btnUpdateMusterija.Name = "btnUpdateMusterija";
             this.btnUpdateMusterija.Size = new System.Drawing.Size(123, 23);
             this.btnUpdateMusterija.TabIndex = 6;
@@ -207,9 +207,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(574, 232);
+            this.button2.Location = new System.Drawing.Point(292, 134);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(135, 54);
+            this.button2.Size = new System.Drawing.Size(135, 45);
             this.button2.TabIndex = 16;
             this.button2.Text = "Prikaži listu svih tepiha";
             this.button2.UseVisualStyleBackColor = true;
@@ -218,9 +218,9 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(715, 39);
+            this.dataGridView1.Location = new System.Drawing.Point(525, 39);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(558, 296);
+            this.dataGridView1.Size = new System.Drawing.Size(748, 483);
             this.dataGridView1.TabIndex = 17;
             this.dataGridView1.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseDoubleClick);
             // 

@@ -27,14 +27,17 @@ namespace ExtraSjaj
             //this.musterijasTableAdapter1.Fill(this._TepisiBaza_2018DataSet1.Musterijas);
             //// TODO: This line of code loads data into the '_TepisiBaza_2018DataSet.Musterijas' table. You can move, or remove it, as needed.
             //this.musterijasTableAdapter1.Fill(this._TepisiBaza_2018DataSet1.Musterijas);
-            SqlDataAdapter sda = new SqlDataAdapter("select id,row_number() over (order by Id) as 'Br.Mušterije', ImePrezime as 'Ime i Prezime', BrojTepiha as 'Br.Tepiha', BrojTelefona as 'Br. Tel.', Adresa from Musterijas", konekcija);
+            citajTabeluMusterijeFromSql();
+        }
+        void citajTabeluMusterijeFromSql()
+        {
+            SqlDataAdapter sda = new SqlDataAdapter("select m.id,row_number() over (order by m.Id) as 'Br.Mušterije',m.ImePrezime as 'Ime i Prezime',m.BrojTepiha as 'Br.Tepiha',m.BrojTelefona as 'Br. Tel.',m.Adresa, sum(isnull(t.kvadratura,0)) as 'Kvadratura Tepiha' from Musterijas m left join Tepisi t on t.MusterijaId = m.Id group by m.id, m.ImePrezime, m.BrojTepiha, m.BrojTelefona, m.Adresa order by m.Id asc", konekcija);
             DataTable dt = new DataTable();
             sda.Fill(dt);
             dataGridView1.DataSource = dt;
             puniKomboBrojeva();
             puniListuMusterija();
         }
-
         private DataTable citajTabeluMusterije()
         {
             SqlConnection konekcija = new SqlConnection(Konekcija.konString);
@@ -105,14 +108,34 @@ namespace ExtraSjaj
             konekcija.Open();
             komanda.ExecuteNonQuery();
             konekcija.Close();
-            
+            citajTabeluMusterijeFromSql();
 
         }
 
         private void btnBrisiMusteriju_Click(object sender, EventArgs e)
         {
+            int[] nizId = new int[100];
+            int i = 0;
             foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+            {
+                if (row.Cells[0].Value == null) break;
                 dataGridView1.Rows.RemoveAt(row.Index);
+                nizId[i++] = Convert.ToInt32(dataGridView1.SelectedCells[0].Value);
+            }
+            string spajanjeId = "";
+            for (int k = 0; k < i; k++)
+            {
+                spajanjeId += nizId[k]+", ";
+            }
+           
+            //SqlCommand komanda = new SqlCommand(@"delete from Musterijas where id in ("
+            //+
+            //    , konekcija);
+
+            konekcija.Open();
+           // komanda.ExecuteNonQuery();
+            konekcija.Close();
+
             this.musterijasTableAdapter1.Update(_TepisiBaza_2018DataSet1);
         }
 

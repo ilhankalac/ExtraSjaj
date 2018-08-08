@@ -48,6 +48,8 @@ namespace ExtraSjaj
             konekcija.Close();
             IscitajTabeluTepisiZaMusteriju();
             racunZaMusteriju();
+            Form1 frm1 = new Form1();
+            frm1.Close();
         }
 
         public void IscitajTabeluTepisiZaMusteriju()
@@ -93,8 +95,6 @@ namespace ExtraSjaj
                 komanda.ExecuteNonQuery();
                 konekcija.Close();
                 IscitajTabeluTepisiZaMusteriju();
-
-
                 racunZaMusteriju();
 
 
