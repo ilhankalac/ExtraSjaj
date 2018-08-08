@@ -27,7 +27,7 @@ namespace ExtraSjaj
             //this.musterijasTableAdapter1.Fill(this._TepisiBaza_2018DataSet1.Musterijas);
             //// TODO: This line of code loads data into the '_TepisiBaza_2018DataSet.Musterijas' table. You can move, or remove it, as needed.
             //this.musterijasTableAdapter1.Fill(this._TepisiBaza_2018DataSet1.Musterijas);
-            SqlDataAdapter sda = new SqlDataAdapter("select row_number() over (order by Id) as 'Br.Mušterije', ImePrezime as 'Ime i Prezime', BrojTepiha as 'Br.Tepiha', BrojTelefona as 'Br. Tel.', Adresa from Musterijas", konekcija);
+            SqlDataAdapter sda = new SqlDataAdapter("select id,row_number() over (order by Id) as 'Br.Mušterije', ImePrezime as 'Ime i Prezime', BrojTepiha as 'Br.Tepiha', BrojTelefona as 'Br. Tel.', Adresa from Musterijas", konekcija);
             DataTable dt = new DataTable();
             sda.Fill(dt);
             dataGridView1.DataSource = dt;
@@ -105,7 +105,7 @@ namespace ExtraSjaj
             konekcija.Open();
             komanda.ExecuteNonQuery();
             konekcija.Close();
-            citajTabeluMusterije();
+            
 
         }
 
@@ -136,7 +136,7 @@ namespace ExtraSjaj
         {
             int rowIndex = dataGridView1.CurrentRow.Index;
             string idSelektovaneMusterije = dataGridView1.SelectedCells[0].Value.ToString();
-            string ImeSelektovanogMusterije = dataGridView1.SelectedCells[1].Value.ToString();
+            string ImeSelektovanogMusterije = dataGridView1.SelectedCells[2].Value.ToString();
             TepisiMusterije tepisiMusterije = new TepisiMusterije(idSelektovaneMusterije, ImeSelektovanogMusterije);
             tepisiMusterije.ShowDialog();
         }

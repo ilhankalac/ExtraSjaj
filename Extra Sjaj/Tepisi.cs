@@ -29,7 +29,7 @@ namespace ExtraSjaj
         public void IscitajTabeluTepisi()
         {
 
-            SqlDataAdapter sda = new SqlDataAdapter("select m.ImePrezime , t.Sirina as 'Širina/m' , t.Duzina as 'Dužina/m'  , t.Kvadratura as 'Kvadratura/m2'  from Tepisi t join Musterijas m on m.Id = t.MusterijaId", konekcija);
+            SqlDataAdapter sda = new SqlDataAdapter("select m.ImePrezime , t.Sirina as 'Širina/m' , t.Duzina as 'Dužina/m'  , t.Kvadratura as 'Kvadratura/m2'  from Tepisi t join Musterijas m on m.Id = t.MusterijaId order by m.ImePrezime", konekcija);
             DataTable dt = new DataTable();
 
             sda.Fill(dt);
