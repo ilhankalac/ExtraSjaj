@@ -114,29 +114,32 @@ namespace ExtraSjaj
 
         private void btnBrisiMusteriju_Click(object sender, EventArgs e)
         {
-            int[] nizId = new int[100];
+            string[] indeksi = new string[200];
             int i = 0;
+
             foreach (DataGridViewRow row in dataGridView1.SelectedRows)
             {
-                if (row.Cells[0].Value == null) break;
-                dataGridView1.Rows.RemoveAt(row.Index);
-                nizId[i++] = Convert.ToInt32(dataGridView1.SelectedCells[0].Value);
+
+                indeksi[i++] = row.Cells[0].Value.ToString();
+                string value2 = row.Cells[1].Value.ToString();
             }
-            string spajanjeId = "";
-            for (int k = 0; k < i; k++)
+            string idZASql="";
+            for (int k = 0; k < dataGridView1.SelectedRows.Count; k++)
             {
-                spajanjeId += nizId[k]+", ";
+                if(k + 1< dataGridView1.SelectedRows.Count)
+                    idZASql += indeksi[k]+",";
+                else
+                    idZASql += indeksi[k];
             }
-           
-            //SqlCommand komanda = new SqlCommand(@"delete from Musterijas where id in ("
-            //+
-            //    , konekcija);
+
+
+            SqlCommand komanda = new SqlCommand(@"delete from Musterijas where id in ("+idZASql+")", konekcija);
 
             konekcija.Open();
-           // komanda.ExecuteNonQuery();
+            komanda.ExecuteNonQuery();
             konekcija.Close();
+            citajTabeluMusterijeFromSql();
 
-            this.musterijasTableAdapter1.Update(_TepisiBaza_2018DataSet1);
         }
 
         private void btnUpdateMusterija_Click(object sender, EventArgs e)
