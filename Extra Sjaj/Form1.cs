@@ -144,7 +144,19 @@ namespace ExtraSjaj
 
         private void btnUpdateMusterija_Click(object sender, EventArgs e)
         {
-            this.musterijasTableAdapter1.Update(_TepisiBaza_2018DataSet1);
+            konekcija.Open();
+            foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+            {
+                SqlCommand komanda = new SqlCommand(@"update Musterijas 
+                set ImePrezime = '"+ row.Cells[2].Value.ToString()+"', BrojTelefona = '"+ row.Cells[4].Value.ToString()+"', BrojTepiha = '"+ row.Cells[3].Value.ToString() + "', Adresa = '"+ row.Cells[5].Value.ToString()+"'   where Id = " + row.Cells[0].Value.ToString(), konekcija);
+                komanda.ExecuteNonQuery();
+            }
+          
+
+           
+           
+            konekcija.Close();
+            citajTabeluMusterijeFromSql();
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
