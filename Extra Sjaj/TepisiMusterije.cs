@@ -18,12 +18,13 @@ namespace ExtraSjaj
         Musterija musterija = new Musterija();
 
         Form1 frm1 = new Form1();
-        public TepisiMusterije(int  IdMusterije, string ImeMusterije, DateTime VremeDolaskaTepiha)
+        public TepisiMusterije(int  IdMusterije, string ImeMusterije, DateTime VremeDolaskaTepiha, bool placeno)
         {
             InitializeComponent();
             musterija.Id = IdMusterije;
             musterija.ImePrezime = ImeMusterije;
             musterija.VremeDolaskaTepiha = VremeDolaskaTepiha;
+            musterija.Platio = placeno;
 
             SqlDataAdapter sda = new SqlDataAdapter("select  t.id,row_number() over (order by t.MusterijaId) as 'Br. Tepiha', t.Sirina as 'Širina/m', t.Duzina as 'Dužina/m',  t.Kvadratura as 'Kvadratura/m2'  from Tepisi t join Musterijas m on m.Id = t.MusterijaId where t.MusterijaId = "+IdMusterije, konekcija);
             DataTable dt = new DataTable();
@@ -33,11 +34,15 @@ namespace ExtraSjaj
             dataGridView1.DataSource = dt;
             label1.Text = ImeMusterije + " - tepisi";
             label5.Text = "Tepisi dostavljeni na pranje: "+VremeDolaskaTepiha.Day.ToString()+ "/"+ VremeDolaskaTepiha.Month.ToString() +"/"+ VremeDolaskaTepiha.Year.ToString();
+            if (placeno) label6.Text += " Da"; else label6.Text += " Ne"; 
+
+
+
 
             racunZaMusteriju();
 
         }
-        void updateMusterijuNakonDodavanjaTepiha()
+        void updateMusterijuNakonDodavanjaIBrisanjaTepiha()
         {
             konekcija.Open();
             
@@ -66,7 +71,7 @@ namespace ExtraSjaj
             racunZaMusteriju();
 
 
-            updateMusterijuNakonDodavanjaTepiha();
+            updateMusterijuNakonDodavanjaIBrisanjaTepiha();
         }
 
         public void IscitajTabeluTepisiZaMusteriju()
@@ -113,7 +118,7 @@ namespace ExtraSjaj
                 konekcija.Close();
                 IscitajTabeluTepisiZaMusteriju();
                 racunZaMusteriju();
-
+                updateMusterijuNakonDodavanjaIBrisanjaTepiha();
 
             }
         }
@@ -122,6 +127,32 @@ namespace ExtraSjaj
         private void TepisiMusterije_FormClosing(object sender, FormClosingEventArgs e)
         {
             frm1.Refresh();
+        }
+
+        private void btnNaplati_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Da li si siguran da je mušterija platio?", "Poruka", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                updateMusterijuNakonPlacanja();
+                MessageBox.Show("Uspešno naplaćeno.", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
+            }   
+
+           
+
+            
+        }
+        void updateMusterijuNakonPlacanja()
+        {
+            konekcija.Open();
+
+
+            SqlCommand komanda = new SqlCommand(@"update Musterijas set Platio = 1 "  + " where Id = " + musterija.Id.ToString(), konekcija);
+            komanda.ExecuteNonQuery();
+            konekcija.Close();
+
+            frm1.citajTabeluMusterijeFromSql();
+
         }
     }
 }

@@ -135,11 +135,17 @@ namespace ExtraSjaj
 
         private void btnUpdateMusterija_Click(object sender, EventArgs e)
         {
+
+            int i = 0;
             konekcija.Open();
             foreach (DataGridViewRow row in dataGridView1.SelectedRows)
             {
+                if (row.Cells[8].Value.ToString() == "True")
+                    i = 1;
+                else
+                    i = 0;
                 SqlCommand komanda = new SqlCommand(@"update Musterijas 
-                set ImePrezime = '"+ row.Cells[2].Value.ToString()+"', BrojTelefona = '"+ row.Cells[4].Value.ToString()+"', BrojTepiha = '"+ row.Cells[3].Value.ToString() + "', Adresa = '"+ row.Cells[5].Value.ToString()+"'   where Id = " + row.Cells[0].Value.ToString(), konekcija);
+                set ImePrezime = '"+ row.Cells[2].Value.ToString()+"', BrojTelefona = '"+ row.Cells[4].Value.ToString()+"', BrojTepiha = '"+ row.Cells[3].Value.ToString() + "', Adresa = '"+ row.Cells[5].Value.ToString()+"', Platio = "+ i.ToString()+"   where Id = " + row.Cells[0].Value.ToString(), konekcija);
                 komanda.ExecuteNonQuery();
             }
           
@@ -166,11 +172,12 @@ namespace ExtraSjaj
             try
             {
                 DateTime VremeDolaskaTepiha = new DateTime();
+                bool placeno = Convert.ToBoolean( dataGridView1.SelectedCells[8].Value);
                 int rowIndex = dataGridView1.CurrentRow.Index;
                 int idSelektovaneMusterije = Convert.ToInt32( dataGridView1.SelectedCells[0].Value);
                 string ImeSelektovanogMusterije = dataGridView1.SelectedCells[2].Value.ToString();
                 VremeDolaskaTepiha = Convert.ToDateTime( dataGridView1.SelectedCells[7].Value);
-                TepisiMusterije tepisiMusterije = new TepisiMusterije(idSelektovaneMusterije, ImeSelektovanogMusterije, VremeDolaskaTepiha);
+                TepisiMusterije tepisiMusterije = new TepisiMusterije(idSelektovaneMusterije, ImeSelektovanogMusterije, VremeDolaskaTepiha, placeno);
                 tepisiMusterije.ShowDialog();
                 citajTabeluMusterijeFromSql();
 
