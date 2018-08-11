@@ -15,6 +15,7 @@ namespace ExtraSjaj
     public partial class TepisiMusterije : Form
     {
         SqlConnection konekcija = new SqlConnection(Konekcija.konString);
+        Musterija musterija = new Musterija();
         
         public string IdMusterije { get; set; }
         public string ImeMusterije { get; set; }
@@ -23,7 +24,7 @@ namespace ExtraSjaj
             InitializeComponent();
             this.IdMusterije = IdMusterije;
             
-            SqlDataAdapter sda = new SqlDataAdapter("select t.id,row_number() over (order by t.MusterijaId) as 'Br. Tepiha', t.Sirina as 'Širina/m', t.Duzina as 'Dužina/m',  t.Kvadratura as 'Kvadratura/m2'  from Tepisi t join Musterijas m on m.Id = t.MusterijaId where t.MusterijaId = "+IdMusterije, konekcija);
+            SqlDataAdapter sda = new SqlDataAdapter("select  t.id,row_number() over (order by t.MusterijaId) as 'Br. Tepiha', t.Sirina as 'Širina/m', t.Duzina as 'Dužina/m',  t.Kvadratura as 'Kvadratura/m2'  from Tepisi t join Musterijas m on m.Id = t.MusterijaId where t.MusterijaId = "+IdMusterije, konekcija);
             DataTable dt = new DataTable();
             sda.Fill(dt);
             
@@ -33,7 +34,16 @@ namespace ExtraSjaj
             racunZaMusteriju();
 
         }
+        void updateMusterijuNakonDodavanjaTepiha()
+        {
+            konekcija.Open();
+            SqlCommand komanda = new SqlCommand(@"update Musterijas set BrojTepiha = "+ "(select count(MusterijaId)  from Tepisi where MusterijaId = " + IdMusterije+" )"  +"where Id = " + IdMusterije.ToString(), konekcija);
+            komanda.ExecuteNonQuery();
+            konekcija.Close();
+         
 
+        }
+      
         private void btnDodajTepih_Click(object sender, EventArgs e)
         {
 
@@ -50,6 +60,7 @@ namespace ExtraSjaj
             racunZaMusteriju();
             Form1 frm1 = new Form1();
             frm1.Close();
+            updateMusterijuNakonDodavanjaTepiha();
         }
 
         public void IscitajTabeluTepisiZaMusteriju()

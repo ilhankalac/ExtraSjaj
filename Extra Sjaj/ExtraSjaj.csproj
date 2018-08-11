@@ -59,6 +59,7 @@
       <DependentUpon>Form2.cs</DependentUpon>
     </Compile>
     <Compile Include="Modeli\Konekcija.cs" />
+    <Compile Include="Modeli\Musterija.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tepisi.cs">

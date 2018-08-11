@@ -31,7 +31,7 @@ namespace ExtraSjaj
         }
         void citajTabeluMusterijeFromSql()
         {
-            SqlDataAdapter sda = new SqlDataAdapter("select m.id,row_number() over (order by m.Id) as 'Br.Mušterije',m.ImePrezime as 'Ime i Prezime',m.BrojTepiha as 'Br.Tepiha',m.BrojTelefona as 'Br. Tel.',m.Adresa, sum(isnull(t.kvadratura,0)) as 'Kvadratura Tepiha' from Musterijas m left join Tepisi t on t.MusterijaId = m.Id group by m.id, m.ImePrezime, m.BrojTepiha, m.BrojTelefona, m.Adresa order by m.Id asc", konekcija);
+            SqlDataAdapter sda = new SqlDataAdapter("select m.id,row_number() over (order by m.Id) as 'Br.Mušterije',m.ImePrezime as 'Ime i Prezime',m.BrojTepiha as 'Br.Tepiha',m.BrojTelefona as 'Br. Tel.',m.Adresa, sum(isnull(t.kvadratura,0)) as 'Kvadratura Tepiha', m.VremeDolaskaTepiha as 'Tepisi dostavljeni', m.Platio as 'Plaćeno' from Musterijas m left join Tepisi t on t.MusterijaId = m.Id group by m.id, m.ImePrezime, m.BrojTepiha, m.BrojTelefona, m.Adresa, m.VremeDolaskaTepiha, m.Platio order by m.Id asc", konekcija);
             DataTable dt = new DataTable();
             sda.Fill(dt);
             dataGridView1.DataSource = dt;
@@ -99,11 +99,12 @@ namespace ExtraSjaj
 
         private void btnDodaj_Click(object sender, EventArgs e)
         {
-            SqlCommand komanda = new SqlCommand(@"insert into Musterijas(ImePrezime,BrojTepiha,BrojTelefona, Adresa)" +
+            SqlCommand komanda = new SqlCommand(@"insert into Musterijas(ImePrezime,BrojTepiha,BrojTelefona, Adresa, VremeDOlaskaTepiha)" +
                 "values (('" + textBox1.Text.ToString() + "')," +
                 "(" + comboBox1.SelectedValue.ToString() + ")," +
                 "('" + textBox2.Text.ToString() + "')," +
-                "('" + textBox3.Text.ToString() + "')); ", konekcija);
+                "('" + textBox3.Text.ToString() + "')," +
+                "('" + DateTime.Now.ToString()+ "')); ", konekcija);
 
             konekcija.Open();
             komanda.ExecuteNonQuery();
