@@ -90,15 +90,8 @@ namespace ExtraSjaj
 
         private void btnDodaj_Click(object sender, EventArgs e)
         {
-            SqlCommand komanda = new SqlCommand(@"insert into Musterijas(ImePrezime,BrojTelefona, Adresa, VremeDOlaskaTepiha)" +
-                "values (('" + textBox1.Text.ToString() + "')," +
-                "('" + textBox2.Text.ToString() + "')," +
-                "('" + textBox3.Text.ToString() + "')," +
-                "('" + DateTime.Now.ToString()+ "')); ", konekcija);
-
-            konekcija.Open();
-            komanda.ExecuteNonQuery();
-            konekcija.Close();
+            MusterijaDesign musterijaZaDodaj = new MusterijaDesign();
+            musterijaZaDodaj.ShowDialog();
             citajTabeluMusterijeFromSql();
 
         }
@@ -163,7 +156,7 @@ namespace ExtraSjaj
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Tepisi tepisi = new Tepisi();
+            MusterijaDesign tepisi = new MusterijaDesign();
             tepisi.Show();
         }
 
@@ -172,7 +165,7 @@ namespace ExtraSjaj
             try
             {
                 DateTime VremeDolaskaTepiha = new DateTime();
-                bool placeno = Convert.ToBoolean( dataGridView1.SelectedCells[8].Value);
+                bool placeno = Convert.ToBoolean( dataGridView1.SelectedCells[8].Value.ToString());
                 int rowIndex = dataGridView1.CurrentRow.Index;
                 int idSelektovaneMusterije = Convert.ToInt32( dataGridView1.SelectedCells[0].Value);
                 string ImeSelektovanogMusterije = dataGridView1.SelectedCells[2].Value.ToString();

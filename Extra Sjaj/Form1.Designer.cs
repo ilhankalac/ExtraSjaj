@@ -38,12 +38,6 @@
             this.musterijasBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
             this._TepisiBaza_2018DataSet1 = new ExtraSjaj._TepisiBaza_2018DataSet1();
             this.musterijasTableAdapter1 = new ExtraSjaj._TepisiBaza_2018DataSet1TableAdapters.MusterijasTableAdapter();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.musterijasBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -61,17 +55,17 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(1047, 404);
+            this.listBox1.Location = new System.Drawing.Point(816, 564);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(185, 95);
+            this.listBox1.Size = new System.Drawing.Size(134, 95);
             this.listBox1.TabIndex = 1;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // btnDodaj
             // 
-            this.btnDodaj.Location = new System.Drawing.Point(1102, 271);
+            this.btnDodaj.Location = new System.Drawing.Point(34, 582);
             this.btnDodaj.Name = "btnDodaj";
-            this.btnDodaj.Size = new System.Drawing.Size(123, 23);
+            this.btnDodaj.Size = new System.Drawing.Size(123, 40);
             this.btnDodaj.TabIndex = 4;
             this.btnDodaj.Text = "Dodaj mušteriju";
             this.btnDodaj.UseVisualStyleBackColor = true;
@@ -79,7 +73,7 @@
             // 
             // btnBrisiMusteriju
             // 
-            this.btnBrisiMusteriju.Location = new System.Drawing.Point(58, 564);
+            this.btnBrisiMusteriju.Location = new System.Drawing.Point(163, 582);
             this.btnBrisiMusteriju.Name = "btnBrisiMusteriju";
             this.btnBrisiMusteriju.Size = new System.Drawing.Size(123, 40);
             this.btnBrisiMusteriju.TabIndex = 5;
@@ -89,9 +83,9 @@
             // 
             // btnUpdateMusterija
             // 
-            this.btnUpdateMusterija.Location = new System.Drawing.Point(242, 564);
+            this.btnUpdateMusterija.Location = new System.Drawing.Point(301, 582);
             this.btnUpdateMusterija.Name = "btnUpdateMusterija";
-            this.btnUpdateMusterija.Size = new System.Drawing.Size(123, 36);
+            this.btnUpdateMusterija.Size = new System.Drawing.Size(123, 40);
             this.btnUpdateMusterija.TabIndex = 6;
             this.btnUpdateMusterija.Text = "Izmeni mušteriju";
             this.btnUpdateMusterija.UseVisualStyleBackColor = true;
@@ -103,7 +97,7 @@
             this.kreirajMušterijuToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1301, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1002, 24);
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -127,57 +121,9 @@
             // 
             this.musterijasTableAdapter1.ClearBeforeFill = true;
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(1130, 98);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 9;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(1130, 140);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 10;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(1130, 188);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 11;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1044, 101);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 13);
-            this.label1.TabIndex = 13;
-            this.label1.Text = "Ime i Prezime";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(1047, 143);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(66, 13);
-            this.label3.TabIndex = 14;
-            this.label3.Text = "Broj telefona";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(1073, 191);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(40, 13);
-            this.label4.TabIndex = 15;
-            this.label4.Text = "Adresa";
-            // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(446, 555);
+            this.button2.Location = new System.Drawing.Point(640, 564);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(135, 45);
             this.button2.TabIndex = 16;
@@ -189,7 +135,7 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(39, 66);
+            this.dataGridView1.Location = new System.Drawing.Point(32, 66);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(947, 483);
             this.dataGridView1.TabIndex = 17;
@@ -211,15 +157,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1301, 653);
+            this.ClientSize = new System.Drawing.Size(1002, 653);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btnUpdateMusterija);
             this.Controls.Add(this.btnBrisiMusteriju);
             this.Controls.Add(this.btnDodaj);
@@ -258,12 +198,6 @@
         private _TepisiBaza_2018DataSet1 _TepisiBaza_2018DataSet1;
         private System.Windows.Forms.BindingSource musterijasBindingSource3;
         private _TepisiBaza_2018DataSet1TableAdapters.MusterijasTableAdapter musterijasTableAdapter1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.DataGridView dataGridView1;
     }

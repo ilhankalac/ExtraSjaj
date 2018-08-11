@@ -15,7 +15,7 @@ namespace ExtraSjaj
     public partial class TepisiMusterije : Form
     {
         SqlConnection konekcija = new SqlConnection(Konekcija.konString);
-        Musterija musterija = new Musterija();
+        Modeli.Musterija musterija = new Modeli.Musterija();
 
         Form1 frm1 = new Form1();
         public TepisiMusterije(int  IdMusterije, string ImeMusterije, DateTime VremeDolaskaTepiha, bool placeno)
@@ -145,14 +145,9 @@ namespace ExtraSjaj
         void updateMusterijuNakonPlacanja()
         {
             konekcija.Open();
-
-
             SqlCommand komanda = new SqlCommand(@"update Musterijas set Platio = 1 "  + " where Id = " + musterija.Id.ToString(), konekcija);
             komanda.ExecuteNonQuery();
             konekcija.Close();
-
-            frm1.citajTabeluMusterijeFromSql();
-
         }
     }
 }
