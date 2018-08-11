@@ -172,6 +172,8 @@ namespace ExtraSjaj
                 VremeDolaskaTepiha = Convert.ToDateTime( dataGridView1.SelectedCells[7].Value);
                 TepisiMusterije tepisiMusterije = new TepisiMusterije(idSelektovaneMusterije, ImeSelektovanogMusterije, VremeDolaskaTepiha);
                 tepisiMusterije.ShowDialog();
+                citajTabeluMusterijeFromSql();
+
             }
             catch 
             {

@@ -65,7 +65,6 @@ namespace ExtraSjaj
             IscitajTabeluTepisiZaMusteriju();
             racunZaMusteriju();
 
-            frm1.Dispose();
 
             updateMusterijuNakonDodavanjaTepiha();
         }
@@ -117,6 +116,12 @@ namespace ExtraSjaj
 
 
             }
+        }
+
+
+        private void TepisiMusterije_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            frm1.Refresh();
         }
     }
 }

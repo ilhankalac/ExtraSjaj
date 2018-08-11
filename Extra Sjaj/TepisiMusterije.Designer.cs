@@ -37,7 +37,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnDodajTepih = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -53,7 +55,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(214, 361);
+            this.label1.Location = new System.Drawing.Point(35, 8);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(28, 31);
             this.label1.TabIndex = 1;
@@ -63,7 +65,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(214, 392);
+            this.label2.Location = new System.Drawing.Point(35, 39);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(99, 31);
             this.label2.TabIndex = 2;
@@ -115,30 +117,42 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(217, 434);
+            this.label5.Location = new System.Drawing.Point(38, 81);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(35, 13);
             this.label5.TabIndex = 8;
             this.label5.Text = "label5";
             // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Location = new System.Drawing.Point(204, 363);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(417, 100);
+            this.panel1.TabIndex = 9;
+            // 
             // TepisiMusterije
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(772, 475);
-            this.Controls.Add(this.label5);
+            this.ClientSize = new System.Drawing.Size(772, 506);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnDodajTepih);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "TepisiMusterije";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TepisiMusterije";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TepisiMusterije_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -155,5 +169,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnDodajTepih;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Panel panel1;
     }
 }
