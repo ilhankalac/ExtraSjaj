@@ -30,8 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.btnDodaj = new System.Windows.Forms.Button();
             this.btnBrisiMusteriju = new System.Windows.Forms.Button();
             this.btnUpdateMusterija = new System.Windows.Forms.Button();
@@ -44,7 +42,6 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
@@ -64,33 +61,15 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(12, 404);
+            this.listBox1.Location = new System.Drawing.Point(1047, 404);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(185, 95);
             this.listBox1.TabIndex = 1;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(124, 134);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(35, 21);
-            this.comboBox1.TabIndex = 2;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(537, 545);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(123, 46);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Prikaži sve mušterije";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // btnDodaj
             // 
-            this.btnDodaj.Location = new System.Drawing.Point(101, 312);
+            this.btnDodaj.Location = new System.Drawing.Point(1102, 271);
             this.btnDodaj.Name = "btnDodaj";
             this.btnDodaj.Size = new System.Drawing.Size(123, 23);
             this.btnDodaj.TabIndex = 4;
@@ -100,9 +79,9 @@
             // 
             // btnBrisiMusteriju
             // 
-            this.btnBrisiMusteriju.Location = new System.Drawing.Point(1150, 534);
+            this.btnBrisiMusteriju.Location = new System.Drawing.Point(58, 564);
             this.btnBrisiMusteriju.Name = "btnBrisiMusteriju";
-            this.btnBrisiMusteriju.Size = new System.Drawing.Size(123, 27);
+            this.btnBrisiMusteriju.Size = new System.Drawing.Size(123, 40);
             this.btnBrisiMusteriju.TabIndex = 5;
             this.btnBrisiMusteriju.Text = "Obriši mušteriju";
             this.btnBrisiMusteriju.UseVisualStyleBackColor = true;
@@ -110,9 +89,9 @@
             // 
             // btnUpdateMusterija
             // 
-            this.btnUpdateMusterija.Location = new System.Drawing.Point(1011, 534);
+            this.btnUpdateMusterija.Location = new System.Drawing.Point(242, 564);
             this.btnUpdateMusterija.Name = "btnUpdateMusterija";
-            this.btnUpdateMusterija.Size = new System.Drawing.Size(123, 23);
+            this.btnUpdateMusterija.Size = new System.Drawing.Size(123, 36);
             this.btnUpdateMusterija.TabIndex = 6;
             this.btnUpdateMusterija.Text = "Izmeni mušteriju";
             this.btnUpdateMusterija.UseVisualStyleBackColor = true;
@@ -150,21 +129,21 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(124, 84);
+            this.textBox1.Location = new System.Drawing.Point(1130, 98);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 9;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(124, 181);
+            this.textBox2.Location = new System.Drawing.Point(1130, 140);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 20);
             this.textBox2.TabIndex = 10;
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(124, 232);
+            this.textBox3.Location = new System.Drawing.Point(1130, 188);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(100, 20);
             this.textBox3.TabIndex = 11;
@@ -172,25 +151,16 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(38, 87);
+            this.label1.Location = new System.Drawing.Point(1044, 101);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(69, 13);
             this.label1.TabIndex = 13;
             this.label1.Text = "Ime i Prezime";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(46, 137);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 13);
-            this.label2.TabIndex = 14;
-            this.label2.Text = "Broj Tepiha";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(46, 184);
+            this.label3.Location = new System.Drawing.Point(1047, 143);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(66, 13);
             this.label3.TabIndex = 14;
@@ -199,7 +169,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(61, 236);
+            this.label4.Location = new System.Drawing.Point(1073, 191);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(40, 13);
             this.label4.TabIndex = 15;
@@ -207,7 +177,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(689, 546);
+            this.button2.Location = new System.Drawing.Point(446, 555);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(135, 45);
             this.button2.TabIndex = 16;
@@ -219,7 +189,7 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(326, 39);
+            this.dataGridView1.Location = new System.Drawing.Point(39, 66);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(947, 483);
             this.dataGridView1.TabIndex = 17;
@@ -246,7 +216,6 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
@@ -254,8 +223,6 @@
             this.Controls.Add(this.btnUpdateMusterija);
             this.Controls.Add(this.btnBrisiMusteriju);
             this.Controls.Add(this.btnDodaj);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -281,8 +248,6 @@
         private System.Windows.Forms.BindingSource musterijasBindingSource;
      
         private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnDodaj;
         private System.Windows.Forms.Button btnBrisiMusteriju;
         private System.Windows.Forms.Button btnUpdateMusterija;
@@ -297,7 +262,6 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button2;

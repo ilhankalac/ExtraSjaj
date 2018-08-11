@@ -36,6 +36,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btnDodajTepih = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,7 +63,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(214, 417);
+            this.label2.Location = new System.Drawing.Point(214, 392);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(99, 31);
             this.label2.TabIndex = 2;
@@ -102,19 +103,30 @@
             // 
             // btnDodajTepih
             // 
+            this.btnDodajTepih.BackColor = System.Drawing.Color.Chartreuse;
             this.btnDodajTepih.Location = new System.Drawing.Point(107, 218);
             this.btnDodajTepih.Name = "btnDodajTepih";
-            this.btnDodajTepih.Size = new System.Drawing.Size(75, 23);
+            this.btnDodajTepih.Size = new System.Drawing.Size(75, 33);
             this.btnDodajTepih.TabIndex = 7;
             this.btnDodajTepih.Text = "Dodaj tepih";
-            this.btnDodajTepih.UseVisualStyleBackColor = true;
+            this.btnDodajTepih.UseVisualStyleBackColor = false;
             this.btnDodajTepih.Click += new System.EventHandler(this.btnDodajTepih_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(217, 434);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(35, 13);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "label5";
             // 
             // TepisiMusterije
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(772, 475);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.btnDodajTepih);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -142,5 +154,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnDodajTepih;
+        private System.Windows.Forms.Label label5;
     }
 }

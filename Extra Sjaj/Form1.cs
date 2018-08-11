@@ -29,13 +29,12 @@ namespace ExtraSjaj
             //this.musterijasTableAdapter1.Fill(this._TepisiBaza_2018DataSet1.Musterijas);
             citajTabeluMusterijeFromSql();
         }
-        void citajTabeluMusterijeFromSql()
+        public void citajTabeluMusterijeFromSql()
         {
             SqlDataAdapter sda = new SqlDataAdapter("select m.id,row_number() over (order by m.Id) as 'Br.Mušterije',m.ImePrezime as 'Ime i Prezime',m.BrojTepiha as 'Br.Tepiha',m.BrojTelefona as 'Br. Tel.',m.Adresa, sum(isnull(t.kvadratura,0)) as 'Kvadratura Tepiha', m.VremeDolaskaTepiha as 'Tepisi dostavljeni', m.Platio as 'Plaćeno' from Musterijas m left join Tepisi t on t.MusterijaId = m.Id group by m.id, m.ImePrezime, m.BrojTepiha, m.BrojTelefona, m.Adresa, m.VremeDolaskaTepiha, m.Platio order by m.Id asc", konekcija);
             DataTable dt = new DataTable();
             sda.Fill(dt);
             dataGridView1.DataSource = dt;
-            puniKomboBrojeva();
             puniListuMusterija();
         }
         private DataTable citajTabeluMusterije()
@@ -79,15 +78,7 @@ namespace ExtraSjaj
 
 
         }
-        private void puniKomboBrojeva()
-        {
-            DataTable mojaTabela = citajTabeluBrojeva();
-            comboBox1.DataSource = mojaTabela;
-
-            comboBox1.DisplayMember = "Broj";
-            comboBox1.ValueMember = "Id";
-
-        }
+     
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -99,9 +90,8 @@ namespace ExtraSjaj
 
         private void btnDodaj_Click(object sender, EventArgs e)
         {
-            SqlCommand komanda = new SqlCommand(@"insert into Musterijas(ImePrezime,BrojTepiha,BrojTelefona, Adresa, VremeDOlaskaTepiha)" +
+            SqlCommand komanda = new SqlCommand(@"insert into Musterijas(ImePrezime,BrojTelefona, Adresa, VremeDOlaskaTepiha)" +
                 "values (('" + textBox1.Text.ToString() + "')," +
-                "(" + comboBox1.SelectedValue.ToString() + ")," +
                 "('" + textBox2.Text.ToString() + "')," +
                 "('" + textBox3.Text.ToString() + "')," +
                 "('" + DateTime.Now.ToString()+ "')); ", konekcija);
@@ -173,11 +163,21 @@ namespace ExtraSjaj
 
         private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            int rowIndex = dataGridView1.CurrentRow.Index;
-            string idSelektovaneMusterije = dataGridView1.SelectedCells[0].Value.ToString();
-            string ImeSelektovanogMusterije = dataGridView1.SelectedCells[2].Value.ToString();
-            TepisiMusterije tepisiMusterije = new TepisiMusterije(idSelektovaneMusterije, ImeSelektovanogMusterije);
-            tepisiMusterije.ShowDialog();
+            try
+            {
+                DateTime VremeDolaskaTepiha = new DateTime();
+                int rowIndex = dataGridView1.CurrentRow.Index;
+                int idSelektovaneMusterije = Convert.ToInt32( dataGridView1.SelectedCells[0].Value);
+                string ImeSelektovanogMusterije = dataGridView1.SelectedCells[2].Value.ToString();
+                VremeDolaskaTepiha = Convert.ToDateTime( dataGridView1.SelectedCells[7].Value);
+                TepisiMusterije tepisiMusterije = new TepisiMusterije(idSelektovaneMusterije, ImeSelektovanogMusterije, VremeDolaskaTepiha);
+                tepisiMusterije.ShowDialog();
+            }
+            catch 
+            {
+                MessageBox.Show("Pogrešno ste izabrali mušteriju.");
+            }
+           
         }
     }
     }
