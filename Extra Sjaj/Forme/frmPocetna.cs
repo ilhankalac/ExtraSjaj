@@ -13,9 +13,9 @@ using System.Windows.Forms;
 
 namespace ExtraSjaj
 {
-    public partial class Form1 : Form
+    public partial class frmPocetna : Form
     {
-        public Form1()
+        public frmPocetna()
         {
             InitializeComponent();
         }
@@ -99,7 +99,7 @@ namespace ExtraSjaj
 
         private void btnDodaj_Click(object sender, EventArgs e)
         {
-            MusterijaDesign musterijaZaDodaj = new MusterijaDesign();
+            frmMusterija musterijaZaDodaj = new frmMusterija();
             musterijaZaDodaj.ShowDialog();
             citajTabeluMusterijeFromSql();
 
@@ -165,7 +165,7 @@ namespace ExtraSjaj
 
         private void button2_Click(object sender, EventArgs e)
         {
-            MusterijaDesign tepisi = new MusterijaDesign();
+            frmMusterija tepisi = new frmMusterija();
             tepisi.Show();
         }
 
@@ -179,7 +179,7 @@ namespace ExtraSjaj
                 int idSelektovaneMusterije = Convert.ToInt32( dataGridView1.SelectedCells[0].Value);
                 string ImeSelektovanogMusterije = dataGridView1.SelectedCells[2].Value.ToString();
                 VremeDolaskaTepiha = Convert.ToDateTime( dataGridView1.SelectedCells[7].Value);
-                TepisiMusterije tepisiMusterije = new TepisiMusterije(idSelektovaneMusterije, ImeSelektovanogMusterije, VremeDolaskaTepiha, placeno);
+                frmTepisiMusterije tepisiMusterije = new frmTepisiMusterije(idSelektovaneMusterije, ImeSelektovanogMusterije, VremeDolaskaTepiha, placeno);
                 tepisiMusterije.ShowDialog();
                 citajTabeluMusterijeFromSql();
 

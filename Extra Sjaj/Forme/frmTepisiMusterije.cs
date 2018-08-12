@@ -12,13 +12,13 @@ using System.Windows.Forms;
 
 namespace ExtraSjaj
 {
-    public partial class TepisiMusterije : Form
+    public partial class frmTepisiMusterije : Form
     {
         SqlConnection konekcija = new SqlConnection(Konekcija.konString);
         Modeli.Musterija musterija = new Modeli.Musterija();
 
-        Form1 frm1 = new Form1();
-        public TepisiMusterije(int  IdMusterije, string ImeMusterije, DateTime VremeDolaskaTepiha, bool placeno)
+        frmPocetna frm1 = new frmPocetna();
+        public frmTepisiMusterije(int  IdMusterije, string ImeMusterije, DateTime VremeDolaskaTepiha, bool placeno)
         {
             InitializeComponent();
             musterija.Id = IdMusterije;

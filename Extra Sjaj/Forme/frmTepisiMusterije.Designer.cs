@@ -1,6 +1,6 @@
 ﻿namespace ExtraSjaj
 {
-    partial class TepisiMusterije
+    partial class frmTepisiMusterije
     {
         /// <summary>
         /// Required designer variable.
@@ -202,7 +202,7 @@
             this.comboBox1.Text = "1";
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
-            // TepisiMusterije
+            // frmTepisiMusterije
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -215,7 +215,7 @@
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.dataGridView1);
-            this.Name = "TepisiMusterije";
+            this.Name = "frmTepisiMusterije";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TepisiMusterije";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TepisiMusterije_FormClosing);

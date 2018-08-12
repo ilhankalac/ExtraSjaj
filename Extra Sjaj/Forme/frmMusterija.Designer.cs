@@ -1,6 +1,6 @@
 ﻿namespace ExtraSjaj
 {
-    partial class MusterijaDesign
+    partial class frmMusterija
     {
         /// <summary>
         /// Required designer variable.
@@ -95,7 +95,7 @@
             this.btnDodaj.UseVisualStyleBackColor = true;
             this.btnDodaj.Click += new System.EventHandler(this.btnDodaj_Click);
             // 
-            // MusterijaDesign
+            // frmMusterija
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -107,7 +107,7 @@
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btnDodaj);
-            this.Name = "MusterijaDesign";
+            this.Name = "frmMusterija";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Musterija";
             this.Load += new System.EventHandler(this.Tepisi_Load);

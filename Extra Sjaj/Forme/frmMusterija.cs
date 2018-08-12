@@ -12,9 +12,9 @@ using System.Windows.Forms;
 
 namespace ExtraSjaj
 {
-    public partial class MusterijaDesign : Form
+    public partial class frmMusterija : Form
     {
-        public MusterijaDesign()
+        public frmMusterija()
         {
             InitializeComponent();
         }
