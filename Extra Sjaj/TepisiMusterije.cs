@@ -148,19 +148,20 @@ namespace ExtraSjaj
 
         private void btnNaplati_Click(object sender, EventArgs e)
         {
-            if ((MessageBox.Show("Da li si siguran da je mušterija platio?", "Poruka", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes) &&  Convert.ToDouble( textBox3.Text) <= racun())
+            DialogResult dialogResult = MessageBox.Show("Da li si siguran da je mušterija platio?", "Poruka", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+            if ((dialogResult == DialogResult.Yes) && Convert.ToDouble(textBox3.Text) <= racun() && Convert.ToDouble(textBox3.Text) >0)
             {
                 updateMusterijuNakonPlacanja();
                 MessageBox.Show("Uspešno naplaćeno.", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
             }
-            else 
-            {
-                MessageBox.Show("Ispravno unesi koliko је mušterija ostavio novca.");
-            }
-           
-
             
+            else if(Convert.ToDouble(textBox3.Text) > racun() || Convert.ToDouble(textBox3.Text) < 0)
+            {
+                MessageBox.Show("Ispravno unesi koliko је mušterija ostavio novca.(ne mozeš uneti negativan broj, niti više od njegovog računa.");
+            }
+
+
         }
         void updateMusterijuNakonPlacanja()
         {
