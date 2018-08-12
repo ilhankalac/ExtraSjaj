@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,12 +29,15 @@ namespace ExtraSjaj
             //// TODO: This line of code loads data into the '_TepisiBaza_2018DataSet.Musterijas' table. You can move, or remove it, as needed.
             //this.musterijasTableAdapter1.Fill(this._TepisiBaza_2018DataSet1.Musterijas);
             citajTabeluMusterijeFromSql();
+            label1.Text = CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(DateTime.Now.Month);
+            label1.Text +="/"+ DateTime.Now.Year.ToString();
         }
+
         public void citajTabeluMusterijeFromSql()
         {
             SqlDataAdapter sda = new SqlDataAdapter("select m.id,row_number() over (order by m.Id) as 'Br.Mušterije'," +
                 "m.ImePrezime as 'Ime i Prezime',m.BrojTepiha as 'Br.Tepiha',m.BrojTelefona as 'Br. Tel.',m.Adresa, " +
-                "sum(isnull(t.kvadratura,0)) as 'Kvadratura Tepiha', m.VremeDolaskaTepiha as 'Tepisi dostavljeni', m.Racun as Račun, m.Platio as 'Plaćeno' " +
+                "sum(isnull(t.kvadratura,0)) as 'Kvadratura Tepiha', m.VremeDolaskaTepiha as 'Tepisi dostavljeni', m.Racun as 'Račun/Eur', m.Platio as 'Plaćeno' " +
                 "from Musterijas m left join Tepisi t on t.MusterijaId = m.Id " +
                 "group by m.id, m.ImePrezime, m.BrojTepiha, m.BrojTelefona, m.Adresa, m.VremeDolaskaTepiha,m.Racun, m.Platio" +
                 " order by m.Id asc", konekcija);
@@ -170,7 +174,7 @@ namespace ExtraSjaj
             try
             {
                 DateTime VremeDolaskaTepiha = new DateTime();
-                bool placeno = Convert.ToBoolean( dataGridView1.SelectedCells[8].Value.ToString());
+                bool placeno = Convert.ToBoolean( dataGridView1.SelectedCells[9].Value.ToString());
                 int rowIndex = dataGridView1.CurrentRow.Index;
                 int idSelektovaneMusterije = Convert.ToInt32( dataGridView1.SelectedCells[0].Value);
                 string ImeSelektovanogMusterije = dataGridView1.SelectedCells[2].Value.ToString();
@@ -185,6 +189,12 @@ namespace ExtraSjaj
                 MessageBox.Show("Pogrešno ste izabrali mušteriju.");
             }
            
+        }
+
+        private void kreirajMušterijuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmArhivaMusterija frm = new frmArhivaMusterija();
+            frm.ShowDialog();
         }
     }
     }

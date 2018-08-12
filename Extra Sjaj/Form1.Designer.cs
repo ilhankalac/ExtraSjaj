@@ -40,6 +40,7 @@
             this.musterijasTableAdapter1 = new ExtraSjaj._TepisiBaza_2018DataSet1TableAdapters.MusterijasTableAdapter();
             this.button2 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
             this.musterijasBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.musterijasBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.musterijasBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
@@ -104,8 +105,9 @@
             // kreirajMušterijuToolStripMenuItem
             // 
             this.kreirajMušterijuToolStripMenuItem.Name = "kreirajMušterijuToolStripMenuItem";
-            this.kreirajMušterijuToolStripMenuItem.Size = new System.Drawing.Size(105, 20);
-            this.kreirajMušterijuToolStripMenuItem.Text = "Kreiraj mušteriju";
+            this.kreirajMušterijuToolStripMenuItem.Size = new System.Drawing.Size(222, 20);
+            this.kreirajMušterijuToolStripMenuItem.Text = "Pogledaj arhivu mušterija koji su platili";
+            this.kreirajMušterijuToolStripMenuItem.Click += new System.EventHandler(this.kreirajMušterijuToolStripMenuItem_Click);
             // 
             // musterijasBindingSource3
             // 
@@ -141,6 +143,16 @@
             this.dataGridView1.TabIndex = 17;
             this.dataGridView1.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseDoubleClick);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(917, 38);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(76, 25);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "label1";
+            // 
             // musterijasBindingSource
             // 
             this.musterijasBindingSource.DataMember = "Musterijas";
@@ -158,6 +170,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1064, 653);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btnUpdateMusterija);
@@ -200,6 +213,7 @@
         private _TepisiBaza_2018DataSet1TableAdapters.MusterijasTableAdapter musterijasTableAdapter1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label1;
     }
 }
 

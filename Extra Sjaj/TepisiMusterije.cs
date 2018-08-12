@@ -46,12 +46,13 @@ namespace ExtraSjaj
         void updateMusterijuNakonDodavanjaIBrisanjaTepiha()
         {
             konekcija.Open();
-            
-        
+
+
             SqlCommand komanda = new SqlCommand(@"update Musterijas
-                                                set BrojTepiha = "+ "(select count(MusterijaId) " +
-                                                " from Tepisi where MusterijaId = " + musterija.Id.ToString()+" )" 
-                                                +"where Id = " + musterija.Id.ToString(), konekcija);
+                                                set BrojTepiha = " + "(select count(MusterijaId) " +
+                                               " from Tepisi where MusterijaId = " + musterija.Id.ToString() + " ),"+
+                                               "Racun = "+ racun().ToString()
+                                               + " where Id = " + musterija.Id.ToString(), konekcija);
             komanda.ExecuteNonQuery();
             konekcija.Close();
           
@@ -118,7 +119,7 @@ namespace ExtraSjaj
                 racun += Convert.ToDouble(item.Cells[4].Value.ToString());
 
             }
-            return racun;
+            return Math.Round(racun * Convert.ToDouble( comboBox1.Text), 2);
         }
 
         private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -142,7 +143,7 @@ namespace ExtraSjaj
 
         private void TepisiMusterije_FormClosing(object sender, FormClosingEventArgs e)
         {
-            frm1.Refresh();
+            updateMusterijuNakonDodavanjaIBrisanjaTepiha();
         }
 
         private void btnNaplati_Click(object sender, EventArgs e)
@@ -175,6 +176,11 @@ namespace ExtraSjaj
             SqlCommand komanda = new SqlCommand(@"update Musterijas set Platio = "+ platio  + "  where Id = " + musterija.Id.ToString(), konekcija);
             komanda.ExecuteNonQuery();
             konekcija.Close();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            racunZaMusteriju();
         }
     }
 }
