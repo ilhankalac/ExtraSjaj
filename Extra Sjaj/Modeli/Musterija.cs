@@ -18,6 +18,6 @@ namespace ExtraSjaj.Modeli
         public DateTime VremeDolaskaTepiha { get; set; }
         public bool Platio { get; set; }
 
-        
+        public double Racun { get; set; }
     }
 }
