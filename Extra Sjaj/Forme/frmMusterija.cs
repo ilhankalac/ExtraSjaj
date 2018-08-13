@@ -41,7 +41,7 @@ namespace ExtraSjaj
                "('" + textBox2.Text.ToString() + "')," +
               "('" + textBox3.Text.ToString() + "')," +
               "('" + false.ToString() + "')," +
-              "('" + DateTime.Now.ToString() + "')); ", konekcija);
+              "(getdate())); ", konekcija);
 
             konekcija.Open();
             komanda.ExecuteNonQuery();

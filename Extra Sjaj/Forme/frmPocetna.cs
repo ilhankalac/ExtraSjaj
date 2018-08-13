@@ -193,6 +193,11 @@ namespace ExtraSjaj
 
         private void kreirajMušterijuToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            
+        }
+
+        private void pogledajArhivuMušterijaKojiSuPlatiliToolStripMenuItem_Click(object sender, EventArgs e)
+        {
             frmArhivaMusterija frm = new frmArhivaMusterija();
             frm.ShowDialog();
         }

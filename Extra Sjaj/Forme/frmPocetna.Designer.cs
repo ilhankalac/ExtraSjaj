@@ -44,6 +44,7 @@
             this.musterijasBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.musterijasBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.musterijasBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.pogledajArhivuMušterijaKojiSuPlatiliToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._TepisiBaza_2018DataSet1)).BeginInit();
@@ -104,9 +105,11 @@
             // 
             // kreirajMušterijuToolStripMenuItem
             // 
+            this.kreirajMušterijuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.pogledajArhivuMušterijaKojiSuPlatiliToolStripMenuItem});
             this.kreirajMušterijuToolStripMenuItem.Name = "kreirajMušterijuToolStripMenuItem";
-            this.kreirajMušterijuToolStripMenuItem.Size = new System.Drawing.Size(222, 20);
-            this.kreirajMušterijuToolStripMenuItem.Text = "Pogledaj arhivu mušterija koji su platili";
+            this.kreirajMušterijuToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
+            this.kreirajMušterijuToolStripMenuItem.Text = "Istorija";
             this.kreirajMušterijuToolStripMenuItem.Click += new System.EventHandler(this.kreirajMušterijuToolStripMenuItem_Click);
             // 
             // musterijasBindingSource3
@@ -165,6 +168,13 @@
             // 
             this.musterijasBindingSource2.DataMember = "Musterijas";
             // 
+            // pogledajArhivuMušterijaKojiSuPlatiliToolStripMenuItem
+            // 
+            this.pogledajArhivuMušterijaKojiSuPlatiliToolStripMenuItem.Name = "pogledajArhivuMušterijaKojiSuPlatiliToolStripMenuItem";
+            this.pogledajArhivuMušterijaKojiSuPlatiliToolStripMenuItem.Size = new System.Drawing.Size(280, 22);
+            this.pogledajArhivuMušterijaKojiSuPlatiliToolStripMenuItem.Text = "Pogledaj istoriju mušterija koji su platili";
+            this.pogledajArhivuMušterijaKojiSuPlatiliToolStripMenuItem.Click += new System.EventHandler(this.pogledajArhivuMušterijaKojiSuPlatiliToolStripMenuItem_Click);
+            // 
             // frmPocetna
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -214,6 +224,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripMenuItem pogledajArhivuMušterijaKojiSuPlatiliToolStripMenuItem;
     }
 }
 
