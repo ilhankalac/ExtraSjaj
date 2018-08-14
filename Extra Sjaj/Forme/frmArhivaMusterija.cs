@@ -23,9 +23,7 @@ namespace ExtraSjaj
 
         public void citajTabeluMusterijeFromSql()
         {
-
-           
-
+    
             SqlDataAdapter sda = new SqlDataAdapter("select m.id,row_number() over (order by m.Id) as 'Br.Mušterije'," +
                 "m.ImePrezime as 'Ime i Prezime',m.BrojTepiha as 'Br.Tepiha',m.BrojTelefona as 'Br. Tel.',m.Adresa, " +
                 "sum(isnull(t.kvadratura,0)) as 'Kvadratura Tepiha', m.VremeDolaskaTepiha as 'Tepisi dostavljeni', m.Racun as 'Račun/Eur', m.Platio as 'Plaćeno' " +
@@ -39,14 +37,7 @@ namespace ExtraSjaj
             dataGridView1.DataSource = dt;
         }
 
-//        Danas
-//Juče
-//Ove nedjelje
-//Prošle nedjelje
-//Ovog mjeseca
-//Prošlog mjeseca
-//Prošle godine
-//Sve vrijeme
+
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             int selektovaniPeriod = 0;
@@ -112,6 +103,7 @@ namespace ExtraSjaj
             }
 
             arhivaMusterijaUOdredjenomPeriodu(selektovaniPeriod, selektovaniDeoDatuma);
+            arhivaZaradaUOdredjenomPeriodu(selektovaniPeriod, selektovaniDeoDatuma);
 
 
         }
@@ -129,6 +121,16 @@ namespace ExtraSjaj
             DataTable dt = new DataTable();
             sda.Fill(dt);
             dataGridView1.DataSource = dt;
+        }
+        void arhivaZaradaUOdredjenomPeriodu(int selektovaniPeriod, string selektovaniDeoDatuma)
+        {
+            label1.Text = "";
+            SqlCommand komanda = new SqlCommand("select sum(isnull(Racun,0)) from Musterijas" +
+                " where Platio = 1 and  datediff(" + selektovaniDeoDatuma + ", VremeDOlaskaTepiha, getdate()) = " + selektovaniPeriod, konekcija);
+            konekcija.Open();
+            label1.Text = komanda.ExecuteScalar().ToString()+" EUR.";
+            konekcija.Close();
+
         }
     }
 }
