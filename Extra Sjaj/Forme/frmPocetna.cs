@@ -31,6 +31,7 @@ namespace ExtraSjaj
             citajTabeluMusterijeFromSql();
             label1.Text = CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(DateTime.Now.Month);
             label1.Text +="/"+ DateTime.Now.Year.ToString();
+            dodavanjeMusterijeControl1.Visible = false;
         }
 
         public void citajTabeluMusterijeFromSql()
@@ -100,9 +101,10 @@ namespace ExtraSjaj
 
         private void btnDodaj_Click(object sender, EventArgs e)
         {
-            frmMusterija musterijaZaDodaj = new frmMusterija();
-            musterijaZaDodaj.ShowDialog();
+
+            dodavanjeMusterijeControl1.Visible = true;
             citajTabeluMusterijeFromSql();
+          
 
         }
 
@@ -163,8 +165,8 @@ namespace ExtraSjaj
 
         private void button2_Click(object sender, EventArgs e)
         {
-            frmMusterija tepisi = new frmMusterija();
-            tepisi.Show();
+            //frmMusterija tepisi = new frmMusterija();
+          //  tepisi.Show();
         }
 
         private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -204,11 +206,19 @@ namespace ExtraSjaj
         {
             frmArhivaMusterija frm = new frmArhivaMusterija();
             frm.ShowDialog();
+
+
         }
 
         private void button2_Click_1(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            citajTabeluMusterijeFromSql();
+            dodavanjeMusterijeControl1.Visible = false; 
         }
     }
     }

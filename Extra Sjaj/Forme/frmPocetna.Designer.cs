@@ -42,27 +42,29 @@
             this.musterijasTableAdapter1 = new ExtraSjaj._TepisiBaza_2018DataSet1TableAdapters.MusterijasTableAdapter();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
-            this.musterijasBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.musterijasBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.musterijasBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
+            this.musterijasBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.musterijasBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.musterijasBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.dodavanjeMusterijeControl1 = new ExtraSjaj.Forme.DodavanjeMusterijeControl();
+            this.button3 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._TepisiBaza_2018DataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource2)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource2)).BeginInit();
             this.SuspendLayout();
             // 
             // listBox1
@@ -99,7 +101,7 @@
             this.btnBrisiMusteriju.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBrisiMusteriju.ForeColor = System.Drawing.Color.White;
             this.btnBrisiMusteriju.Image = ((System.Drawing.Image)(resources.GetObject("btnBrisiMusteriju.Image")));
-            this.btnBrisiMusteriju.Location = new System.Drawing.Point(-9, 155);
+            this.btnBrisiMusteriju.Location = new System.Drawing.Point(-10, 155);
             this.btnBrisiMusteriju.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnBrisiMusteriju.Name = "btnBrisiMusteriju";
             this.btnBrisiMusteriju.Size = new System.Drawing.Size(203, 188);
@@ -116,7 +118,7 @@
             this.btnUpdateMusterija.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdateMusterija.ForeColor = System.Drawing.Color.White;
             this.btnUpdateMusterija.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdateMusterija.Image")));
-            this.btnUpdateMusterija.Location = new System.Drawing.Point(0, 343);
+            this.btnUpdateMusterija.Location = new System.Drawing.Point(-3, 343);
             this.btnUpdateMusterija.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnUpdateMusterija.Name = "btnUpdateMusterija";
             this.btnUpdateMusterija.Size = new System.Drawing.Size(188, 188);
@@ -133,7 +135,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1217, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1245, 24);
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -172,11 +174,11 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(163, 143);
+            this.dataGridView1.Location = new System.Drawing.Point(177, 145);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.dataGridView1.Size = new System.Drawing.Size(1054, 533);
+            this.dataGridView1.Size = new System.Drawing.Size(1063, 531);
             this.dataGridView1.TabIndex = 17;
             this.dataGridView1.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseDoubleClick);
             // 
@@ -190,18 +192,6 @@
             this.label1.TabIndex = 18;
             this.label1.Text = "label1";
             // 
-            // musterijasBindingSource
-            // 
-            this.musterijasBindingSource.DataMember = "Musterijas";
-            // 
-            // musterijasBindingSource1
-            // 
-            this.musterijasBindingSource1.DataMember = "Musterijas";
-            // 
-            // musterijasBindingSource2
-            // 
-            this.musterijasBindingSource2.DataMember = "Musterijas";
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
@@ -209,18 +199,33 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1217, 48);
+            this.panel1.Size = new System.Drawing.Size(1245, 48);
             this.panel1.TabIndex = 19;
+            // 
+            // button2
+            // 
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
+            this.button2.Location = new System.Drawing.Point(1137, 0);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(103, 49);
+            this.button2.TabIndex = 3;
+            this.button2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.button3);
             this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 72);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1217, 73);
+            this.panel2.Size = new System.Drawing.Size(1245, 73);
             this.panel2.TabIndex = 20;
             // 
             // button1
@@ -228,7 +233,7 @@
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(280, 9);
+            this.button1.Location = new System.Drawing.Point(521, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(167, 63);
             this.button1.TabIndex = 2;
@@ -268,28 +273,49 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 145);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(184, 531);
+            this.panel3.Size = new System.Drawing.Size(184, 549);
             this.panel3.TabIndex = 21;
             // 
-            // button2
+            // musterijasBindingSource
             // 
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.Location = new System.Drawing.Point(1114, 0);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(103, 49);
-            this.button2.TabIndex = 3;
-            this.button2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            this.musterijasBindingSource.DataMember = "Musterijas";
+            // 
+            // musterijasBindingSource1
+            // 
+            this.musterijasBindingSource1.DataMember = "Musterijas";
+            // 
+            // musterijasBindingSource2
+            // 
+            this.musterijasBindingSource2.DataMember = "Musterijas";
+            // 
+            // dodavanjeMusterijeControl1
+            // 
+            this.dodavanjeMusterijeControl1.Location = new System.Drawing.Point(182, 145);
+            this.dodavanjeMusterijeControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dodavanjeMusterijeControl1.Name = "dodavanjeMusterijeControl1";
+            this.dodavanjeMusterijeControl1.Size = new System.Drawing.Size(1063, 549);
+            this.dodavanjeMusterijeControl1.TabIndex = 22;
+            // 
+            // button3
+            // 
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(278, 2);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(214, 63);
+            this.button3.TabIndex = 3;
+            this.button3.Text = "Prikaži mušterije ovog mjeseca";
+            this.button3.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // frmPocetna
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1217, 676);
+            this.ClientSize = new System.Drawing.Size(1245, 694);
+            this.Controls.Add(this.dodavanjeMusterijeControl1);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -309,14 +335,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._TepisiBaza_2018DataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource2)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -347,6 +373,8 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private Forme.DodavanjeMusterijeControl dodavanjeMusterijeControl1;
+        private System.Windows.Forms.Button button3;
     }
 }
 
