@@ -39,6 +39,7 @@ namespace ExtraSjaj
                 "m.ImePrezime as 'Ime i Prezime',m.BrojTepiha as 'Br.Tepiha',m.BrojTelefona as 'Br. Tel.',m.Adresa, " +
                 "sum(isnull(t.kvadratura,0)) as 'Kvadratura Tepiha', m.VremeDolaskaTepiha as 'Tepisi dostavljeni', m.Racun as 'Račun/Eur', m.Platio as 'Plaćeno' " +
                 "from Musterijas m left join Tepisi t on t.MusterijaId = m.Id " +
+                " where  datediff(month , m.VremeDolaskaTepiha, getdate()) = 0" +
                 "group by m.id, m.ImePrezime, m.BrojTepiha, m.BrojTelefona, m.Adresa, m.VremeDolaskaTepiha,m.Racun, m.Platio" +
                 " order by m.Id asc", konekcija);
             DataTable dt = new DataTable();

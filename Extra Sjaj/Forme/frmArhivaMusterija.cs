@@ -109,12 +109,24 @@ namespace ExtraSjaj
         }
         void arhivaMusterijaUOdredjenomPeriodu(int selektovaniPeriod, string selektovaniDeoDatuma)
         {
-            SqlDataAdapter sda = new SqlDataAdapter("select m.id,row_number() over (order by m.Id) as 'Br.Mušterije'," +
+            int platio = 0;
+            string queryPart = "";
+            string queryPart1 = "";
+            if (checkBox1.Checked)
+                platio = 1;
+
+            if (!checkBox2.Checked)
+                queryPart = "where m.Platio = " + platio + " and";
+            else
+                queryPart1 = " where";
+                
+
+                SqlDataAdapter sda = new SqlDataAdapter("select m.id,row_number() over (order by m.Id) as 'Br.Mušterije'," +
                "m.ImePrezime as 'Ime i Prezime',m.BrojTepiha as 'Br.Tepiha',m.BrojTelefona as 'Br. Tel.',m.Adresa, " +
                "sum(isnull(t.kvadratura,0)) as 'Kvadratura Tepiha', m.VremeDolaskaTepiha as 'Tepisi dostavljeni', m.Racun as 'Račun/Eur', m.Platio as 'Plaćeno' " +
                "from Musterijas m left join Tepisi t on t.MusterijaId = m.Id " +
-               "where m.Platio = 1 " +
-               " and  datediff("+selektovaniDeoDatuma+", m.VremeDolaskaTepiha, getdate()) = " + selektovaniPeriod+
+               queryPart+
+              queryPart1+ " datediff("+selektovaniDeoDatuma+", m.VremeDolaskaTepiha, getdate()) = " + selektovaniPeriod+
                " group by m.id, m.ImePrezime, m.BrojTepiha, m.BrojTelefona, m.Adresa, m.VremeDolaskaTepiha,m.Racun, m.Platio" +
                " order by m.Id asc", konekcija);
 
@@ -131,6 +143,18 @@ namespace ExtraSjaj
             label1.Text = komanda.ExecuteScalar().ToString()+" EUR.";
             konekcija.Close();
 
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            checkBox2.Checked = false;
+            comboBox1_SelectedIndexChanged(sender, e);
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            checkBox1.Checked = false;
+            comboBox1_SelectedIndexChanged(sender, e);
         }
     }
 }
