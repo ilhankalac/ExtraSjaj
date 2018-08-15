@@ -19,6 +19,7 @@ namespace ExtraSjaj
         {
             InitializeComponent();
             citajTabeluMusterijeFromSql();
+            comboBox1_SelectedIndexChanged(new object(), new EventArgs());
         }
 
         public void citajTabeluMusterijeFromSql()
@@ -35,6 +36,7 @@ namespace ExtraSjaj
             DataTable dt = new DataTable();
             sda.Fill(dt);
             dataGridView1.DataSource = dt;
+            
         }
 
 
@@ -103,8 +105,12 @@ namespace ExtraSjaj
             }
 
             arhivaMusterijaUOdredjenomPeriodu(selektovaniPeriod, selektovaniDeoDatuma);
+            arhivaPotencijalneZaradeUOdredjenomPeriodu(selektovaniPeriod, selektovaniDeoDatuma);
             arhivaZaradaUOdredjenomPeriodu(selektovaniPeriod, selektovaniDeoDatuma);
 
+        }
+        void ispisiSelektovaniPeriodULabelu()
+        {
 
         }
         void arhivaMusterijaUOdredjenomPeriodu(int selektovaniPeriod, string selektovaniDeoDatuma)
@@ -134,17 +140,26 @@ namespace ExtraSjaj
             sda.Fill(dt);
             dataGridView1.DataSource = dt;
         }
-        void arhivaZaradaUOdredjenomPeriodu(int selektovaniPeriod, string selektovaniDeoDatuma)
+        void arhivaPotencijalneZaradeUOdredjenomPeriodu(int selektovaniPeriod, string selektovaniDeoDatuma)
         {
             label1.Text = "";
             SqlCommand komanda = new SqlCommand("select sum(isnull(Racun,0)) from Musterijas" +
-                " where Platio = 1 and  datediff(" + selektovaniDeoDatuma + ", VremeDOlaskaTepiha, getdate()) = " + selektovaniPeriod, konekcija);
+                " where datediff(" + selektovaniDeoDatuma + ", VremeDOlaskaTepiha, getdate()) = " + selektovaniPeriod, konekcija);
             konekcija.Open();
             label1.Text = komanda.ExecuteScalar().ToString()+" EUR.";
             konekcija.Close();
 
         }
+        void arhivaZaradaUOdredjenomPeriodu(int selektovaniPeriod, string selektovaniDeoDatuma)
+        {
+            label5.Text = "";
+            SqlCommand komanda = new SqlCommand("select sum(isnull(Racun,0)) from Musterijas" +
+                " where Platio = 1 and  datediff(" + selektovaniDeoDatuma + ", VremeDOlaskaTepiha, getdate()) = " + selektovaniPeriod, konekcija);
+            konekcija.Open();
+            label5.Text = komanda.ExecuteScalar().ToString() + " EUR.";
+            konekcija.Close();
 
+        }
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             checkBox2.Checked = false;
