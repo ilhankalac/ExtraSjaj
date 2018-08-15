@@ -159,10 +159,7 @@ namespace ExtraSjaj
             citajTabeluMusterijeFromSql();
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+    
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -198,6 +195,12 @@ namespace ExtraSjaj
         }
 
         private void pogledajArhivuMušterijaKojiSuPlatiliToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmArhivaMusterija frm = new frmArhivaMusterija();
+            frm.ShowDialog();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
         {
             frmArhivaMusterija frm = new frmArhivaMusterija();
             frm.ShowDialog();
