@@ -215,7 +215,7 @@
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(521, 3);
+            this.button1.Location = new System.Drawing.Point(498, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(167, 63);
             this.button1.TabIndex = 2;
@@ -263,18 +263,18 @@
             // 
             // arhivaMusterijaControl1
             // 
-            this.arhivaMusterijaControl1.Location = new System.Drawing.Point(191, 142);
+            this.arhivaMusterijaControl1.Location = new System.Drawing.Point(187, 130);
             this.arhivaMusterijaControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.arhivaMusterijaControl1.Name = "arhivaMusterijaControl1";
-            this.arhivaMusterijaControl1.Size = new System.Drawing.Size(1042, 581);
+            this.arhivaMusterijaControl1.Size = new System.Drawing.Size(1047, 581);
             this.arhivaMusterijaControl1.TabIndex = 23;
             // 
             // dodavanjeMusterijeControl1
             // 
-            this.dodavanjeMusterijeControl1.Location = new System.Drawing.Point(197, 145);
+            this.dodavanjeMusterijeControl1.Location = new System.Drawing.Point(187, 145);
             this.dodavanjeMusterijeControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dodavanjeMusterijeControl1.Name = "dodavanjeMusterijeControl1";
-            this.dodavanjeMusterijeControl1.Size = new System.Drawing.Size(1036, 588);
+            this.dodavanjeMusterijeControl1.Size = new System.Drawing.Size(1040, 588);
             this.dodavanjeMusterijeControl1.TabIndex = 22;
             // 
             // button4

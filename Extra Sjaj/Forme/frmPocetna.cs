@@ -146,7 +146,7 @@ namespace ExtraSjaj
             konekcija.Open();
             foreach (DataGridViewRow row in dataGridView1.SelectedRows)
             {
-                if (row.Cells[8].Value.ToString() == "True")
+                if (row.Cells[9].Value.ToString() == "True")
                     i = 1;
                 else
                     i = 0;
