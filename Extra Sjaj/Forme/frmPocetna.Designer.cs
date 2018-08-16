@@ -51,6 +51,7 @@
             this.musterijasBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.arhivaMusterijaControl1 = new ExtraSjaj.Forme.ArhivaMusterijaControl();
             this.dodavanjeMusterijeControl1 = new ExtraSjaj.Forme.DodavanjeMusterijeControl();
+            this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._TepisiBaza_2018DataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -76,13 +77,13 @@
             // 
             this.btnDodaj.FlatAppearance.BorderSize = 0;
             this.btnDodaj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDodaj.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDodaj.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDodaj.ForeColor = System.Drawing.Color.White;
             this.btnDodaj.Image = ((System.Drawing.Image)(resources.GetObject("btnDodaj.Image")));
-            this.btnDodaj.Location = new System.Drawing.Point(-9, -2);
+            this.btnDodaj.Location = new System.Drawing.Point(3, 2);
             this.btnDodaj.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDodaj.Name = "btnDodaj";
-            this.btnDodaj.Size = new System.Drawing.Size(200, 184);
+            this.btnDodaj.Size = new System.Drawing.Size(178, 119);
             this.btnDodaj.TabIndex = 4;
             this.btnDodaj.Text = "Dodaj mušteriju";
             this.btnDodaj.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -93,13 +94,13 @@
             // 
             this.btnBrisiMusteriju.FlatAppearance.BorderSize = 0;
             this.btnBrisiMusteriju.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBrisiMusteriju.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBrisiMusteriju.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBrisiMusteriju.ForeColor = System.Drawing.Color.White;
             this.btnBrisiMusteriju.Image = ((System.Drawing.Image)(resources.GetObject("btnBrisiMusteriju.Image")));
-            this.btnBrisiMusteriju.Location = new System.Drawing.Point(-10, 155);
+            this.btnBrisiMusteriju.Location = new System.Drawing.Point(3, 119);
             this.btnBrisiMusteriju.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnBrisiMusteriju.Name = "btnBrisiMusteriju";
-            this.btnBrisiMusteriju.Size = new System.Drawing.Size(203, 188);
+            this.btnBrisiMusteriju.Size = new System.Drawing.Size(178, 119);
             this.btnBrisiMusteriju.TabIndex = 5;
             this.btnBrisiMusteriju.Text = "Obriši mušteriju";
             this.btnBrisiMusteriju.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -110,13 +111,13 @@
             // 
             this.btnUpdateMusterija.FlatAppearance.BorderSize = 0;
             this.btnUpdateMusterija.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpdateMusterija.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdateMusterija.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdateMusterija.ForeColor = System.Drawing.Color.White;
             this.btnUpdateMusterija.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdateMusterija.Image")));
-            this.btnUpdateMusterija.Location = new System.Drawing.Point(-3, 343);
+            this.btnUpdateMusterija.Location = new System.Drawing.Point(3, 233);
             this.btnUpdateMusterija.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnUpdateMusterija.Name = "btnUpdateMusterija";
-            this.btnUpdateMusterija.Size = new System.Drawing.Size(188, 188);
+            this.btnUpdateMusterija.Size = new System.Drawing.Size(178, 119);
             this.btnUpdateMusterija.TabIndex = 6;
             this.btnUpdateMusterija.Text = "Izmeni mušteriju";
             this.btnUpdateMusterija.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -167,7 +168,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1238, 48);
+            this.panel1.Size = new System.Drawing.Size(1246, 48);
             this.panel1.TabIndex = 19;
             // 
             // button2
@@ -192,7 +193,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 48);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1238, 73);
+            this.panel2.Size = new System.Drawing.Size(1246, 73);
             this.panel2.TabIndex = 20;
             // 
             // button3
@@ -237,6 +238,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            this.panel3.Controls.Add(this.button4);
             this.panel3.Controls.Add(this.btnDodaj);
             this.panel3.Controls.Add(this.btnBrisiMusteriju);
             this.panel3.Controls.Add(this.btnUpdateMusterija);
@@ -244,7 +246,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 121);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(184, 602);
+            this.panel3.Size = new System.Drawing.Size(184, 603);
             this.panel3.TabIndex = 21;
             // 
             // musterijasBindingSource
@@ -261,10 +263,10 @@
             // 
             // arhivaMusterijaControl1
             // 
-            this.arhivaMusterijaControl1.Location = new System.Drawing.Point(191, 143);
+            this.arhivaMusterijaControl1.Location = new System.Drawing.Point(191, 142);
             this.arhivaMusterijaControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.arhivaMusterijaControl1.Name = "arhivaMusterijaControl1";
-            this.arhivaMusterijaControl1.Size = new System.Drawing.Size(1042, 619);
+            this.arhivaMusterijaControl1.Size = new System.Drawing.Size(1042, 581);
             this.arhivaMusterijaControl1.TabIndex = 23;
             // 
             // dodavanjeMusterijeControl1
@@ -275,11 +277,27 @@
             this.dodavanjeMusterijeControl1.Size = new System.Drawing.Size(1036, 588);
             this.dodavanjeMusterijeControl1.TabIndex = 22;
             // 
+            // button4
+            // 
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.ForeColor = System.Drawing.Color.White;
+            this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
+            this.button4.Location = new System.Drawing.Point(3, 360);
+            this.button4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(178, 119);
+            this.button4.TabIndex = 7;
+            this.button4.Text = "Podešavanja";
+            this.button4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button4.UseVisualStyleBackColor = true;
+            // 
             // frmPocetna
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1238, 723);
+            this.ClientSize = new System.Drawing.Size(1246, 724);
             this.Controls.Add(this.arhivaMusterijaControl1);
             this.Controls.Add(this.dodavanjeMusterijeControl1);
             this.Controls.Add(this.panel3);
@@ -333,6 +351,7 @@
         private Forme.DodavanjeMusterijeControl dodavanjeMusterijeControl1;
         private System.Windows.Forms.Button button3;
         private Forme.ArhivaMusterijaControl arhivaMusterijaControl1;
+        private System.Windows.Forms.Button button4;
     }
 }
 
