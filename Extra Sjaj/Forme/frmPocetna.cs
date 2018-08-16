@@ -1,4 +1,5 @@
-﻿using ExtraSjaj.Modeli;
+﻿using ExtraSjaj.Forme;
+using ExtraSjaj.Modeli;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -33,6 +34,8 @@ namespace ExtraSjaj
             label1.Text +="/"+ DateTime.Now.Year.ToString();
             dodavanjeMusterijeControl1.Visible = false;
             arhivaMusterijaControl1.Visible = false;
+            dodavanjeTepihaControl1.Visible = false;
+            dodavanjeMusterijeControl1.Visible = false;
 
         }
 
@@ -180,8 +183,9 @@ namespace ExtraSjaj
                 int idSelektovaneMusterije = Convert.ToInt32( dataGridView1.SelectedCells[0].Value);
                 string ImeSelektovanogMusterije = dataGridView1.SelectedCells[2].Value.ToString();
                 VremeDolaskaTepiha = Convert.ToDateTime( dataGridView1.SelectedCells[7].Value);
-                frmTepisiMusterije tepisiMusterije = new frmTepisiMusterije(idSelektovaneMusterije, ImeSelektovanogMusterije, VremeDolaskaTepiha, placeno);
-                tepisiMusterije.ShowDialog();
+              //  DodavanjeTepihaControl tepisiMusterije = new DodavanjeTepihaControl(idSelektovaneMusterije, ImeSelektovanogMusterije, VremeDolaskaTepiha, placeno);
+                dodavanjeTepihaControl1.ucitavanjeTepihaSelektovanogMusterije(idSelektovaneMusterije, ImeSelektovanogMusterije, VremeDolaskaTepiha, placeno);
+                dodavanjeTepihaControl1.Visible = true;
                 citajTabeluMusterijeFromSql();
 
             }
@@ -221,6 +225,8 @@ namespace ExtraSjaj
             citajTabeluMusterijeFromSql();
             dodavanjeMusterijeControl1.Visible = false;
             arhivaMusterijaControl1.Visible = false;
+            dodavanjeMusterijeControl1.Visible = false;
+            dodavanjeTepihaControl1.Visible = false;
         }
     }
     }
