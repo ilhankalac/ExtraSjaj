@@ -32,6 +32,8 @@ namespace ExtraSjaj
             label1.Text = CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(DateTime.Now.Month);
             label1.Text +="/"+ DateTime.Now.Year.ToString();
             dodavanjeMusterijeControl1.Visible = false;
+            arhivaMusterijaControl1.Visible = false;
+
         }
 
         public void citajTabeluMusterijeFromSql()
@@ -198,15 +200,15 @@ namespace ExtraSjaj
 
         private void pogledajArhivuMušterijaKojiSuPlatiliToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmArhivaMusterija frm = new frmArhivaMusterija();
-            frm.ShowDialog();
+           // frmArhivaMusterija frm = new frmArhivaMusterija();
+           // frm.ShowDialog();
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            frmArhivaMusterija frm = new frmArhivaMusterija();
-            frm.ShowDialog();
-
+            //frmArhivaMusterija frm = new frmArhivaMusterija();
+            //frm.ShowDialog();
+            arhivaMusterijaControl1.Visible = true ;
 
         }
 
@@ -218,7 +220,8 @@ namespace ExtraSjaj
         private void button3_Click(object sender, EventArgs e)
         {
             citajTabeluMusterijeFromSql();
-            dodavanjeMusterijeControl1.Visible = false; 
+            dodavanjeMusterijeControl1.Visible = false;
+            arhivaMusterijaControl1.Visible = false;
         }
     }
     }

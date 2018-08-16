@@ -1,21 +1,22 @@
-﻿using ExtraSjaj.Modeli;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
+using ExtraSjaj.Modeli;
 
-namespace ExtraSjaj
+namespace ExtraSjaj.Forme
 {
-    public partial class frmArhivaMusterija : Form
+    public partial class ArhivaMusterijaControl : UserControl
     {
+
         SqlConnection konekcija = new SqlConnection(Konekcija.konString);
-        public frmArhivaMusterija()
+        public ArhivaMusterijaControl()
         {
             InitializeComponent();
             citajTabeluMusterijeFromSql();
@@ -24,7 +25,7 @@ namespace ExtraSjaj
 
         public void citajTabeluMusterijeFromSql()
         {
-    
+
             SqlDataAdapter sda = new SqlDataAdapter("select m.id,row_number() over (order by m.Id) as 'Br.Mušterije'," +
                 "m.ImePrezime as 'Ime i Prezime',m.BrojTepiha as 'Br.Tepiha',m.BrojTelefona as 'Br. Tel.',m.Adresa, " +
                 "sum(isnull(t.kvadratura,0)) as 'Kvadratura Tepiha', m.VremeDolaskaTepiha as 'Tepisi dostavljeni', m.Racun as 'Račun/Eur', m.Platio as 'Plaćeno' " +
@@ -36,9 +37,55 @@ namespace ExtraSjaj
             DataTable dt = new DataTable();
             sda.Fill(dt);
             dataGridView1.DataSource = dt;
-            
-        }
 
+        }
+        void arhivaMusterijaUOdredjenomPeriodu(int selektovaniPeriod, string selektovaniDeoDatuma)
+        {
+            int platio = 0;
+            string queryPart = "";
+            string queryPart1 = "";
+            if (checkBox1.Checked)
+                platio = 1;
+
+            if (!checkBox2.Checked)
+                queryPart = "where m.Platio = " + platio + " and";
+            else
+                queryPart1 = " where";
+
+
+            SqlDataAdapter sda = new SqlDataAdapter("select m.id,row_number() over (order by m.Id) as 'Br.Mušterije'," +
+           "m.ImePrezime as 'Ime i Prezime',m.BrojTepiha as 'Br.Tepiha',m.BrojTelefona as 'Br. Tel.',m.Adresa, " +
+           "sum(isnull(t.kvadratura,0)) as 'Kvadratura Tepiha', m.VremeDolaskaTepiha as 'Tepisi dostavljeni', m.Racun as 'Račun/Eur', m.Platio as 'Plaćeno' " +
+           "from Musterijas m left join Tepisi t on t.MusterijaId = m.Id " +
+           queryPart +
+          queryPart1 + " datediff(" + selektovaniDeoDatuma + ", m.VremeDolaskaTepiha, getdate()) = " + selektovaniPeriod +
+           " group by m.id, m.ImePrezime, m.BrojTepiha, m.BrojTelefona, m.Adresa, m.VremeDolaskaTepiha,m.Racun, m.Platio" +
+           " order by m.Id asc", konekcija);
+
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            dataGridView1.DataSource = dt;
+        }
+        void arhivaPotencijalneZaradeUOdredjenomPeriodu(int selektovaniPeriod, string selektovaniDeoDatuma)
+        {
+            label1.Text = "";
+            SqlCommand komanda = new SqlCommand("select sum(isnull(Racun,0)) from Musterijas" +
+                " where datediff(" + selektovaniDeoDatuma + ", VremeDOlaskaTepiha, getdate()) = " + selektovaniPeriod, konekcija);
+            konekcija.Open();
+            label1.Text = komanda.ExecuteScalar().ToString() + " EUR.";
+            konekcija.Close();
+
+        }
+        void arhivaZaradaUOdredjenomPeriodu(int selektovaniPeriod, string selektovaniDeoDatuma)
+        {
+            label5.Text = "";
+            SqlCommand komanda = new SqlCommand("select sum(isnull(Racun,0)) from Musterijas" +
+                " where Platio = 1 and  datediff(" + selektovaniDeoDatuma + ", VremeDOlaskaTepiha, getdate()) = " + selektovaniPeriod, konekcija);
+            konekcija.Open();
+            label5.Text = komanda.ExecuteScalar().ToString() + " EUR.";
+            konekcija.Close();
+
+        }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -107,68 +154,17 @@ namespace ExtraSjaj
             arhivaMusterijaUOdredjenomPeriodu(selektovaniPeriod, selektovaniDeoDatuma);
             arhivaPotencijalneZaradeUOdredjenomPeriodu(selektovaniPeriod, selektovaniDeoDatuma);
             arhivaZaradaUOdredjenomPeriodu(selektovaniPeriod, selektovaniDeoDatuma);
-
-        }
-        void ispisiSelektovaniPeriodULabelu()
-        {
-
-        }
-        void arhivaMusterijaUOdredjenomPeriodu(int selektovaniPeriod, string selektovaniDeoDatuma)
-        {
-            int platio = 0;
-            string queryPart = "";
-            string queryPart1 = "";
-            if (checkBox1.Checked)
-                platio = 1;
-
-            if (!checkBox2.Checked)
-                queryPart = "where m.Platio = " + platio + " and";
-            else
-                queryPart1 = " where";
-                
-
-                SqlDataAdapter sda = new SqlDataAdapter("select m.id,row_number() over (order by m.Id) as 'Br.Mušterije'," +
-               "m.ImePrezime as 'Ime i Prezime',m.BrojTepiha as 'Br.Tepiha',m.BrojTelefona as 'Br. Tel.',m.Adresa, " +
-               "sum(isnull(t.kvadratura,0)) as 'Kvadratura Tepiha', m.VremeDolaskaTepiha as 'Tepisi dostavljeni', m.Racun as 'Račun/Eur', m.Platio as 'Plaćeno' " +
-               "from Musterijas m left join Tepisi t on t.MusterijaId = m.Id " +
-               queryPart+
-              queryPart1+ " datediff("+selektovaniDeoDatuma+", m.VremeDolaskaTepiha, getdate()) = " + selektovaniPeriod+
-               " group by m.id, m.ImePrezime, m.BrojTepiha, m.BrojTelefona, m.Adresa, m.VremeDolaskaTepiha,m.Racun, m.Platio" +
-               " order by m.Id asc", konekcija);
-
-            DataTable dt = new DataTable();
-            sda.Fill(dt);
-            dataGridView1.DataSource = dt;
-        }
-        void arhivaPotencijalneZaradeUOdredjenomPeriodu(int selektovaniPeriod, string selektovaniDeoDatuma)
-        {
-            label1.Text = "";
-            SqlCommand komanda = new SqlCommand("select sum(isnull(Racun,0)) from Musterijas" +
-                " where datediff(" + selektovaniDeoDatuma + ", VremeDOlaskaTepiha, getdate()) = " + selektovaniPeriod, konekcija);
-            konekcija.Open();
-            label1.Text = komanda.ExecuteScalar().ToString()+" EUR.";
-            konekcija.Close();
-
-        }
-        void arhivaZaradaUOdredjenomPeriodu(int selektovaniPeriod, string selektovaniDeoDatuma)
-        {
-            label5.Text = "";
-            SqlCommand komanda = new SqlCommand("select sum(isnull(Racun,0)) from Musterijas" +
-                " where Platio = 1 and  datediff(" + selektovaniDeoDatuma + ", VremeDOlaskaTepiha, getdate()) = " + selektovaniPeriod, konekcija);
-            konekcija.Open();
-            label5.Text = komanda.ExecuteScalar().ToString() + " EUR.";
-            konekcija.Close();
-
-        }
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            checkBox2.Checked = false;
-            comboBox1_SelectedIndexChanged(sender, e);
         }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
             checkBox1.Checked = false;
+            comboBox1_SelectedIndexChanged(sender, e);
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            checkBox2.Checked = false;
             comboBox1_SelectedIndexChanged(sender, e);
         }
     }

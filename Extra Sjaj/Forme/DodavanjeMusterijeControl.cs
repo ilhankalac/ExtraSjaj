@@ -52,7 +52,7 @@ namespace ExtraSjaj.Forme
             komanda.ExecuteNonQuery();
             konekcija.Close();
             MessageBox.Show("Mušterija uspešno dodat u bazi.", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+            this.Hide();
         }
     }
 }
