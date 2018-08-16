@@ -47,6 +47,7 @@ namespace ExtraSjaj.Forme
             label1.Text = ImeMusterije + " - tepisi";
             label5.Text = "Tepisi dostavljeni na pranje: " + VremeDolaskaTepiha.Day.ToString() + "/" + VremeDolaskaTepiha.Month.ToString() + "/" + VremeDolaskaTepiha.Year.ToString();
             if (placeno) label6.Text += " Da"; else label6.Text += " Ne";
+            comboBox1_SelectedIndexChanged_1(new object(), new EventArgs());
 
             //musterija.Racun = racun();
             //racunZaMusteriju();
@@ -70,24 +71,7 @@ namespace ExtraSjaj.Forme
 
         }
 
-        private void btnDodajTepih_Click(object sender, EventArgs e)
-        {
-
-            SqlCommand komanda = new SqlCommand(@"insert into Tepisi(Duzina,Sirina,Kvadratura, MusterijaId)" +
-                "values ((" + textBox1.Text.ToString() + ")," +
-                "(" + textBox2.Text.ToString() + ")," +
-                "(" + Convert.ToDouble(textBox1.Text) * Convert.ToDouble(textBox2.Text) + ")," +
-                "(" + musterija.Id.ToString() + ")); ", konekcija);
-
-            konekcija.Open();
-            komanda.ExecuteNonQuery();
-            konekcija.Close();
-            IscitajTabeluTepisiZaMusteriju();
-            racunZaMusteriju();
-
-
-            updateMusterijuNakonDodavanjaIBrisanjaTepiha();
-        }
+        
 
         public void IscitajTabeluTepisiZaMusteriju()
         {
@@ -156,23 +140,7 @@ namespace ExtraSjaj.Forme
             updateMusterijuNakonDodavanjaIBrisanjaTepiha();
         }
 
-        private void btnNaplati_Click(object sender, EventArgs e)
-        {
-            DialogResult dialogResult = MessageBox.Show("Da li si siguran da je mušterija platio?", "Poruka", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-            if ((dialogResult == DialogResult.Yes) && Convert.ToDouble(textBox3.Text) <= racun() && Convert.ToDouble(textBox3.Text) > 0)
-            {
-                updateMusterijuNakonPlacanja();
-                MessageBox.Show("Uspešno naplaćeno.", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Hide();
-            }
-
-            else if (Convert.ToDouble(textBox3.Text) > racun() || Convert.ToDouble(textBox3.Text) < 0)
-            {
-                MessageBox.Show("Ispravno unesi koliko је mušterija ostavio novca.(ne mozeš uneti negativan broj, niti više od njegovog računa.");
-            }
-
-
-        }
+       
         void updateMusterijuNakonPlacanja()
         {
             int platio = 0;
@@ -189,11 +157,7 @@ namespace ExtraSjaj.Forme
             konekcija.Close();
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            racunZaMusteriju();
-        }
-
+      
         private void btnDodajTepih_Click_1(object sender, EventArgs e)
         {
             SqlCommand komanda = new SqlCommand(@"insert into Tepisi(Duzina,Sirina,Kvadratura, MusterijaId)" +
@@ -210,6 +174,27 @@ namespace ExtraSjaj.Forme
 
 
             updateMusterijuNakonDodavanjaIBrisanjaTepiha();
+        }
+
+        private void btnNaplati_Click_1(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Da li si siguran da je mušterija platio?", "Poruka", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+            if ((dialogResult == DialogResult.Yes) && Convert.ToDouble(textBox3.Text) <= racun() && Convert.ToDouble(textBox3.Text) > 0)
+            {
+                updateMusterijuNakonPlacanja();
+                MessageBox.Show("Uspešno naplaćeno.", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Hide();
+            }
+
+            else if (Convert.ToDouble(textBox3.Text) > racun() || Convert.ToDouble(textBox3.Text) < 0)
+            {
+                MessageBox.Show("Ispravno unesi koliko је mušterija ostavio novca.(ne mozeš uneti negativan broj, niti više od njegovog računa.");
+            }
+        }
+
+        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            racunZaMusteriju();
         }
     }
 }

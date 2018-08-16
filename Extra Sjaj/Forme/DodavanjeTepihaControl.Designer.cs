@@ -176,6 +176,7 @@
             this.btnNaplati.TabIndex = 10;
             this.btnNaplati.Text = "Naplati";
             this.btnNaplati.UseVisualStyleBackColor = true;
+            this.btnNaplati.Click += new System.EventHandler(this.btnNaplati_Click_1);
             // 
             // comboBox1
             // 
@@ -198,6 +199,7 @@
             this.comboBox1.Size = new System.Drawing.Size(42, 21);
             this.comboBox1.TabIndex = 18;
             this.comboBox1.Text = "1";
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged_1);
             // 
             // DodavanjeTepihaControl
             // 
