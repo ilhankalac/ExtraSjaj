@@ -1,10 +1,12 @@
-use IoT_Test;
 ----=======Kreiranje baze za ovu aplikaciju========
---drop database TepisiBaza-2018;
---go
---create database TepisiBaza-2018;
 
+IF  EXISTS (SELECT name FROM master.dbo.sysdatabases WHERE name = N'Tepisi_2018')
+drop database Tepisi_2018;
+go
+create database Tepisi_2018;
 
+use Tepisi_2018;
+go
 --=====================================
 --=======Tabela za Musterije===========
 CREATE TABLE Musterijas (
@@ -25,8 +27,8 @@ CREATE TABLE Tepisi (
     Id          INT        IDENTITY (1, 1) primary key NOT NULL,
     Duzina      FLOAT (53) NOT NULL,
     Kvadratura  REAL       NOT NULL,
-    MusterijaId INT        NOT NULL,
     Sirina      FLOAT (53) NOT NULL,
+	MusterijaId INT        NOT NULL,
     FOREIGN KEY (MusterijaId) REFERENCES Musterijas(Id) ON DELETE CASCADE
 );
 --======================================
