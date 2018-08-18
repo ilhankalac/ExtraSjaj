@@ -87,6 +87,29 @@ namespace ExtraSjaj.Forme
 
         }
 
+        void arhivaSvihMusterijaIkada()
+        {
+            SqlDataAdapter sda = new SqlDataAdapter("select m.id,row_number() over (order by m.Id) as 'Br.Mušterije'," +
+        "m.ImePrezime as 'Ime i Prezime',m.BrojTepiha as 'Br.Tepiha',m.BrojTelefona as 'Br. Tel.',m.Adresa, " +
+        "sum(isnull(t.kvadratura,0)) as 'Kvadratura Tepiha', m.VremeDolaskaTepiha as 'Tepisi dostavljeni', m.Racun as 'Račun/Eur', m.Platio as 'Plaćeno' " +
+        "from Musterijas m left join Tepisi t on t.MusterijaId = m.Id " +
+        " group by m.id, m.ImePrezime, m.BrojTepiha, m.BrojTelefona, m.Adresa, m.VremeDolaskaTepiha,m.Racun, m.Platio" +
+        " order by m.Id asc", konekcija);
+
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            dataGridView1.DataSource = dt;
+
+            //racunanje cijele zarade ikad
+            label1.Text = "";
+            SqlCommand kmndPotencijalneZarade = new SqlCommand("select sum(isnull(Racun,0)) from Musterijas", konekcija);
+            SqlCommand kmndZarade = new SqlCommand("select sum(isnull(Racun,0)) from Musterijas where platio = 1", konekcija);
+            konekcija.Open();
+            label1.Text = kmndPotencijalneZarade.ExecuteScalar().ToString() + " EUR.";
+            label5.Text = kmndZarade.ExecuteScalar().ToString() + " EUR.";
+            konekcija.Close();
+
+        }
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             int selektovaniPeriod = 0;
@@ -145,12 +168,14 @@ namespace ExtraSjaj.Forme
                         selektovaniDeoDatuma = "year";
                         break;
                     }
-                default:
-                    selektovaniDeoDatuma = "";
-                    selektovaniPeriod = 0;
-                    break;
-            }
+                case "Sve vrijeme":
+                    {
 
+                        arhivaSvihMusterijaIkada();
+                    }
+                    return;
+            }
+            if(selektovaniDeoDatuma!= "")
             arhivaMusterijaUOdredjenomPeriodu(selektovaniPeriod, selektovaniDeoDatuma);
             arhivaPotencijalneZaradeUOdredjenomPeriodu(selektovaniPeriod, selektovaniDeoDatuma);
             arhivaZaradaUOdredjenomPeriodu(selektovaniPeriod, selektovaniDeoDatuma);

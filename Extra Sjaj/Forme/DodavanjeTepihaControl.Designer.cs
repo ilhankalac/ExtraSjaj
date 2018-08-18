@@ -42,6 +42,7 @@
             this.btnNaplati = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -54,6 +55,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(553, 284);
             this.dataGridView1.TabIndex = 11;
+            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
             // label2
             // 
@@ -92,26 +94,29 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(398, 340);
+            this.label4.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(341, 331);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(14, 16);
+            this.label4.Size = new System.Drawing.Size(20, 24);
             this.label4.TabIndex = 15;
             this.label4.Text = "x";
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(419, 336);
+            this.textBox2.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(375, 327);
             this.textBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(35, 21);
+            this.textBox2.Size = new System.Drawing.Size(35, 33);
             this.textBox2.TabIndex = 13;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(349, 336);
+            this.textBox1.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(292, 327);
             this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(34, 21);
+            this.textBox1.Size = new System.Drawing.Size(34, 33);
             this.textBox1.TabIndex = 12;
             // 
             // label5
@@ -169,6 +174,7 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "0.5",
@@ -183,7 +189,7 @@
             "1.4",
             "1.5",
             "1.6"});
-            this.comboBox1.Location = new System.Drawing.Point(349, 437);
+            this.comboBox1.Location = new System.Drawing.Point(95, 399);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(48, 24);
@@ -194,12 +200,14 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.btnNaplati);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.textBox3);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.comboBox1);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Location = new System.Drawing.Point(652, 0);
@@ -207,6 +215,16 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(285, 617);
             this.panel2.TabIndex = 19;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(33, 402);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(46, 16);
+            this.label3.TabIndex = 20;
+            this.label3.Text = "Cijena:";
             // 
             // DodavanjeTepihaControl
             // 
@@ -218,7 +236,6 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.comboBox1);
             this.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "DodavanjeTepihaControl";
@@ -247,5 +264,6 @@
         private System.Windows.Forms.Button btnNaplati;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label3;
     }
 }
