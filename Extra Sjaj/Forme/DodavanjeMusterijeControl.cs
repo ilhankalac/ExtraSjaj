@@ -40,16 +40,21 @@ namespace ExtraSjaj.Forme
 
         private void btnDodaj_Click_1(object sender, EventArgs e)
         {
-            SqlCommand komanda = new SqlCommand(@"insert into Musterijas(ImePrezime,BrojTepiha,BrojTelefona, Adresa,Platio, VremeDOlaskaTepiha)" +
+            SqlCommand kmdZaInsertMusterije = new SqlCommand(@"insert into Musterijas(ImePrezime,BrojTepiha,BrojTelefona, Adresa,Platio, VremeDOlaskaTepiha)" +
               "values (('" + textBox1.Text.ToString() + "')," +
               "('" + 0.ToString() + "')," +
                "('" + textBox2.Text.ToString() + "')," +
               "('" + textBox3.Text.ToString() + "')," +
               "('" + false.ToString() + "')," +
               "(getdate())); ", konekcija);
+    
+
+            SqlCommand kmdZaInsertRacunaMusterije = new SqlCommand("insert into Racuni (Racun, MusterijaId)" +
+                "values (0, (SELECT SCOPE_IDENTITY()))", konekcija);
 
             konekcija.Open();
-            komanda.ExecuteNonQuery();
+            kmdZaInsertMusterije.ExecuteNonQuery();
+            kmdZaInsertRacunaMusterije.ExecuteNonQuery();
             konekcija.Close();
             MessageBox.Show("Mušterija uspešno dodat u bazi.", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Hide();

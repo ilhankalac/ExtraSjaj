@@ -28,11 +28,11 @@ namespace ExtraSjaj.Forme
 
             SqlDataAdapter sda = new SqlDataAdapter("select m.id,row_number() over (order by m.Id) as 'Br.Mušterije'," +
                 "m.ImePrezime as 'Ime i Prezime',m.BrojTepiha as 'Br.Tepiha',m.BrojTelefona as 'Br. Tel.',m.Adresa, " +
-                "sum(isnull(t.kvadratura,0)) as 'Kvadratura Tepiha', m.VremeDolaskaTepiha as 'Tepisi dostavljeni', m.Racun as 'Račun/Eur', m.Platio as 'Plaćeno' " +
+                "sum(isnull(t.kvadratura,0)) as 'Kvadratura Tepiha', m.VremeDolaskaTepiha as 'Tepisi dostavljeni', m.Platio as 'Plaćeno' " +
                 "from Musterijas m left join Tepisi t on t.MusterijaId = m.Id " +
                 "where m.Platio = 1" +
                 "" +
-                "group by m.id, m.ImePrezime, m.BrojTepiha, m.BrojTelefona, m.Adresa, m.VremeDolaskaTepiha,m.Racun, m.Platio" +
+                "group by m.id, m.ImePrezime, m.BrojTepiha, m.BrojTelefona, m.Adresa, m.VremeDolaskaTepiha, m.Platio" +
                 " order by m.Id asc", konekcija);
             DataTable dt = new DataTable();
             sda.Fill(dt);
@@ -55,11 +55,11 @@ namespace ExtraSjaj.Forme
 
             SqlDataAdapter sda = new SqlDataAdapter("select m.id,row_number() over (order by m.Id) as 'Br.Mušterije'," +
            "m.ImePrezime as 'Ime i Prezime',m.BrojTepiha as 'Br.Tepiha',m.BrojTelefona as 'Br. Tel.',m.Adresa, " +
-           "sum(isnull(t.kvadratura,0)) as 'Kvadratura Tepiha', m.VremeDolaskaTepiha as 'Tepisi dostavljeni', m.Racun as 'Račun/Eur', m.Platio as 'Plaćeno' " +
+           "sum(isnull(t.kvadratura,0)) as 'Kvadratura Tepiha', m.VremeDolaskaTepiha as 'Tepisi dostavljeni', m.Platio as 'Plaćeno' " +
            "from Musterijas m left join Tepisi t on t.MusterijaId = m.Id " +
            queryPart +
           queryPart1 + " datediff(" + selektovaniDeoDatuma + ", m.VremeDolaskaTepiha, getdate()) = " + selektovaniPeriod +
-           " group by m.id, m.ImePrezime, m.BrojTepiha, m.BrojTelefona, m.Adresa, m.VremeDolaskaTepiha,m.Racun, m.Platio" +
+           " group by m.id, m.ImePrezime, m.BrojTepiha, m.BrojTelefona, m.Adresa, m.VremeDolaskaTepiha, m.Platio" +
            " order by m.Id asc", konekcija);
 
             DataTable dt = new DataTable();
@@ -69,7 +69,7 @@ namespace ExtraSjaj.Forme
         void arhivaPotencijalneZaradeUOdredjenomPeriodu(int selektovaniPeriod, string selektovaniDeoDatuma)
         {
             label1.Text = "";
-            SqlCommand komanda = new SqlCommand("select sum(isnull(Racun,0)) from Musterijas" +
+            SqlCommand komanda = new SqlCommand("select sum(isnull(r.Racun,0)) from Racuni r join Musterijas m on m.Id = r.MusterijaId" +
                 " where datediff(" + selektovaniDeoDatuma + ", VremeDOlaskaTepiha, getdate()) = " + selektovaniPeriod, konekcija);
             konekcija.Open();
             label1.Text = komanda.ExecuteScalar().ToString() + " EUR.";
@@ -79,7 +79,7 @@ namespace ExtraSjaj.Forme
         void arhivaZaradaUOdredjenomPeriodu(int selektovaniPeriod, string selektovaniDeoDatuma)
         {
             label5.Text = "";
-            SqlCommand komanda = new SqlCommand("select sum(isnull(Racun,0)) from Musterijas" +
+            SqlCommand komanda = new SqlCommand("select sum(isnull(r.Racun,0)) from Racuni r join Musterijas m on m.Id  = r.MusterijaId" +
                 " where Platio = 1 and  datediff(" + selektovaniDeoDatuma + ", VremeDOlaskaTepiha, getdate()) = " + selektovaniPeriod, konekcija);
             konekcija.Open();
             label5.Text = komanda.ExecuteScalar().ToString() + " EUR.";
@@ -91,9 +91,9 @@ namespace ExtraSjaj.Forme
         {
             SqlDataAdapter sda = new SqlDataAdapter("select m.id,row_number() over (order by m.Id) as 'Br.Mušterije'," +
         "m.ImePrezime as 'Ime i Prezime',m.BrojTepiha as 'Br.Tepiha',m.BrojTelefona as 'Br. Tel.',m.Adresa, " +
-        "sum(isnull(t.kvadratura,0)) as 'Kvadratura Tepiha', m.VremeDolaskaTepiha as 'Tepisi dostavljeni', m.Racun as 'Račun/Eur', m.Platio as 'Plaćeno' " +
+        "sum(isnull(t.kvadratura,0)) as 'Kvadratura Tepiha', m.VremeDolaskaTepiha as 'Tepisi dostavljeni', m.Platio as 'Plaćeno' " +
         "from Musterijas m left join Tepisi t on t.MusterijaId = m.Id " +
-        " group by m.id, m.ImePrezime, m.BrojTepiha, m.BrojTelefona, m.Adresa, m.VremeDolaskaTepiha,m.Racun, m.Platio" +
+        " group by m.id, m.ImePrezime, m.BrojTepiha, m.BrojTelefona, m.Adresa, m.VremeDolaskaTepiha, m.Platio" +
         " order by m.Id asc", konekcija);
 
             DataTable dt = new DataTable();
@@ -102,8 +102,8 @@ namespace ExtraSjaj.Forme
 
             //racunanje cijele zarade ikad
             label1.Text = "";
-            SqlCommand kmndPotencijalneZarade = new SqlCommand("select sum(isnull(Racun,0)) from Musterijas", konekcija);
-            SqlCommand kmndZarade = new SqlCommand("select sum(isnull(Racun,0)) from Musterijas where platio = 1", konekcija);
+            SqlCommand kmndPotencijalneZarade = new SqlCommand("select sum(isnull(r.Racun,0)) from Racuni r join Musterija m on r.MusterijaId = m.Id", konekcija);
+            SqlCommand kmndZarade = new SqlCommand("select sum(isnull(r.Racun,0))from Racuni r join Musterija m on r.MusterijaId = m.Id where m.platio = 1", konekcija);
             konekcija.Open();
             label1.Text = kmndPotencijalneZarade.ExecuteScalar().ToString() + " EUR.";
             label5.Text = kmndZarade.ExecuteScalar().ToString() + " EUR.";

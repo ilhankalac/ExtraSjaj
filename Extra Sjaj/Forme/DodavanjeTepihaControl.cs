@@ -59,12 +59,16 @@ namespace ExtraSjaj.Forme
             konekcija.Open();
 
 
-            SqlCommand komanda = new SqlCommand(@"update Musterijas
+             SqlCommand cmdUpdateMusterije = new SqlCommand(@"update Musterijas
                                                 set BrojTepiha = " + "(select count(MusterijaId) " +
-                                               " from Tepisi where MusterijaId = " + musterija.Id.ToString() + " )," +
-                                               "Racun = " + racun().ToString()
+                                               " from Tepisi where MusterijaId = " + musterija.Id.ToString() + " )" 
                                                + " where Id = " + musterija.Id.ToString(), konekcija);
-            komanda.ExecuteNonQuery();
+
+              SqlCommand cmdUpdateRacuna = new SqlCommand(@"update Racuni
+                                                set Racun = " + racun().ToString() +
+                                               "  where MusterijaId = " + musterija.Id.ToString()  , konekcija);
+            cmdUpdateMusterije.ExecuteNonQuery();
+            cmdUpdateRacuna.ExecuteNonQuery();
             konekcija.Close();
             frmPocetna frm1 = new frmPocetna();
            frm1.citajTabeluMusterijeFromSql();
