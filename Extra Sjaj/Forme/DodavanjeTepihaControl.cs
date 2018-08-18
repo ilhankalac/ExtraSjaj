@@ -30,7 +30,7 @@ namespace ExtraSjaj.Forme
         //}
         public void ucitavanjeTepihaSelektovanogMusterije(int IdMusterije, string ImeMusterije, DateTime VremeDolaskaTepiha, bool placeno)
         {
-          
+            label5.Text = "";
             musterija.Id = IdMusterije;
             musterija.ImePrezime = ImeMusterije;
             musterija.VremeDolaskaTepiha = VremeDolaskaTepiha;

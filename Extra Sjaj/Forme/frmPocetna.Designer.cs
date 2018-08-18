@@ -50,9 +50,9 @@
             this.musterijasBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.musterijasBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.musterijasBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.dodavanjeTepihaControl1 = new ExtraSjaj.Forme.DodavanjeTepihaControl();
             this.arhivaMusterijaControl1 = new ExtraSjaj.Forme.ArhivaMusterijaControl();
             this.dodavanjeMusterijeControl1 = new ExtraSjaj.Forme.DodavanjeMusterijeControl();
-            this.dodavanjeTepihaControl1 = new ExtraSjaj.Forme.DodavanjeTepihaControl();
             ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._TepisiBaza_2018DataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -278,6 +278,15 @@
             // 
             this.musterijasBindingSource2.DataMember = "Musterijas";
             // 
+            // dodavanjeTepihaControl1
+            // 
+            this.dodavanjeTepihaControl1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dodavanjeTepihaControl1.Location = new System.Drawing.Point(187, 125);
+            this.dodavanjeTepihaControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dodavanjeTepihaControl1.Name = "dodavanjeTepihaControl1";
+            this.dodavanjeTepihaControl1.Size = new System.Drawing.Size(1070, 599);
+            this.dodavanjeTepihaControl1.TabIndex = 24;
+            // 
             // arhivaMusterijaControl1
             // 
             this.arhivaMusterijaControl1.Location = new System.Drawing.Point(187, 130);
@@ -294,14 +303,6 @@
             this.dodavanjeMusterijeControl1.Name = "dodavanjeMusterijeControl1";
             this.dodavanjeMusterijeControl1.Size = new System.Drawing.Size(1040, 588);
             this.dodavanjeMusterijeControl1.TabIndex = 22;
-            // 
-            // dodavanjeTepihaControl1
-            // 
-            this.dodavanjeTepihaControl1.Location = new System.Drawing.Point(187, 128);
-            this.dodavanjeTepihaControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.dodavanjeTepihaControl1.Name = "dodavanjeTepihaControl1";
-            this.dodavanjeTepihaControl1.Size = new System.Drawing.Size(1047, 583);
-            this.dodavanjeTepihaControl1.TabIndex = 24;
             // 
             // frmPocetna
             // 
