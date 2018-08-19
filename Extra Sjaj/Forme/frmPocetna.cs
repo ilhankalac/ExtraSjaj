@@ -43,10 +43,10 @@ namespace ExtraSjaj
         {
             SqlDataAdapter sda = new SqlDataAdapter("select m.id,row_number() over (order by m.Id) as 'Br.Mušterije'," +
                 "m.ImePrezime as 'Ime i Prezime',m.BrojTepiha as 'Br.Tepiha',m.BrojTelefona as 'Br. Tel.',m.Adresa, " +
-                "sum(isnull(t.kvadratura,0)) as 'Kvadratura Tepiha', m.VremeDolaskaTepiha as 'Tepisi dostavljeni', m.Platio as 'Plaćeno' " +
-                "from Musterijas m left join Tepisi t on t.MusterijaId = m.Id " +
+                "sum(isnull(t.kvadratura,0)) as 'Kvadratura Tepiha', m.VremeDolaskaTepiha as 'Tepisi dostavljeni',r.Racun as 'Račun', m.Platio as 'Plaćeno' " +
+                "from Musterijas m left join Tepisi t on t.MusterijaId = m.Id join Racuni r on r.MusterijaId = m.Id " +
                 " where  datediff(month , m.VremeDolaskaTepiha, getdate()) = 0" +
-                "group by m.id, m.ImePrezime, m.BrojTepiha, m.BrojTelefona, m.Adresa, m.VremeDolaskaTepiha, m.Platio" +
+                "group by m.id, m.ImePrezime, m.BrojTepiha, m.BrojTelefona, m.Adresa, m.VremeDolaskaTepiha,r.Racun, m.Platio" +
                 " order by m.Id asc", konekcija);
             DataTable dt = new DataTable();
             sda.Fill(dt);
@@ -108,7 +108,7 @@ namespace ExtraSjaj
 
             dodavanjeMusterijeControl1.Visible = true;
             citajTabeluMusterijeFromSql();
-          
+           
 
         }
 
@@ -178,7 +178,7 @@ namespace ExtraSjaj
             try
             {
                 DateTime VremeDolaskaTepiha = new DateTime();
-                bool placeno = Convert.ToBoolean( dataGridView1.SelectedCells[8].Value.ToString());
+                bool placeno = Convert.ToBoolean( dataGridView1.SelectedCells[9].Value.ToString());
                 int rowIndex = dataGridView1.CurrentRow.Index;
                 int idSelektovaneMusterije = Convert.ToInt32( dataGridView1.SelectedCells[0].Value);
                 string ImeSelektovanogMusterije = dataGridView1.SelectedCells[2].Value.ToString();
@@ -227,6 +227,11 @@ namespace ExtraSjaj
             arhivaMusterijaControl1.Visible = false;
             dodavanjeMusterijeControl1.Visible = false;
             dodavanjeTepihaControl1.Visible = false;
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            //da se otvori lista musterija kada napravis user controler novi
         }
     }
     }

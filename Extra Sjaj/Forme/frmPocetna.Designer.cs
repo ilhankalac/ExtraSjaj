@@ -50,6 +50,7 @@
             this.musterijasBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.musterijasBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.musterijasBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.button5 = new System.Windows.Forms.Button();
             this.dodavanjeTepihaControl1 = new ExtraSjaj.Forme.DodavanjeTepihaControl();
             this.arhivaMusterijaControl1 = new ExtraSjaj.Forme.ArhivaMusterijaControl();
             this.dodavanjeMusterijeControl1 = new ExtraSjaj.Forme.DodavanjeMusterijeControl();
@@ -188,6 +189,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.button5);
             this.panel2.Controls.Add(this.button3);
             this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.label2);
@@ -278,6 +280,20 @@
             // 
             this.musterijasBindingSource2.DataMember = "Musterijas";
             // 
+            // button5
+            // 
+            this.button5.FlatAppearance.BorderSize = 0;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button5.Location = new System.Drawing.Point(671, 2);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(167, 63);
+            this.button5.TabIndex = 4;
+            this.button5.Text = "Lista svih mušterija";
+            this.button5.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // dodavanjeTepihaControl1
             // 
             this.dodavanjeTepihaControl1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -365,6 +381,7 @@
         private Forme.ArhivaMusterijaControl arhivaMusterijaControl1;
         private System.Windows.Forms.Button button4;
         private Forme.DodavanjeTepihaControl dodavanjeTepihaControl1;
+        private System.Windows.Forms.Button button5;
     }
 }
 

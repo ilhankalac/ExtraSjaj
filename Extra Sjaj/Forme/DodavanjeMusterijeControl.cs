@@ -17,6 +17,8 @@ namespace ExtraSjaj.Forme
         public DodavanjeMusterijeControl()
         {
             InitializeComponent();
+            dataGridView1.Hide();
+            puniListViewMusterijama();
         }
         SqlConnection konekcija = new SqlConnection(Konekcija.konString);
         private void Tepisi_Load(object sender, EventArgs e)
@@ -25,7 +27,32 @@ namespace ExtraSjaj.Forme
 
 
         }
+        private SqlDataAdapter da = null;
+        private DataTable citajTabeluMusterije()
+        {
+            SqlConnection konekcija = new SqlConnection(Konekcija.konString);
+            DataSet ds = new DataSet();
+            da = new SqlDataAdapter("select *from Musterijas", konekcija);
+            da.MissingSchemaAction = MissingSchemaAction.AddWithKey;
 
+            SqlCommandBuilder builder = new SqlCommandBuilder(da);
+            da.Fill(ds, "Musterijas");
+
+            DataTable mojaTabela = ds.Tables["Musterijas"];
+            return mojaTabela;
+        }
+        void puniListViewMusterijama()
+        {
+            listView1.Items.Clear();
+            DataTable mojaTabela = citajTabeluMusterije();
+
+            int i = 1;
+            foreach (DataRow item in mojaTabela.Rows)
+            {
+                listView1.Items.Add((i++).ToString() + ". " + item["ImePrezime"].ToString());
+            }
+
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -57,7 +84,28 @@ namespace ExtraSjaj.Forme
             kmdZaInsertRacunaMusterije.ExecuteNonQuery();
             konekcija.Close();
             MessageBox.Show("Mušterija uspešno dodat u bazi.", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            this.Hide();
+            puniListViewMusterijama();
+
+        }
+
+        private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            listView1.Items.Clear();
+            // MessageBox.Show("test");
+            SqlDataAdapter komandaPretrazivanja = new SqlDataAdapter("select imeprezime from Musterijas" +
+                " where ImePrezime like '%"+textBox4.Text+"%'", konekcija);
+
+            DataTable dt = new DataTable();
+            komandaPretrazivanja.Fill(dt);
+
+            dataGridView1.DataSource = dt;
+            int i = 1;
+            foreach (DataGridViewRow item in dataGridView1.Rows)
+            {
+                if (item.Cells[0].Value == null) break;
+                listView1.Items.Add((i++.ToString()) +". "+item.Cells[0].Value.ToString());
+            }
+
         }
     }
 }
