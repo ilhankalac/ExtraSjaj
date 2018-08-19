@@ -21,6 +21,7 @@ namespace ExtraSjaj.Modeli
         public void ucitavanjeTepihaSelektovanogMusterije(Musterija musterija, Label label1, Label label5, Label label6, DataGridView dataGridView1)
         {
             label5.Text = "";
+            label6.Text = "";
 //            this.musterija1 = musterija;
 
             SqlDataAdapter sda = new SqlDataAdapter("select  t.id,row_number() over (order by t.MusterijaId) as 'Br. Tepiha', t.Sirina as 'Širina/m', " +
@@ -45,6 +46,15 @@ namespace ExtraSjaj.Modeli
               "(" + sirina.ToString() + ")," +
               "(" + Convert.ToDouble(duzina) * Convert.ToDouble(sirina) + ")," +
               "(" + MusterijaId.ToString() + ")); ", konekcija);
+
+            konekcija.Open();
+            komanda.ExecuteNonQuery();
+            konekcija.Close();
+        }
+        public void BrisanjeTepiha(string idSelektovanogTepiha)
+        {
+            SqlCommand komanda = new SqlCommand(@"delete from Tepisi
+                                                    where id = " + idSelektovanogTepiha, konekcija);
 
             konekcija.Open();
             komanda.ExecuteNonQuery();

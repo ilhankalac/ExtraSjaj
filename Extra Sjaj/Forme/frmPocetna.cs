@@ -110,8 +110,6 @@ namespace ExtraSjaj
             arhivaMusterijaControl1.Visible = false;
             dodavanjeMusterijeControl1.Visible = true;
             musterija.citajTabeluMusterijeFromSql(dataGridView1);
-           
-
         }
 
         private void btnBrisiMusteriju_Click(object sender, EventArgs e)

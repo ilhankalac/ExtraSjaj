@@ -161,13 +161,7 @@ namespace ExtraSjaj.Forme
             
             if (MessageBox.Show("Da li si siguran da zelis obrisati selektovani tepih?", "Poruka", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                string idSelektovanogTepiha = dataGridView1.SelectedCells[0].Value.ToString();
-                SqlCommand komanda = new SqlCommand(@"delete from Tepisi
-                                                    where id = " + idSelektovanogTepiha, konekcija);
-
-                konekcija.Open();
-                komanda.ExecuteNonQuery();
-                konekcija.Close();
+                tepih.BrisanjeTepiha(dataGridView1.SelectedCells[0].Value.ToString());
                 IscitajTabeluTepisiZaMusteriju();
                 racunZaMusteriju();
                 updateMusterijuNakonDodavanjaIBrisanjaTepiha();
