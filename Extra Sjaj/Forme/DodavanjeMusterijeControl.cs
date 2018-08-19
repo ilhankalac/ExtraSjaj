@@ -19,6 +19,7 @@ namespace ExtraSjaj.Forme
             InitializeComponent();
             dataGridView1.Hide();
             puniListViewMusterijama();
+            textBox4_KeyPress(new object(), new  KeyPressEventArgs(' '));
         }
         SqlConnection konekcija = new SqlConnection(Konekcija.konString);
         private void Tepisi_Load(object sender, EventArgs e)
@@ -87,23 +88,53 @@ namespace ExtraSjaj.Forme
             puniListViewMusterijama();
 
         }
-
+        List<int> listaId = new List<int>();
         private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
         {
             listView1.Items.Clear();
-            // MessageBox.Show("test");
-            SqlDataAdapter komandaPretrazivanja = new SqlDataAdapter("select imeprezime from Musterijas" +
+
+            //sql za pretrazivanje po imenu musterije
+            SqlDataAdapter komandaPretrazivanja = new SqlDataAdapter("select id, imeprezime, platio, VremeDolaskaTepiha from Musterijas" +
                 " where ImePrezime like '%"+textBox4.Text+"%'", konekcija);
 
             DataTable dt = new DataTable();
             komandaPretrazivanja.Fill(dt);
 
             dataGridView1.DataSource = dt;
+            
             int i = 1;
             foreach (DataGridViewRow item in dataGridView1.Rows)
             {
                 if (item.Cells[0].Value == null) break;
-                listView1.Items.Add((i++.ToString()) +". "+item.Cells[0].Value.ToString());
+                listView1.Items.Add((i++.ToString()) +". "+item.Cells[1].Value.ToString());
+               listaId.Add(Convert.ToInt32(item.Cells[0].Value));
+            }
+
+        }
+
+        private void listView1_DoubleClick(object sender, EventArgs e)
+        {
+            //promenljiva sa kojom dobijam id selektovanog musterije
+            // MessageBox.Show(listaId[listView1.SelectedIndices[0]].ToString());
+
+            //dodavanjeTepihaControl1.ucitavanjeTepihaSelektovanogMusterije(idSelektovaneMusterije, ImeSelektovanogMusterije, VremeDolaskaTepiha, placeno);
+            //dodavanjeTepihaControl1.Visible = true;
+            try
+            {
+                konekcija.Open();
+                SqlCommand kmnGetIme = new SqlCommand("select ImePrezime from Musterijas where id = " + listaId[listView1.SelectedIndices[0]].ToString(), konekcija);
+                SqlCommand kmnGetBrojTelefona = new SqlCommand("select BrojTelefona from Musterijas where id = " + listaId[listView1.SelectedIndices[0]].ToString(), konekcija);
+                SqlCommand kmnGetAdresa = new SqlCommand("select Adresa from Musterijas where id = " + listaId[listView1.SelectedIndices[0]].ToString(), konekcija);
+
+                textBox1.Text = kmnGetIme.ExecuteScalar().ToString();
+                textBox2.Text = kmnGetBrojTelefona.ExecuteScalar().ToString();
+                textBox3.Text = kmnGetAdresa.ExecuteScalar().ToString();
+
+                konekcija.Close();
+            }
+            catch 
+            {
+                MessageBox.Show("Pogrešno ste izabrali mušteriju.");
             }
 
         }

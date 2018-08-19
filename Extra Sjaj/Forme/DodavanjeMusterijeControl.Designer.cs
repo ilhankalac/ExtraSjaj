@@ -38,6 +38,8 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dodavanjeTepihaControl1 = new ExtraSjaj.Forme.DodavanjeTepihaControl();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -115,19 +117,22 @@
             // listView1
             // 
             this.listView1.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listView1.Location = new System.Drawing.Point(620, 43);
+            this.listView1.Location = new System.Drawing.Point(621, 119);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(276, 425);
             this.listView1.TabIndex = 30;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.List;
+            this.listView1.DoubleClick += new System.EventHandler(this.listView1_DoubleClick);
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(465, 43);
+            this.textBox4.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox4.Location = new System.Drawing.Point(621, 53);
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(132, 42);
+            this.textBox4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.textBox4.Size = new System.Drawing.Size(276, 42);
             this.textBox4.TabIndex = 31;
             this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox4_KeyPress);
@@ -140,10 +145,31 @@
             this.dataGridView1.Size = new System.Drawing.Size(240, 150);
             this.dataGridView1.TabIndex = 32;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(481, 63);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(134, 22);
+            this.label2.TabIndex = 33;
+            this.label2.Text = "Pretraživanje:";
+            // 
+            // dodavanjeTepihaControl1
+            // 
+            this.dodavanjeTepihaControl1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dodavanjeTepihaControl1.Location = new System.Drawing.Point(927, 394);
+            this.dodavanjeTepihaControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dodavanjeTepihaControl1.Name = "dodavanjeTepihaControl1";
+            this.dodavanjeTepihaControl1.Size = new System.Drawing.Size(937, 617);
+            this.dodavanjeTepihaControl1.TabIndex = 34;
+            // 
             // DodavanjeMusterijeControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.dodavanjeTepihaControl1);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.listView1);
@@ -176,5 +202,7 @@
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label2;
+        private DodavanjeTepihaControl dodavanjeTepihaControl1;
     }
 }
