@@ -133,19 +133,9 @@ namespace ExtraSjaj.Forme
       
         private void btnDodajTepih_Click_1(object sender, EventArgs e)
         {
-            SqlCommand komanda = new SqlCommand(@"insert into Tepisi(Duzina,Sirina,Kvadratura, MusterijaId)" +
-                "values ((" + textBox1.Text.ToString() + ")," +
-                "(" + textBox2.Text.ToString() + ")," +
-                "(" + Convert.ToDouble(textBox1.Text) * Convert.ToDouble(textBox2.Text) + ")," +
-                "(" + musterija1.Id.ToString() + ")); ", konekcija);
-
-            konekcija.Open();
-            komanda.ExecuteNonQuery();
-            konekcija.Close();
+            tepih.DodajTepih(textBox1.Text, textBox2.Text, musterija1.Id);
             IscitajTabeluTepisiZaMusteriju();
             racunZaMusteriju();
-
-
             updateMusterijuNakonDodavanjaIBrisanjaTepiha();
         }
 

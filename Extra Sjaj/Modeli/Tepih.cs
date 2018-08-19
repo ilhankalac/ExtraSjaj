@@ -38,7 +38,18 @@ namespace ExtraSjaj.Modeli
             //musterija.Racun = racun();
             //racunZaMusteriju();
         }
+        public void DodajTepih(string duzina, string sirina, int MusterijaId)
+        {
+            SqlCommand komanda = new SqlCommand(@"insert into Tepisi(Duzina,Sirina,Kvadratura, MusterijaId)" +
+              "values ((" + duzina.ToString() + ")," +
+              "(" + sirina.ToString() + ")," +
+              "(" + Convert.ToDouble(duzina) * Convert.ToDouble(sirina) + ")," +
+              "(" + MusterijaId.ToString() + ")); ", konekcija);
 
+            konekcija.Open();
+            komanda.ExecuteNonQuery();
+            konekcija.Close();
+        }
 
 
 
