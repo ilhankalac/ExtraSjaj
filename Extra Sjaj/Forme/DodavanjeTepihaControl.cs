@@ -14,20 +14,15 @@ namespace ExtraSjaj.Forme
 {
     public partial class DodavanjeTepihaControl : UserControl
     {
+        //public DodavanjeTepihaControl()
+        //{
+        //    InitializeComponent();
+        //}
         public DodavanjeTepihaControl()
         {
             InitializeComponent();
+           
         }
-        //public DodavanjeTepihaControl()
-        //{
-
-        //    InitializeComponent();
-
-        //    //musterija.Racun = racun();
-        //    //racunZaMusteriju();
-
-
-        //}
         Modeli.Musterija musterija1 = new Modeli.Musterija();
         Tepih tepih = new Tepih();
         public void ucitavanjeTepihaSelektovanogMusterije(Musterija musterija)
@@ -159,11 +154,11 @@ namespace ExtraSjaj.Forme
         {
             racunZaMusteriju();
         }
-
+        
         
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            
             if (MessageBox.Show("Da li si siguran da zelis obrisati selektovani tepih?", "Poruka", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 string idSelektovanogTepiha = dataGridView1.SelectedCells[0].Value.ToString();
