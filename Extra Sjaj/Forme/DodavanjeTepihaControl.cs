@@ -20,7 +20,7 @@ namespace ExtraSjaj.Forme
         }
         //public DodavanjeTepihaControl()
         //{
-            
+
         //    InitializeComponent();
 
         //    //musterija.Racun = racun();
@@ -28,50 +28,32 @@ namespace ExtraSjaj.Forme
 
 
         //}
-        public void ucitavanjeTepihaSelektovanogMusterije(int IdMusterije, string ImeMusterije, DateTime VremeDolaskaTepiha, bool placeno)
+        Modeli.Musterija musterija1 = new Modeli.Musterija();
+        Tepih tepih = new Tepih();
+        public void ucitavanjeTepihaSelektovanogMusterije(Musterija musterija)
         {
-            label5.Text = "";
-            musterija.Id = IdMusterije;
-            musterija.ImePrezime = ImeMusterije;
-            musterija.VremeDolaskaTepiha = VremeDolaskaTepiha;
-            musterija.Platio = placeno;
-
-            SqlDataAdapter sda = new SqlDataAdapter("select  t.id,row_number() over (order by t.MusterijaId) as 'Br. Tepiha', t.Sirina as 'Širina/m', " +
-                                                    "t.Duzina as 'Dužina/m',  t.Kvadratura as 'Kvadratura/m2'  " +
-                                                    "from Tepisi t join Musterijas m on m.Id = t.MusterijaId where t.MusterijaId = " + IdMusterije, konekcija);
-            DataTable dt = new DataTable();
-            sda.Fill(dt);
-
-
-            dataGridView1.DataSource = dt;
-            label1.Text = ImeMusterije + " - tepisi";
-            label5.Text = "Tepisi dostavljeni na pranje: " + VremeDolaskaTepiha.Day.ToString() + "/" + VremeDolaskaTepiha.Month.ToString() + "/" + VremeDolaskaTepiha.Year.ToString();
-            if (placeno) label6.Text += " Da"; else label6.Text += " Ne";
-            comboBox1_SelectedIndexChanged_1(new object(), new EventArgs());
-
-            //musterija.Racun = racun();
-            //racunZaMusteriju();
+            musterija1 = musterija;
+            tepih.ucitavanjeTepihaSelektovanogMusterije(musterija, label1, label5, label6, dataGridView1);
         }
         SqlConnection konekcija = new SqlConnection(Konekcija.konString);
-        Modeli.Musterija musterija = new Modeli.Musterija();
+        
         void updateMusterijuNakonDodavanjaIBrisanjaTepiha()
         {
             konekcija.Open();
-
-
-             SqlCommand cmdUpdateMusterije = new SqlCommand(@"update Musterijas
+            SqlCommand cmdUpdateMusterije = new SqlCommand(@"update Musterijas
                                                 set BrojTepiha = " + "(select count(MusterijaId) " +
-                                               " from Tepisi where MusterijaId = " + musterija.Id.ToString() + " )" 
-                                               + " where Id = " + musterija.Id.ToString(), konekcija);
+                                               " from Tepisi where MusterijaId = " + musterija1.Id.ToString() + " )" 
+                                               + " where Id = " + musterija1.Id.ToString(), konekcija);
 
-              SqlCommand cmdUpdateRacuna = new SqlCommand(@"update Racuni
+            SqlCommand cmdUpdateRacuna = new SqlCommand(@"update Racuni
                                                 set Racun = " + racun().ToString() +
-                                               "  where MusterijaId = " + musterija.Id.ToString()  , konekcija);
+                                               "  where MusterijaId = " + musterija1.Id.ToString()  , konekcija);
             cmdUpdateMusterije.ExecuteNonQuery();
             cmdUpdateRacuna.ExecuteNonQuery();
             konekcija.Close();
-            frmPocetna frm1 = new frmPocetna();
-           frm1.citajTabeluMusterijeFromSql();
+            //frmPocetna frm1 = new frmPocetna();
+            ////citaj tabelu za tepihe tu treba
+            //musterija1.citajTabeluMusterijeFromSql(dataGridView1);
 
         }
 
@@ -83,7 +65,7 @@ namespace ExtraSjaj.Forme
             SqlDataAdapter sda = new SqlDataAdapter("select t.id, m.ImePrezime , t.Sirina as 'Širina/m' ," +
                                                     " t.Duzina as 'Dužina/m'  , t.Kvadratura as 'Kvadratura/m2'  " +
                                                     "from Tepisi t join Musterijas m on m.Id = t.MusterijaId" +
-                                                    " where m.Id = " + musterija.Id, konekcija);
+                                                    " where m.Id = " + musterija1.Id, konekcija);
             DataTable dt = new DataTable();
 
             sda.Fill(dt);
@@ -143,7 +125,7 @@ namespace ExtraSjaj.Forme
 
             konekcija.Open();
 
-            SqlCommand komanda = new SqlCommand(@"update Musterijas set Platio = " + platio + "  where Id = " + musterija.Id.ToString(), konekcija);
+            SqlCommand komanda = new SqlCommand(@"update Musterijas set Platio = " + platio + "  where Id = " + musterija1.Id.ToString(), konekcija);
             komanda.ExecuteNonQuery();
             konekcija.Close();
         }
@@ -155,7 +137,7 @@ namespace ExtraSjaj.Forme
                 "values ((" + textBox1.Text.ToString() + ")," +
                 "(" + textBox2.Text.ToString() + ")," +
                 "(" + Convert.ToDouble(textBox1.Text) * Convert.ToDouble(textBox2.Text) + ")," +
-                "(" + musterija.Id.ToString() + ")); ", konekcija);
+                "(" + musterija1.Id.ToString() + ")); ", konekcija);
 
             konekcija.Open();
             komanda.ExecuteNonQuery();

@@ -21,15 +21,16 @@ namespace ExtraSjaj
             InitializeComponent();
         }
 
-
+        public Musterija musterija;
         SqlConnection konekcija = new SqlConnection(Konekcija.konString);
         private void Form1_Load(object sender, EventArgs e)
         {
+            musterija = new Musterija();
             // TODO: This line of code loads data into the '_TepisiBaza_2018DataSet1.Musterijas' table. You can move, or remove it, as needed.
             //this.musterijasTableAdapter1.Fill(this._TepisiBaza_2018DataSet1.Musterijas);
             //// TODO: This line of code loads data into the '_TepisiBaza_2018DataSet.Musterijas' table. You can move, or remove it, as needed.
             //this.musterijasTableAdapter1.Fill(this._TepisiBaza_2018DataSet1.Musterijas);
-            citajTabeluMusterijeFromSql();
+            musterija.citajTabeluMusterijeFromSql(dataGridView1);
             label1.Text = CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(DateTime.Now.Month);
             label1.Text +="/"+ DateTime.Now.Year.ToString();
             dodavanjeMusterijeControl1.Visible = false;
@@ -39,20 +40,20 @@ namespace ExtraSjaj
 
         }
 
-        public void citajTabeluMusterijeFromSql()
-        {
-            SqlDataAdapter sda = new SqlDataAdapter("select m.id,row_number() over (order by m.Id) as 'Br.Mušterije'," +
-                "m.ImePrezime as 'Ime i Prezime',m.BrojTepiha as 'Br.Tepiha',m.BrojTelefona as 'Br. Tel.',m.Adresa, " +
-                "sum(isnull(t.kvadratura,0)) as 'Kvadratura Tepiha', m.VremeDolaskaTepiha as 'Tepisi dostavljeni',r.Racun as 'Račun', m.Platio as 'Plaćeno' " +
-                "from Musterijas m left join Tepisi t on t.MusterijaId = m.Id join Racuni r on r.MusterijaId = m.Id " +
-                " where  datediff(month , m.VremeDolaskaTepiha, getdate()) = 0" +
-                "group by m.id, m.ImePrezime, m.BrojTepiha, m.BrojTelefona, m.Adresa, m.VremeDolaskaTepiha,r.Racun, m.Platio" +
-                " order by m.Id asc", konekcija);
-            DataTable dt = new DataTable();
-            sda.Fill(dt);
-            dataGridView1.DataSource = dt;
-            puniListuMusterija();
-        }
+        //public void citajTabeluMusterijeFromSql()
+        //{
+        //    SqlDataAdapter sda = new SqlDataAdapter("select m.id,row_number() over (order by m.Id) as 'Br.Mušterije'," +
+        //        "m.ImePrezime as 'Ime i Prezime',m.BrojTepiha as 'Br.Tepiha',m.BrojTelefona as 'Br. Tel.',m.Adresa, " +
+        //        "sum(isnull(t.kvadratura,0)) as 'Kvadratura Tepiha', m.VremeDolaskaTepiha as 'Tepisi dostavljeni',r.Racun as 'Račun', m.Platio as 'Plaćeno' " +
+        //        "from Musterijas m left join Tepisi t on t.MusterijaId = m.Id join Racuni r on r.MusterijaId = m.Id " +
+        //        " where  datediff(month , m.VremeDolaskaTepiha, getdate()) = 0" +
+        //        "group by m.id, m.ImePrezime, m.BrojTepiha, m.BrojTelefona, m.Adresa, m.VremeDolaskaTepiha,r.Racun, m.Platio" +
+        //        " order by m.Id asc", konekcija);
+        //    DataTable dt = new DataTable();
+        //    sda.Fill(dt);
+        //    dataGridView1.DataSource = dt;
+        //  //  puniListuMusterija();
+        //}
         private DataTable citajTabeluMusterije()
         {
             SqlConnection konekcija = new SqlConnection(Konekcija.konString);
@@ -107,7 +108,7 @@ namespace ExtraSjaj
         {
 
             dodavanjeMusterijeControl1.Visible = true;
-            citajTabeluMusterijeFromSql();
+            musterija.citajTabeluMusterijeFromSql(dataGridView1);
            
 
         }
@@ -138,7 +139,7 @@ namespace ExtraSjaj
             konekcija.Open();
             komanda.ExecuteNonQuery();
             konekcija.Close();
-            citajTabeluMusterijeFromSql();
+            musterija.citajTabeluMusterijeFromSql(dataGridView1);
 
         }
 
@@ -162,7 +163,7 @@ namespace ExtraSjaj
            
            
             konekcija.Close();
-            citajTabeluMusterijeFromSql();
+            musterija.citajTabeluMusterijeFromSql(dataGridView1);
         }
 
     
@@ -178,15 +179,18 @@ namespace ExtraSjaj
             try
             {
                 DateTime VremeDolaskaTepiha = new DateTime();
-                bool placeno = Convert.ToBoolean( dataGridView1.SelectedCells[9].Value.ToString());
+                musterija.Platio = Convert.ToBoolean( dataGridView1.SelectedCells[9].Value.ToString());
                 int rowIndex = dataGridView1.CurrentRow.Index;
-                int idSelektovaneMusterije = Convert.ToInt32( dataGridView1.SelectedCells[0].Value);
-                string ImeSelektovanogMusterije = dataGridView1.SelectedCells[2].Value.ToString();
-                VremeDolaskaTepiha = Convert.ToDateTime( dataGridView1.SelectedCells[7].Value);
-              //  DodavanjeTepihaControl tepisiMusterije = new DodavanjeTepihaControl(idSelektovaneMusterije, ImeSelektovanogMusterije, VremeDolaskaTepiha, placeno);
-                dodavanjeTepihaControl1.ucitavanjeTepihaSelektovanogMusterije(idSelektovaneMusterije, ImeSelektovanogMusterije, VremeDolaskaTepiha, placeno);
+                musterija.Id = Convert.ToInt32( dataGridView1.SelectedCells[0].Value);
+                musterija.ImePrezime = dataGridView1.SelectedCells[2].Value.ToString();
+                musterija.VremeDolaskaTepiha = Convert.ToDateTime( dataGridView1.SelectedCells[7].Value);
+                //  DodavanjeTepihaControl tepisiMusterije = new DodavanjeTepihaControl(idSelektovaneMusterije, ImeSelektovanogMusterije, VremeDolaskaTepiha, placeno);
+
+                //ovde treba da prosledis objekat musterija a ne ovako retardirano
+
+                dodavanjeTepihaControl1.ucitavanjeTepihaSelektovanogMusterije(musterija);
                 dodavanjeTepihaControl1.Visible = true;
-                citajTabeluMusterijeFromSql();
+                musterija.citajTabeluMusterijeFromSql(dataGridView1);
 
             }
             catch 
@@ -222,7 +226,7 @@ namespace ExtraSjaj
 
         private void button3_Click(object sender, EventArgs e)
         {
-            citajTabeluMusterijeFromSql();
+            musterija.citajTabeluMusterijeFromSql(dataGridView1);
             dodavanjeMusterijeControl1.Visible = false;
             arhivaMusterijaControl1.Visible = false;
             dodavanjeMusterijeControl1.Visible = false;

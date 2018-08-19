@@ -14,11 +14,13 @@ namespace ExtraSjaj.Forme
 {
     public partial class DodavanjeMusterijeControl : UserControl
     {
+        Musterija musterija;
         public DodavanjeMusterijeControl()
         {
             InitializeComponent();
             dataGridView1.Hide();
             puniListViewMusterijama();
+            musterija = new Musterija();
             textBox4_KeyPress(new object(), new  KeyPressEventArgs(' '));
         }
         SqlConnection konekcija = new SqlConnection(Konekcija.konString);
@@ -65,32 +67,17 @@ namespace ExtraSjaj.Forme
         {
             
         }
-
+        
         private void btnDodaj_Click_1(object sender, EventArgs e)
         {
-            SqlCommand kmdZaInsertMusterije = new SqlCommand(@"insert into Musterijas(ImePrezime,BrojTepiha,BrojTelefona, Adresa,Platio, VremeDOlaskaTepiha)" +
-              "values (('" + textBox1.Text.ToString() + "')," +
-              "('" + 0.ToString() + "')," +
-               "('" + textBox2.Text.ToString() + "')," +
-              "('" + textBox3.Text.ToString() + "')," +
-              "('" + false.ToString() + "')," +
-              "(getdate())); ", konekcija);
-    
-
-            SqlCommand kmdZaInsertRacunaMusterije = new SqlCommand("insert into Racuni (Racun, MusterijaId)" +
-                "values (0, (SELECT SCOPE_IDENTITY()))", konekcija);
-
-            konekcija.Open();
-            kmdZaInsertMusterije.ExecuteNonQuery();
-            kmdZaInsertRacunaMusterije.ExecuteNonQuery();
-            konekcija.Close();
+            musterija.DodajMusteriju(textBox1.Text, textBox2.Text, textBox3.Text);
             MessageBox.Show("Mušterija uspešno dodat u bazi.", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
             puniListViewMusterijama();
-
         }
         List<int> listaId = new List<int>();
         private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
         {
+            listaId.Clear();
             listView1.Items.Clear();
 
             //sql za pretrazivanje po imenu musterije
@@ -114,11 +101,7 @@ namespace ExtraSjaj.Forme
 
         private void listView1_DoubleClick(object sender, EventArgs e)
         {
-            //promenljiva sa kojom dobijam id selektovanog musterije
-            // MessageBox.Show(listaId[listView1.SelectedIndices[0]].ToString());
 
-            //dodavanjeTepihaControl1.ucitavanjeTepihaSelektovanogMusterije(idSelektovaneMusterije, ImeSelektovanogMusterije, VremeDolaskaTepiha, placeno);
-            //dodavanjeTepihaControl1.Visible = true;
             try
             {
                 konekcija.Open();

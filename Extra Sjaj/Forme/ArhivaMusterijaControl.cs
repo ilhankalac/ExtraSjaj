@@ -102,8 +102,8 @@ namespace ExtraSjaj.Forme
 
             //racunanje cijele zarade ikad
             label1.Text = "";
-            SqlCommand kmndPotencijalneZarade = new SqlCommand("select sum(isnull(r.Racun,0)) from Racuni r join Musterija m on r.MusterijaId = m.Id", konekcija);
-            SqlCommand kmndZarade = new SqlCommand("select sum(isnull(r.Racun,0))from Racuni r join Musterija m on r.MusterijaId = m.Id where m.platio = 1", konekcija);
+            SqlCommand kmndPotencijalneZarade = new SqlCommand("select sum(isnull(r.Racun,0)) from Racuni r join Musterijas m on r.MusterijaId = m.Id", konekcija);
+            SqlCommand kmndZarade = new SqlCommand("select sum(isnull(r.Racun,0))from Racuni r join Musterijas m on r.MusterijaId = m.Id where m.platio = 1", konekcija);
             konekcija.Open();
             label1.Text = kmndPotencijalneZarade.ExecuteScalar().ToString() + " EUR.";
             label5.Text = kmndZarade.ExecuteScalar().ToString() + " EUR.";
