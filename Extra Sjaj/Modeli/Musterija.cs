@@ -79,5 +79,13 @@ namespace ExtraSjaj.Modeli
             DataTable mojaTabela = ds.Tables["Musterijas"];
             return mojaTabela;
         }
+        public void IzmeniMusteriju(int idMusterije, string imePrezime, string adresa, string brojTelefona)
+        {
+            konekcija.Open();
+            SqlCommand komanda = new SqlCommand(@"update Musterijas 
+                set ImePrezime = '" + imePrezime + "', BrojTelefona = '" + brojTelefona  + "', Adresa = '" + adresa + "' where Id = " +idMusterije, konekcija);
+            komanda.ExecuteNonQuery();
+            konekcija.Close();
+        }
     }
 }

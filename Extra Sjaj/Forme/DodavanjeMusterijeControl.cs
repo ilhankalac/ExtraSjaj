@@ -19,7 +19,7 @@ namespace ExtraSjaj.Forme
         {
             InitializeComponent();
             dataGridView1.Hide();
-            puniListViewMusterijama();
+            puniListBoxMusterijama();
             musterija = new Musterija();
             textBox4_KeyPress(new object(), new  KeyPressEventArgs(' '));
         }
@@ -44,7 +44,7 @@ namespace ExtraSjaj.Forme
             DataTable mojaTabela = ds.Tables["Musterijas"];
             return mojaTabela;
         }
-        void puniListViewMusterijama()
+        void puniListBoxMusterijama()
         {
             listBox1.Items.Clear();
             DataTable mojaTabela = citajTabeluMusterije();
@@ -72,7 +72,7 @@ namespace ExtraSjaj.Forme
         {
             musterija.DodajMusteriju(textBox1.Text, textBox2.Text, textBox3.Text);
             MessageBox.Show("Mušterija uspešno dodat u bazi.", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            puniListViewMusterijama();
+            puniListBoxMusterijama();
             
         }
         List<int> listaId = new List<int>();
@@ -100,7 +100,7 @@ namespace ExtraSjaj.Forme
        
         }
 
-     
+        
        
 
         private void listBox1_DoubleClick(object sender, EventArgs e)
@@ -108,6 +108,7 @@ namespace ExtraSjaj.Forme
             try
             {
                 konekcija.Open();
+
                 SqlCommand kmnGetIme = new SqlCommand("select ImePrezime from Musterijas where id = " + listaId[listBox1.SelectedIndices[0]].ToString(), konekcija);
                 SqlCommand kmnGetBrojTelefona = new SqlCommand("select BrojTelefona from Musterijas where id = " + listaId[listBox1.SelectedIndices[0]].ToString(), konekcija);
                 SqlCommand kmnGetAdresa = new SqlCommand("select Adresa from Musterijas where id = " + listaId[listBox1.SelectedIndices[0]].ToString(), konekcija);
@@ -122,6 +123,12 @@ namespace ExtraSjaj.Forme
             {
                 MessageBox.Show("Pogrešno ste izabrali mušteriju.");
             }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            musterija.IzmeniMusteriju(Convert.ToInt32(listaId[listBox1.SelectedIndices[0]]), textBox1.Text, textBox3.Text, textBox2.Text);
+            puniListBoxMusterijama();
         }
     }
 }
