@@ -181,9 +181,6 @@ namespace ExtraSjaj
 
                 dodavanjeTepihaControl1.IscitajTabeluTepisiZaMusteriju();
 
-                
-              
-
 
             }
             catch 

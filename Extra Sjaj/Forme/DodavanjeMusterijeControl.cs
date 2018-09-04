@@ -14,6 +14,7 @@ namespace ExtraSjaj.Forme
 {
     public partial class DodavanjeMusterijeControl : UserControl
     {
+        Racun racun = new Racun();
         Musterija musterija;
         public DodavanjeMusterijeControl()
         {
@@ -117,6 +118,8 @@ namespace ExtraSjaj.Forme
                 textBox2.Text = kmnGetBrojTelefona.ExecuteScalar().ToString();
                 textBox3.Text = kmnGetAdresa.ExecuteScalar().ToString();
 
+                //prikaz broja racuna selektovanog musterije
+               label6.Text = racun.BrojRacuna(Convert.ToInt32(listaId[listBox1.SelectedIndices[0]])).ToString();
                 konekcija.Close();
             }
             catch
@@ -129,6 +132,14 @@ namespace ExtraSjaj.Forme
         {
             musterija.IzmeniMusteriju(Convert.ToInt32(listaId[listBox1.SelectedIndices[0]]), textBox1.Text, textBox3.Text, textBox2.Text);
             puniListBoxMusterijama();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            
+            racun.kreirajNoviRacun(Convert.ToInt32(listaId[listBox1.SelectedIndices[0]]));
+            label6.Text = racun.BrojRacuna(Convert.ToInt32(listaId[listBox1.SelectedIndices[0]])).ToString();
+
         }
     }
 }
