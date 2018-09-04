@@ -73,6 +73,7 @@ namespace ExtraSjaj.Forme
             musterija.DodajMusteriju(textBox1.Text, textBox2.Text, textBox3.Text);
             MessageBox.Show("Mušterija uspešno dodat u bazi.", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
             puniListViewMusterijama();
+            
         }
         List<int> listaId = new List<int>();
         private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
@@ -96,7 +97,7 @@ namespace ExtraSjaj.Forme
                 listView1.Items.Add((i++.ToString()) +". "+item.Cells[1].Value.ToString());
                listaId.Add(Convert.ToInt32(item.Cells[0].Value));
             }
-
+       
         }
 
         private void listView1_DoubleClick(object sender, EventArgs e)

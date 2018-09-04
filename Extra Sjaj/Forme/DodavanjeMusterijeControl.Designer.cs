@@ -122,6 +122,7 @@
             this.listView1.ForeColor = System.Drawing.Color.White;
             this.listView1.Location = new System.Drawing.Point(732, 0);
             this.listView1.Name = "listView1";
+            this.listView1.RightToLeftLayout = true;
             this.listView1.Size = new System.Drawing.Size(231, 543);
             this.listView1.TabIndex = 30;
             this.listView1.UseCompatibleStateImageBehavior = false;

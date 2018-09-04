@@ -43,6 +43,7 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -82,7 +83,8 @@
             // btnDodajTepih
             // 
             this.btnDodajTepih.BackColor = System.Drawing.Color.Chartreuse;
-            this.btnDodajTepih.Location = new System.Drawing.Point(349, 471);
+            this.btnDodajTepih.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnDodajTepih.Location = new System.Drawing.Point(314, 402);
             this.btnDodajTepih.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDodajTepih.Name = "btnDodajTepih";
             this.btnDodajTepih.Size = new System.Drawing.Size(87, 41);
@@ -95,7 +97,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(341, 331);
+            this.label4.Location = new System.Drawing.Point(349, 330);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(20, 24);
             this.label4.TabIndex = 15;
@@ -107,16 +109,16 @@
             this.textBox2.Location = new System.Drawing.Point(375, 327);
             this.textBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(35, 33);
+            this.textBox2.Size = new System.Drawing.Size(49, 33);
             this.textBox2.TabIndex = 13;
             // 
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(292, 327);
+            this.textBox1.Location = new System.Drawing.Point(287, 327);
             this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(34, 33);
+            this.textBox1.Size = new System.Drawing.Size(48, 33);
             this.textBox1.TabIndex = 12;
             // 
             // label5
@@ -226,10 +228,19 @@
             this.label3.TabIndex = 20;
             this.label3.Text = "Cijena:";
             // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(118, 384);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(133, 24);
+            this.comboBox2.TabIndex = 20;
+            // 
             // DodavanjeTepihaControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnDodajTepih);
@@ -265,5 +276,6 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox comboBox2;
     }
 }

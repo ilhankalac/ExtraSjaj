@@ -21,10 +21,13 @@ namespace ExtraSjaj.Forme
         public DodavanjeTepihaControl()
         {
             InitializeComponent();
-           
+            
+
+
         }
+    
         Modeli.Musterija musterija1 = new Modeli.Musterija();
-        Tepih tepih = new Tepih();
+        public Tepih tepih = new Tepih();
         public void ucitavanjeTepihaSelektovanogMusterije(Musterija musterija)
         {
             musterija1 = musterija;
@@ -52,7 +55,18 @@ namespace ExtraSjaj.Forme
 
         }
 
-        
+        public void PuniComboDolaska()
+        {
+
+            SqlDataAdapter sda = new SqlDataAdapter("select m.id, m.VremeDolaskaTepiha from Musterijas m " +
+                                                    " where m.Id = " + musterija1.Id, konekcija);
+            DataTable dt = new DataTable();
+
+            sda.Fill(dt);
+            comboBox2.DataSource = dt;
+            comboBox2.DisplayMember = "VremeDolaskaTepiha";
+            comboBox2.ValueMember = "Id";
+        }
 
         public void IscitajTabeluTepisiZaMusteriju()
         {
@@ -65,14 +79,10 @@ namespace ExtraSjaj.Forme
 
             sda.Fill(dt);
             dataGridView1.DataSource = dt;
+            racunZaMusteriju();
         }
 
-        private void btnZaBrisanjeTepiha_Click(object sender, EventArgs e)
-        {
-
-
-
-        }
+       
         void racunZaMusteriju()
         {
 
@@ -95,11 +105,6 @@ namespace ExtraSjaj.Forme
 
             }
             return Math.Round(racun * Convert.ToDouble(comboBox1.Text), 2);
-        }
-
-        private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-
         }
 
 
@@ -128,6 +133,7 @@ namespace ExtraSjaj.Forme
       
         private void btnDodajTepih_Click_1(object sender, EventArgs e)
         {
+            PuniComboDolaska();
             tepih.DodajTepih(textBox1.Text, textBox2.Text, musterija1.Id);
             IscitajTabeluTepisiZaMusteriju();
             racunZaMusteriju();
@@ -141,7 +147,10 @@ namespace ExtraSjaj.Forme
             {
                 updateMusterijuNakonPlacanja();
                 MessageBox.Show("Uspešno naplaćeno.", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                frmPocetna frm = new frmPocetna();
+                frm.Refresh();
                 this.Hide();
+
             }
 
             else if (Convert.ToDouble(textBox3.Text) > racun() || Convert.ToDouble(textBox3.Text) < 0)

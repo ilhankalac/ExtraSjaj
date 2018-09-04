@@ -177,20 +177,27 @@ namespace ExtraSjaj
         {
             try
             {
-                DodavanjeMusterijeControl test = new DodavanjeMusterijeControl();
+
+                
+                //dodavanjeTepihaControl1.Show()
                 musterija.Platio = Convert.ToBoolean( dataGridView1.SelectedCells[9].Value.ToString());
                 int rowIndex = dataGridView1.CurrentRow.Index;
                 musterija.Id = Convert.ToInt32( dataGridView1.SelectedCells[0].Value);
                 musterija.ImePrezime = dataGridView1.SelectedCells[2].Value.ToString();
                 musterija.VremeDolaskaTepiha = Convert.ToDateTime( dataGridView1.SelectedCells[7].Value);
-                
-
-                //ovde treba da prosledis objekat musterija a ne ovako retardirano
-
                 dodavanjeTepihaControl1.ucitavanjeTepihaSelektovanogMusterije(musterija);
+
+               
+                dodavanjeTepihaControl1.Refresh();
                 dodavanjeTepihaControl1.Visible = true;
+                dodavanjeMusterijeControl1.Refresh();
                 musterija.citajTabeluMusterijeFromSql(dataGridView1);
-             
+
+                dodavanjeTepihaControl1.IscitajTabeluTepisiZaMusteriju();
+
+                
+              
+
 
             }
             catch 
@@ -226,11 +233,14 @@ namespace ExtraSjaj
 
         private void button3_Click(object sender, EventArgs e)
         {
+            
             musterija.citajTabeluMusterijeFromSql(dataGridView1);
             dodavanjeMusterijeControl1.Visible = false;
             arhivaMusterijaControl1.Visible = false;
             dodavanjeMusterijeControl1.Visible = false;
             dodavanjeTepihaControl1.Visible = false;
+           
+
         }
 
         private void button5_Click(object sender, EventArgs e)
