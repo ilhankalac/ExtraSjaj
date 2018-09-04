@@ -46,13 +46,13 @@ namespace ExtraSjaj.Forme
         }
         void puniListViewMusterijama()
         {
-            listView1.Items.Clear();
+            listBox1.Items.Clear();
             DataTable mojaTabela = citajTabeluMusterije();
 
             int i = 1;
             foreach (DataRow item in mojaTabela.Rows)
             {
-                listView1.Items.Add((i++).ToString() + ". " + item["ImePrezime"].ToString());
+                listBox1.Items.Add((i++).ToString() + ". " + item["ImePrezime"].ToString());
             }
 
         }
@@ -79,7 +79,7 @@ namespace ExtraSjaj.Forme
         private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
         {
             listaId.Clear();
-            listView1.Items.Clear();
+            listBox1.Items.Clear();
 
             //sql za pretrazivanje po imenu musterije
             SqlDataAdapter komandaPretrazivanja = new SqlDataAdapter("select id, imeprezime, platio, VremeDolaskaTepiha from Musterijas" +
@@ -94,21 +94,23 @@ namespace ExtraSjaj.Forme
             foreach (DataGridViewRow item in dataGridView1.Rows)
             {
                 if (item.Cells[0].Value == null) break;
-                listView1.Items.Add((i++.ToString()) +". "+item.Cells[1].Value.ToString());
+                listBox1.Items.Add((i++.ToString()) +". "+item.Cells[1].Value.ToString());
                listaId.Add(Convert.ToInt32(item.Cells[0].Value));
             }
        
         }
 
-        private void listView1_DoubleClick(object sender, EventArgs e)
-        {
+     
+       
 
+        private void listBox1_DoubleClick(object sender, EventArgs e)
+        {
             try
             {
                 konekcija.Open();
-                SqlCommand kmnGetIme = new SqlCommand("select ImePrezime from Musterijas where id = " + listaId[listView1.SelectedIndices[0]].ToString(), konekcija);
-                SqlCommand kmnGetBrojTelefona = new SqlCommand("select BrojTelefona from Musterijas where id = " + listaId[listView1.SelectedIndices[0]].ToString(), konekcija);
-                SqlCommand kmnGetAdresa = new SqlCommand("select Adresa from Musterijas where id = " + listaId[listView1.SelectedIndices[0]].ToString(), konekcija);
+                SqlCommand kmnGetIme = new SqlCommand("select ImePrezime from Musterijas where id = " + listaId[listBox1.SelectedIndices[0]].ToString(), konekcija);
+                SqlCommand kmnGetBrojTelefona = new SqlCommand("select BrojTelefona from Musterijas where id = " + listaId[listBox1.SelectedIndices[0]].ToString(), konekcija);
+                SqlCommand kmnGetAdresa = new SqlCommand("select Adresa from Musterijas where id = " + listaId[listBox1.SelectedIndices[0]].ToString(), konekcija);
 
                 textBox1.Text = kmnGetIme.ExecuteScalar().ToString();
                 textBox2.Text = kmnGetBrojTelefona.ExecuteScalar().ToString();
@@ -116,11 +118,10 @@ namespace ExtraSjaj.Forme
 
                 konekcija.Close();
             }
-            catch 
+            catch
             {
                 MessageBox.Show("Pogrešno ste izabrali mušteriju.");
             }
-
         }
     }
 }

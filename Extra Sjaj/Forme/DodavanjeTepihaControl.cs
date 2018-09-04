@@ -147,10 +147,7 @@ namespace ExtraSjaj.Forme
             {
                 updateMusterijuNakonPlacanja();
                 MessageBox.Show("Uspešno naplaćeno.", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                frmPocetna frm = new frmPocetna();
-                frm.Refresh();
                 this.Hide();
-
             }
 
             else if (Convert.ToDouble(textBox3.Text) > racun() || Convert.ToDouble(textBox3.Text) < 0)
