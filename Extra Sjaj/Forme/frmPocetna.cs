@@ -140,7 +140,7 @@ namespace ExtraSjaj
                 else
                     i = 0;
                 SqlCommand komanda = new SqlCommand(@"update Musterijas 
-                set ImePrezime = '"+ row.Cells[2].Value.ToString()+"', BrojTelefona = '"+ row.Cells[4].Value.ToString()+"', BrojTepiha = '"+ row.Cells[3].Value.ToString() + "', Adresa = '"+ row.Cells[5].Value.ToString()+"', Platio = "+ i.ToString()+"   where Id = " + row.Cells[0].Value.ToString(), konekcija);
+                set ImePrezime = '"+ row.Cells[2].Value.ToString()+"', BrojTelefona = '"+ row.Cells[4].Value.ToString()+"', BrojTepiha = '"+ row.Cells[3].Value.ToString() + "', Adresa = '"+ row.Cells[5].Value.ToString()+"   where Id = " + row.Cells[0].Value.ToString(), konekcija);
                 komanda.ExecuteNonQuery();
             }
           
@@ -166,7 +166,6 @@ namespace ExtraSjaj
 
                 
                 //dodavanjeTepihaControl1.Show()
-                musterija.Platio = Convert.ToBoolean( dataGridView1.SelectedCells[9].Value.ToString());
                 int rowIndex = dataGridView1.CurrentRow.Index;
                 musterija.Id = Convert.ToInt32( dataGridView1.SelectedCells[0].Value);
                 musterija.ImePrezime = dataGridView1.SelectedCells[2].Value.ToString();
@@ -222,8 +221,6 @@ namespace ExtraSjaj
             arhivaMusterijaControl1.Visible = false;
             dodavanjeMusterijeControl1.Visible = false;
             dodavanjeTepihaControl1.Visible = false;
-
-            arhivaMusterijaControl1.Visible = true;
         }
 
         private void button5_Click(object sender, EventArgs e)

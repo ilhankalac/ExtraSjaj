@@ -24,12 +24,11 @@ namespace ExtraSjaj.Modeli
         SqlConnection konekcija = new SqlConnection(Konekcija.konString);
         public void DodajMusteriju(string ImePrezime, string BrojTelefona, string Adresa)
         {
-            SqlCommand kmdZaInsertMusterije = new SqlCommand(@"insert into Musterijas(ImePrezime,BrojTepiha,BrojTelefona, Adresa,Platio, VremeDOlaskaTepiha)" +
+            SqlCommand kmdZaInsertMusterije = new SqlCommand(@"insert into Musterijas(ImePrezime,BrojTepiha,BrojTelefona, Adresa, VremeDOlaskaTepiha)" +
              "values (('" + ImePrezime.ToString() + "')," +
              "('" + 0.ToString() + "')," +
               "('" + BrojTelefona.ToString() + "')," +
              "('" + Adresa.ToString() + "')," +
-             "('" + false.ToString() + "')," +
              "(getdate())); ", konekcija);
 
 
