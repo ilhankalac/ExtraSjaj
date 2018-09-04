@@ -222,8 +222,8 @@ namespace ExtraSjaj
             arhivaMusterijaControl1.Visible = false;
             dodavanjeMusterijeControl1.Visible = false;
             dodavanjeTepihaControl1.Visible = false;
-           
 
+            arhivaMusterijaControl1.Visible = true;
         }
 
         private void button5_Click(object sender, EventArgs e)

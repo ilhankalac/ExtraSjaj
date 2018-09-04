@@ -83,7 +83,7 @@ namespace ExtraSjaj.Forme
             listBox1.Items.Clear();
 
             //sql za pretrazivanje po imenu musterije
-            SqlDataAdapter komandaPretrazivanja = new SqlDataAdapter("select id, imeprezime, platio, VremeDolaskaTepiha from Musterijas" +
+            SqlDataAdapter komandaPretrazivanja = new SqlDataAdapter("select id, imeprezime, VremeDolaskaTepiha from Musterijas" +
                 " where ImePrezime like '%"+textBox4.Text+"%'", konekcija);
 
             DataTable dt = new DataTable();

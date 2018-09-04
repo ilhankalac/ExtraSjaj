@@ -46,10 +46,10 @@ namespace ExtraSjaj.Modeli
         {
             SqlDataAdapter sda = new SqlDataAdapter("select m.id,row_number() over (order by m.Id) as 'Br.Mušterije'," +
                 "m.ImePrezime as 'Ime i Prezime',m.BrojTepiha as 'Br.Tepiha',m.BrojTelefona as 'Br. Tel.',m.Adresa, " +
-                "sum(isnull(t.kvadratura,0)) as 'Kvadratura Tepiha', m.VremeDolaskaTepiha as 'Tepisi dostavljeni',r.Racun as 'Račun', m.Platio as 'Plaćeno' " +
+                "sum(isnull(t.kvadratura,0)) as 'Kvadratura Tepiha', m.VremeDolaskaTepiha as 'Tepisi dostavljeni',r.Racun as 'Račun', r.Placen as 'Plaćeno' " +
                 "from Musterijas m left join Tepisi t on t.MusterijaId = m.Id join Racuni r on r.MusterijaId = m.Id " +
-                " where  datediff(month , m.VremeDolaskaTepiha, getdate()) = 0" +
-                "group by m.id, m.ImePrezime, m.BrojTepiha, m.BrojTelefona, m.Adresa, m.VremeDolaskaTepiha,r.Racun, m.Platio" +
+                " where  datediff(month , r.KreiranjeRacuna, getdate()) = 0" +
+                "group by m.id, m.ImePrezime, m.BrojTepiha, m.BrojTelefona, m.Adresa, m.VremeDolaskaTepiha,r.Racun, r.Placen" +
                 " order by m.Id asc", konekcija);
             DataTable dt = new DataTable();
             sda.Fill(dt);
