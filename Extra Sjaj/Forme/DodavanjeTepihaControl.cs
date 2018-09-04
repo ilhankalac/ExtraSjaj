@@ -125,7 +125,7 @@ namespace ExtraSjaj.Forme
 
             konekcija.Open();
 
-            SqlCommand komanda = new SqlCommand(@"update Musterijas set Platio = " + platio + "  where Id = " + musterija1.Id.ToString(), konekcija);
+            SqlCommand komanda = new SqlCommand(@"update Racuni set Placen = " + platio + "  where MusterijaId = " + musterija1.Id.ToString(), konekcija);
             komanda.ExecuteNonQuery();
             konekcija.Close();
         }
