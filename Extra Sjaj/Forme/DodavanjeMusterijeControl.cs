@@ -21,6 +21,7 @@ namespace ExtraSjaj.Forme
             InitializeComponent();
             dataGridView1.Hide();
             puniListBoxMusterijama();
+         
             musterija = new Musterija();
             textBox4_KeyPress(new object(), new  KeyPressEventArgs(' '));
         }
@@ -108,6 +109,7 @@ namespace ExtraSjaj.Forme
         {
             try
             {
+                puniComboRacuna();
                 konekcija.Open();
 
                 SqlCommand kmnGetIme = new SqlCommand("select ImePrezime from Musterijas where id = " + listaId[listBox1.SelectedIndices[0]].ToString(), konekcija);
@@ -140,6 +142,27 @@ namespace ExtraSjaj.Forme
             racun.kreirajNoviRacun(Convert.ToInt32(listaId[listBox1.SelectedIndices[0]]));
             label6.Text = racun.BrojRacuna(Convert.ToInt32(listaId[listBox1.SelectedIndices[0]])).ToString();
 
+        }
+        void puniComboRacuna()
+        {
+            DataTable mojaTabela = citajTabeluRacuni();
+            comboBox1.DataSource = mojaTabela;
+
+            comboBox1.DisplayMember = "KreiranjeRacuna";
+            comboBox1.ValueMember = "Id";
+
+           
+        }
+        DataTable citajTabeluRacuni()
+        {
+           
+            DataSet ds = new DataSet();
+            da = new SqlDataAdapter("select *from Racuni " +
+                "where MusterijaId = "+ listaId[listBox1.SelectedIndices[0]].ToString() , konekcija);
+            da.MissingSchemaAction = MissingSchemaAction.AddWithKey;
+            SqlCommandBuilder builder = new SqlCommandBuilder(da);
+            da.Fill(ds, "Racuni");
+            return ds.Tables["Racuni"];
         }
     }
 }

@@ -18,6 +18,7 @@ namespace ExtraSjaj.Forme
         //{
         //    InitializeComponent();
         //}
+        Racun racun1 = new Racun();
         public DodavanjeTepihaControl()
         {
             InitializeComponent();
@@ -45,7 +46,8 @@ namespace ExtraSjaj.Forme
 
             SqlCommand cmdUpdateRacuna = new SqlCommand(@"update Racuni
                                                 set Racun = " + racun().ToString() +
-                                               "  where MusterijaId = " + musterija1.Id.ToString()  , konekcija);
+                                               "  where MusterijaId = " + musterija1.Id.ToString()  +
+                                               " and id = "+ 1041, konekcija);
             cmdUpdateMusterije.ExecuteNonQuery();
             cmdUpdateRacuna.ExecuteNonQuery();
             konekcija.Close();
