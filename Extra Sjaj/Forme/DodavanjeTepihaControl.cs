@@ -40,14 +40,14 @@ namespace ExtraSjaj.Forme
         {
             konekcija.Open();
             SqlCommand cmdUpdateMusterije = new SqlCommand(@"update Musterijas
-                                                set BrojTepiha = " + "(select count(MusterijaId) " +
-                                               " from Tepisi where MusterijaId = " + musterija1.Id.ToString() + " )" 
+                                                set BrojTepiha = " + "(select count(RacunId) " +
+                                               " from Tepisi where RacunId = " + 1052.ToString() + " )" 
                                                + " where Id = " + musterija1.Id.ToString(), konekcija);
 
             SqlCommand cmdUpdateRacuna = new SqlCommand(@"update Racuni
                                                 set Racun = " + racun().ToString() +
-                                               "  where MusterijaId = " + musterija1.Id.ToString()  +
-                                               " and id = "+ 1041, konekcija);
+                                               "  where MusterijaId = " + 1502.ToString()  +
+                                               " and id = "+ 1048, konekcija);
             cmdUpdateMusterije.ExecuteNonQuery();
             cmdUpdateRacuna.ExecuteNonQuery();
             konekcija.Close();
@@ -60,7 +60,7 @@ namespace ExtraSjaj.Forme
         public void PuniComboDolaska()
         {
 
-            SqlDataAdapter sda = new SqlDataAdapter("select m.id, m.VremeDolaskaTepiha from Musterijas m " +
+            SqlDataAdapter sda = new SqlDataAdapter("select m.id, m.VremeKreiranjaMusterije from Musterijas m " +
                                                     " where m.Id = " + musterija1.Id, konekcija);
             DataTable dt = new DataTable();
 
@@ -73,10 +73,10 @@ namespace ExtraSjaj.Forme
         public void IscitajTabeluTepisiZaMusteriju()
         {
 
-            SqlDataAdapter sda = new SqlDataAdapter("select t.id, m.ImePrezime , t.Sirina as 'Širina/m' ," +
+            SqlDataAdapter sda = new SqlDataAdapter("select t.id , t.Sirina as 'Širina/m' ," +
                                                     " t.Duzina as 'Dužina/m'  , t.Kvadratura as 'Kvadratura/m2'  " +
-                                                    "from Tepisi t join Musterijas m on m.Id = t.MusterijaId" +
-                                                    " where m.Id = " + musterija1.Id, konekcija);
+                                                    "from Tepisi t join Racuni r on r.Id = t.RacunId" +
+                                                    " where r.Id = "+1048, konekcija);
             DataTable dt = new DataTable();
 
             sda.Fill(dt);
@@ -103,7 +103,7 @@ namespace ExtraSjaj.Forme
             {
                 if (item.Cells[0].Value == null) break;
                 //var nesto = item.Cells[3].Value.ToString();
-                racun += Convert.ToDouble(item.Cells[4].Value.ToString());
+                racun += Convert.ToDouble(item.Cells[3].Value.ToString());
 
             }
             return Math.Round(racun * Convert.ToDouble(comboBox1.Text), 2);

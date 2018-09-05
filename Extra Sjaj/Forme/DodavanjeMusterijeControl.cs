@@ -84,7 +84,7 @@ namespace ExtraSjaj.Forme
             listBox1.Items.Clear();
 
             //sql za pretrazivanje po imenu musterije
-            SqlDataAdapter komandaPretrazivanja = new SqlDataAdapter("select id, imeprezime, VremeDolaskaTepiha from Musterijas" +
+            SqlDataAdapter komandaPretrazivanja = new SqlDataAdapter("select id, imeprezime, VremeKreiranjaMusterije from Musterijas" +
                 " where ImePrezime like '%"+textBox4.Text+"%'", konekcija);
 
             DataTable dt = new DataTable();
@@ -163,6 +163,30 @@ namespace ExtraSjaj.Forme
             SqlCommandBuilder builder = new SqlCommandBuilder(da);
             da.Fill(ds, "Racuni");
             return ds.Tables["Racuni"];
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //kada se izabere datum kreiranog racuna treba da se otvori istorija tepiha musterije
+            string brojRacuna = comboBox1.SelectedValue.ToString();
+            try
+            {
+                //dodavanjeTepihaControl1.Show()
+               
+                musterija.Id = Convert.ToInt32( comboBox1.SelectedValue.ToString());
+
+                dodavanjeTepihaControl1.ucitavanjeTepihaSelektovanogMusterije(musterija);
+                dodavanjeTepihaControl1.Refresh();
+                dodavanjeTepihaControl1.Visible = true;
+                dodavanjeTepihaControl1.IscitajTabeluTepisiZaMusteriju();
+
+
+            }
+            catch
+            {
+                MessageBox.Show("Pogrešno ste izabrali mušteriju.");
+            }
+
         }
     }
 }

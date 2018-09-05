@@ -163,8 +163,6 @@ namespace ExtraSjaj
         {
             try
             {
-
-                
                 //dodavanjeTepihaControl1.Show()
                 int rowIndex = dataGridView1.CurrentRow.Index;
                 musterija.Id = Convert.ToInt32( dataGridView1.SelectedCells[0].Value);

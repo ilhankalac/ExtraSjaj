@@ -45,6 +45,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.dodavanjeTepihaControl1 = new ExtraSjaj.Forme.DodavanjeTepihaControl();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -220,21 +221,32 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(237, 30);
             this.comboBox1.TabIndex = 39;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(151, 466);
+            this.label7.Location = new System.Drawing.Point(151, 472);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(160, 22);
             this.label7.TabIndex = 40;
             this.label7.Text = "Otvoreni računi:";
             // 
+            // dodavanjeTepihaControl1
+            // 
+            this.dodavanjeTepihaControl1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dodavanjeTepihaControl1.Location = new System.Drawing.Point(578, 169);
+            this.dodavanjeTepihaControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dodavanjeTepihaControl1.Name = "dodavanjeTepihaControl1";
+            this.dodavanjeTepihaControl1.Size = new System.Drawing.Size(937, 617);
+            this.dodavanjeTepihaControl1.TabIndex = 41;
+            // 
             // DodavanjeMusterijeControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.dodavanjeTepihaControl1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label6);
@@ -281,5 +293,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label7;
+        private DodavanjeTepihaControl dodavanjeTepihaControl1;
     }
 }

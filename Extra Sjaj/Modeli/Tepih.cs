@@ -24,9 +24,9 @@ namespace ExtraSjaj.Modeli
             label6.Text = "";
 //            this.musterija1 = musterija;
 
-            SqlDataAdapter sda = new SqlDataAdapter("select  t.id,row_number() over (order by t.MusterijaId) as 'Br. Tepiha', t.Sirina as 'Širina/m', " +
+            SqlDataAdapter sda = new SqlDataAdapter("select  t.id,row_number() over (order by t.RacunId) as 'Br. Tepiha', t.Sirina as 'Širina/m', " +
                                                     "t.Duzina as 'Dužina/m',  t.Kvadratura as 'Kvadratura/m2'  " +
-                                                    "from Tepisi t join Musterijas m on m.Id = t.MusterijaId where t.MusterijaId = " + musterija.Id, konekcija);
+                                                    "from Tepisi t join Racuni r on r.Id = t.RacunId where t.RacunId = " + 1048, konekcija);
             DataTable dt = new DataTable();
             sda.Fill(dt);
 
@@ -39,13 +39,13 @@ namespace ExtraSjaj.Modeli
             //musterija.Racun = racun();
             //racunZaMusteriju();
         }
-        public void DodajTepih(string duzina, string sirina, int MusterijaId)
+        public void DodajTepih(string duzina, string sirina, int RacunId)
         {
-            SqlCommand komanda = new SqlCommand(@"insert into Tepisi(Duzina,Sirina,Kvadratura, MusterijaId)" +
+            SqlCommand komanda = new SqlCommand(@"insert into Tepisi(Duzina,Sirina,Kvadratura, RacunId)" +
               "values ((" + duzina.ToString() + ")," +
               "(" + sirina.ToString() + ")," +
               "(" + Convert.ToDouble(duzina) * Convert.ToDouble(sirina) + ")," +
-              "(" + MusterijaId.ToString() + ")); ", konekcija);
+              "("+ 1048 +")); ", konekcija);
 
             konekcija.Open();
             komanda.ExecuteNonQuery();
