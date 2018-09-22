@@ -35,6 +35,7 @@ namespace ExtraSjaj.Forme
         private SqlDataAdapter da = null;
         private DataTable citajTabeluMusterije()
         {
+
             SqlConnection konekcija = new SqlConnection(Konekcija.konString);
             DataSet ds = new DataSet();
             da = new SqlDataAdapter("select *from Musterijas", konekcija);
@@ -48,6 +49,7 @@ namespace ExtraSjaj.Forme
         }
         void puniListBoxMusterijama()
         {
+            textBox4_KeyPress(new object(), new KeyPressEventArgs(' '));
             listBox1.Items.Clear();
             DataTable mojaTabela = citajTabeluMusterije();
 
@@ -109,6 +111,7 @@ namespace ExtraSjaj.Forme
         {
             try
             {
+               
                 puniComboRacuna();
                 konekcija.Open();
 
