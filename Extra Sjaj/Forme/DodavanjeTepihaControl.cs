@@ -120,8 +120,17 @@ namespace ExtraSjaj.Forme
             updateMusterijuNakonDodavanjaIBrisanjaTepiha();
         }
 
-       
-        void updateMusterijuNakonPlacanja()
+        void updateRacunNakonDodavanjaTepiha()
+        {
+            
+
+            konekcija.Open();
+
+            SqlCommand komanda = new SqlCommand(@"update Racuni set Racun = " +textBox3.Text + "  where MusterijaId = " + musterija1.Id.ToString(), konekcija);
+            komanda.ExecuteNonQuery();
+            konekcija.Close();
+        }
+        void updateRacunNakonPlacanja()
         {
             int platio = 0;
             if (racun() == Convert.ToDouble(textBox3.Text))
@@ -145,6 +154,7 @@ namespace ExtraSjaj.Forme
             IscitajTabeluTepisiZaMusteriju();
             racunZaMusteriju();
             updateMusterijuNakonDodavanjaIBrisanjaTepiha();
+            updateRacunNakonDodavanjaTepiha();
         }
 
         private void btnNaplati_Click_1(object sender, EventArgs e)
@@ -152,7 +162,7 @@ namespace ExtraSjaj.Forme
             DialogResult dialogResult = MessageBox.Show("Da li si siguran da je mušterija platio?", "Poruka", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
             if ((dialogResult == DialogResult.Yes) && Convert.ToDouble(textBox3.Text) <= racun() && Convert.ToDouble(textBox3.Text) > 0)
             {
-                updateMusterijuNakonPlacanja();
+                updateRacunNakonPlacanja();
                 MessageBox.Show("Uspešno naplaćeno.", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Hide();
             }
@@ -166,6 +176,7 @@ namespace ExtraSjaj.Forme
         private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             racunZaMusteriju();
+            updateRacunNakonDodavanjaTepiha();
         }
         
         

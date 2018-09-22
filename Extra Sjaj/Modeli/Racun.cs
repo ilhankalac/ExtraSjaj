@@ -28,8 +28,8 @@ namespace ExtraSjaj.Modeli
         public void kreirajNoviRacun(int idMusterije)
         {
             konekcija.Open();
-            SqlCommand kmdZaInsertRacuna = new SqlCommand("insert into Racuni (Racun, MusterijaId, KreiranjeRacuna) " +
-                "values (0, "+idMusterije+", getdate())", konekcija);
+            SqlCommand kmdZaInsertRacuna = new SqlCommand("insert into Racuni (Racun, MusterijaId, KreiranjeRacuna, Placen) " +
+                "values (0, "+idMusterije+", getdate(), false)", konekcija);
             kmdZaInsertRacuna.ExecuteNonQuery();
             konekcija.Close();
 
