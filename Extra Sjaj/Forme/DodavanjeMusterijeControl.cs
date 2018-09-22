@@ -121,7 +121,7 @@ namespace ExtraSjaj.Forme
                 textBox3.Text = kmnGetAdresa.ExecuteScalar().ToString();
 
                 //prikaz broja racuna selektovanog musterije
-               label6.Text = racun.BrojRacuna(Convert.ToInt32(listaId[listBox1.SelectedIndices[0]])).ToString();
+                label6.Text = racun.BrojRacuna(Convert.ToInt32(listaId[listBox1.SelectedIndices[0]])).ToString();
                 konekcija.Close();
             }
             catch
@@ -150,8 +150,6 @@ namespace ExtraSjaj.Forme
 
             comboBox1.DisplayMember = "KreiranjeRacuna";
             comboBox1.ValueMember = "Id";
-
-           
         }
         DataTable citajTabeluRacuni()
         {
@@ -167,14 +165,18 @@ namespace ExtraSjaj.Forme
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            string brojRacuna = "";
             //kada se izabere datum kreiranog racuna treba da se otvori istorija tepiha musterije
-            string brojRacuna = comboBox1.SelectedValue.ToString();
+            if (comboBox1.SelectedIndex == 0)
+                return;
+            else 
+                brojRacuna = comboBox1.SelectedValue.ToString();
+
             try
             {
                 //dodavanjeTepihaControl1.Show()
                
                 musterija.Id = Convert.ToInt32( comboBox1.SelectedValue.ToString());
-
                 dodavanjeTepihaControl1.ucitavanjeTepihaSelektovanogMusterije(musterija);
                 dodavanjeTepihaControl1.Refresh();
                 dodavanjeTepihaControl1.Visible = true;

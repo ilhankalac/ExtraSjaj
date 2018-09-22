@@ -29,7 +29,7 @@ namespace ExtraSjaj.Modeli
         {
             konekcija.Open();
             SqlCommand kmdZaInsertRacuna = new SqlCommand("insert into Racuni (Racun, MusterijaId, KreiranjeRacuna, Placen) " +
-                "values (0, "+idMusterije+", getdate(), false)", konekcija);
+                "values (0, "+idMusterije+", getdate(), 0)", konekcija);
             kmdZaInsertRacuna.ExecuteNonQuery();
             konekcija.Close();
 
