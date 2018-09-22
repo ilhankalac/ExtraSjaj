@@ -41,12 +41,12 @@ namespace ExtraSjaj.Forme
             konekcija.Open();
             SqlCommand cmdUpdateMusterije = new SqlCommand(@"update Musterijas
                                                 set BrojTepiha = " + "(select count(RacunId) " +
-                                               " from Tepisi where RacunId = " + 1052.ToString() + " )" 
+                                               " from Tepisi where RacunId = " + racun1.Id.ToString() + " )" 
                                                + " where Id = " + musterija1.Id.ToString(), konekcija);
 
             SqlCommand cmdUpdateRacuna = new SqlCommand(@"update Racuni
                                                 set Racun = " + racun().ToString() +
-                                               "  where MusterijaId = " + 1502.ToString()  +
+                                               "  where MusterijaId = " + racun1.Id.ToString()  +
                                                " and id = "+ 1048, konekcija);
             cmdUpdateMusterije.ExecuteNonQuery();
             cmdUpdateRacuna.ExecuteNonQuery();
@@ -72,16 +72,21 @@ namespace ExtraSjaj.Forme
 
         public void IscitajTabeluTepisiZaMusteriju()
         {
+            konekcija.Open();
+            SqlCommand kmnGetIdRacuna = new SqlCommand("select max(Id) from Racuni where MusterijaId = " + musterija1.Id, konekcija);
+
 
             SqlDataAdapter sda = new SqlDataAdapter("select t.id , t.Sirina as 'Širina/m' ," +
                                                     " t.Duzina as 'Dužina/m'  , t.Kvadratura as 'Kvadratura/m2'  " +
                                                     "from Tepisi t join Racuni r on r.Id = t.RacunId" +
-                                                    " where r.Id = "+1048, konekcija);
+                                                    " where r.Id = "+kmnGetIdRacuna.ExecuteScalar().ToString(), konekcija);
             DataTable dt = new DataTable();
 
+            
             sda.Fill(dt);
             dataGridView1.DataSource = dt;
             racunZaMusteriju();
+            konekcija.Close();
         }
 
        

@@ -174,7 +174,7 @@ namespace ExtraSjaj
                 dodavanjeTepihaControl1.Refresh();
                 dodavanjeTepihaControl1.Visible = true;
                 dodavanjeMusterijeControl1.Refresh();
-                musterija.citajTabeluMusterijeFromSql(dataGridView1);
+             //   musterija.citajTabeluMusterijeFromSql(dataGridView1);
 
                 dodavanjeTepihaControl1.IscitajTabeluTepisiZaMusteriju();
 
