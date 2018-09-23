@@ -119,17 +119,10 @@ namespace ExtraSjaj
             }
 
             konekcija.Open();
-            SqlCommand kmdZaSelektRacunaMusterije = new SqlCommand(@"select max(id) from Racuni where MusterijaId = " + idZASql, konekcija);
 
 
-            SqlCommand kmdZaBrisanjeRacuna = new SqlCommand(@"delete from Racuni where MusterijaId in (" + idZASql + ")", konekcija);
 
             SqlCommand kmdZaBrisanjeMusterije = new SqlCommand(@"delete from Musterijas where id in ("+idZASql+")", konekcija);
-
-            SqlCommand kmdZaBrisanjeTepiha = new SqlCommand(@"delete from Tepisi where  RacunId in (" + kmdZaSelektRacunaMusterije.ExecuteScalar().ToString() + ")", konekcija);
-
-            kmdZaBrisanjeTepiha.ExecuteNonQuery();
-            kmdZaBrisanjeRacuna.ExecuteNonQuery();
             kmdZaBrisanjeMusterije.ExecuteNonQuery();
             konekcija.Close();
             musterija.citajTabeluMusterijeFromSql(dataGridView1);
