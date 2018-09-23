@@ -44,12 +44,8 @@ namespace ExtraSjaj.Forme
                                                " from Tepisi where RacunId = " + racun1.Id.ToString() + " )" 
                                                + " where Id = " + musterija1.Id.ToString(), konekcija);
 
-            SqlCommand cmdUpdateRacuna = new SqlCommand(@"update Racuni
-                                                set Racun = " + racun().ToString() +
-                                               "  where MusterijaId = " + racun1.Id.ToString()  +
-                                               " and id = "+ 1048, konekcija);
+         
             cmdUpdateMusterije.ExecuteNonQuery();
-            cmdUpdateRacuna.ExecuteNonQuery();
             konekcija.Close();
             //frmPocetna frm1 = new frmPocetna();
             ////citaj tabelu za tepihe tu treba
@@ -126,8 +122,11 @@ namespace ExtraSjaj.Forme
 
             konekcija.Open();
 
-            SqlCommand komanda = new SqlCommand(@"update Racuni set Racun = " +textBox3.Text + "  where MusterijaId = " + musterija1.Id.ToString(), konekcija);
-            komanda.ExecuteNonQuery();
+            SqlCommand cmdUpdateRacuna = new SqlCommand(@"update Racuni
+                                                set Racun = " + racun().ToString() +
+                                                        "  where MusterijaId = " + musterija1.Id.ToString() +
+                                                        " and id = (select max(id) from Racuni where MusterijaId =  " + musterija1.Id + " )", konekcija);
+            cmdUpdateRacuna.ExecuteNonQuery();
             konekcija.Close();
         }
         void updateRacunNakonPlacanja()

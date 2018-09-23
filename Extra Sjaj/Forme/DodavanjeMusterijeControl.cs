@@ -25,6 +25,7 @@ namespace ExtraSjaj.Forme
             musterija = new Musterija();
             dodavanjeTepihaControl1.Visible = false;
             textBox4_KeyPress(new object(), new  KeyPressEventArgs(' '));
+            this.comboBox1.SelectedIndexChanged -= new System.EventHandler(this.comboBox1_SelectedIndexChanged);
         }
         SqlConnection konekcija = new SqlConnection(Konekcija.konString);
         private void Tepisi_Load(object sender, EventArgs e)
@@ -127,6 +128,8 @@ namespace ExtraSjaj.Forme
                 //prikaz broja racuna selektovanog musterije
                 label6.Text = racun.BrojRacuna(Convert.ToInt32(listaId[listBox1.SelectedIndices[0]])).ToString();
                 konekcija.Close();
+                this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+
             }
             catch
             {
@@ -149,6 +152,7 @@ namespace ExtraSjaj.Forme
         }
         void puniComboRacuna()
         {
+           
             DataTable mojaTabela = citajTabeluRacuni();
             comboBox1.DataSource = mojaTabela;
 
@@ -166,14 +170,15 @@ namespace ExtraSjaj.Forme
             da.Fill(ds, "Racuni");
             return ds.Tables["Racuni"];
         }
-
+     
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+         
             string brojRacuna = "";
             //kada se izabere datum kreiranog racuna treba da se otvori istorija tepiha musterije
-            if (comboBox1.SelectedIndex == 0)
-                return;
-            else 
+            //if (comboBox1.SelectedIndex == 0)
+            //    return;
+            //else
                 brojRacuna = comboBox1.SelectedValue.ToString();
 
             try
@@ -187,16 +192,12 @@ namespace ExtraSjaj.Forme
                 musterija.Id = Convert.ToInt32( kmnGetId.ExecuteScalar());
                 musterija.ImePrezime = kmnGetIme.ExecuteScalar().ToString();
                 musterija.VremeDolaskaTepiha = Convert.ToDateTime(kmnGetDatumRacuna.ExecuteScalar().ToString());
+
                 dodavanjeTepihaControl1.ucitavanjeTepihaSelektovanogMusterije(musterija);
-
-
                 dodavanjeTepihaControl1.Refresh();
                 dodavanjeTepihaControl1.Visible = true;
-
                 dodavanjeTepihaControl1.IscitajTabeluTepisiZaMusteriju();
                 konekcija.Close();
-            
-
             }
             catch
             {
