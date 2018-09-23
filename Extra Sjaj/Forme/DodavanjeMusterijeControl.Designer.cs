@@ -236,10 +236,10 @@
             // dodavanjeTepihaControl1
             // 
             this.dodavanjeTepihaControl1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dodavanjeTepihaControl1.Location = new System.Drawing.Point(745, 447);
+            this.dodavanjeTepihaControl1.Location = new System.Drawing.Point(0, -11);
             this.dodavanjeTepihaControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dodavanjeTepihaControl1.Name = "dodavanjeTepihaControl1";
-            this.dodavanjeTepihaControl1.Size = new System.Drawing.Size(937, 617);
+            this.dodavanjeTepihaControl1.Size = new System.Drawing.Size(960, 628);
             this.dodavanjeTepihaControl1.TabIndex = 41;
             // 
             // DodavanjeMusterijeControl

@@ -164,7 +164,7 @@ namespace ExtraSjaj.Forme
             {
                 updateRacunNakonPlacanja();
                 MessageBox.Show("Uspešno naplaćeno.", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Hide();
+                this.Visible = false;
             }
 
             else if (Convert.ToDouble(textBox3.Text) > racun() || Convert.ToDouble(textBox3.Text) < 0)
@@ -191,6 +191,11 @@ namespace ExtraSjaj.Forme
                 updateMusterijuNakonDodavanjaIBrisanjaTepiha();
 
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Visible = false;
         }
     }
 }
