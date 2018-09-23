@@ -170,16 +170,16 @@ namespace ExtraSjaj.Forme
             da.Fill(ds, "Racuni");
             return ds.Tables["Racuni"];
         }
-     
+        public static int IdRacuna; 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
          
-            string brojRacuna = "";
+        
             //kada se izabere datum kreiranog racuna treba da se otvori istorija tepiha musterije
             //if (comboBox1.SelectedIndex == 0)
             //    return;
             //else
-                brojRacuna = comboBox1.SelectedValue.ToString();
+            IdRacuna = Convert.ToInt32( comboBox1.SelectedValue.ToString());
 
             try
             {
@@ -193,10 +193,10 @@ namespace ExtraSjaj.Forme
                 musterija.ImePrezime = kmnGetIme.ExecuteScalar().ToString();
                 musterija.VremeDolaskaTepiha = Convert.ToDateTime(kmnGetDatumRacuna.ExecuteScalar().ToString());
 
-                dodavanjeTepihaControl1.ucitavanjeTepihaSelektovanogMusterije(musterija);
+               // dodavanjeTepihaControl1.ucitavanjeTepihaSelektovanogMusterije(musterija, IdRacuna);
                 dodavanjeTepihaControl1.Refresh();
                 dodavanjeTepihaControl1.Visible = true;
-                dodavanjeTepihaControl1.IscitajTabeluTepisiZaMusteriju();
+                dodavanjeTepihaControl1.IscitajTabeluTepisiZaMusteriju(IdRacuna);
                 konekcija.Close();
             }
             catch

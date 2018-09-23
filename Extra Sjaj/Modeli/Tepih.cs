@@ -18,10 +18,10 @@ namespace ExtraSjaj.Modeli
         public int MusterijaId { get; set; }
         public float Kvadratura { get; set; }
         SqlConnection konekcija = new SqlConnection(Konekcija.konString);
-        public void ucitavanjeTepihaSelektovanogMusterije(Musterija musterija, Label label1, Label label5, Label label6, DataGridView dataGridView1)
+        public void ucitavanjeTepihaSelektovanogMusterije(Musterija musterija, Label label1, Label label5, Label label6, DataGridView dataGridView1, int IdRacuna)
         {
             konekcija.Open();
-            SqlCommand kmnGetIdRacuna = new SqlCommand("select max(Id) from Racuni where MusterijaId = " + musterija.Id, konekcija);
+            
           
             label5.Text = "";
             label6.Text = "";
@@ -30,7 +30,7 @@ namespace ExtraSjaj.Modeli
 
             SqlDataAdapter sda = new SqlDataAdapter("select  t.id,row_number() over (order by t.RacunId) as 'Br. Tepiha', t.Sirina as 'Širina/m', " +
                                                     "t.Duzina as 'Dužina/m',  t.Kvadratura as 'Kvadratura/m2'  " +
-                                                    "from Tepisi t join Racuni r on r.Id = t.RacunId where t.RacunId = " + kmnGetIdRacuna.ExecuteScalar().ToString(), konekcija);
+                                                    "from Tepisi t join Racuni r on r.Id = t.RacunId where t.RacunId = " + IdRacuna.ToString(), konekcija);
             DataTable dt = new DataTable();
             sda.Fill(dt);
 
@@ -43,16 +43,19 @@ namespace ExtraSjaj.Modeli
             //musterija.Racun = racun();
             //racunZaMusteriju();
         }
-        public void DodajTepih(string duzina, string sirina, int MusterijaId)
+
+
+       
+        public void DodajTepih(string duzina, string sirina, int MusterijaId, int IdRacuna)
         {
             konekcija.Open();
-            SqlCommand kmnGetIdRacuna = new SqlCommand("select max(Id) from Racuni where MusterijaId = " + MusterijaId, konekcija);
+           
 
             SqlCommand komanda = new SqlCommand(@"insert into Tepisi(Duzina,Sirina,Kvadratura, RacunId)" +
               "values ((" + duzina.ToString() + ")," +
               "(" + sirina.ToString() + ")," +
               "(" + Convert.ToDouble(duzina) * Convert.ToDouble(sirina) + ")," +
-              "("+ kmnGetIdRacuna.ExecuteScalar().ToString() +")); ", konekcija);
+              "("+ IdRacuna.ToString() +")); ", konekcija);
 
          
             komanda.ExecuteNonQuery();

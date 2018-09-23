@@ -29,10 +29,17 @@ namespace ExtraSjaj.Forme
     
         Modeli.Musterija musterija1 = new Modeli.Musterija();
         public Tepih tepih = new Tepih();
-        public void ucitavanjeTepihaSelektovanogMusterije(Musterija musterija)
+        public void ucitavanjeTepihaSelektovanogMusterije(Musterija musterija, int IdRacuna)
         {
             musterija1 = musterija;
-            tepih.ucitavanjeTepihaSelektovanogMusterije(musterija, label1, label5, label6, dataGridView1);
+            tepih.ucitavanjeTepihaSelektovanogMusterije(musterija, label1, label5, label6, dataGridView1, IdRacuna);
+        }
+        public void ucitavanjeTepihaSelektovanogMusterije(Musterija musterija)
+        {
+            konekcija.Open();
+            SqlCommand kmnGetIdRacuna = new SqlCommand("select max(Id) from Racuni where MusterijaId = " + musterija.Id, konekcija);
+            musterija1 = musterija;
+            tepih.ucitavanjeTepihaSelektovanogMusterije(musterija, label1, label5, label6, dataGridView1, Convert.ToInt32(kmnGetIdRacuna.ExecuteScalar()));
         }
         SqlConnection konekcija = new SqlConnection(Konekcija.konString);
         
@@ -66,16 +73,16 @@ namespace ExtraSjaj.Forme
             comboBox2.ValueMember = "Id";
         }
 
-        public void IscitajTabeluTepisiZaMusteriju()
+        public void IscitajTabeluTepisiZaMusteriju(int IdRacuna)
         {
             konekcija.Open();
-            SqlCommand kmnGetIdRacuna = new SqlCommand("select max(Id) from Racuni where MusterijaId = " + musterija1.Id, konekcija);
-
+           
+            
 
             SqlDataAdapter sda = new SqlDataAdapter("select t.id , t.Sirina as 'Širina/m' ," +
                                                     " t.Duzina as 'Dužina/m'  , t.Kvadratura as 'Kvadratura/m2'  " +
                                                     "from Tepisi t join Racuni r on r.Id = t.RacunId" +
-                                                    " where r.Id = "+kmnGetIdRacuna.ExecuteScalar().ToString(), konekcija);
+                                                    " where r.Id = "+IdRacuna.ToString(), konekcija);
             DataTable dt = new DataTable();
 
             
@@ -84,8 +91,25 @@ namespace ExtraSjaj.Forme
             racunZaMusteriju();
             konekcija.Close();
         }
+        public void IscitajTabeluTepisiZaMusteriju()
+        {
+            konekcija.Open();
+            
 
-       
+
+            SqlDataAdapter sda = new SqlDataAdapter("select t.id , t.Sirina as 'Širina/m' ," +
+                                                    " t.Duzina as 'Dužina/m'  , t.Kvadratura as 'Kvadratura/m2'  " +
+                                                    "from Tepisi t join Racuni r on r.Id = t.RacunId" +
+                                                    " where r.Id = " + DodavanjeMusterijeControl.IdRacuna.ToString(), konekcija);
+            DataTable dt = new DataTable();
+
+
+            sda.Fill(dt);
+            dataGridView1.DataSource = dt;
+            racunZaMusteriju();
+            konekcija.Close();
+        }
+
         void racunZaMusteriju()
         {
 
@@ -124,8 +148,7 @@ namespace ExtraSjaj.Forme
 
             SqlCommand cmdUpdateRacuna = new SqlCommand(@"update Racuni
                                                 set Racun = " + racun().ToString() +
-                                                        "  where MusterijaId = " + musterija1.Id.ToString() +
-                                                        " and id = (select max(id) from Racuni where MusterijaId =  " + musterija1.Id + " )", konekcija);
+                                                        "  where id = "+DodavanjeMusterijeControl.IdRacuna, konekcija);
             cmdUpdateRacuna.ExecuteNonQuery();
             konekcija.Close();
         }
@@ -140,7 +163,7 @@ namespace ExtraSjaj.Forme
 
             konekcija.Open();
 
-            SqlCommand komanda = new SqlCommand(@"update Racuni set Placen = " + platio + "  where MusterijaId = " + musterija1.Id.ToString(), konekcija);
+            SqlCommand komanda = new SqlCommand(@"update Racuni set Placen = " + platio + "  where id = " + DodavanjeMusterijeControl.IdRacuna, konekcija);
             komanda.ExecuteNonQuery();
             konekcija.Close();
         }
@@ -148,8 +171,10 @@ namespace ExtraSjaj.Forme
       
         private void btnDodajTepih_Click_1(object sender, EventArgs e)
         {
+
+
             PuniComboDolaska();
-            tepih.DodajTepih(textBox1.Text, textBox2.Text, musterija1.Id);
+            tepih.DodajTepih(textBox1.Text, textBox2.Text, musterija1.Id, DodavanjeMusterijeControl.IdRacuna);
             IscitajTabeluTepisiZaMusteriju();
             racunZaMusteriju();
             updateMusterijuNakonDodavanjaIBrisanjaTepiha();
