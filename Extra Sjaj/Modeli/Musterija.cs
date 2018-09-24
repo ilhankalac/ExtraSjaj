@@ -86,5 +86,14 @@ namespace ExtraSjaj.Modeli
             komanda.ExecuteNonQuery();
             konekcija.Close();
         }
+        public void BrisiMusteriju(int Id)
+        {
+            konekcija.Open();
+            SqlCommand komanda = new SqlCommand(@"delete Musterijas where Id = " + Id, konekcija);
+            komanda.ExecuteNonQuery();
+            konekcija.Close();
+
+        }
+
     }
 }

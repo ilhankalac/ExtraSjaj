@@ -25,10 +25,11 @@ namespace ExtraSjaj.Forme
             musterija = new Musterija();
             dodavanjeTepihaControl1.Visible = false;
             textBox4_KeyPress(new object(), new  KeyPressEventArgs(' '));
-           
-                comboBox1.SelectedIndexChanged -= new System.EventHandler(comboBox1_SelectedIndexChanged);
-            
 
+
+            /* linija koja gasi metodu combobxo selected index changed, samo dodaj + da ispred
+             = da bi je vratio nazad da funkcionise*/
+            comboBox1.SelectedIndexChanged -= new System.EventHandler(comboBox1_SelectedIndexChanged);
 
         }
         SqlConnection konekcija = new SqlConnection(Konekcija.konString);
@@ -66,17 +67,6 @@ namespace ExtraSjaj.Forme
                 listBox1.Items.Add((i++).ToString() + ". " + item["ImePrezime"].ToString());
             }
 
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-
-        }
-
-        private void btnDodaj_Click(object sender, EventArgs e)
-        {
-            
         }
         
         private void btnDodaj_Click_1(object sender, EventArgs e)
@@ -189,17 +179,7 @@ namespace ExtraSjaj.Forme
 
             try
             {
-                for (int i = 0; i < 2000; i++)
-                {
-                    konekcija.Open();
-                    const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-                    var djesi = new string(Enumerable.Repeat(chars, 10)
-                      .Select(s => s[random.Next(s.Length)]).ToArray());
-                    SqlCommand insertMusterijas = new SqlCommand("insert into Musterijas (ImePrezime, BrojTepiha,BrojTelefona, Adresa, VremeKreiranjaMusterije) " +
-                        "values (('"+djesi.ToString() + "'), (1), ('321312'), ('Neka Adresa'), getdate())", konekcija);
-                    insertMusterijas.ExecuteNonQuery();
-                    konekcija.Close();
-                }
+                
                 konekcija.Open();
                 SqlCommand kmnGetId = new SqlCommand("select Id from Musterijas where id = " + listaId[listBox1.SelectedIndices[0]].ToString(), konekcija);
                 SqlCommand kmnGetIme = new SqlCommand("select ImePrezime from Musterijas where id = " + listaId[listBox1.SelectedIndices[0]].ToString(), konekcija);
@@ -226,6 +206,23 @@ namespace ExtraSjaj.Forme
                 comboBox1.SelectedIndexChanged -= new System.EventHandler(comboBox1_SelectedIndexChanged);
             }
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MessageBox.Show("Da li si siguran da želiš obrisati mušteriju?", "Pitanje", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    musterija.BrisiMusteriju(listaId[listBox1.SelectedIndices[0]]);
+                    puniListBoxMusterijama();
+                }
+            }
+            catch 
+            {
+                MessageBox.Show("Morate selektovati koga želite da obrišete!");
+            }
+            
         }
     }
 }
