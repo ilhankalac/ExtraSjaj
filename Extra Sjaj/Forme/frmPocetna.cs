@@ -92,7 +92,8 @@ namespace ExtraSjaj
 
         private void btnDodaj_Click(object sender, EventArgs e)
         {
-        
+           
+            //this.dodavanjeMusterijeControl1 = new ExtraSjaj.Forme.DodavanjeMusterijeControl();
             arhivaMusterijaControl1.Visible = false;
             musterija.citajTabeluMusterijeFromSql(dataGridView1);
             dodavanjeTepihaControl1.Visible = false;

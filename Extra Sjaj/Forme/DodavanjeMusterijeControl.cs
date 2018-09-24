@@ -25,7 +25,11 @@ namespace ExtraSjaj.Forme
             musterija = new Musterija();
             dodavanjeTepihaControl1.Visible = false;
             textBox4_KeyPress(new object(), new  KeyPressEventArgs(' '));
-            this.comboBox1.SelectedIndexChanged -= new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+           
+                comboBox1.SelectedIndexChanged -= new System.EventHandler(comboBox1_SelectedIndexChanged);
+            
+
+
         }
         SqlConnection konekcija = new SqlConnection(Konekcija.konString);
         private void Tepisi_Load(object sender, EventArgs e)
@@ -34,6 +38,7 @@ namespace ExtraSjaj.Forme
 
 
         }
+        
         private SqlDataAdapter da = null;
         private DataTable citajTabeluMusterije()
         {
@@ -113,7 +118,7 @@ namespace ExtraSjaj.Forme
         {
             try
             {
-               
+                this.comboBox1.SelectedIndexChanged -= new System.EventHandler(this.comboBox1_SelectedIndexChanged);
                 puniComboRacuna();
                 konekcija.Open();
 
@@ -129,7 +134,7 @@ namespace ExtraSjaj.Forme
                 label6.Text = racun.BrojRacuna(Convert.ToInt32(listaId[listBox1.SelectedIndices[0]])).ToString();
                 konekcija.Close();
                 this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-
+               
             }
             catch
             {
@@ -170,7 +175,8 @@ namespace ExtraSjaj.Forme
             da.Fill(ds, "Racuni");
             return ds.Tables["Racuni"];
         }
-        public static int IdRacuna; 
+        public static int IdRacuna;
+        private static Random random = new Random();
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
          
@@ -183,11 +189,22 @@ namespace ExtraSjaj.Forme
 
             try
             {
+                for (int i = 0; i < 2000; i++)
+                {
+                    konekcija.Open();
+                    const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+                    var djesi = new string(Enumerable.Repeat(chars, 10)
+                      .Select(s => s[random.Next(s.Length)]).ToArray());
+                    SqlCommand insertMusterijas = new SqlCommand("insert into Musterijas (ImePrezime, BrojTepiha,BrojTelefona, Adresa, VremeKreiranjaMusterije) " +
+                        "values (('"+djesi.ToString() + "'), (1), ('321312'), ('Neka Adresa'), getdate())", konekcija);
+                    insertMusterijas.ExecuteNonQuery();
+                    konekcija.Close();
+                }
                 konekcija.Open();
                 SqlCommand kmnGetId = new SqlCommand("select Id from Musterijas where id = " + listaId[listBox1.SelectedIndices[0]].ToString(), konekcija);
                 SqlCommand kmnGetIme = new SqlCommand("select ImePrezime from Musterijas where id = " + listaId[listBox1.SelectedIndices[0]].ToString(), konekcija);
                 SqlCommand kmnGetDatumRacuna = new SqlCommand("select KreiranjeRacuna from Racuni where MusterijaId = " + listaId[listBox1.SelectedIndices[0]].ToString()+" and id = (select max(id) from racuni where MusterijaId = "+ listaId[listBox1.SelectedIndices[0]].ToString() +" )", konekcija);
-
+               
 
                 musterija.Id = Convert.ToInt32( kmnGetId.ExecuteScalar());
                 musterija.ImePrezime = kmnGetIme.ExecuteScalar().ToString();
@@ -202,6 +219,11 @@ namespace ExtraSjaj.Forme
             catch
             {
                 MessageBox.Show("Pogrešno ste izabrali mušteriju.");
+            }
+            finally
+            {
+                listBox1.ClearSelected();
+                comboBox1.SelectedIndexChanged -= new System.EventHandler(comboBox1_SelectedIndexChanged);
             }
 
         }

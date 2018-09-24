@@ -1,0 +1,14 @@
+ 
+-- kod koji generise 2000 random musterija, kako bih testirao brzinu pretrazivanja
+for (int i = 0; i < 2000; i++)
+            {
+                konekcija.Open();
+                const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+                var djesi = new string(Enumerable.Repeat(chars, 10)
+                  .Select(s => s[random.Next(s.Length)]).ToArray());
+                SqlCommand insertMusterijas = new SqlCommand("insert into Musterijas (ImePrezime, BrojTepiha,BrojTelefona, Adresa, VremeKreiranjaMusterije) " +
+                    "values (('" + djesi.ToString() + "'), (1), ('321312'), ('Neka Adresa'), getdate())", konekcija);
+                insertMusterijas.ExecuteNonQuery();
+                konekcija.Close();
+            }
+============================
