@@ -24,7 +24,7 @@ namespace ExtraSjaj.Modeli
             
           
             label5.Text = "";
-            label6.Text = "";
+            label6.Text = "Plaćeno: ";
             
             //            this.musterija1 = musterija;
 
@@ -34,11 +34,12 @@ namespace ExtraSjaj.Modeli
             DataTable dt = new DataTable();
             sda.Fill(dt);
 
-
+            SqlCommand getStatusRacuna = new SqlCommand("select Placen from Racuni where id = " + IdRacuna, konekcija);
+            int statusRacuna = Convert.ToInt32( getStatusRacuna.ExecuteScalar());
             dataGridView1.DataSource = dt;
             label1.Text = musterija.ImePrezime + " - tepisi";
             label5.Text = "Tepisi dostavljeni na pranje: " + musterija.VremeDolaskaTepiha.Day.ToString() + "/" + musterija.VremeDolaskaTepiha.Month.ToString() + "/" + musterija.VremeDolaskaTepiha.Year.ToString();
-            if (musterija.Platio) label6.Text += " Da"; else label6.Text += " Ne";
+            if (statusRacuna==1) label6.Text += " Da"; else label6.Text += " Ne";
             konekcija.Close();
             //musterija.Racun = racun();
             //racunZaMusteriju();

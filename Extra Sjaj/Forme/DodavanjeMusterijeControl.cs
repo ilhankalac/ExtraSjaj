@@ -124,7 +124,7 @@ namespace ExtraSjaj.Forme
                 label6.Text = racun.BrojRacuna(Convert.ToInt32(listaId[listBox1.SelectedIndices[0]])).ToString();
                 konekcija.Close();
                 this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-               
+                dodavanjeTepihaControl1.ucitavanjeTepihaSelektovanogMusterije(musterija, Convert.ToInt32( comboBox1.SelectedValue));
             }
             catch
             {
@@ -190,10 +190,12 @@ namespace ExtraSjaj.Forme
                 musterija.ImePrezime = kmnGetIme.ExecuteScalar().ToString();
                 musterija.VremeDolaskaTepiha = Convert.ToDateTime(kmnGetDatumRacuna.ExecuteScalar().ToString());
 
-               // dodavanjeTepihaControl1.ucitavanjeTepihaSelektovanogMusterije(musterija, IdRacuna);
+                dodavanjeTepihaControl1.ucitavanjeTepihaSelektovanogMusterije(musterija, IdRacuna);
                 dodavanjeTepihaControl1.Refresh();
                 dodavanjeTepihaControl1.Visible = true;
                 dodavanjeTepihaControl1.IscitajTabeluTepisiZaMusteriju(IdRacuna);
+            
+
                 konekcija.Close();
             }
             catch
