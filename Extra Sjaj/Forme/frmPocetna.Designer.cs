@@ -317,7 +317,7 @@
             this.dodavanjeMusterijeControl1.Location = new System.Drawing.Point(187, 121);
             this.dodavanjeMusterijeControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dodavanjeMusterijeControl1.Name = "dodavanjeMusterijeControl1";
-            this.dodavanjeMusterijeControl1.Size = new System.Drawing.Size(1059, 603);
+            this.dodavanjeMusterijeControl1.Size = new System.Drawing.Size(1059, 684);
             this.dodavanjeMusterijeControl1.TabIndex = 22;
             // 
             // frmPocetna
