@@ -18,14 +18,14 @@ namespace ExtraSjaj.Modeli
         public int MusterijaId { get; set; }
         public float Kvadratura { get; set; }
         SqlConnection konekcija = new SqlConnection(Konekcija.konString);
-        public void ucitavanjeTepihaSelektovanogMusterije(Musterija musterija, Label label1, Label label5, Label label6, DataGridView dataGridView1, int IdRacuna)
+        public void ucitavanjeTepihaSelektovanogMusterije(Musterija musterija, Label label1, Label label5, Label label6, DataGridView dataGridView1, int IdRacuna, Button btnNaplati, Button btnDodajTepih)
         {
             konekcija.Open();
-            
-          
+
+
             label5.Text = "";
             label6.Text = "Plaćeno: ";
-            
+
             //            this.musterija1 = musterija;
 
             SqlDataAdapter sda = new SqlDataAdapter("select  t.id,row_number() over (order by t.RacunId) as 'Br. Tepiha', t.Sirina as 'Širina/m', " +
@@ -35,11 +35,22 @@ namespace ExtraSjaj.Modeli
             sda.Fill(dt);
 
             SqlCommand getStatusRacuna = new SqlCommand("select Placen from Racuni where id = " + IdRacuna, konekcija);
-            int statusRacuna = Convert.ToInt32( getStatusRacuna.ExecuteScalar());
+            int statusRacuna = Convert.ToInt32(getStatusRacuna.ExecuteScalar());
             dataGridView1.DataSource = dt;
             label1.Text = musterija.ImePrezime + " - tepisi";
             label5.Text = "Tepisi dostavljeni na pranje: " + musterija.VremeDolaskaTepiha.Day.ToString() + "/" + musterija.VremeDolaskaTepiha.Month.ToString() + "/" + musterija.VremeDolaskaTepiha.Year.ToString();
-            if (statusRacuna==1) label6.Text += " Da"; else label6.Text += " Ne";
+            if (statusRacuna == 1)
+            {
+                label6.Text += " Da";
+                btnDodajTepih.Visible = false;
+                btnNaplati.Visible = false;
+            }
+            else {
+                label6.Text += " Ne";
+                btnDodajTepih.Visible = true;
+                btnNaplati.Visible = true;
+
+            } 
             konekcija.Close();
             //musterija.Racun = racun();
             //racunZaMusteriju();

@@ -22,7 +22,7 @@ namespace ExtraSjaj.Forme
         public DodavanjeTepihaControl()
         {
             InitializeComponent();
-            
+           
 
 
         }
@@ -32,14 +32,14 @@ namespace ExtraSjaj.Forme
         public void ucitavanjeTepihaSelektovanogMusterije(Musterija musterija, int IdRacuna)
         {
             musterija1 = musterija;
-            tepih.ucitavanjeTepihaSelektovanogMusterije(musterija, label1, label5, label6, dataGridView1, IdRacuna);
+            tepih.ucitavanjeTepihaSelektovanogMusterije(musterija, label1, label5, label6, dataGridView1, IdRacuna, btnNaplati, btnDodajTepih);
         }
         public void ucitavanjeTepihaSelektovanogMusterije(Musterija musterija)
         {
             konekcija.Open();
             SqlCommand kmnGetIdRacuna = new SqlCommand("select max(Id) from Racuni where MusterijaId = " + musterija.Id, konekcija);
             musterija1 = musterija;
-            tepih.ucitavanjeTepihaSelektovanogMusterije(musterija, label1, label5, label6, dataGridView1, Convert.ToInt32(kmnGetIdRacuna.ExecuteScalar()));
+            tepih.ucitavanjeTepihaSelektovanogMusterije(musterija, label1, label5, label6, dataGridView1, Convert.ToInt32(kmnGetIdRacuna.ExecuteScalar()), btnNaplati, btnDodajTepih);
         }
         SqlConnection konekcija = new SqlConnection(Konekcija.konString);
         
@@ -179,8 +179,16 @@ namespace ExtraSjaj.Forme
             racunZaMusteriju();
             updateMusterijuNakonDodavanjaIBrisanjaTepiha();
             updateRacunNakonDodavanjaTepiha();
+           
         }
-
+        void racunNaplacen()
+        {
+            if (label6.Text == "Plaćeno:  Da")
+            {
+                btnDodajTepih.Visible = false;
+                btnNaplati.Visible = false;
+            }
+        }
         private void btnNaplati_Click_1(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Da li si siguran da je mušterija platio?", "Poruka", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
@@ -201,12 +209,13 @@ namespace ExtraSjaj.Forme
         {
             racunZaMusteriju();
             updateRacunNakonDodavanjaTepiha();
+            racunNaplacen();
         }
         
         
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+           
             if (MessageBox.Show("Da li si siguran da zelis obrisati selektovani tepih?", "Poruka", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 tepih.BrisanjeTepiha(dataGridView1.SelectedCells[0].Value.ToString());
