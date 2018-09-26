@@ -76,8 +76,9 @@ namespace ExtraSjaj.Forme
         public void IscitajTabeluTepisiZaMusteriju(int IdRacuna)
         {
             konekcija.Open();
-           
-            
+
+
+            tepih.popunjavanjeListeTepiha(listBox1,IdRacuna);
 
             SqlDataAdapter sda = new SqlDataAdapter("select t.id , t.Sirina as 'Širina/m' ," +
                                                     " t.Duzina as 'Dužina/m'  , t.Kvadratura as 'Kvadratura/m2'  " +
@@ -94,7 +95,6 @@ namespace ExtraSjaj.Forme
         public void IscitajTabeluTepisiZaMusteriju()
         {
             konekcija.Open();
-            
 
 
             SqlDataAdapter sda = new SqlDataAdapter("select t.id , t.Sirina as 'Širina/m' ," +
@@ -150,6 +150,8 @@ namespace ExtraSjaj.Forme
                                                 set Racun = " + racun().ToString() +
                                                         "  where id = "+DodavanjeMusterijeControl.IdRacuna, konekcija);
             cmdUpdateRacuna.ExecuteNonQuery();
+
+
             konekcija.Close();
         }
         void updateRacunNakonPlacanja()
@@ -179,6 +181,7 @@ namespace ExtraSjaj.Forme
             racunZaMusteriju();
             updateMusterijuNakonDodavanjaIBrisanjaTepiha();
             updateRacunNakonDodavanjaTepiha();
+            tepih.popunjavanjeListeTepiha(listBox1, DodavanjeMusterijeControl.IdRacuna);
            
         }
         void racunNaplacen()

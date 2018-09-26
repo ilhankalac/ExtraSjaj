@@ -122,13 +122,17 @@ namespace ExtraSjaj.Forme
 
                 //prikaz broja racuna selektovanog musterije
                 label6.Text = racun.BrojRacuna(Convert.ToInt32(listaId[listBox1.SelectedIndices[0]])).ToString();
-                konekcija.Close();
+               
                 this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
                 dodavanjeTepihaControl1.ucitavanjeTepihaSelektovanogMusterije(musterija, Convert.ToInt32( comboBox1.SelectedValue));
             }
             catch
             {
                 MessageBox.Show("Pogrešno ste izabrali mušteriju.");
+            }
+            finally
+            {
+                konekcija.Close();
             }
         }
 

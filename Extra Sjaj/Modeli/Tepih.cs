@@ -50,14 +50,30 @@ namespace ExtraSjaj.Modeli
                 btnDodajTepih.Visible = true;
                 btnNaplati.Visible = true;
 
-            } 
+            }
+            
+
+
             konekcija.Close();
             //musterija.Racun = racun();
             //racunZaMusteriju();
         }
 
 
-       
+       public void popunjavanjeListeTepiha(ListBox listBox, int IdRacuna)
+        {
+            konekcija.Open();
+            SqlCommand kmdSelektTepiha = new SqlCommand("select *from tepisi where racunId = " + IdRacuna, konekcija);
+            SqlDataReader reader = kmdSelektTepiha.ExecuteReader();
+            listBox.Items.Clear();
+            int i = 1;
+            while (reader.Read())
+                listBox.Items.Add((i++).ToString() + ". " + reader["Duzina"] + " X " + reader["Sirina"] + " = " + reader["Kvadratura"]+ " m²");
+
+            konekcija.Close();
+        }
+
+
         public void DodajTepih(string duzina, string sirina, int MusterijaId, int IdRacuna)
         {
             konekcija.Open();
