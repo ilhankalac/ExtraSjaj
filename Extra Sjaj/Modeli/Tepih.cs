@@ -18,7 +18,7 @@ namespace ExtraSjaj.Modeli
         public int MusterijaId { get; set; }
         public float Kvadratura { get; set; }
         SqlConnection konekcija = new SqlConnection(Konekcija.konString);
-        public void ucitavanjeTepihaSelektovanogMusterije(Musterija musterija, Label label1, Label label5, Label label6, DataGridView dataGridView1, int IdRacuna, Button btnNaplati, Button btnDodajTepih)
+        public void ucitavanjeTepihaSelektovanogMusterije(Musterija musterija, Label label1, Label label5, Label label6, DataGridView dataGridView1, int IdRacuna, Button btnNaplati, Button btnDodajTepih,TextBox txtBox1, TextBox txtBox2)
         {
             konekcija.Open();
 
@@ -35,21 +35,25 @@ namespace ExtraSjaj.Modeli
             sda.Fill(dt);
 
             SqlCommand getStatusRacuna = new SqlCommand("select Placen from Racuni where id = " + IdRacuna, konekcija);
+            SqlCommand getDatumKreiranjaRacuna = new SqlCommand("select KreiranjeRacuna from Racuni where id = " + IdRacuna, konekcija);
             int statusRacuna = Convert.ToInt32(getStatusRacuna.ExecuteScalar());
             dataGridView1.DataSource = dt;
             label1.Text = musterija.ImePrezime + " - tepisi";
-            label5.Text = "Tepisi dostavljeni na pranje: " + musterija.VremeDolaskaTepiha.Day.ToString() + "/" + musterija.VremeDolaskaTepiha.Month.ToString() + "/" + musterija.VremeDolaskaTepiha.Year.ToString();
+            label5.Text = "Račun otvoren: " + Convert.ToDateTime( getDatumKreiranjaRacuna.ExecuteScalar().ToString()).Day + "/" + musterija.VremeDolaskaTepiha.Month.ToString() + "/" + musterija.VremeDolaskaTepiha.Year.ToString();
             if (statusRacuna == 1)
             {
                 label6.Text += " Da";
                 btnDodajTepih.Visible = false;
                 btnNaplati.Visible = false;
+                txtBox1.Visible = false;
+                txtBox2.Visible = false;
             }
             else {
                 label6.Text += " Ne";
                 btnDodajTepih.Visible = true;
                 btnNaplati.Visible = true;
-
+                txtBox1.Visible = true;
+                txtBox2.Visible = true;
             }
             
 

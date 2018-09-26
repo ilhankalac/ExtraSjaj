@@ -32,14 +32,14 @@ namespace ExtraSjaj.Forme
         public void ucitavanjeTepihaSelektovanogMusterije(Musterija musterija, int IdRacuna)
         {
             musterija1 = musterija;
-            tepih.ucitavanjeTepihaSelektovanogMusterije(musterija, label1, label5, label6, dataGridView1, IdRacuna, btnNaplati, btnDodajTepih);
+            tepih.ucitavanjeTepihaSelektovanogMusterije(musterija, label1, label5, label6, dataGridView1, IdRacuna, btnNaplati, btnDodajTepih,textBox1, textBox2);
         }
         public void ucitavanjeTepihaSelektovanogMusterije(Musterija musterija)
         {
             konekcija.Open();
             SqlCommand kmnGetIdRacuna = new SqlCommand("select max(Id) from Racuni where MusterijaId = " + musterija.Id, konekcija);
             musterija1 = musterija;
-            tepih.ucitavanjeTepihaSelektovanogMusterije(musterija, label1, label5, label6, dataGridView1, Convert.ToInt32(kmnGetIdRacuna.ExecuteScalar()), btnNaplati, btnDodajTepih);
+            tepih.ucitavanjeTepihaSelektovanogMusterije(musterija, label1, label5, label6, dataGridView1, Convert.ToInt32(kmnGetIdRacuna.ExecuteScalar()), btnNaplati, btnDodajTepih,textBox1, textBox2);
         }
         SqlConnection konekcija = new SqlConnection(Konekcija.konString);
         
