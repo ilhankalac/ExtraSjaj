@@ -185,9 +185,15 @@ namespace ExtraSjaj.Forme
             {
                 
                 konekcija.Open();
-                SqlCommand kmnGetId = new SqlCommand("select Id from Musterijas where id = " + listaId[listBox1.SelectedIndices[0]].ToString(), konekcija);
-                SqlCommand kmnGetIme = new SqlCommand("select ImePrezime from Musterijas where id = " + listaId[listBox1.SelectedIndices[0]].ToString(), konekcija);
-                SqlCommand kmnGetDatumRacuna = new SqlCommand("select KreiranjeRacuna from Racuni where MusterijaId = " + listaId[listBox1.SelectedIndices[0]].ToString()+" and id = (select max(id) from racuni where MusterijaId = "+ listaId[listBox1.SelectedIndices[0]].ToString() +" )", konekcija);
+                SqlCommand kmnGetId = new SqlCommand("select Id from Musterijas " +
+                                                     " where id = " + listaId[listBox1.SelectedIndices[0]].ToString(), konekcija);
+                SqlCommand kmnGetIme = new SqlCommand("select ImePrezime from Musterijas" +
+                                                      " where id = " + listaId[listBox1.SelectedIndices[0]].ToString(), konekcija);
+                SqlCommand kmnGetDatumRacuna = new SqlCommand(
+                                                        "select KreiranjeRacuna from Racuni " +
+                                                        "where MusterijaId = " + listaId[listBox1.SelectedIndices[0]].ToString() +
+                                                        " and id = (select max(id) from racuni " +
+                                                        "where MusterijaId = "+ listaId[listBox1.SelectedIndices[0]].ToString() +" )", konekcija);
                
 
                 musterija.Id = Convert.ToInt32( kmnGetId.ExecuteScalar());

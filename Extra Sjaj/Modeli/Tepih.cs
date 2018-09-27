@@ -20,64 +20,23 @@ namespace ExtraSjaj.Modeli
 
         SqlConnection konekcija = new SqlConnection(Konekcija.konString);
 
-        //public void ucitavanjeTepihaSelektovanogMusterije(Musterija musterija, Label label1, Label label5,
-        //                                                    Label label6, DataGridView dataGridView1, int IdRacuna,
-        //                                                    Button btnNaplati, Button btnDodajTepih,TextBox txtBox1, TextBox txtBox2)
-        //{
-        //    konekcija.Open();
+     
 
-        //    label6.Text = "Plaćen: ";
-        //    label5.Text = "";
-
-        //    SqlDataAdapter sda = new SqlDataAdapter("select  t.id,row_number() over (order by t.RacunId) as 'Br. Tepiha', t.Sirina as 'Širina/m', " +
-        //                                            "t.Duzina as 'Dužina/m',  t.Kvadratura as 'Kvadratura/m2'  " +
-        //                                            "from Tepisi t join Racuni r on r.Id = t.RacunId where t.RacunId = " + IdRacuna.ToString(), konekcija);
-        //    DataTable dt = new DataTable();
-        //    sda.Fill(dt);
-
-        //    SqlCommand getStatusRacuna = new SqlCommand("select Placen from Racuni where id = " + IdRacuna, konekcija);
-        //    SqlCommand getDatumKreiranjaRacuna = new SqlCommand("select KreiranjeRacuna from Racuni where id = " + IdRacuna, konekcija);
-        //    int statusRacuna = Convert.ToInt32(getStatusRacuna.ExecuteScalar());
-        //    dataGridView1.DataSource = dt;
-        //    label1.Text = musterija.ImePrezime + " - tepisi";
-        //    label5.Text = "Račun otvoren: " + Convert.ToDateTime( getDatumKreiranjaRacuna.ExecuteScalar().ToString()).Day + "/" + musterija.VremeDolaskaTepiha.Month.ToString() + "/" + musterija.VremeDolaskaTepiha.Year.ToString();
-        //    if (statusRacuna == 1)
-        //    {
-               
-        //        label6.Text += " Da";
-        //        btnDodajTepih.Visible = false;
-        //        btnNaplati.Visible = false;
-        //        txtBox1.Visible = false;
-        //        txtBox2.Visible = false;
-        //    }
-        //    else {
-        //        label6.Text += " Ne";
-        //        btnDodajTepih.Visible = true;
-        //        btnNaplati.Visible = true;
-        //        txtBox1.Visible = true;
-        //        txtBox2.Visible = true;
-        //    }
-            
-
-
-        //    konekcija.Close();
-        //    //musterija.Racun = racun();
-        //    //racunZaMusteriju();
-        //}
-
-
-       public void popunjavanjeListeTepiha(ListBox listBox, int IdRacuna)
+       public Dictionary<int, string> popunjavanjeListeTepiha(int IdRacuna)
         {
+            Dictionary<int, string> listaTepiha = new Dictionary<int, string>();
             try
             {
+               
                 konekcija.Open();
-                SqlCommand kmdSelektTepiha = new SqlCommand("select *from tepisi where racunId = " + IdRacuna, konekcija);
+                SqlCommand kmdSelektTepiha = new SqlCommand("select * from tepisi where racunId = " + IdRacuna, konekcija);
                 SqlDataReader reader = kmdSelektTepiha.ExecuteReader();
-                listBox.Items.Clear();
+                listaTepiha.Clear();
                 int i = 1;
                 while (reader.Read())
-                    listBox.Items.Add((i++).ToString() + ". " + reader["Duzina"] + " X " + reader["Sirina"] + " = " + reader["Kvadratura"] + " m²");
+                    listaTepiha.Add(Convert.ToInt32(reader["Id"]), ((i++).ToString() + ". " + reader["Duzina"] + " X " + reader["Sirina"] + " = " + reader["Kvadratura"] + " m²").ToString());
 
+             
             }
             catch (Exception ex)
             {
@@ -87,7 +46,8 @@ namespace ExtraSjaj.Modeli
             {
                 konekcija.Close();
             }
-       
+
+            return listaTepiha;
         }
 
 

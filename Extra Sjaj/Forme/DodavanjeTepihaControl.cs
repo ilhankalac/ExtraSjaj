@@ -52,7 +52,14 @@ namespace ExtraSjaj.Forme
             try
             {
                 konekcija.Open();
-                tepih.popunjavanjeListeTepiha(listBox1, IdRacuna);
+
+                //dodavanje tepiha sa id-em iz tabele u listboxu, treba ti id kako bi mogao da radis na 
+                // selekt by id na listboxu nesto sa tepisima (npr. brisanje, update izabranog tepiha)
+                foreach (var tepih in tepih.popunjavanjeListeTepiha(IdRacuna))
+                    listBox1.Items.Add(tepih);
+                
+
+
 
                 SqlDataAdapter sda = new SqlDataAdapter("select t.id , t.Sirina as 'Širina/m' ," +
                                                         " t.Duzina as 'Dužina/m'  , t.Kvadratura as 'Kvadratura/m2'  " +
@@ -163,8 +170,12 @@ namespace ExtraSjaj.Forme
             racunZaMusteriju();
             updateMusterijuNakonDodavanjaIBrisanjaTepiha();
             updateRacunNakonDodavanjaTepiha();
-            tepih.popunjavanjeListeTepiha(listBox1, DodavanjeMusterijeControl.IdRacuna);
-           
+
+
+            foreach (var tepih in tepih.popunjavanjeListeTepiha(DodavanjeMusterijeControl.IdRacuna))
+                listBox1.Items.Add(tepih);
+
+
         }
         void racunNaplacen()
         {
