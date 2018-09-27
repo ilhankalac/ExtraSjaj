@@ -14,83 +14,67 @@ namespace ExtraSjaj.Forme
 {
     public partial class DodavanjeTepihaControl : UserControl
     {
-        //public DodavanjeTepihaControl()
-        //{
-        //    InitializeComponent();
-        //}
-        Racun racun1 = new Racun();
+   
+        Racun Racun = new Racun();
         public DodavanjeTepihaControl()
         {
             InitializeComponent();
-           
-
-
         }
     
-        Modeli.Musterija musterija1 = new Modeli.Musterija();
+        Modeli.Musterija Musterija = new Modeli.Musterija();
         public Tepih tepih = new Tepih();
         public void ucitavanjeTepihaSelektovanogMusterije(Musterija musterija, int IdRacuna)
         {
-            musterija1 = musterija;
-            tepih.ucitavanjeTepihaSelektovanogMusterije(musterija, label1, label5, label6, dataGridView1, IdRacuna, btnNaplati, btnDodajTepih,textBox1, textBox2);
+            Musterija = musterija;
+           // tepih.ucitavanjeTepihaSelektovanogMusterije(musterija, label1, label5, label6, dataGridView1, IdRacuna, btnNaplati, btnDodajTepih,textBox1, textBox2);
         }
         public void ucitavanjeTepihaSelektovanogMusterije(Musterija musterija)
         {
             konekcija.Open();
             SqlCommand kmnGetIdRacuna = new SqlCommand("select max(Id) from Racuni where MusterijaId = " + musterija.Id, konekcija);
-            musterija1 = musterija;
-            tepih.ucitavanjeTepihaSelektovanogMusterije(musterija, label1, label5, label6, dataGridView1, Convert.ToInt32(kmnGetIdRacuna.ExecuteScalar()), btnNaplati, btnDodajTepih,textBox1, textBox2);
+            Musterija = musterija;
+           // tepih.ucitavanjeTepihaSelektovanogMusterije(musterija, label1, label5, label6, dataGridView1, Convert.ToInt32(kmnGetIdRacuna.ExecuteScalar()), btnNaplati, btnDodajTepih,textBox1, textBox2);
         }
         SqlConnection konekcija = new SqlConnection(Konekcija.konString);
         
         void updateMusterijuNakonDodavanjaIBrisanjaTepiha()
         {
             konekcija.Open();
-            SqlCommand cmdUpdateMusterije = new SqlCommand(@"update Musterijas
-                                                set BrojTepiha = " + "(select count(RacunId) " +
-                                               " from Tepisi where RacunId = " + racun1.Id.ToString() + " )" 
-                                               + " where Id = " + musterija1.Id.ToString(), konekcija);
-
+            //ostaje ti da implementiras novu funkciju  
          
-            cmdUpdateMusterije.ExecuteNonQuery();
             konekcija.Close();
-            //frmPocetna frm1 = new frmPocetna();
-            ////citaj tabelu za tepihe tu treba
-            //musterija1.citajTabeluMusterijeFromSql(dataGridView1);
-
         }
 
-        public void PuniComboDolaska()
-        {
-
-            SqlDataAdapter sda = new SqlDataAdapter("select m.id, m.VremeKreiranjaMusterije from Musterijas m " +
-                                                    " where m.Id = " + musterija1.Id, konekcija);
-            DataTable dt = new DataTable();
-
-            sda.Fill(dt);
-            comboBox2.DataSource = dt;
-            comboBox2.DisplayMember = "VremeDolaskaTepiha";
-            comboBox2.ValueMember = "Id";
-        }
+       
 
         public void IscitajTabeluTepisiZaMusteriju(int IdRacuna)
         {
-            konekcija.Open();
+            try
+            {
+                konekcija.Open();
+                tepih.popunjavanjeListeTepiha(listBox1, IdRacuna);
+
+                SqlDataAdapter sda = new SqlDataAdapter("select t.id , t.Sirina as 'Širina/m' ," +
+                                                        " t.Duzina as 'Dužina/m'  , t.Kvadratura as 'Kvadratura/m2'  " +
+                                                        "from Tepisi t join Racuni r on r.Id = t.RacunId" +
+                                                        " where r.Id = " + IdRacuna, konekcija);
+                DataTable dt = new DataTable();
 
 
-            tepih.popunjavanjeListeTepiha(listBox1,IdRacuna);
-
-            SqlDataAdapter sda = new SqlDataAdapter("select t.id , t.Sirina as 'Širina/m' ," +
-                                                    " t.Duzina as 'Dužina/m'  , t.Kvadratura as 'Kvadratura/m2'  " +
-                                                    "from Tepisi t join Racuni r on r.Id = t.RacunId" +
-                                                    " where r.Id = "+IdRacuna.ToString(), konekcija);
-            DataTable dt = new DataTable();
-
+                sda.Fill(dt);
+                dataGridView1.DataSource = dt;
+                racunZaMusteriju();
+               
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                konekcija.Close();
+            }
             
-            sda.Fill(dt);
-            dataGridView1.DataSource = dt;
-            racunZaMusteriju();
-            konekcija.Close();
         }
         public void IscitajTabeluTepisiZaMusteriju()
         {
@@ -174,9 +158,7 @@ namespace ExtraSjaj.Forme
         private void btnDodajTepih_Click_1(object sender, EventArgs e)
         {
 
-
-            PuniComboDolaska();
-            tepih.DodajTepih(textBox1.Text, textBox2.Text, musterija1.Id, DodavanjeMusterijeControl.IdRacuna);
+            tepih.DodajTepih(textBox1.Text, textBox2.Text, Musterija.Id, DodavanjeMusterijeControl.IdRacuna);
             IscitajTabeluTepisiZaMusteriju();
             racunZaMusteriju();
             updateMusterijuNakonDodavanjaIBrisanjaTepiha();

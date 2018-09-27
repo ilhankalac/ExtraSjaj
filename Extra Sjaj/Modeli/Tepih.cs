@@ -17,90 +17,129 @@ namespace ExtraSjaj.Modeli
         public float Sirina { get; set; }
         public int MusterijaId { get; set; }
         public float Kvadratura { get; set; }
+
         SqlConnection konekcija = new SqlConnection(Konekcija.konString);
-        public void ucitavanjeTepihaSelektovanogMusterije(Musterija musterija, Label label1, Label label5, Label label6, DataGridView dataGridView1, int IdRacuna, Button btnNaplati, Button btnDodajTepih,TextBox txtBox1, TextBox txtBox2)
-        {
-            konekcija.Open();
 
+        //public void ucitavanjeTepihaSelektovanogMusterije(Musterija musterija, Label label1, Label label5,
+        //                                                    Label label6, DataGridView dataGridView1, int IdRacuna,
+        //                                                    Button btnNaplati, Button btnDodajTepih,TextBox txtBox1, TextBox txtBox2)
+        //{
+        //    konekcija.Open();
 
-            label5.Text = "";
-            label6.Text = "Plaćeno: ";
+        //    label6.Text = "Plaćen: ";
+        //    label5.Text = "";
 
-            //            this.musterija1 = musterija;
+        //    SqlDataAdapter sda = new SqlDataAdapter("select  t.id,row_number() over (order by t.RacunId) as 'Br. Tepiha', t.Sirina as 'Širina/m', " +
+        //                                            "t.Duzina as 'Dužina/m',  t.Kvadratura as 'Kvadratura/m2'  " +
+        //                                            "from Tepisi t join Racuni r on r.Id = t.RacunId where t.RacunId = " + IdRacuna.ToString(), konekcija);
+        //    DataTable dt = new DataTable();
+        //    sda.Fill(dt);
 
-            SqlDataAdapter sda = new SqlDataAdapter("select  t.id,row_number() over (order by t.RacunId) as 'Br. Tepiha', t.Sirina as 'Širina/m', " +
-                                                    "t.Duzina as 'Dužina/m',  t.Kvadratura as 'Kvadratura/m2'  " +
-                                                    "from Tepisi t join Racuni r on r.Id = t.RacunId where t.RacunId = " + IdRacuna.ToString(), konekcija);
-            DataTable dt = new DataTable();
-            sda.Fill(dt);
-
-            SqlCommand getStatusRacuna = new SqlCommand("select Placen from Racuni where id = " + IdRacuna, konekcija);
-            SqlCommand getDatumKreiranjaRacuna = new SqlCommand("select KreiranjeRacuna from Racuni where id = " + IdRacuna, konekcija);
-            int statusRacuna = Convert.ToInt32(getStatusRacuna.ExecuteScalar());
-            dataGridView1.DataSource = dt;
-            label1.Text = musterija.ImePrezime + " - tepisi";
-            label5.Text = "Račun otvoren: " + Convert.ToDateTime( getDatumKreiranjaRacuna.ExecuteScalar().ToString()).Day + "/" + musterija.VremeDolaskaTepiha.Month.ToString() + "/" + musterija.VremeDolaskaTepiha.Year.ToString();
-            if (statusRacuna == 1)
-            {
-                label6.Text += " Da";
-                btnDodajTepih.Visible = false;
-                btnNaplati.Visible = false;
-                txtBox1.Visible = false;
-                txtBox2.Visible = false;
-            }
-            else {
-                label6.Text += " Ne";
-                btnDodajTepih.Visible = true;
-                btnNaplati.Visible = true;
-                txtBox1.Visible = true;
-                txtBox2.Visible = true;
-            }
+        //    SqlCommand getStatusRacuna = new SqlCommand("select Placen from Racuni where id = " + IdRacuna, konekcija);
+        //    SqlCommand getDatumKreiranjaRacuna = new SqlCommand("select KreiranjeRacuna from Racuni where id = " + IdRacuna, konekcija);
+        //    int statusRacuna = Convert.ToInt32(getStatusRacuna.ExecuteScalar());
+        //    dataGridView1.DataSource = dt;
+        //    label1.Text = musterija.ImePrezime + " - tepisi";
+        //    label5.Text = "Račun otvoren: " + Convert.ToDateTime( getDatumKreiranjaRacuna.ExecuteScalar().ToString()).Day + "/" + musterija.VremeDolaskaTepiha.Month.ToString() + "/" + musterija.VremeDolaskaTepiha.Year.ToString();
+        //    if (statusRacuna == 1)
+        //    {
+               
+        //        label6.Text += " Da";
+        //        btnDodajTepih.Visible = false;
+        //        btnNaplati.Visible = false;
+        //        txtBox1.Visible = false;
+        //        txtBox2.Visible = false;
+        //    }
+        //    else {
+        //        label6.Text += " Ne";
+        //        btnDodajTepih.Visible = true;
+        //        btnNaplati.Visible = true;
+        //        txtBox1.Visible = true;
+        //        txtBox2.Visible = true;
+        //    }
             
 
 
-            konekcija.Close();
-            //musterija.Racun = racun();
-            //racunZaMusteriju();
-        }
+        //    konekcija.Close();
+        //    //musterija.Racun = racun();
+        //    //racunZaMusteriju();
+        //}
 
 
        public void popunjavanjeListeTepiha(ListBox listBox, int IdRacuna)
         {
-            konekcija.Open();
-            SqlCommand kmdSelektTepiha = new SqlCommand("select *from tepisi where racunId = " + IdRacuna, konekcija);
-            SqlDataReader reader = kmdSelektTepiha.ExecuteReader();
-            listBox.Items.Clear();
-            int i = 1;
-            while (reader.Read())
-                listBox.Items.Add((i++).ToString() + ". " + reader["Duzina"] + " X " + reader["Sirina"] + " = " + reader["Kvadratura"]+ " m²");
+            try
+            {
+                konekcija.Open();
+                SqlCommand kmdSelektTepiha = new SqlCommand("select *from tepisi where racunId = " + IdRacuna, konekcija);
+                SqlDataReader reader = kmdSelektTepiha.ExecuteReader();
+                listBox.Items.Clear();
+                int i = 1;
+                while (reader.Read())
+                    listBox.Items.Add((i++).ToString() + ". " + reader["Duzina"] + " X " + reader["Sirina"] + " = " + reader["Kvadratura"] + " m²");
 
-            konekcija.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                konekcija.Close();
+            }
+       
         }
 
 
         public void DodajTepih(string duzina, string sirina, int MusterijaId, int IdRacuna)
         {
-            konekcija.Open();
+            try
+            {
+
+                konekcija.Open();
+                SqlCommand kmdZaInsertTepiha = new SqlCommand(@"
+                                               insert into Tepisi(Duzina,Sirina,Kvadratura, RacunId)" +
+                                              "values ((" + duzina.ToString() + ")," +
+                                              "(" + sirina.ToString() + ")," +
+                                              "(" + Convert.ToDouble(duzina) * Convert.ToDouble(sirina) + ")," +
+                                              "(" + IdRacuna.ToString() + ")); ", konekcija);
+
+                kmdZaInsertTepiha.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                konekcija.Close();
+            }
            
-
-            SqlCommand komanda = new SqlCommand(@"insert into Tepisi(Duzina,Sirina,Kvadratura, RacunId)" +
-              "values ((" + duzina.ToString() + ")," +
-              "(" + sirina.ToString() + ")," +
-              "(" + Convert.ToDouble(duzina) * Convert.ToDouble(sirina) + ")," +
-              "("+ IdRacuna.ToString() +")); ", konekcija);
-
-         
-            komanda.ExecuteNonQuery();
             konekcija.Close();
         }
+
+
         public void BrisanjeTepiha(string idSelektovanogTepiha)
         {
-            SqlCommand komanda = new SqlCommand(@"delete from Tepisi
-                                                    where id = " + idSelektovanogTepiha, konekcija);
-
-            konekcija.Open();
-            komanda.ExecuteNonQuery();
-            konekcija.Close();
+            
+            try
+            {
+                konekcija.Open();
+                SqlCommand kmdZaBrisanje = new SqlCommand(@"delete from Tepisi
+                                                 where id = " + idSelektovanogTepiha, konekcija);
+                kmdZaBrisanje.ExecuteNonQuery();
+              
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                konekcija.Close();
+            }
+          
         }
 
 
