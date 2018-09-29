@@ -15,8 +15,19 @@ CREATE TABLE Musterijas (
     BrojTepiha 	SMALLINT NULL,
     BrojTelefona NCHAR (10)		        NULL,
     Adresa NVARCHAR (MAX) NULL,
-    VremeDolaskaTepiha DATETIME NULL,
-    Platio BIT NULL
+    VremeKreiranjeMusterije DATETIME NULL,
+);
+--======================================
+
+--=====================================
+--=======Tabela za Racune==============
+CREATE TABLE Racuni (
+    Id          INT        IDENTITY (1, 1) primary key NOT NULL,
+    Racun       FLOAT (53) NULL,
+    MusterijaId INT        NULL,
+    KreiranjeRacuna DATETIME NULL,
+    Placen 	BIT NULL,
+    FOREIGN KEY (MusterijaId) REFERENCES Musterijas(Id) ON DELETE CASCADE
 );
 --======================================
 
@@ -28,19 +39,11 @@ CREATE TABLE Tepisi (
     Duzina      FLOAT (53) NOT NULL,
     Kvadratura  REAL       NOT NULL,
     Sirina      FLOAT (53) NOT NULL,
-	MusterijaId INT        NOT NULL,
-    FOREIGN KEY (MusterijaId) REFERENCES Musterijas(Id) ON DELETE CASCADE
+    RacunId     INT        NOT NULL,
+    FOREIGN KEY (RacunId)     REFERENCES Racuni(Id) ON DELETE CASCADE
 );
 --======================================
 
 
---=====================================
---=======Tabela za Racune==============
-CREATE TABLE Racuni (
-    Id          INT        IDENTITY (1, 1) primary key NOT NULL,
-    Racun       FLOAT (53) NULL,
-    MusterijaId INT        NULL,
-    FOREIGN KEY (MusterijaId) REFERENCES Musterijas(Id) ON DELETE CASCADE
-);
---======================================
+
 
