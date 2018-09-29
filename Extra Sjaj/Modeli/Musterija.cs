@@ -148,5 +148,33 @@ namespace ExtraSjaj.Modeli
             return recnikMusterija;
         }
 
+        public Dictionary<int, string> listaPretrageMusterija(string txtPretrage)
+        {
+            Dictionary<int, string> recnikMusterija = new Dictionary<int, string>();
+            try
+            {
+                konekcija.Open();
+
+                //sql upit koji pretrazuje musteriju po imenu unetim u textboxu na keypress funkciji
+                SqlCommand kmdPretrazi = new SqlCommand("select * from Musterijas" +
+                                      " where ImePrezime like '%" + txtPretrage + "%'", konekcija);
+                SqlDataReader reader = kmdPretrazi.ExecuteReader();
+
+                while (reader.Read())
+                    recnikMusterija.Add(Convert.ToInt32(reader["Id"]), reader["ImePrezime"].ToString());
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                konekcija.Close();
+            }
+            return recnikMusterija;
+        }
+
     }
 }

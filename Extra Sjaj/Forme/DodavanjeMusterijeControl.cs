@@ -75,23 +75,14 @@ namespace ExtraSjaj.Forme
             listaId.Clear();
             listBox1.Items.Clear();
 
-            //sql za pretrazivanje po imenu musterije
-            SqlDataAdapter komandaPretrazivanja = new SqlDataAdapter("select id, imeprezime, VremeKreiranjaMusterije from Musterijas" +
-                " where ImePrezime like '%"+textBox4.Text+"%'", konekcija);
-
-            DataTable dt = new DataTable();
-            komandaPretrazivanja.Fill(dt);
-
-            dataGridView1.DataSource = dt;
-            
+            var rezultatPretrage = musterija.listaPretrageMusterija(textBox4.Text);
             int i = 1;
-            foreach (DataGridViewRow item in dataGridView1.Rows)
+            foreach (var musterija in rezultatPretrage)
             {
-                if (item.Cells[0].Value == null) break;
-                listBox1.Items.Add((i++.ToString()) +". "+item.Cells[1].Value.ToString());
-               listaId.Add(Convert.ToInt32(item.Cells[0].Value));
+                listBox1.Items.Add((i++.ToString()) + ". " + musterija.Value.ToString());
+                listaId.Add(Convert.ToInt32(musterija.Key));
             }
-       
+                
         }
 
         
@@ -116,8 +107,8 @@ namespace ExtraSjaj.Forme
                 //prikaz broja racuna selektovanog musterije
                 label6.Text = racun.BrojRacuna(Convert.ToInt32(listaId[listBox1.SelectedIndices[0]])).ToString();
                
-             //   this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-                dodavanjeTepihaControl1.ucitavanjeTepihaSelektovanogMusterije(musterija, Convert.ToInt32( comboBox1.SelectedValue));
+                // this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+                dodavanjeTepihaControl1.ucitavanjeTepihaSelektovanogMusterije(musterija, Convert.ToInt32(comboBox1.SelectedValue));
             }
             catch
             {
