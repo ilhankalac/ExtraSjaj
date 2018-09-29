@@ -75,6 +75,8 @@ namespace ExtraSjaj.Forme
             MessageBox.Show("Mušterija uspešno dodat u bazi.", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
             puniListBoxMusterijama();
             
+
+
         }
         List<int> listaId = new List<int>();
         private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
@@ -123,7 +125,7 @@ namespace ExtraSjaj.Forme
                 //prikaz broja racuna selektovanog musterije
                 label6.Text = racun.BrojRacuna(Convert.ToInt32(listaId[listBox1.SelectedIndices[0]])).ToString();
                
-                this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+             //   this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
                 dodavanjeTepihaControl1.ucitavanjeTepihaSelektovanogMusterije(musterija, Convert.ToInt32( comboBox1.SelectedValue));
             }
             catch
@@ -147,14 +149,15 @@ namespace ExtraSjaj.Forme
             
             racun.kreirajNoviRacun(Convert.ToInt32(listaId[listBox1.SelectedIndices[0]]));
             label6.Text = racun.BrojRacuna(Convert.ToInt32(listaId[listBox1.SelectedIndices[0]])).ToString();
-
+            /*kada se doda novi racun, poziva se metoda ispod kako bi se popunio combobox otvorenih
+            racuna sa novim racunom */
+            listBox1_DoubleClick(new object(), new EventArgs());
         }
         void puniComboRacuna()
         {
            
             DataTable mojaTabela = citajTabeluRacuni();
             comboBox1.DataSource = mojaTabela;
-
             comboBox1.DisplayMember = "KreiranjeRacuna";
             comboBox1.ValueMember = "Id";
         }
@@ -235,6 +238,11 @@ namespace ExtraSjaj.Forme
                 MessageBox.Show("Morate selektovati koga želite da obrišete!");
             }
             
+        }
+
+        private void comboBox1_DropDown(object sender, EventArgs e)
+        {
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
         }
     }
 }
