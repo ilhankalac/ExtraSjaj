@@ -102,7 +102,34 @@ namespace ExtraSjaj.Modeli
           
         }
 
+        public float getKvadratura(int IdRacuna)
+        {
+            List<float> listaKvadrature = new List<float>();
+            try
+            {
 
+                konekcija.Open();
+                SqlCommand kmdSelektTepiha = new SqlCommand("select * from tepisi where racunId = " + IdRacuna, konekcija);
+                SqlDataReader reader = kmdSelektTepiha.ExecuteReader();
+
+                listaKvadrature.Clear();
+                while (reader.Read())
+                    listaKvadrature.Add(Convert.ToSingle(reader["Kvadratura"]));
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                konekcija.Close();
+            }
+           /* pomocu reader-a je ucitana lista kvadratura za svaki tepih odredjenog racuna
+            i na kraju se vrsi suma te lista, kako bi se dobila ukupna kvadratura tepiha */
+            return listaKvadrature.Sum();
+        }
 
     }
 }

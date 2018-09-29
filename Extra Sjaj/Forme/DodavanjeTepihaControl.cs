@@ -26,6 +26,7 @@ namespace ExtraSjaj.Forme
         public void ucitavanjeTepihaSelektovanogMusterije(Musterija musterija, int IdRacuna)
         {
             Musterija = musterija;
+            Racun.Id = IdRacuna;
            // tepih.ucitavanjeTepihaSelektovanogMusterije(musterija, label1, label5, label6, dataGridView1, IdRacuna, btnNaplati, btnDodajTepih,textBox1, textBox2);
         }
         public void ucitavanjeTepihaSelektovanogMusterije(Musterija musterija)
@@ -53,10 +54,10 @@ namespace ExtraSjaj.Forme
             {
                 konekcija.Open();
 
-                //dodavanje tepiha sa id-em iz tabele u listboxu, treba ti id kako bi mogao da radis na 
-                // selekt by id na listboxu nesto sa tepisima (npr. brisanje, update izabranog tepiha)
+               /* dodavanje tepiha sa id-em iz tabele u listboxu, treba ti id kako bi mogao da radis na
+                 selekt by id na listboxu nesto sa tepisima(npr.brisanje, update izabranog tepiha) */
                 foreach (var tepih in tepih.popunjavanjeListeTepiha(IdRacuna))
-                    listBox1.Items.Add(tepih);
+                    listBox1.Items.Add(tepih.Value);
                 
 
 
@@ -103,29 +104,17 @@ namespace ExtraSjaj.Forme
 
         void racunZaMusteriju()
         {
-
+            double racun = racunMusterije();
             label2.Text = "Račun:";
-            label2.Text += " " + racun().ToString() + " EUR";
-            textBox3.Text = racun().ToString();
-
+            label2.Text += " " + racun.ToString() + " EUR";
+            textBox3.Text = racun.ToString();
         }
 
-
-        double racun()
+        double  racunMusterije()
         {
-
-            double racun = 0;
-            foreach (DataGridViewRow item in dataGridView1.Rows)
-            {
-                if (item.Cells[0].Value == null) break;
-                //var nesto = item.Cells[3].Value.ToString();
-                racun += Convert.ToDouble(item.Cells[3].Value.ToString());
-
-            }
-            return Math.Round(racun * Convert.ToDouble(comboBox1.Text), 2);
+            return Math.Round((tepih.getKvadratura(Racun.Id)) * Convert.ToDouble(comboBox1.Text), 2);
         }
-
-
+            
         private void TepisiMusterije_FormClosing(object sender, FormClosingEventArgs e)
         {
             updateMusterijuNakonDodavanjaIBrisanjaTepiha();
@@ -133,39 +122,39 @@ namespace ExtraSjaj.Forme
 
         void updateRacunNakonDodavanjaTepiha()
         {
-            
+            try
+            {
+                konekcija.Open();
 
-            konekcija.Open();
-
-            SqlCommand cmdUpdateRacuna = new SqlCommand(@"update Racuni
-                                                set Racun = " + racun().ToString() +
-                                                        "  where id = "+DodavanjeMusterijeControl.IdRacuna, konekcija);
-            cmdUpdateRacuna.ExecuteNonQuery();
-
-
-            konekcija.Close();
+                SqlCommand cmdUpdateRacuna = new SqlCommand(@"update Racuni
+                                             set Racun = " + racunMusterije().ToString() +
+                                             " where id = " + DodavanjeMusterijeControl.IdRacuna, konekcija);
+                cmdUpdateRacuna.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                konekcija.Close();
+            }
         }
         void updateRacunNakonPlacanja()
         {
             int platio = 0;
-            if (racun() == Convert.ToDouble(textBox3.Text))
+            if (racunMusterije() == Convert.ToDouble(textBox3.Text))
                 platio = 1;
             else
                 platio = 0;
-
-
-            konekcija.Open();
-
-            SqlCommand komanda = new SqlCommand(@"update Racuni set Placen = " + platio + "  where id = " + DodavanjeMusterijeControl.IdRacuna, konekcija);
-            komanda.ExecuteNonQuery();
-            konekcija.Close();
+            Racun.updateRacunaNakonPlacanja(platio, Racun.Id);
         }
 
       
         private void btnDodajTepih_Click_1(object sender, EventArgs e)
         {
-
-            tepih.DodajTepih(textBox1.Text, textBox2.Text, Musterija.Id, DodavanjeMusterijeControl.IdRacuna);
+            listBox1.Items.Clear();
+            tepih.DodajTepih(textBox1.Text, textBox2.Text, Musterija.Id, Racun.Id);
             IscitajTabeluTepisiZaMusteriju();
             racunZaMusteriju();
             updateMusterijuNakonDodavanjaIBrisanjaTepiha();
@@ -173,10 +162,11 @@ namespace ExtraSjaj.Forme
 
 
             foreach (var tepih in tepih.popunjavanjeListeTepiha(DodavanjeMusterijeControl.IdRacuna))
-                listBox1.Items.Add(tepih);
+                listBox1.Items.Add(tepih.Value);
 
 
         }
+        
         void racunNaplacen()
         {
             if (label6.Text == "Plaćeno:  Da")
@@ -188,14 +178,14 @@ namespace ExtraSjaj.Forme
         private void btnNaplati_Click_1(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Da li si siguran da je mušterija platio?", "Poruka", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-            if ((dialogResult == DialogResult.Yes) && Convert.ToDouble(textBox3.Text) <= racun() && Convert.ToDouble(textBox3.Text) > 0)
+            if ((dialogResult == DialogResult.Yes) && Convert.ToDouble(textBox3.Text) <= racunMusterije() && Convert.ToDouble(textBox3.Text) > 0)
             {
                 updateRacunNakonPlacanja();
                 MessageBox.Show("Uspešno naplaćeno.", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Visible = false;
             }
 
-            else if (Convert.ToDouble(textBox3.Text) > racun() || Convert.ToDouble(textBox3.Text) < 0)
+            else if (Convert.ToDouble(textBox3.Text) > racunMusterije() || Convert.ToDouble(textBox3.Text) < 0)
             {
                 MessageBox.Show("Ispravno unesi koliko је mušterija ostavio novca.(ne mozeš uneti negativan broj, niti više od njegovog računa.");
             }
