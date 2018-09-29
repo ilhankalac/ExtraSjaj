@@ -68,7 +68,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(76, 35);
+            this.label1.Location = new System.Drawing.Point(18, 47);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(21, 23);
             this.label1.TabIndex = 1;
@@ -78,7 +78,7 @@
             // 
             this.btnDodajTepih.BackColor = System.Drawing.Color.Chartreuse;
             this.btnDodajTepih.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnDodajTepih.Location = new System.Drawing.Point(181, 235);
+            this.btnDodajTepih.Location = new System.Drawing.Point(195, 235);
             this.btnDodajTepih.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDodajTepih.Name = "btnDodajTepih";
             this.btnDodajTepih.Size = new System.Drawing.Size(87, 41);
@@ -185,6 +185,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            this.panel2.Controls.Add(this.comboBox2);
             this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.listBox1);
             this.panel2.Controls.Add(this.panel1);
@@ -204,10 +205,10 @@
             // 
             this.button1.BackColor = System.Drawing.Color.Chartreuse;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Location = new System.Drawing.Point(32, 318);
+            this.button1.Location = new System.Drawing.Point(3, 278);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(65, 75);
+            this.button1.Size = new System.Drawing.Size(63, 59);
             this.button1.TabIndex = 21;
             this.button1.Text = "Vrati se nazad";
             this.button1.UseVisualStyleBackColor = false;
@@ -267,7 +268,7 @@
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(118, 384);
+            this.comboBox2.Location = new System.Drawing.Point(3, 401);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(133, 24);
             this.comboBox2.TabIndex = 20;
@@ -286,7 +287,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.dataGridView1);
             this.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

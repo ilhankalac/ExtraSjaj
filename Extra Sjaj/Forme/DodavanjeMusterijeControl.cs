@@ -99,16 +99,15 @@ namespace ExtraSjaj.Forme
                 SqlCommand kmnGetIme = new SqlCommand("select ImePrezime from Musterijas where id = " + listaId[listBox1.SelectedIndices[0]].ToString(), konekcija);
                 SqlCommand kmnGetBrojTelefona = new SqlCommand("select BrojTelefona from Musterijas where id = " + listaId[listBox1.SelectedIndices[0]].ToString(), konekcija);
                 SqlCommand kmnGetAdresa = new SqlCommand("select Adresa from Musterijas where id = " + listaId[listBox1.SelectedIndices[0]].ToString(), konekcija);
-
+                SqlCommand kmnGetStatusRacuna = new SqlCommand("select placen from racuni where id = " + racun.Id,konekcija);
                 textBox1.Text = kmnGetIme.ExecuteScalar().ToString();
                 textBox2.Text = kmnGetBrojTelefona.ExecuteScalar().ToString();
                 textBox3.Text = kmnGetAdresa.ExecuteScalar().ToString();
 
                 //prikaz broja racuna selektovanog musterije
                 label6.Text = racun.BrojRacuna(Convert.ToInt32(listaId[listBox1.SelectedIndices[0]])).ToString();
-               
-                // this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-                dodavanjeTepihaControl1.ucitavanjeTepihaSelektovanogMusterije(musterija, Convert.ToInt32(comboBox1.SelectedValue));
+
+                dodavanjeTepihaControl1.ucitavanjeProfilaTepiha(musterija, Convert.ToInt32(comboBox1.SelectedValue), Convert.ToBoolean(kmnGetStatusRacuna.ExecuteScalar()));
             }
             catch
             {
@@ -175,13 +174,14 @@ namespace ExtraSjaj.Forme
                                                         "where MusterijaId = " + listaId[listBox1.SelectedIndices[0]].ToString() +
                                                         " and id = (select max(id) from racuni " +
                                                         "where MusterijaId = "+ listaId[listBox1.SelectedIndices[0]].ToString() +" )", konekcija);
-               
+                SqlCommand kmnGetStatusRacuna = new SqlCommand("select placen from racuni where id = " + IdRacuna, konekcija);
+
 
                 musterija.Id = Convert.ToInt32( kmnGetId.ExecuteScalar());
                 musterija.ImePrezime = kmnGetIme.ExecuteScalar().ToString();
                 musterija.VremeDolaskaTepiha = Convert.ToDateTime(kmnGetDatumRacuna.ExecuteScalar().ToString());
 
-                dodavanjeTepihaControl1.ucitavanjeTepihaSelektovanogMusterije(musterija, IdRacuna);
+                dodavanjeTepihaControl1.ucitavanjeProfilaTepiha(musterija, IdRacuna, Convert.ToBoolean(kmnGetStatusRacuna.ExecuteScalar()));
                 dodavanjeTepihaControl1.Refresh();
                 dodavanjeTepihaControl1.Visible = true;
                 dodavanjeTepihaControl1.IscitajTabeluTepisiZaMusteriju(IdRacuna);

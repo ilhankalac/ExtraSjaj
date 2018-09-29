@@ -23,18 +23,54 @@ namespace ExtraSjaj.Forme
     
         Modeli.Musterija Musterija = new Modeli.Musterija();
         public Tepih tepih = new Tepih();
-        public void ucitavanjeTepihaSelektovanogMusterije(Musterija musterija, int IdRacuna)
+        public void ucitavanjeProfilaTepiha(Musterija musterija, int IdRacuna, bool placen)
         {
-            Musterija = musterija;
+            label1.Text = "Mušterija: " + musterija.ImePrezime;
+            label5.Text = "Racun kreiran: " + DateTime.Now.ToUniversalTime().ToString();
+            if (placen)
+            {
+                sakrijObjekteNaKontroli();
+                label6.Text = "Plaćen: Da";
+            }
+            else
+            {
+                otkrijObjekteNaKontroli();
+                label6.Text = "Plaćen: Ne";
+            }
+                
             Racun.Id = IdRacuna;
-           // tepih.ucitavanjeTepihaSelektovanogMusterije(musterija, label1, label5, label6, dataGridView1, IdRacuna, btnNaplati, btnDodajTepih,textBox1, textBox2);
         }
+        void sakrijObjekteNaKontroli()
+        {
+            textBox1.Visible = false;
+            textBox2.Visible = false;
+            btnDodajTepih.Visible = false;
+            btnNaplati.Visible = false;
+            comboBox1.Visible = false;
+            label4.Visible = false;
+            label3.Visible = false;
+            label7.Visible = false;
+            textBox3.Visible = false;
+        }
+        void otkrijObjekteNaKontroli()
+        {
+            textBox1.Visible = true;
+            textBox2.Visible = true;
+            btnDodajTepih.Visible = true;
+            btnNaplati.Visible = true;
+            comboBox1.Visible = true;
+            label4.Visible = true;
+            label3.Visible = true;
+            label7.Visible = true;
+            textBox3.Visible = true;
+        }
+        
         public void ucitavanjeTepihaSelektovanogMusterije(Musterija musterija)
         {
             konekcija.Open();
             SqlCommand kmnGetIdRacuna = new SqlCommand("select max(Id) from Racuni where MusterijaId = " + musterija.Id, konekcija);
             Musterija = musterija;
-           // tepih.ucitavanjeTepihaSelektovanogMusterije(musterija, label1, label5, label6, dataGridView1, Convert.ToInt32(kmnGetIdRacuna.ExecuteScalar()), btnNaplati, btnDodajTepih,textBox1, textBox2);
+          
         }
         SqlConnection konekcija = new SqlConnection(Konekcija.konString);
         

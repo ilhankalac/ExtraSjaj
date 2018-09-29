@@ -13,6 +13,7 @@ namespace ExtraSjaj.Modeli
         public int Id { get; set; }
         public double RacunKolumn { get; set; }
         public int MusterijaId { get; set; }
+        public bool Placen { get; set; }
         public DateTime DatumKreiranjaRacuna { get; set; }
         SqlConnection konekcija = new SqlConnection(Konekcija.konString);
 
