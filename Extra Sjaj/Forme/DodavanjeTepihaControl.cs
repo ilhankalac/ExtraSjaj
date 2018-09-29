@@ -159,7 +159,7 @@ namespace ExtraSjaj.Forme
             racunZaMusteriju();
             updateMusterijuNakonDodavanjaIBrisanjaTepiha();
             updateRacunNakonDodavanjaTepiha();
-            foreach (var tepih in tepih.popunjavanjeListeTepiha(DodavanjeMusterijeControl.IdRacuna))
+            foreach (var tepih in tepih.popunjavanjeListeTepiha(Racun.Id))
                 listBox1.Items.Add(tepih.Value);
 
         }

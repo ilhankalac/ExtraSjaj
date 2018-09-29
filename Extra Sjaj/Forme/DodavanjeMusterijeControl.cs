@@ -20,9 +20,8 @@ namespace ExtraSjaj.Forme
         {
             InitializeComponent();
             dataGridView1.Hide();
-            puniListBoxMusterijama();
-         
             musterija = new Musterija();
+            puniListBoxMusterijama();
             dodavanjeTepihaControl1.Visible = false;
             textBox4_KeyPress(new object(), new  KeyPressEventArgs(' '));
 
@@ -35,9 +34,7 @@ namespace ExtraSjaj.Forme
         SqlConnection konekcija = new SqlConnection(Konekcija.konString);
         private void Tepisi_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the '_TepisiBaza_2018DataSet1.Tepisi' table. You can move, or remove it, as needed.
-
-
+           
         }
         
         private SqlDataAdapter da = null;
@@ -59,14 +56,11 @@ namespace ExtraSjaj.Forme
         {
             textBox4_KeyPress(new object(), new KeyPressEventArgs(' '));
             listBox1.Items.Clear();
-            DataTable mojaTabela = citajTabeluMusterije();
+            var djesi = musterija.listaMusterija();
 
-            int i = 1;
-            foreach (DataRow item in mojaTabela.Rows)
-            {
-                listBox1.Items.Add((i++).ToString() + ". " + item["ImePrezime"].ToString());
-            }
-
+            foreach (var musterija in musterija.listaMusterija())
+                listBox1.Items.Add(musterija.Value);
+            
         }
         
         private void btnDodaj_Click_1(object sender, EventArgs e)
@@ -74,9 +68,6 @@ namespace ExtraSjaj.Forme
             musterija.DodajMusteriju(textBox1.Text, textBox2.Text, textBox3.Text);
             MessageBox.Show("Mušterija uspešno dodat u bazi.", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
             puniListBoxMusterijama();
-            
-
-
         }
         List<int> listaId = new List<int>();
         private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
@@ -177,11 +168,7 @@ namespace ExtraSjaj.Forme
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
          
-        
-            //kada se izabere datum kreiranog racuna treba da se otvori istorija tepiha musterije
-            //if (comboBox1.SelectedIndex == 0)
-            //    return;
-            //else
+
             IdRacuna = Convert.ToInt32( comboBox1.SelectedValue.ToString());
 
             try

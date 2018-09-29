@@ -80,19 +80,72 @@ namespace ExtraSjaj.Modeli
         }
         public void IzmeniMusteriju(int idMusterije, string imePrezime, string adresa, string brojTelefona)
         {
-            konekcija.Open();
-            SqlCommand komanda = new SqlCommand(@"update Musterijas 
-                set ImePrezime = '" + imePrezime + "', BrojTelefona = '" + brojTelefona  + "', Adresa = '" + adresa + "' where Id = " +idMusterije, konekcija);
-            komanda.ExecuteNonQuery();
-            konekcija.Close();
+            try
+            {
+                konekcija.Open();
+                SqlCommand komanda = new SqlCommand(@"update Musterijas 
+                set ImePrezime = '" + imePrezime + "', BrojTelefona = '" + brojTelefona + "', Adresa = '" + adresa + "' where Id = " + idMusterije, konekcija);
+                komanda.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                konekcija.Close();
+            }
+           
         }
         public void BrisiMusteriju(int Id)
         {
-            konekcija.Open();
-            SqlCommand komanda = new SqlCommand(@"delete Musterijas where Id = " + Id, konekcija);
-            komanda.ExecuteNonQuery();
-            konekcija.Close();
+            try
+            {
+                konekcija.Open();
+                SqlCommand komanda = new SqlCommand(@"delete Musterijas where Id = " + Id, konekcija);
+                komanda.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
 
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                konekcija.Close();
+            }
+          
+
+        }
+
+        public Dictionary<int, string> listaMusterija()
+        {
+            Dictionary<int, string> recnikMusterija = new Dictionary<int, string>();
+            try
+            {
+                konekcija.Open();
+
+                SqlCommand kmdSelektMusterija = new SqlCommand("select * from Musterijas", konekcija);
+                SqlDataReader reader = kmdSelektMusterija.ExecuteReader();
+                recnikMusterija.Clear();
+                int i = 1;
+                while (reader.Read())
+                    recnikMusterija.Add(Convert.ToInt32(reader["Id"]), (i++).ToString()+". "+ reader["ImePrezime"].ToString());
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                konekcija.Close();
+            }
+
+            return recnikMusterija;
         }
 
     }
