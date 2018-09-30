@@ -131,5 +131,29 @@ namespace ExtraSjaj.Modeli
             return listaKvadrature.Sum();
         }
 
+
+        public int BrojTepihaURacunu(int idRacuna)
+        {
+            int brojTepiha = 0;
+            try
+            {
+                konekcija.Open();
+                SqlCommand kmdGetBrojTepiha = new SqlCommand("select count(id) from tepisi" +
+                    " where racunId = " + idRacuna, konekcija);
+                brojTepiha = Convert.ToInt32(kmdGetBrojTepiha.ExecuteScalar());
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                konekcija.Close();
+            }
+
+            return Convert.ToInt32(brojTepiha);
+        }
     }
 }

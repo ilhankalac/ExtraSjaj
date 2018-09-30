@@ -20,11 +20,13 @@ namespace ExtraSjaj.Forme
         {
             InitializeComponent();
         }
-    
+
+        SqlConnection konekcija = new SqlConnection(Konekcija.konString);
         Modeli.Musterija Musterija = new Modeli.Musterija();
         public Tepih tepih = new Tepih();
         public void ucitavanjeProfilaTepiha(Musterija musterija, int IdRacuna, bool placen)
         {
+            resetujObjekte();
             label1.Text = "Mušterija: " + musterija.ImePrezime;
             label5.Text = "Racun kreiran: " + DateTime.Now.ToUniversalTime().ToString();
             if (placen)
@@ -40,49 +42,15 @@ namespace ExtraSjaj.Forme
                 
             Racun.Id = IdRacuna;
         }
-        void sakrijObjekteNaKontroli()
+
+
+
+        void updateBrojTepihaURacunuNakonDodavanjaIBrisanjaTepiha()
         {
-            textBox1.Visible = false;
-            textBox2.Visible = false;
-            btnDodajTepih.Visible = false;
-            btnNaplati.Visible = false;
-            comboBox1.Visible = false;
-            label4.Visible = false;
-            label3.Visible = false;
-            label7.Visible = false;
-            textBox3.Visible = false;
-        }
-        void otkrijObjekteNaKontroli()
-        {
-            textBox1.Visible = true;
-            textBox2.Visible = true;
-            btnDodajTepih.Visible = true;
-            btnNaplati.Visible = true;
-            comboBox1.Visible = true;
-            label4.Visible = true;
-            label3.Visible = true;
-            label7.Visible = true;
-            textBox3.Visible = true;
-        }
-        
-        public void ucitavanjeTepihaSelektovanogMusterije(Musterija musterija)
-        {
-            konekcija.Open();
-            SqlCommand kmnGetIdRacuna = new SqlCommand("select max(Id) from Racuni where MusterijaId = " + musterija.Id, konekcija);
-            Musterija = musterija;
-          
-        }
-        SqlConnection konekcija = new SqlConnection(Konekcija.konString);
-        
-        void updateMusterijuNakonDodavanjaIBrisanjaTepiha()
-        {
-            konekcija.Open();
-            //ostaje ti da implementiras novu funkciju  
-         
-            konekcija.Close();
+            Racun.updateRacunaNakonDodavanjaTepiha(Racun.Id,tepih.BrojTepihaURacunu(Racun.Id));
         }
 
-       
+
 
         public void IscitajTabeluTepisiZaMusteriju(int IdRacuna)
         {
@@ -153,7 +121,7 @@ namespace ExtraSjaj.Forme
             
         private void TepisiMusterije_FormClosing(object sender, FormClosingEventArgs e)
         {
-            updateMusterijuNakonDodavanjaIBrisanjaTepiha();
+            updateBrojTepihaURacunuNakonDodavanjaIBrisanjaTepiha();
         }
 
         void updateRacunNakonDodavanjaTepiha()
@@ -189,11 +157,12 @@ namespace ExtraSjaj.Forme
       
         private void btnDodajTepih_Click_1(object sender, EventArgs e)
         {
+           
             listBox1.Items.Clear();
             tepih.DodajTepih(textBox1.Text, textBox2.Text, Musterija.Id, Racun.Id);
             IscitajTabeluTepisiZaMusteriju();
             racunZaMusteriju();
-            updateMusterijuNakonDodavanjaIBrisanjaTepiha();
+            updateBrojTepihaURacunuNakonDodavanjaIBrisanjaTepiha();
             updateRacunNakonDodavanjaTepiha();
             foreach (var tepih in tepih.popunjavanjeListeTepiha(Racun.Id))
                 listBox1.Items.Add(tepih.Value);
@@ -240,7 +209,7 @@ namespace ExtraSjaj.Forme
                 tepih.BrisanjeTepiha(dataGridView1.SelectedCells[0].Value.ToString());
                 IscitajTabeluTepisiZaMusteriju();
                 racunZaMusteriju();
-                updateMusterijuNakonDodavanjaIBrisanjaTepiha();
+                updateBrojTepihaURacunuNakonDodavanjaIBrisanjaTepiha();
 
             }
         }
@@ -250,5 +219,39 @@ namespace ExtraSjaj.Forme
 
             this.Visible = false;
         }
+
+
+
+        void sakrijObjekteNaKontroli()
+        {
+            textBox1.Visible = false;
+            textBox2.Visible = false;
+            btnDodajTepih.Visible = false;
+            btnNaplati.Visible = false;
+            comboBox1.Visible = false;
+            label4.Visible = false;
+            label3.Visible = false;
+            label7.Visible = false;
+            textBox3.Visible = false;
+        }
+        void otkrijObjekteNaKontroli()
+        {
+            textBox1.Visible = true;
+            textBox2.Visible = true;
+            btnDodajTepih.Visible = true;
+            btnNaplati.Visible = true;
+            comboBox1.Visible = true;
+            label4.Visible = true;
+            label3.Visible = true;
+            label7.Visible = true;
+            textBox3.Visible = true;
+        }
+        void resetujObjekte()
+        {
+            listBox1.Items.Clear();
+            textBox1.Clear();
+            textBox2.Clear();
+        }
+
     }
 }

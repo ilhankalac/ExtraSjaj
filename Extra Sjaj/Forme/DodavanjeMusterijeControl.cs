@@ -26,6 +26,7 @@ namespace ExtraSjaj.Forme
             textBox4_KeyPress(new object(), new  KeyPressEventArgs(' '));
 
 
+
             /* linija koja gasi metodu combobxo selected index changed, samo dodaj + da ispred
              = da bi je vratio nazad da funkcionise*/
             comboBox1.SelectedIndexChanged -= new System.EventHandler(comboBox1_SelectedIndexChanged);
@@ -34,7 +35,7 @@ namespace ExtraSjaj.Forme
         SqlConnection konekcija = new SqlConnection(Konekcija.konString);
         private void Tepisi_Load(object sender, EventArgs e)
         {
-           
+          
         }
         
         private SqlDataAdapter da = null;

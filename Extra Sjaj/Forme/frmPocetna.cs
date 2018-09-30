@@ -166,18 +166,18 @@ namespace ExtraSjaj
         {
             try
             {
-                //dodavanjeTepihaControl1.Show()
+                
                 int rowIndex = dataGridView1.CurrentRow.Index;
                 musterija.Id = Convert.ToInt32( dataGridView1.SelectedCells[0].Value);
                 musterija.ImePrezime = dataGridView1.SelectedCells[2].Value.ToString();
                 musterija.VremeDolaskaTepiha = Convert.ToDateTime( dataGridView1.SelectedCells[7].Value);
-                dodavanjeTepihaControl1.ucitavanjeTepihaSelektovanogMusterije(musterija);
+     
 
                
                 dodavanjeTepihaControl1.Refresh();
                 dodavanjeTepihaControl1.Visible = true;
                 dodavanjeMusterijeControl1.Refresh();
-             //   musterija.citajTabeluMusterijeFromSql(dataGridView1);
+           
 
                 dodavanjeTepihaControl1.IscitajTabeluTepisiZaMusteriju();
 

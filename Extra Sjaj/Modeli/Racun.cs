@@ -80,6 +80,25 @@ namespace ExtraSjaj.Modeli
             }
         }
 
+        public void updateRacunaNakonDodavanjaTepiha(int idRacuna, int brojTepiha)
+        {
+            try
+            {
+                konekcija.Open();
+                SqlCommand kmdUpdateBrojTepiha = new SqlCommand("update racuni set brojTepiha = " + brojTepiha + "" +
+                    " where id = " + idRacuna, konekcija);
+
+                kmdUpdateBrojTepiha.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                konekcija.Close();
+            }
+        }
 
     }
 }

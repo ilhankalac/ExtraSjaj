@@ -12,7 +12,6 @@ go
 CREATE TABLE Musterijas (
     Id 		INT IDENTITY 	 (1, 1) primary key	NOT NULL,
     ImePrezime 	NVARCHAR (MAX)			NULL,
-    BrojTepiha 	SMALLINT NULL,
     BrojTelefona NCHAR (10)		        NULL,
     Adresa NVARCHAR (MAX) NULL,
     VremeKreiranjeMusterije DATETIME NULL,
@@ -27,6 +26,7 @@ CREATE TABLE Racuni (
     MusterijaId INT        NULL,
     KreiranjeRacuna DATETIME NULL,
     Placen 	BIT NULL,
+    BrojTepiha 	INT NULL,
     FOREIGN KEY (MusterijaId) REFERENCES Musterijas(Id) ON DELETE CASCADE
 );
 --======================================
