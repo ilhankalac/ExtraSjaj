@@ -87,44 +87,24 @@
             this.btnDodaj.Name = "btnDodaj";
             this.btnDodaj.Size = new System.Drawing.Size(178, 119);
             this.btnDodaj.TabIndex = 4;
-            this.btnDodaj.Text = "Dodaj mušteriju";
+            this.btnDodaj.Text = "Mušterije";
             this.btnDodaj.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnDodaj.UseVisualStyleBackColor = true;
             this.btnDodaj.Click += new System.EventHandler(this.btnDodaj_Click);
             // 
             // btnBrisiMusteriju
             // 
-            this.btnBrisiMusteriju.FlatAppearance.BorderSize = 0;
-            this.btnBrisiMusteriju.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBrisiMusteriju.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBrisiMusteriju.ForeColor = System.Drawing.Color.White;
-            this.btnBrisiMusteriju.Image = ((System.Drawing.Image)(resources.GetObject("btnBrisiMusteriju.Image")));
-            this.btnBrisiMusteriju.Location = new System.Drawing.Point(3, 119);
-            this.btnBrisiMusteriju.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnBrisiMusteriju.Location = new System.Drawing.Point(0, 0);
             this.btnBrisiMusteriju.Name = "btnBrisiMusteriju";
-            this.btnBrisiMusteriju.Size = new System.Drawing.Size(178, 119);
-            this.btnBrisiMusteriju.TabIndex = 5;
-            this.btnBrisiMusteriju.Text = "Obriši mušteriju";
-            this.btnBrisiMusteriju.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnBrisiMusteriju.UseVisualStyleBackColor = true;
-            this.btnBrisiMusteriju.Click += new System.EventHandler(this.btnBrisiMusteriju_Click);
+            this.btnBrisiMusteriju.Size = new System.Drawing.Size(75, 23);
+            this.btnBrisiMusteriju.TabIndex = 8;
             // 
             // btnUpdateMusterija
             // 
-            this.btnUpdateMusterija.FlatAppearance.BorderSize = 0;
-            this.btnUpdateMusterija.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpdateMusterija.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdateMusterija.ForeColor = System.Drawing.Color.White;
-            this.btnUpdateMusterija.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdateMusterija.Image")));
-            this.btnUpdateMusterija.Location = new System.Drawing.Point(3, 233);
-            this.btnUpdateMusterija.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnUpdateMusterija.Location = new System.Drawing.Point(0, 0);
             this.btnUpdateMusterija.Name = "btnUpdateMusterija";
-            this.btnUpdateMusterija.Size = new System.Drawing.Size(178, 119);
-            this.btnUpdateMusterija.TabIndex = 6;
-            this.btnUpdateMusterija.Text = "Izmeni mušteriju";
-            this.btnUpdateMusterija.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnUpdateMusterija.UseVisualStyleBackColor = true;
-            this.btnUpdateMusterija.Click += new System.EventHandler(this.btnUpdateMusterija_Click);
+            this.btnUpdateMusterija.Size = new System.Drawing.Size(75, 23);
+            this.btnUpdateMusterija.TabIndex = 9;
             // 
             // musterijasBindingSource3
             // 
@@ -340,6 +320,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Click += new System.EventHandler(this.frmPocetna_Click);
             ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._TepisiBaza_2018DataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
