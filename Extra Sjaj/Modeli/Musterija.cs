@@ -13,7 +13,6 @@ namespace ExtraSjaj.Modeli
     {
         public int Id { get; set; }
         public string ImePrezime { get; set; }
-        public int BrojTepiha { get; set; }
         public string BrojTelefona { get; set; }
         public string Adresa { get; set; }
         public DateTime VremeDolaskaTepiha { get; set; }
@@ -24,9 +23,8 @@ namespace ExtraSjaj.Modeli
         SqlConnection konekcija = new SqlConnection(Konekcija.konString);
         public void DodajMusteriju(string ImePrezime, string BrojTelefona, string Adresa)
         {
-            SqlCommand kmdZaInsertMusterije = new SqlCommand(@"insert into Musterijas(ImePrezime,BrojTepiha,BrojTelefona, Adresa, VremeKreiranjaMusterije)" +
+            SqlCommand kmdZaInsertMusterije = new SqlCommand(@"insert into Musterijas(ImePrezime,BrojTelefona, Adresa, VremeKreiranjaMusterije)" +
              "values (('" + ImePrezime.ToString() + "')," +
-             "('" + 0.ToString() + "')," +
               "('" + BrojTelefona.ToString() + "')," +
              "('" + Adresa.ToString() + "')," +
              "(getdate())); ", konekcija);
@@ -44,11 +42,11 @@ namespace ExtraSjaj.Modeli
         public void citajTabeluMusterijeFromSql(DataGridView dataGridView1)
         {
             SqlDataAdapter sda = new SqlDataAdapter("select m.id,row_number() over (order by m.Id) as 'Br.Mušterije'," +
-                "m.ImePrezime as 'Ime i Prezime',m.BrojTepiha as 'Br.Tepiha',m.BrojTelefona as 'Br. Tel.',m.Adresa, " +
+                "m.ImePrezime as 'Ime i Prezime',m.BrojTelefona as 'Br. Tel.',m.Adresa, " +
                 "sum(isnull(t.kvadratura,0)) as 'Kvadratura Tepiha', m.VremeKreiranjaMusterije as 'Musterija Kreiran',r.Racun as 'Račun', r.Placen as 'Plaćeno' " +
                 "from Musterijas m left join Tepisi t on t.RacunId = m.Id join Racuni r on r.MusterijaId = m.Id " +
                 " where  datediff(month , r.KreiranjeRacuna, getdate()) = 0 " +
-                "group by m.id, m.ImePrezime, m.BrojTepiha, m.BrojTelefona, m.Adresa, m.VremeKreiranjaMusterije,r.Racun, r.Placen" +
+                "group by m.id, m.ImePrezime, m.BrojTelefona, m.Adresa, m.VremeKreiranjaMusterije,r.Racun, r.Placen" +
                 " order by m.Id asc", konekcija);
             DataTable dt = new DataTable();
             sda.Fill(dt);
@@ -61,7 +59,7 @@ namespace ExtraSjaj.Modeli
             DataTable mojaTabela = citajTabeluMusterije();
             foreach (DataRow item in mojaTabela.Rows)
             {
-                listBox1.Items.Add(item["Id"].ToString() + ". " + item["ImePrezime"].ToString() + item["BrojTepiha"].ToString() + " = " + item["BrojTelefona"].ToString() + " " + item["Adresa"].ToString());
+                listBox1.Items.Add(item["Id"].ToString() + ". " + item["ImePrezime"].ToString() + item["BrojTelefona"].ToString() + " " + item["Adresa"].ToString());
             }
         }
         SqlDataAdapter da = null;
@@ -126,6 +124,7 @@ namespace ExtraSjaj.Modeli
             try
             {
                 konekcija.Open();
+
 
                 SqlCommand kmdSelektMusterija = new SqlCommand("select * from Musterijas", konekcija);
                 SqlDataReader reader = kmdSelektMusterija.ExecuteReader();

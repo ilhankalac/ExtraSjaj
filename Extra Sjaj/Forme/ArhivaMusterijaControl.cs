@@ -27,12 +27,12 @@ namespace ExtraSjaj.Forme
         {
 
             SqlDataAdapter sda = new SqlDataAdapter("select m.id,row_number() over (order by m.Id) as 'Br.Mušterije'," +
-                "m.ImePrezime as 'Ime i Prezime',m.BrojTepiha as 'Br.Tepiha',m.BrojTelefona as 'Br. Tel.',m.Adresa, " +
+                "m.ImePrezime as 'Ime i Prezime',m.BrojTelefona as 'Br. Tel.',m.Adresa, " +
                 "sum(isnull(t.kvadratura,0)) as 'Kvadratura Tepiha', m.VremeKreiranjaMusterije as 'Tepisi dostavljeni', r.Placen as 'Plaćeno' " +
                 "from Musterijas m left join Tepisi t on t.RacunId = m.Id join Racuni r on r.MusterijaId = m.Id " +
                 "where r.Placen = 1" +
                 "" +
-                " group by m.id, m.ImePrezime, m.BrojTepiha, m.BrojTelefona, m.Adresa, m.VremeKreiranjaMusterije, r.Placen" +
+                " group by m.id, m.ImePrezime, m.BrojTelefona, m.Adresa, m.VremeKreiranjaMusterije, r.Placen" +
                 " order by m.Id asc", konekcija);
             DataTable dt = new DataTable();
             sda.Fill(dt);
@@ -54,12 +54,12 @@ namespace ExtraSjaj.Forme
 
 
             SqlDataAdapter sda = new SqlDataAdapter("select m.id,row_number() over (order by m.Id) as 'Br.Mušterije'," +
-           "m.ImePrezime as 'Ime i Prezime',m.BrojTepiha as 'Br.Tepiha',m.BrojTelefona as 'Br. Tel.',m.Adresa, " +
+           "m.ImePrezime as 'Ime i Prezime',m.BrojTelefona as 'Br. Tel.',m.Adresa, " +
            "sum(isnull(t.kvadratura,0)) as 'Kvadratura Tepiha', m.VremeKreiranjaMusterije as 'Tepisi dostavljeni',r.Placen as 'Plaćeno' " +
            "from Musterijas m left join Tepisi t on t.RacunId = m.Id join Racuni r on r.MusterijaId = m.Id " +
            queryPart +
           queryPart1 + " datediff(" + selektovaniDeoDatuma + ", m.VremeKreiranjaMusterije, getdate()) = " + selektovaniPeriod +
-           " group by m.id, m.ImePrezime, m.BrojTepiha, m.BrojTelefona, m.Adresa, m.VremeKreiranjaMusterije, r.Placen" +
+           " group by m.id, m.ImePrezime, m.BrojTelefona, m.Adresa, m.VremeKreiranjaMusterije, r.Placen" +
            " order by m.Id asc", konekcija);
 
             DataTable dt = new DataTable();
@@ -90,10 +90,10 @@ namespace ExtraSjaj.Forme
         void arhivaSvihMusterijaIkada()
         {
             SqlDataAdapter sda = new SqlDataAdapter("select m.id,row_number() over (order by m.Id) as 'Br.Mušterije'," +
-        "m.ImePrezime as 'Ime i Prezime',m.BrojTepiha as 'Br.Tepiha',m.BrojTelefona as 'Br. Tel.',m.Adresa, " +
+        "m.ImePrezime as 'Ime i Prezime',m.BrojTelefona as 'Br. Tel.',m.Adresa, " +
         "sum(isnull(t.kvadratura,0)) as 'Kvadratura Tepiha', m.VremeDolaskaTepiha as 'Tepisi dostavljeni',r.Placen as 'Plaćeno' " +
         "from Musterijas m left join Tepisi t on t.MusterijaId = m.Id join Racuni r on r.MusterijaId = m.Id " +
-        " group by m.id, m.ImePrezime, m.BrojTepiha, m.BrojTelefona, m.Adresa, m.VremeDolaskaTepiha, r.Placen" +
+        " group by m.id, m.ImePrezime, m.BrojTelefona, m.Adresa, m.VremeDolaskaTepiha, r.Placen" +
         " order by m.Id asc", konekcija);
 
             DataTable dt = new DataTable();

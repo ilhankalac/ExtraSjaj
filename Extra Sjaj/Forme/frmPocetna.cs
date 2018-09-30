@@ -75,7 +75,7 @@ namespace ExtraSjaj
 
             foreach (DataRow item in mojaTabela.Rows)
             {
-                listBox1.Items.Add(item["Id"].ToString() + ". " + item["ImePrezime"].ToString() + item["BrojTepiha"].ToString() + " = " + item["BrojTelefona"].ToString() +" "+ item["Adresa"].ToString());
+                listBox1.Items.Add(item["Id"].ToString() + ". " + item["ImePrezime"].ToString() + " = " + item["BrojTelefona"].ToString() +" "+ item["Adresa"].ToString());
             }
 
 
@@ -143,7 +143,7 @@ namespace ExtraSjaj
                 else
                     i = 0;
                 SqlCommand komanda = new SqlCommand(@"update Musterijas 
-                set ImePrezime = '"+ row.Cells[2].Value.ToString()+"', BrojTelefona = '"+ row.Cells[4].Value.ToString()+"', BrojTepiha = '"+ row.Cells[3].Value.ToString() + "', Adresa = '"+ row.Cells[5].Value.ToString()+"   where Id = " + row.Cells[0].Value.ToString(), konekcija);
+                set ImePrezime = '"+ row.Cells[2].Value.ToString()+"', BrojTelefona = '"+ row.Cells[4].Value.ToString()+ "', Adresa = '"+ row.Cells[5].Value.ToString()+"   where Id = " + row.Cells[0].Value.ToString(), konekcija);
                 komanda.ExecuteNonQuery();
             }
           
