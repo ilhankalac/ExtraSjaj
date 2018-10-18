@@ -22,6 +22,7 @@ namespace ExtraSjaj
         }
 
         public Musterija musterija;
+        public Racun Racun;
         SqlConnection konekcija = new SqlConnection(Konekcija.konString);
         private SqlDataAdapter da = null;
 
@@ -59,6 +60,7 @@ namespace ExtraSjaj
             musterija.citajTabeluMusterijeFromSql(dataGridView1);
             dodavanjeTepihaControl1.Visible = false;
             dodavanjeMusterijeControl1.Visible = true;
+            listaRacuna.Visible = false;
         }
 
     
@@ -142,6 +144,24 @@ namespace ExtraSjaj
         private void frmPocetna_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            listaRacuna.Items.Clear();
+            listaRacuna.Visible = true;
+            Racun = new Racun();
+            int i = 0;
+            foreach (var item in Racun.recnikRacuna())
+            {
+                
+                listaRacuna.Items.Add(item.Value);
+                if (item.Value.Contains("True"))
+                    listaRacuna.Items[i].BackColor = Color.Green;
+                else
+                    listaRacuna.Items[i].BackColor = Color.Red;
+                i++;
+            }
         }
     }
     }

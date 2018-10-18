@@ -47,6 +47,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnRacuni = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.musterijasBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.musterijasBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
@@ -54,6 +55,7 @@
             this.dodavanjeTepihaControl1 = new ExtraSjaj.Forme.DodavanjeTepihaControl();
             this.arhivaMusterijaControl1 = new ExtraSjaj.Forme.ArhivaMusterijaControl();
             this.dodavanjeMusterijeControl1 = new ExtraSjaj.Forme.DodavanjeMusterijeControl();
+            this.listaRacuna = new System.Windows.Forms.ListView();
             ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._TepisiBaza_2018DataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -82,7 +84,7 @@
             this.btnDodaj.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDodaj.ForeColor = System.Drawing.Color.White;
             this.btnDodaj.Image = ((System.Drawing.Image)(resources.GetObject("btnDodaj.Image")));
-            this.btnDodaj.Location = new System.Drawing.Point(3, 2);
+            this.btnDodaj.Location = new System.Drawing.Point(1, 1);
             this.btnDodaj.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDodaj.Name = "btnDodaj";
             this.btnDodaj.Size = new System.Drawing.Size(178, 119);
@@ -235,6 +237,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            this.panel3.Controls.Add(this.btnRacuni);
             this.panel3.Controls.Add(this.button4);
             this.panel3.Controls.Add(this.btnDodaj);
             this.panel3.Controls.Add(this.btnBrisiMusteriju);
@@ -245,6 +248,23 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(184, 603);
             this.panel3.TabIndex = 21;
+            // 
+            // btnRacuni
+            // 
+            this.btnRacuni.FlatAppearance.BorderSize = 0;
+            this.btnRacuni.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRacuni.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRacuni.ForeColor = System.Drawing.Color.White;
+            this.btnRacuni.Image = ((System.Drawing.Image)(resources.GetObject("btnRacuni.Image")));
+            this.btnRacuni.Location = new System.Drawing.Point(3, 155);
+            this.btnRacuni.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnRacuni.Name = "btnRacuni";
+            this.btnRacuni.Size = new System.Drawing.Size(178, 119);
+            this.btnRacuni.TabIndex = 10;
+            this.btnRacuni.Text = "Računi";
+            this.btnRacuni.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnRacuni.UseVisualStyleBackColor = true;
+            this.btnRacuni.Click += new System.EventHandler(this.button6_Click);
             // 
             // button4
             // 
@@ -300,11 +320,26 @@
             this.dodavanjeMusterijeControl1.Size = new System.Drawing.Size(1059, 684);
             this.dodavanjeMusterijeControl1.TabIndex = 22;
             // 
+            // listaRacuna
+            // 
+            this.listaRacuna.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            this.listaRacuna.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listaRacuna.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listaRacuna.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listaRacuna.ForeColor = System.Drawing.SystemColors.Info;
+            this.listaRacuna.Location = new System.Drawing.Point(184, 121);
+            this.listaRacuna.Name = "listaRacuna";
+            this.listaRacuna.Size = new System.Drawing.Size(1062, 603);
+            this.listaRacuna.TabIndex = 25;
+            this.listaRacuna.UseCompatibleStateImageBehavior = false;
+            this.listaRacuna.View = System.Windows.Forms.View.List;
+            // 
             // frmPocetna
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1246, 724);
+            this.Controls.Add(this.listaRacuna);
             this.Controls.Add(this.dodavanjeTepihaControl1);
             this.Controls.Add(this.arhivaMusterijaControl1);
             this.Controls.Add(this.dodavanjeMusterijeControl1);
@@ -363,6 +398,8 @@
         private System.Windows.Forms.Button button4;
         private Forme.DodavanjeTepihaControl dodavanjeTepihaControl1;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnRacuni;
+        private System.Windows.Forms.ListView listaRacuna;
     }
 }
 
