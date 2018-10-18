@@ -272,15 +272,17 @@
             this.listaRacuna.ForeColor = System.Drawing.SystemColors.Info;
             this.listaRacuna.Location = new System.Drawing.Point(184, 121);
             this.listaRacuna.Name = "listaRacuna";
-            this.listaRacuna.Size = new System.Drawing.Size(690, 603);
+            this.listaRacuna.Size = new System.Drawing.Size(682, 603);
             this.listaRacuna.TabIndex = 25;
             this.listaRacuna.UseCompatibleStateImageBehavior = false;
             this.listaRacuna.View = System.Windows.Forms.View.List;
+            this.listaRacuna.SelectedIndexChanged += new System.EventHandler(this.listaRacuna_SelectedIndexChanged);
+            this.listaRacuna.DoubleClick += new System.EventHandler(this.listaRacuna_DoubleClick);
             // 
             // button6
             // 
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Location = new System.Drawing.Point(880, 123);
+            this.button6.Location = new System.Drawing.Point(872, 239);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(79, 94);
             this.button6.TabIndex = 26;

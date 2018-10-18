@@ -129,9 +129,10 @@ namespace ExtraSjaj.Forme
             try
             {
                 konekcija.Open();
+                double racun = racunMusterije();
 
                 SqlCommand cmdUpdateRacuna = new SqlCommand(@"update Racuni
-                                             set Racun = " + racunMusterije().ToString() +
+                                             set Racun = " + racun.ToString() +
                                              " where id = " + DodavanjeMusterijeControl.IdRacuna, konekcija);
                 cmdUpdateRacuna.ExecuteNonQuery();
             }
@@ -163,10 +164,10 @@ namespace ExtraSjaj.Forme
             IscitajTabeluTepisiZaMusteriju();
             racunZaMusteriju();
             updateBrojTepihaURacunuNakonDodavanjaIBrisanjaTepiha();
-            updateRacunNakonDodavanjaTepiha();
+           
             foreach (var tepih in tepih.popunjavanjeListeTepiha(Racun.Id))
                 listBox1.Items.Add(tepih.Value);
-
+            updateRacunNakonDodavanjaTepiha();
         }
         
         void racunNaplacen()

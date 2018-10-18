@@ -110,13 +110,16 @@ namespace ExtraSjaj.Modeli
                     subQuery = " where Month(r.kreiranjeRacuna) = " + DateTime.Now.Month;
                     
 
-                SqlCommand kmdSelektMusterija = new SqlCommand("select r.id, m.ImePrezime, r.Placen, r.racun, r.KreiranjeRacuna " +
+                SqlCommand kmdSelektMusterija = new SqlCommand("select r.musterijaid, r.id, m.ImePrezime, r.Placen, r.racun, r.KreiranjeRacuna " +
                     " from Racuni r join musterijas m on m.id = r.musterijaId" +subQuery, konekcija);
                 SqlDataReader reader = kmdSelektMusterija.ExecuteReader();
                 recnikRacuna.Clear();
                 int i = 1;
                 while (reader.Read())
-                    recnikRacuna.Add(Convert.ToInt32(reader["Id"]), (i++).ToString() + ". " + reader["ImePrezime"].ToString()+" Iznos: "+reader["racun"]+" EUR. Platio: "+reader["placen"] +" Kreiran račun: "+reader["kreiranjeRacuna"]);
+                    recnikRacuna.Add(Convert.ToInt32(reader["Id"]), (i++).ToString() + ". " 
+                        + reader["ImePrezime"].ToString()+" Iznos: "+reader["racun"]
+                        +" EUR. Platio: "+reader["placen"] +" Kreiran račun: "+reader["kreiranjeRacuna"]
+                        +" ="+ reader["MusterijaId"]);
 
 
             }
