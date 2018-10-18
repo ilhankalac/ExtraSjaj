@@ -80,7 +80,7 @@ namespace ExtraSjaj.Modeli
             }
         }
 
-        public void updateRacunaNakonDodavanjaTepiha(int idRacuna, int brojTepiha)
+        public void updateBrojaTepihaNakonDodavanjaTepiha(int idRacuna, int brojTepiha)
         {
             try
             {
@@ -89,6 +89,26 @@ namespace ExtraSjaj.Modeli
                     " where id = " + idRacuna, konekcija);
 
                 kmdUpdateBrojTepiha.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                konekcija.Close();
+            }
+        }
+        public void updateRacunNakonDodavanjaTepiha(double racun, int idRacuna)
+        {
+            try
+            {
+                konekcija.Open();
+
+                SqlCommand cmdUpdateRacuna = new SqlCommand(@"update Racuni
+                                             set Racun = " + racun.ToString() +
+                                             " where id = " + idRacuna , konekcija);
+                cmdUpdateRacuna.ExecuteNonQuery();
             }
             catch (Exception ex)
             {

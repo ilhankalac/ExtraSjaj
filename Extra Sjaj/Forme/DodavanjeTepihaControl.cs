@@ -47,7 +47,7 @@ namespace ExtraSjaj.Forme
 
         void updateBrojTepihaURacunuNakonDodavanjaIBrisanjaTepiha()
         {
-            Racun.updateRacunaNakonDodavanjaTepiha(Racun.Id,tepih.BrojTepihaURacunu(Racun.Id));
+            Racun.updateBrojaTepihaNakonDodavanjaTepiha(Racun.Id,tepih.BrojTepihaURacunu(Racun.Id));
         }
 
 
@@ -124,27 +124,7 @@ namespace ExtraSjaj.Forme
             updateBrojTepihaURacunuNakonDodavanjaIBrisanjaTepiha();
         }
 
-        void updateRacunNakonDodavanjaTepiha()
-        {
-            try
-            {
-                konekcija.Open();
-                double racun = racunMusterije();
-
-                SqlCommand cmdUpdateRacuna = new SqlCommand(@"update Racuni
-                                             set Racun = " + racun.ToString() +
-                                             " where id = " + DodavanjeMusterijeControl.IdRacuna, konekcija);
-                cmdUpdateRacuna.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                konekcija.Close();
-            }
-        }
+      
         void updateRacunNakonPlacanja()
         {
             int platio = 0;
@@ -167,7 +147,7 @@ namespace ExtraSjaj.Forme
            
             foreach (var tepih in tepih.popunjavanjeListeTepiha(Racun.Id))
                 listBox1.Items.Add(tepih.Value);
-            updateRacunNakonDodavanjaTepiha();
+            Racun.updateRacunNakonDodavanjaTepiha(racunMusterije(), Racun.Id);
         }
         
         void racunNaplacen()
@@ -197,7 +177,7 @@ namespace ExtraSjaj.Forme
         private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             racunZaMusteriju();
-            updateRacunNakonDodavanjaTepiha();
+            Racun.updateRacunNakonDodavanjaTepiha(racunMusterije(), Racun.Id);
             racunNaplacen();
         }
         

@@ -19,6 +19,7 @@ namespace ExtraSjaj
         public frmPocetna()
         {
             InitializeComponent();
+            listaRacuna.Visible = false;
         }
 
         public Musterija musterija;
