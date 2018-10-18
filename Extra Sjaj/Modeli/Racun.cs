@@ -99,16 +99,19 @@ namespace ExtraSjaj.Modeli
                 konekcija.Close();
             }
         }
-        public Dictionary<int, string> recnikRacuna()
+        public Dictionary<int, string> recnikRacuna(bool ovajMjesec)
         {
             Dictionary<int, string> recnikRacuna = new Dictionary<int, string>();
             try
             {
+                string subQuery = "";
                 konekcija.Open();
-
+                if (ovajMjesec)
+                    subQuery = " where Month(r.kreiranjeRacuna) = " + DateTime.Now.Month;
+                    
 
                 SqlCommand kmdSelektMusterija = new SqlCommand("select r.id, m.ImePrezime, r.Placen, r.racun, r.KreiranjeRacuna " +
-                    " from Racuni r join musterijas m on m.id = r.musterijaId", konekcija);
+                    " from Racuni r join musterijas m on m.id = r.musterijaId" +subQuery, konekcija);
                 SqlDataReader reader = kmdSelektMusterija.ExecuteReader();
                 recnikRacuna.Clear();
                 int i = 1;

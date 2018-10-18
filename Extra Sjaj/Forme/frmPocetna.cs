@@ -25,6 +25,7 @@ namespace ExtraSjaj
         public Racun Racun;
         SqlConnection konekcija = new SqlConnection(Konekcija.konString);
         private SqlDataAdapter da = null;
+        bool ovogMjeseca = false;
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -36,6 +37,7 @@ namespace ExtraSjaj
             arhivaMusterijaControl1.Visible = false;
             dodavanjeTepihaControl1.Visible = false;
             dodavanjeMusterijeControl1.Visible = false;
+            button6.Visible = false;
 
         }
 
@@ -61,6 +63,7 @@ namespace ExtraSjaj
             dodavanjeTepihaControl1.Visible = false;
             dodavanjeMusterijeControl1.Visible = true;
             listaRacuna.Visible = false;
+            button6.Visible = false;
         }
 
     
@@ -146,22 +149,41 @@ namespace ExtraSjaj
 
         }
 
+        private void btnRacuni_Click(object sender, EventArgs e)
+        {
+                button6.Visible = false;
+                listaRacuna.Items.Clear();
+                listaRacuna.Visible = true;
+                Racun = new Racun();
+                int i = 0;
+                foreach (var item in Racun.recnikRacuna(ovogMjeseca))
+                {
+
+                    listaRacuna.Items.Add(item.Value);
+                    if (item.Value.Contains("True"))
+                        listaRacuna.Items[i].BackColor = Color.Green;
+                    else
+                        listaRacuna.Items[i].BackColor = Color.Red;
+                    i++;
+                }
+                button6.Visible = true;
+        }
+
         private void button6_Click(object sender, EventArgs e)
         {
-            listaRacuna.Items.Clear();
-            listaRacuna.Visible = true;
-            Racun = new Racun();
-            int i = 0;
-            foreach (var item in Racun.recnikRacuna())
+            if (ovogMjeseca)
             {
-                
-                listaRacuna.Items.Add(item.Value);
-                if (item.Value.Contains("True"))
-                    listaRacuna.Items[i].BackColor = Color.Green;
-                else
-                    listaRacuna.Items[i].BackColor = Color.Red;
-                i++;
+                ovogMjeseca = false;
+                button6.BackColor = Color.Gray;
             }
+
+            else
+            {
+                button6.BackColor = Color.Green;
+                ovogMjeseca = true;
+            }
+                
+            btnRacuni_Click(new object(), new EventArgs());
         }
     }
     }
