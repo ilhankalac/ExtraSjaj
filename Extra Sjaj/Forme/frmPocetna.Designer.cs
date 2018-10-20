@@ -269,11 +269,11 @@
             // 
             this.listaRacuna.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
             this.listaRacuna.Dock = System.Windows.Forms.DockStyle.Left;
-            this.listaRacuna.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listaRacuna.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listaRacuna.ForeColor = System.Drawing.SystemColors.Info;
             this.listaRacuna.Location = new System.Drawing.Point(184, 121);
             this.listaRacuna.Name = "listaRacuna";
-            this.listaRacuna.Size = new System.Drawing.Size(516, 603);
+            this.listaRacuna.Size = new System.Drawing.Size(490, 603);
             this.listaRacuna.TabIndex = 25;
             this.listaRacuna.UseCompatibleStateImageBehavior = false;
             this.listaRacuna.View = System.Windows.Forms.View.Tile;
@@ -282,7 +282,7 @@
             // button6
             // 
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Location = new System.Drawing.Point(706, 148);
+            this.button6.Location = new System.Drawing.Point(680, 169);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(79, 94);
             this.button6.TabIndex = 26;
@@ -323,16 +323,17 @@
             "50",
             "100",
             "200"});
-            this.cmbBrojaRacuna.Location = new System.Drawing.Point(706, 298);
+            this.cmbBrojaRacuna.Location = new System.Drawing.Point(683, 298);
             this.cmbBrojaRacuna.Name = "cmbBrojaRacuna";
-            this.cmbBrojaRacuna.Size = new System.Drawing.Size(121, 24);
+            this.cmbBrojaRacuna.Size = new System.Drawing.Size(59, 24);
             this.cmbBrojaRacuna.TabIndex = 27;
+            this.cmbBrojaRacuna.Text = "50";
             this.cmbBrojaRacuna.SelectedIndexChanged += new System.EventHandler(this.cmbBrojaRacuna_SelectedIndexChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(706, 279);
+            this.label3.Location = new System.Drawing.Point(680, 279);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(133, 16);
             this.label3.TabIndex = 28;

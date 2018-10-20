@@ -148,7 +148,7 @@
             this.btnNaplati.FlatAppearance.BorderSize = 0;
             this.btnNaplati.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNaplati.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNaplati.Location = new System.Drawing.Point(260, 284);
+            this.btnNaplati.Location = new System.Drawing.Point(156, 284);
             this.btnNaplati.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnNaplati.Name = "btnNaplati";
             this.btnNaplati.Size = new System.Drawing.Size(179, 146);
@@ -195,16 +195,16 @@
             this.panel2.Controls.Add(this.textBox1);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(390, 0);
+            this.panel2.Location = new System.Drawing.Point(491, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(439, 629);
+            this.panel2.Size = new System.Drawing.Size(338, 629);
             this.panel2.TabIndex = 19;
             // 
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(3, 401);
+            this.comboBox2.Location = new System.Drawing.Point(3, 350);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(133, 24);
             this.comboBox2.TabIndex = 20;
@@ -213,7 +213,7 @@
             // 
             this.button1.BackColor = System.Drawing.Color.Chartreuse;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Location = new System.Drawing.Point(195, 366);
+            this.button1.Location = new System.Drawing.Point(3, 284);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(63, 59);
@@ -231,7 +231,7 @@
             this.listBox1.ItemHeight = 28;
             this.listBox1.Location = new System.Drawing.Point(0, 0);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(439, 228);
+            this.listBox1.Size = new System.Drawing.Size(338, 228);
             this.listBox1.TabIndex = 22;
             // 
             // panel1
@@ -249,7 +249,7 @@
             this.panel1.ForeColor = System.Drawing.Color.White;
             this.panel1.Location = new System.Drawing.Point(0, 431);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(439, 198);
+            this.panel1.Size = new System.Drawing.Size(338, 198);
             this.panel1.TabIndex = 21;
             // 
             // label3
@@ -276,10 +276,10 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(74, 17);
+            this.dataGridView1.Location = new System.Drawing.Point(31, 109);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(470, 284);
+            this.dataGridView1.Size = new System.Drawing.Size(80, 98);
             this.dataGridView1.TabIndex = 11;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 

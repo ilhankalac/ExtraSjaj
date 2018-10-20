@@ -131,8 +131,8 @@ namespace ExtraSjaj.Modeli
                     
 
                 SqlCommand kmdSelektMusterija = new SqlCommand("select top "+brojRacunaZaUzimanjeIzBaze+ " r.musterijaid, r.id, m.ImePrezime, r.Placen, r.racun, r.KreiranjeRacuna " +
-                    " from Racuni r join musterijas m on m.id = r.musterijaId" +
-                    " order by r.id desc, m.id" +subQuery, konekcija);
+                    " from Racuni r join musterijas m on m.id = r.musterijaId" + subQuery+
+                    " order by r.id desc, m.id" , konekcija);
                 SqlDataReader reader = kmdSelektMusterija.ExecuteReader();
                 recnikRacuna.Clear();
                 int i = 1;

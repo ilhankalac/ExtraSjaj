@@ -84,7 +84,8 @@ namespace ExtraSjaj
             label3.Visible = false;
             cmbBrojaRacuna.Visible = false;
             listaRacuna.Items.Clear();
-                
+            listaIdRacuna.Clear();
+            listaIdMusterija.Clear();
             listaRacuna.Visible = true;
             Racun = new Racun();
             int i = 0;
@@ -102,13 +103,15 @@ namespace ExtraSjaj
                 listaIdRacuna.Add(item.Key);
                 if (item.Value.Contains("True"))
                     listaRacuna.Items[i].BackColor = Color.Green;
-                else
+                else 
                     listaRacuna.Items[i].BackColor = Color.Red;
+
                 i++;
             }
             button6.Visible = true;
             label3.Visible = true;
             cmbBrojaRacuna.Visible = true;
+            dodavanjeMusterijeControl1.Visible = false;
         }
 
         private void button6_Click(object sender, EventArgs e)
