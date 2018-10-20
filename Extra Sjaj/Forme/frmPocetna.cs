@@ -29,7 +29,9 @@ namespace ExtraSjaj
         bool ovogMjeseca = false;
         List<int> listaIdRacuna = new List<int>();
         List<int> listaIdMusterija = new List<int>();
-    
+
+
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -42,7 +44,9 @@ namespace ExtraSjaj
             dodavanjeTepihaControl1.Visible = false;
             dodavanjeMusterijeControl1.Visible = false;
             button6.Visible = false;
-
+            label3.Visible = false;
+            cmbBrojaRacuna.Visible = false;
+            btnRacuni_Click(new object(), new EventArgs());
         }
         private void prikaziOpcijeSaMusterijama(object sender, EventArgs e)
         {
@@ -51,6 +55,8 @@ namespace ExtraSjaj
             dodavanjeMusterijeControl1.Visible = true;
             listaRacuna.Visible = false;
             button6.Visible = false;
+            label3.Visible = false;
+            cmbBrojaRacuna.Visible = false;
         }
 
         private void prikaziStatistikuFirme(object sender, EventArgs e)
@@ -75,15 +81,20 @@ namespace ExtraSjaj
         private void btnRacuni_Click(object sender, EventArgs e)
         {
             button6.Visible = false;
+            label3.Visible = false;
+            cmbBrojaRacuna.Visible = false;
             listaRacuna.Items.Clear();
                 
             listaRacuna.Visible = true;
             Racun = new Racun();
             int i = 0;
             string idMusterije = "";
-            
-            foreach (var item in Racun.recnikRacuna(ovogMjeseca))
+
+       
+
+            foreach (var item in Racun.recnikRacuna(ovogMjeseca, Convert.ToInt32(cmbBrojaRacuna.SelectedItem)))
             {
+               
                 //funkcija koja mi vraca rezultat id-a musterije poslije karaktera '='
                 idMusterije = item.Value.Substring( item.Value.IndexOf("=")+1);
                 listaIdMusterija.Add(Convert.ToInt32(idMusterije));
@@ -96,6 +107,8 @@ namespace ExtraSjaj
                 i++;
             }
             button6.Visible = true;
+            label3.Visible = true;
+            cmbBrojaRacuna.Visible = true;
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -115,10 +128,6 @@ namespace ExtraSjaj
             btnRacuni_Click(new object(), new EventArgs());
         }
 
-        private void listaRacuna_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
 
         private void listaRacuna_DoubleClick(object sender, EventArgs e)
         {
@@ -161,6 +170,9 @@ namespace ExtraSjaj
             }
         }
 
-      
+        private void cmbBrojaRacuna_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnRacuni_Click(new object(), new EventArgs());
+        }
     }
     }

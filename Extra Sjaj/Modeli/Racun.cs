@@ -119,7 +119,7 @@ namespace ExtraSjaj.Modeli
                 konekcija.Close();
             }
         }
-        public Dictionary<int, string> recnikRacuna(bool ovajMjesec)
+        public Dictionary<int, string> recnikRacuna(bool ovajMjesec, int brojRacunaZaUzimanjeIzBaze)
         {
             Dictionary<int, string> recnikRacuna = new Dictionary<int, string>();
             try
@@ -130,8 +130,9 @@ namespace ExtraSjaj.Modeli
                     subQuery = " where Month(r.kreiranjeRacuna) = " + DateTime.Now.Month;
                     
 
-                SqlCommand kmdSelektMusterija = new SqlCommand("select r.musterijaid, r.id, m.ImePrezime, r.Placen, r.racun, r.KreiranjeRacuna " +
-                    " from Racuni r join musterijas m on m.id = r.musterijaId" +subQuery, konekcija);
+                SqlCommand kmdSelektMusterija = new SqlCommand("select top "+brojRacunaZaUzimanjeIzBaze+ " r.musterijaid, r.id, m.ImePrezime, r.Placen, r.racun, r.KreiranjeRacuna " +
+                    " from Racuni r join musterijas m on m.id = r.musterijaId" +
+                    " order by r.id desc, m.id" +subQuery, konekcija);
                 SqlDataReader reader = kmdSelektMusterija.ExecuteReader();
                 recnikRacuna.Clear();
                 int i = 1;

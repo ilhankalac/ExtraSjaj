@@ -148,7 +148,7 @@
             this.btnNaplati.FlatAppearance.BorderSize = 0;
             this.btnNaplati.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNaplati.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNaplati.Location = new System.Drawing.Point(106, 278);
+            this.btnNaplati.Location = new System.Drawing.Point(260, 284);
             this.btnNaplati.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnNaplati.Name = "btnNaplati";
             this.btnNaplati.Size = new System.Drawing.Size(179, 146);
@@ -195,10 +195,10 @@
             this.panel2.Controls.Add(this.textBox1);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(544, 0);
+            this.panel2.Location = new System.Drawing.Point(390, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(285, 629);
+            this.panel2.Size = new System.Drawing.Size(439, 629);
             this.panel2.TabIndex = 19;
             // 
             // comboBox2
@@ -213,7 +213,7 @@
             // 
             this.button1.BackColor = System.Drawing.Color.Chartreuse;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Location = new System.Drawing.Point(3, 278);
+            this.button1.Location = new System.Drawing.Point(195, 366);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(63, 59);
@@ -231,7 +231,7 @@
             this.listBox1.ItemHeight = 28;
             this.listBox1.Location = new System.Drawing.Point(0, 0);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(285, 228);
+            this.listBox1.Size = new System.Drawing.Size(439, 228);
             this.listBox1.TabIndex = 22;
             // 
             // panel1
@@ -249,7 +249,7 @@
             this.panel1.ForeColor = System.Drawing.Color.White;
             this.panel1.Location = new System.Drawing.Point(0, 431);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(285, 198);
+            this.panel1.Size = new System.Drawing.Size(439, 198);
             this.panel1.TabIndex = 21;
             // 
             // label3
