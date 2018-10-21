@@ -29,18 +29,27 @@ namespace ExtraSjaj.Forme
         {
             dodajMusteriju();
         }
-        void iscitavanjeMusterija()
+      
+        private void btnObrisiMusteriju_Click(object sender, EventArgs e)
         {
-            listBox1.Items.Clear();
+            brisanjeMusterije();
+        }
+        private void btnUpdateMusterija_Click(object sender, EventArgs e)
+        {
+            updateMusterije();
+        }
+        private  void iscitavanjeMusterija()
+        {
+            listBoxMusterija.Items.Clear();
             int i = 1;
             idLista = new List<int>();
             foreach (var item in _context.Musterije.ToList())
             {
-                listBox1.Items.Add((i++) + ". " + item.ImePrezime + " (" + item.BrojTelefona + " )");
+                listBoxMusterija.Items.Add((i++) + ". " + item.ImePrezime + " (" + item.BrojTelefona + " )");
                 idLista.Add(item.Id);
             }
         }
-        void dodajMusteriju()
+        private void dodajMusteriju()
         {
             Musterija musterija = new Musterija()
             {
@@ -53,8 +62,9 @@ namespace ExtraSjaj.Forme
             {
                 _context.Musterije.Add(musterija);
                 _context.SaveChanges();
-                MessageBox.Show("Uspešno dodavanje mušterije.", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Uspešno dodavavanje mušterije i njenog računa.", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 iscitavanjeMusterija();
+                kreiranjeRacuna();
             }
             catch (Exception ex)
             {
@@ -62,9 +72,9 @@ namespace ExtraSjaj.Forme
                 MessageBox.Show(ex.Message);
             }
         }
-        void brisanjeMusterije()
+       private void brisanjeMusterije()
         {
-            int idZaBrisanje = idLista[listBox1.SelectedIndices[0]];
+            int idZaBrisanje = idLista[listBoxMusterija.SelectedIndices[0]];
             Musterija musterijaZaBrisanje = _context.Musterije.SingleOrDefault(x => x.Id == idZaBrisanje);
             try
             {
@@ -78,10 +88,55 @@ namespace ExtraSjaj.Forme
                 MessageBox.Show(ex.Message);
             }
         }
-
-        private void btnObrisiMusteriju_Click(object sender, EventArgs e)
+        private void kreiranjeRacuna()
         {
-            brisanjeMusterije();
+            int lastIdMusterije = _context.Musterije.Max(x => x.Id);
+            try
+            {
+                _context.Racuni.Add(new Racun()
+                {
+                    MusterijaId = lastIdMusterije,
+                    BrojTepiha = 0,
+                    Placen = false,
+                    Vrijednost = 0,
+                    VrijemeKreiranjaRacuna = DateTime.Now
+                }
+                );
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void updateMusterije()
+        {
+            int idZaUpdate = idLista[listBoxMusterija.SelectedIndices[0]];
+            Musterija stariMusterija = _context.Musterije.SingleOrDefault(x => x.Id == idZaUpdate);
+
+            try
+            {
+                stariMusterija.ImePrezime = txtBoxImePrezime.Text;
+                stariMusterija.BrojTelefona = txtBoxBrojTel.Text;
+                stariMusterija.Adresa = txtBoxAdresa.Text;
+                _context.SaveChanges();
+                iscitavanjeMusterija();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
+        }
+
+        private void listBoxMusterija_Click(object sender, EventArgs e)
+        {
+            int idSelektovanogMusterije = idLista[listBoxMusterija.SelectedIndices[0]];
+            Musterija stariMusterija = _context.Musterije.SingleOrDefault(x => x.Id == idSelektovanogMusterije);
+            txtBoxImePrezime.Text = stariMusterija.ImePrezime;
+            txtBoxAdresa.Text = stariMusterija.Adresa;
+            txtBoxBrojTel.Text = stariMusterija.BrojTelefona;
         }
     }
 }

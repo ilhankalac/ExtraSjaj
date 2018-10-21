@@ -39,8 +39,8 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.listBoxMusterija = new System.Windows.Forms.ListBox();
+            this.btnUpdateMusterija = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -157,32 +157,34 @@
             this.label2.TabIndex = 33;
             this.label2.Text = "Pretraživanje:";
             // 
-            // listBox1
+            // listBoxMusterija
             // 
-            this.listBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listBox1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.listBox1.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBox1.ForeColor = System.Drawing.Color.White;
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 33;
-            this.listBox1.Location = new System.Drawing.Point(590, 0);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(373, 543);
-            this.listBox1.TabIndex = 34;
+            this.listBoxMusterija.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            this.listBoxMusterija.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listBoxMusterija.Dock = System.Windows.Forms.DockStyle.Right;
+            this.listBoxMusterija.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBoxMusterija.ForeColor = System.Drawing.Color.White;
+            this.listBoxMusterija.FormattingEnabled = true;
+            this.listBoxMusterija.ItemHeight = 33;
+            this.listBoxMusterija.Location = new System.Drawing.Point(590, 0);
+            this.listBoxMusterija.Name = "listBoxMusterija";
+            this.listBoxMusterija.Size = new System.Drawing.Size(373, 543);
+            this.listBoxMusterija.TabIndex = 34;
+            this.listBoxMusterija.Click += new System.EventHandler(this.listBoxMusterija_Click);
             // 
-            // button1
+            // btnUpdateMusterija
             // 
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(19, 363);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(143, 71);
-            this.button1.TabIndex = 35;
-            this.button1.Text = "Izmeni mušteriju";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnUpdateMusterija.FlatAppearance.BorderSize = 0;
+            this.btnUpdateMusterija.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdateMusterija.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdateMusterija.Location = new System.Drawing.Point(19, 363);
+            this.btnUpdateMusterija.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnUpdateMusterija.Name = "btnUpdateMusterija";
+            this.btnUpdateMusterija.Size = new System.Drawing.Size(143, 71);
+            this.btnUpdateMusterija.TabIndex = 35;
+            this.btnUpdateMusterija.Text = "Izmeni mušteriju";
+            this.btnUpdateMusterija.UseVisualStyleBackColor = true;
+            this.btnUpdateMusterija.Click += new System.EventHandler(this.btnUpdateMusterija_Click);
             // 
             // button2
             // 
@@ -266,7 +268,7 @@
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.textBox4);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.btnUpdateMusterija);
             this.panel1.Controls.Add(this.btnDodajMusteriju);
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
@@ -298,7 +300,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.listBoxMusterija);
             this.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "DodavanjeMusterijeControl";
@@ -325,8 +327,8 @@
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ListBox listBoxMusterija;
+        private System.Windows.Forms.Button btnUpdateMusterija;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;

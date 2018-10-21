@@ -39,7 +39,7 @@ namespace ExtraSjaj
                 if (item.Placen)
                     listaRacuna.Items[j].BackColor = Color.Green;
                 else
-                    listaRacuna.Items[j].BackColor = Color.Green;
+                    listaRacuna.Items[j].BackColor = Color.Red;
                 j++;
             }
         }
