@@ -45,6 +45,40 @@ namespace ExtraSjaj.Forme
         }
         private void listBoxTepiha_DoubleClick(object sender, EventArgs e)
         {
+            brisanjeTepiha();
+        }
+
+        public void dodajTepih()
+        {
+            var racun = _context.Racuni.Where(x=> x.Id == racunID).SingleOrDefault();
+            Tepih tepih = new Tepih()
+            {
+                Duzina = Convert.ToSingle( txtBoxSirina.Text),
+                Sirina = Convert.ToSingle(txtBoxSirina.Text),
+                Kvadratura = Convert.ToSingle(txtBoxSirina.Text) * Convert.ToSingle(txtBoxDuzina.Text),
+                RacunId = racunID
+            };
+            try
+            {
+
+                //dodavanje tepiha u tabeli tepisi
+                _context.Tepisi.Add(tepih);
+                _context.SaveChanges();
+                //update vrijednosti racuna u tabeli racuni
+                //ovde ces trebati da dodas jos sa cijenom da se mnozi
+                racun.Vrijednost += tepih.Kvadratura;
+                _context.SaveChanges();
+
+                iscitavanjeTepiha(racunID);
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void brisanjeTepiha()
+        {
             int idZaBrisanje = idLista[listBoxTepiha.SelectedIndices[0]];
             Tepih tepihZaBrisanje = _context.Tepisi.SingleOrDefault(x => x.Id == idZaBrisanje);
             try
@@ -57,38 +91,12 @@ namespace ExtraSjaj.Forme
                     MessageBox.Show("Uspešno brisanje tepiha.", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     iscitavanjeTepiha(racunID);
                 }
-              
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-        }
-
-        public void dodajTepih()
-        {
-            Tepih tepih = new Tepih()
-            {
-                Duzina = Convert.ToSingle( txtBoxSirina.Text),
-                Sirina = Convert.ToSingle(txtBoxSirina.Text),
-                Kvadratura = Convert.ToSingle(txtBoxSirina.Text) * Convert.ToSingle(txtBoxDuzina.Text),
-                RacunId = racunID
-            };
-            try
-            {
-                _context.Tepisi.Add(tepih);
-                _context.SaveChanges();
-                iscitavanjeTepiha(racunID);
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message);
-            }
-        }
-        private void brisanjeTepiha()
-        {
-
         }
         void sakrijObjekteNaKontroli()
         {

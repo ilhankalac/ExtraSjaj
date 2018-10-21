@@ -37,7 +37,7 @@ namespace ExtraSjaj
             listaID = new List<int>();
             foreach (var item in _context.Racuni.ToList())
             {
-                listaRacuna.Items.Add((i++) + ". " + item.Musterija.ImePrezime + " - " + item.VrijemeKreiranjaRacuna.ToShortDateString());
+                listaRacuna.Items.Add((i++) + ". " + item.Musterija.ImePrezime +" = "+item.Vrijednost+ " EUR. - " + item.VrijemeKreiranjaRacuna.ToShortDateString());
                 listaID.Add(item.Id);
                 if (item.Placen)
                     listaRacuna.Items[j].BackColor = Color.Green;
