@@ -26,6 +26,8 @@ namespace ExtraSjaj
             _context.Racuni.Load();
             dodavanjeTepihaControl1.Visible = false;
             this.musterijasBindingSource3.DataSource = _context.Musterije.Local.ToBindingList();
+            btnHomePage.Visible = false;
+            dodavanjeMusterijeControl1.Visible = false;
             iscitavanjeRacunaMusterija();
         }
         public void iscitavanjeRacunaMusterija()
@@ -105,10 +107,10 @@ namespace ExtraSjaj
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (listaRacuna.Height < 0)
+            if (listaRacuna.Width < 0)
                 this.timer1.Enabled = false;
             else
-                listaRacuna.Width -= 200;
+                listaRacuna.Width -= 25;
         }
     }
     }

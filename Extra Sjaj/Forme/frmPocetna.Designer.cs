@@ -269,7 +269,6 @@
             // listaRacuna
             // 
             this.listaRacuna.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.listaRacuna.Dock = System.Windows.Forms.DockStyle.Left;
             this.listaRacuna.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listaRacuna.ForeColor = System.Drawing.SystemColors.Info;
             this.listaRacuna.Location = new System.Drawing.Point(184, 121);
@@ -314,6 +313,7 @@
             // 
             // timer1
             // 
+            this.timer1.Interval = 5;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // dodavanjeTepihaControl1
@@ -327,10 +327,10 @@
             // 
             // btnHomePage
             // 
-            this.btnHomePage.Location = new System.Drawing.Point(184, 120);
+            this.btnHomePage.Location = new System.Drawing.Point(215, 149);
             this.btnHomePage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnHomePage.Name = "btnHomePage";
-            this.btnHomePage.Size = new System.Drawing.Size(1448, 907);
+            this.btnHomePage.Size = new System.Drawing.Size(1689, 1116);
             this.btnHomePage.TabIndex = 23;
             // 
             // dodavanjeMusterijeControl1
