@@ -32,8 +32,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnDodajTepih = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtBoxDuzina = new System.Windows.Forms.TextBox();
+            this.txtBoxSirina = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -42,7 +42,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBoxTepiha = new System.Windows.Forms.ListBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -83,6 +83,7 @@
             this.btnDodajTepih.TabIndex = 16;
             this.btnDodajTepih.Text = "Dodaj tepih";
             this.btnDodajTepih.UseVisualStyleBackColor = false;
+            this.btnDodajTepih.Click += new System.EventHandler(this.btnDodajTepih_Click);
             // 
             // label4
             // 
@@ -94,23 +95,23 @@
             this.label4.TabIndex = 15;
             this.label4.Text = "x";
             // 
-            // textBox2
+            // txtBoxDuzina
             // 
-            this.textBox2.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(106, 236);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(49, 33);
-            this.textBox2.TabIndex = 13;
+            this.txtBoxDuzina.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBoxDuzina.Location = new System.Drawing.Point(106, 236);
+            this.txtBoxDuzina.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtBoxDuzina.Name = "txtBoxDuzina";
+            this.txtBoxDuzina.Size = new System.Drawing.Size(49, 33);
+            this.txtBoxDuzina.TabIndex = 13;
             // 
-            // textBox1
+            // txtBoxSirina
             // 
-            this.textBox1.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(18, 236);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(48, 33);
-            this.textBox1.TabIndex = 12;
+            this.txtBoxSirina.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBoxSirina.Location = new System.Drawing.Point(18, 236);
+            this.txtBoxSirina.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtBoxSirina.Name = "txtBoxSirina";
+            this.txtBoxSirina.Size = new System.Drawing.Size(48, 33);
+            this.txtBoxSirina.TabIndex = 12;
             // 
             // label5
             // 
@@ -182,12 +183,12 @@
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
             this.panel2.Controls.Add(this.comboBox2);
             this.panel2.Controls.Add(this.button1);
-            this.panel2.Controls.Add(this.listBox1);
+            this.panel2.Controls.Add(this.listBoxTepiha);
             this.panel2.Controls.Add(this.panel1);
             this.panel2.Controls.Add(this.btnNaplati);
-            this.panel2.Controls.Add(this.textBox2);
+            this.panel2.Controls.Add(this.txtBoxDuzina);
             this.panel2.Controls.Add(this.btnDodajTepih);
-            this.panel2.Controls.Add(this.textBox1);
+            this.panel2.Controls.Add(this.txtBoxSirina);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Location = new System.Drawing.Point(491, 0);
@@ -216,17 +217,18 @@
             this.button1.Text = "Vrati se nazad";
             this.button1.UseVisualStyleBackColor = false;
             // 
-            // listBox1
+            // listBoxTepiha
             // 
-            this.listBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.listBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.listBox1.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 28;
-            this.listBox1.Location = new System.Drawing.Point(0, 0);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(338, 228);
-            this.listBox1.TabIndex = 22;
+            this.listBoxTepiha.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.listBoxTepiha.Dock = System.Windows.Forms.DockStyle.Top;
+            this.listBoxTepiha.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBoxTepiha.FormattingEnabled = true;
+            this.listBoxTepiha.ItemHeight = 28;
+            this.listBoxTepiha.Location = new System.Drawing.Point(0, 0);
+            this.listBoxTepiha.Name = "listBoxTepiha";
+            this.listBoxTepiha.Size = new System.Drawing.Size(338, 228);
+            this.listBoxTepiha.TabIndex = 22;
+            this.listBoxTepiha.DoubleClick += new System.EventHandler(this.listBoxTepiha_DoubleClick);
             // 
             // panel1
             // 
@@ -289,8 +291,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnDodajTepih;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtBoxDuzina;
+        private System.Windows.Forms.TextBox txtBoxSirina;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBox3;
@@ -302,6 +304,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listBoxTepiha;
     }
 }

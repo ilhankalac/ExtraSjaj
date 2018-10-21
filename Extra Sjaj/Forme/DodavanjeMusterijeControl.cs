@@ -38,6 +38,19 @@ namespace ExtraSjaj.Forme
         {
             updateMusterije();
         }
+        private void listBoxMusterija_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                prikazInformacijaMusterijeNakonKlikaNaListBox();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Niste korektno izabrali mušteriju.");
+            }
+           
+        }
+       
         private  void iscitavanjeMusterija()
         {
             listBoxMusterija.Items.Clear();
@@ -48,6 +61,7 @@ namespace ExtraSjaj.Forme
                 listBoxMusterija.Items.Add((i++) + ". " + item.ImePrezime + " (" + item.BrojTelefona + " )");
                 idLista.Add(item.Id);
             }
+         
         }
         private void dodajMusteriju()
         {
@@ -129,8 +143,7 @@ namespace ExtraSjaj.Forme
 
 
         }
-
-        private void listBoxMusterija_Click(object sender, EventArgs e)
+        void prikazInformacijaMusterijeNakonKlikaNaListBox()
         {
             int idSelektovanogMusterije = idLista[listBoxMusterija.SelectedIndices[0]];
             Musterija stariMusterija = _context.Musterije.SingleOrDefault(x => x.Id == idSelektovanogMusterije);
@@ -138,5 +151,6 @@ namespace ExtraSjaj.Forme
             txtBoxAdresa.Text = stariMusterija.Adresa;
             txtBoxBrojTel.Text = stariMusterija.BrojTelefona;
         }
+
     }
 }

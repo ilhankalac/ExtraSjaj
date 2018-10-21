@@ -18,12 +18,14 @@ namespace ExtraSjaj
     public partial class frmPocetna : Form
     {
         ModelContext _context;
+        List<int> listaID;
         public frmPocetna()
         {
             InitializeComponent();
             _context = new ModelContext();
             _context.Racuni.Load();
             listaRacuna.Visible = false;
+            dodavanjeTepihaControl1.Visible = false;
             this.musterijasBindingSource3.DataSource = _context.Musterije.Local.ToBindingList();
           
         }
@@ -32,10 +34,11 @@ namespace ExtraSjaj
             listaRacuna.Items.Clear();
             int i = 1;
             int j = 0;
+            listaID = new List<int>();
             foreach (var item in _context.Racuni.ToList())
             {
                 listaRacuna.Items.Add((i++) + ". " + item.Musterija.ImePrezime + " - " + item.VrijemeKreiranjaRacuna.ToShortDateString());
-
+                listaID.Add(item.Id);
                 if (item.Placen)
                     listaRacuna.Items[j].BackColor = Color.Green;
                 else
@@ -84,7 +87,17 @@ namespace ExtraSjaj
 
         private void btnRacuni_Click(object sender, EventArgs e)
         {
+            iscitavanjeRacunaMusterija();
             listaRacuna.Visible = true;
+        }
+
+        private void listaRacuna_DoubleClick(object sender, EventArgs e)
+        {
+            int racunID = listaID[listaRacuna.SelectedIndices[0]];
+            dodavanjeTepihaControl1.iscitavanjeTepiha(racunID);
+            dodavanjeTepihaControl1.Visible = true;
+         
+
         }
     }
     }
