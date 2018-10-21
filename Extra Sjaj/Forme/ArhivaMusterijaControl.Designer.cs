@@ -72,7 +72,7 @@
             this.checkBox2.TabIndex = 15;
             this.checkBox2.Text = "Sve mušterije";
             this.checkBox2.UseVisualStyleBackColor = true;
-            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+          
             // 
             // checkBox1
             // 
@@ -84,7 +84,7 @@
             this.checkBox1.TabIndex = 14;
             this.checkBox1.Text = "Naplaćeni tepisi";
             this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+          
             // 
             // label3
             // 
@@ -136,7 +136,7 @@
             this.comboBox1.Size = new System.Drawing.Size(121, 24);
             this.comboBox1.TabIndex = 10;
             this.comboBox1.Text = "Danas";
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+          
             // 
             // dataGridView1
             // 

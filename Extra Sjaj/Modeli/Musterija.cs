@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -9,171 +10,14 @@ using System.Windows.Forms;
 
 namespace ExtraSjaj.Modeli
 {
+    [Table("Musterije")]
     public class Musterija
     {
         public int Id { get; set; }
         public string ImePrezime { get; set; }
         public string BrojTelefona { get; set; }
         public string Adresa { get; set; }
-        public DateTime VremeDolaskaTepiha { get; set; }
-        public bool Platio { get; set; }
-
-        public double Racun { get; set; }
-
-        SqlConnection konekcija = new SqlConnection(Konekcija.konString);
-        public void DodajMusteriju(string ImePrezime, string BrojTelefona, string Adresa)
-        {
-            SqlCommand kmdZaInsertMusterije = new SqlCommand(@"insert into Musterijas(ImePrezime,BrojTelefona, Adresa, VremeKreiranjaMusterije)" +
-             "values (('" + ImePrezime.ToString() + "')," +
-              "('" + BrojTelefona.ToString() + "')," +
-             "('" + Adresa.ToString() + "')," +
-             "(getdate())); ", konekcija);
-
-
-            SqlCommand kmdZaInsertRacunaMusterije = new SqlCommand("insert into Racuni (Racun, MusterijaId, KreiranjeRacuna,Placen)" +
-                "values (0, (SELECT SCOPE_IDENTITY()), getdate(),0)", konekcija);
-
-            konekcija.Open();
-            kmdZaInsertMusterije.ExecuteNonQuery();
-            kmdZaInsertRacunaMusterije.ExecuteNonQuery();
-            konekcija.Close();
-           
-        }
-        public void citajTabeluMusterijeFromSql(DataGridView dataGridView1)
-        {
-            SqlDataAdapter sda = new SqlDataAdapter("select m.id,row_number() over (order by m.Id) as 'Br.Mušterije'," +
-                "m.ImePrezime as 'Ime i Prezime',m.BrojTelefona as 'Br. Tel.',m.Adresa, " +
-                "sum(isnull(t.kvadratura,0)) as 'Kvadratura Tepiha', m.VremeKreiranjaMusterije as 'Musterija Kreiran',r.Racun as 'Račun', r.Placen as 'Plaćeno' " +
-                "from Musterijas m left join Tepisi t on t.RacunId = m.Id join Racuni r on r.MusterijaId = m.Id " +
-                " where  datediff(month , r.KreiranjeRacuna, getdate()) = 0 " +
-                "group by m.id, m.ImePrezime, m.BrojTelefona, m.Adresa, m.VremeKreiranjaMusterije,r.Racun, r.Placen" +
-                " order by m.Id asc", konekcija);
-            DataTable dt = new DataTable();
-            sda.Fill(dt);
-            dataGridView1.DataSource = dt;
-            puniListuMusterija(new ListBox());
-        }
-
-        private void puniListuMusterija(ListBox listBox1)
-        {
-            DataTable mojaTabela = citajTabeluMusterije();
-            foreach (DataRow item in mojaTabela.Rows)
-            {
-                listBox1.Items.Add(item["Id"].ToString() + ". " + item["ImePrezime"].ToString() + item["BrojTelefona"].ToString() + " " + item["Adresa"].ToString());
-            }
-        }
-        SqlDataAdapter da = null;
-        private DataTable citajTabeluMusterije()
-        {
-            SqlConnection konekcija = new SqlConnection(Konekcija.konString);
-            DataSet ds = new DataSet();
-            da = new SqlDataAdapter("select *from Musterijas", konekcija);
-            da.MissingSchemaAction = MissingSchemaAction.AddWithKey;
-
-            SqlCommandBuilder builder = new SqlCommandBuilder(da);
-            da.Fill(ds, "Musterijas");
-
-            DataTable mojaTabela = ds.Tables["Musterijas"];
-            return mojaTabela;
-        }
-        public void IzmeniMusteriju(int idMusterije, string imePrezime, string adresa, string brojTelefona)
-        {
-            try
-            {
-                konekcija.Open();
-                SqlCommand komanda = new SqlCommand(@"update Musterijas 
-                set ImePrezime = '" + imePrezime + "', BrojTelefona = '" + brojTelefona + "', Adresa = '" + adresa + "' where Id = " + idMusterije, konekcija);
-                komanda.ExecuteNonQuery();
-
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                konekcija.Close();
-            }
-           
-        }
-        public void BrisiMusteriju(int Id)
-        {
-            try
-            {
-                konekcija.Open();
-                SqlCommand komanda = new SqlCommand(@"delete Musterijas where Id = " + Id, konekcija);
-                komanda.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                konekcija.Close();
-            }
-          
-
-        }
-
-        public Dictionary<int, string> listaMusterija()
-        {
-            Dictionary<int, string> recnikMusterija = new Dictionary<int, string>();
-            try
-            {
-                konekcija.Open();
-
-
-                SqlCommand kmdSelektMusterija = new SqlCommand("select * from Musterijas", konekcija);
-                SqlDataReader reader = kmdSelektMusterija.ExecuteReader();
-                recnikMusterija.Clear();
-                int i = 1;
-                while (reader.Read())
-                    recnikMusterija.Add(Convert.ToInt32(reader["Id"]), (i++).ToString()+". "+ reader["ImePrezime"].ToString());
-
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                konekcija.Close();
-            }
-
-            return recnikMusterija;
-        }
-
-        public Dictionary<int, string> listaPretrageMusterija(string txtPretrage)
-        {
-            Dictionary<int, string> recnikMusterija = new Dictionary<int, string>();
-            try
-            {
-                konekcija.Open();
-
-                //sql upit koji pretrazuje musteriju po imenu unetim u textboxu na keypress funkciji
-                SqlCommand kmdPretrazi = new SqlCommand("select * from Musterijas" +
-                                      " where ImePrezime like '%" + txtPretrage + "%'", konekcija);
-                SqlDataReader reader = kmdPretrazi.ExecuteReader();
-
-                while (reader.Read())
-                    recnikMusterija.Add(Convert.ToInt32(reader["Id"]), reader["ImePrezime"].ToString());
-
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                konekcija.Close();
-            }
-            return recnikMusterija;
-        }
-
+        public DateTime VrijemeKreiranjaMusterije { get; set; }
+       
     }
 }

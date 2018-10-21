@@ -277,7 +277,6 @@
             this.listaRacuna.TabIndex = 25;
             this.listaRacuna.UseCompatibleStateImageBehavior = false;
             this.listaRacuna.View = System.Windows.Forms.View.Tile;
-            this.listaRacuna.DoubleClick += new System.EventHandler(this.listaRacuna_DoubleClick);
             // 
             // button6
             // 
@@ -288,7 +287,6 @@
             this.button6.TabIndex = 26;
             this.button6.Text = "Računi ovog mjeseca";
             this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // dodavanjeTepihaControl1
             // 
@@ -328,7 +326,6 @@
             this.cmbBrojaRacuna.Size = new System.Drawing.Size(59, 24);
             this.cmbBrojaRacuna.TabIndex = 27;
             this.cmbBrojaRacuna.Text = "50";
-            this.cmbBrojaRacuna.SelectedIndexChanged += new System.EventHandler(this.cmbBrojaRacuna_SelectedIndexChanged);
             // 
             // label3
             // 

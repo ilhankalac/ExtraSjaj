@@ -32,7 +32,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Xml.Linq" />
@@ -70,7 +77,12 @@
     <Compile Include="Forme\frmPocetna.Designer.cs">
       <DependentUpon>frmPocetna.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modeli\Konekcija.cs" />
+    <Compile Include="Migrations\201810211607195_MusterijaRacuniTepisi.cs" />
+    <Compile Include="Migrations\201810211607195_MusterijaRacuniTepisi.Designer.cs">
+      <DependentUpon>201810211607195_MusterijaRacuniTepisi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Modeli\ModelContext.cs" />
     <Compile Include="Modeli\Musterija.cs" />
     <Compile Include="Modeli\Racun.cs" />
     <Compile Include="Modeli\Tepih.cs" />
@@ -98,6 +110,9 @@
     <EmbeddedResource Include="Forme\frmPocetna.resx">
       <DependentUpon>frmPocetna.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810211607195_MusterijaRacuniTepisi.resx">
+      <DependentUpon>201810211607195_MusterijaRacuniTepisi.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -107,6 +122,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

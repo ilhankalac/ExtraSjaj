@@ -32,10 +32,10 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.btnDodaj = new System.Windows.Forms.Button();
+            this.txtBoxAdresa = new System.Windows.Forms.TextBox();
+            this.txtBoxBrojTel = new System.Windows.Forms.TextBox();
+            this.txtBoxImePrezime = new System.Windows.Forms.TextBox();
+            this.btnDodajMusteriju = new System.Windows.Forms.Button();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
@@ -46,13 +46,14 @@
             this.label6 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnObrisiMusteriju = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.dodavanjeTepihaControl1 = new ExtraSjaj.Forme.DodavanjeTepihaControl();
+            this._TepisiBaza_2018DataSet11 = new ExtraSjaj._TepisiBaza_2018DataSet1();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._TepisiBaza_2018DataSet11)).BeginInit();
             this.SuspendLayout();
             // 
             // label4
@@ -85,47 +86,47 @@
             this.label1.TabIndex = 27;
             this.label1.Text = "Ime i Prezime:";
             // 
-            // textBox3
+            // txtBoxAdresa
             // 
-            this.textBox3.Location = new System.Drawing.Point(207, 279);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(209, 89);
-            this.textBox3.TabIndex = 26;
+            this.txtBoxAdresa.Location = new System.Drawing.Point(207, 279);
+            this.txtBoxAdresa.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtBoxAdresa.Multiline = true;
+            this.txtBoxAdresa.Name = "txtBoxAdresa";
+            this.txtBoxAdresa.Size = new System.Drawing.Size(209, 89);
+            this.txtBoxAdresa.TabIndex = 26;
             // 
-            // textBox2
+            // txtBoxBrojTel
             // 
-            this.textBox2.Location = new System.Drawing.Point(207, 196);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(160, 33);
-            this.textBox2.TabIndex = 25;
+            this.txtBoxBrojTel.Location = new System.Drawing.Point(207, 196);
+            this.txtBoxBrojTel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtBoxBrojTel.Multiline = true;
+            this.txtBoxBrojTel.Name = "txtBoxBrojTel";
+            this.txtBoxBrojTel.Size = new System.Drawing.Size(160, 33);
+            this.txtBoxBrojTel.TabIndex = 25;
             // 
-            // textBox1
+            // txtBoxImePrezime
             // 
-            this.textBox1.Location = new System.Drawing.Point(207, 141);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(160, 33);
-            this.textBox1.TabIndex = 24;
+            this.txtBoxImePrezime.Location = new System.Drawing.Point(207, 141);
+            this.txtBoxImePrezime.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtBoxImePrezime.Multiline = true;
+            this.txtBoxImePrezime.Name = "txtBoxImePrezime";
+            this.txtBoxImePrezime.Size = new System.Drawing.Size(160, 33);
+            this.txtBoxImePrezime.TabIndex = 24;
             // 
-            // btnDodaj
+            // btnDodajMusteriju
             // 
-            this.btnDodaj.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.btnDodaj.FlatAppearance.BorderSize = 0;
-            this.btnDodaj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDodaj.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDodaj.Image = ((System.Drawing.Image)(resources.GetObject("btnDodaj.Image")));
-            this.btnDodaj.Location = new System.Drawing.Point(426, 270);
-            this.btnDodaj.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnDodaj.Name = "btnDodaj";
-            this.btnDodaj.Size = new System.Drawing.Size(122, 112);
-            this.btnDodaj.TabIndex = 23;
-            this.btnDodaj.UseVisualStyleBackColor = false;
-            this.btnDodaj.Click += new System.EventHandler(this.btnDodaj_Click_1);
+            this.btnDodajMusteriju.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnDodajMusteriju.FlatAppearance.BorderSize = 0;
+            this.btnDodajMusteriju.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDodajMusteriju.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDodajMusteriju.Image = ((System.Drawing.Image)(resources.GetObject("btnDodajMusteriju.Image")));
+            this.btnDodajMusteriju.Location = new System.Drawing.Point(426, 270);
+            this.btnDodajMusteriju.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnDodajMusteriju.Name = "btnDodajMusteriju";
+            this.btnDodajMusteriju.Size = new System.Drawing.Size(122, 112);
+            this.btnDodajMusteriju.TabIndex = 23;
+            this.btnDodajMusteriju.UseVisualStyleBackColor = false;
+            this.btnDodajMusteriju.Click += new System.EventHandler(this.btnDodajMusteriju_Click);
             // 
             // textBox4
             // 
@@ -137,7 +138,6 @@
             this.textBox4.Size = new System.Drawing.Size(276, 42);
             this.textBox4.TabIndex = 31;
             this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox4_KeyPress);
             // 
             // dataGridView1
             // 
@@ -162,15 +162,14 @@
             this.listBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
             this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listBox1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.listBox1.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBox1.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBox1.ForeColor = System.Drawing.Color.White;
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 39;
+            this.listBox1.ItemHeight = 33;
             this.listBox1.Location = new System.Drawing.Point(590, 0);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(373, 543);
             this.listBox1.TabIndex = 34;
-            this.listBox1.DoubleClick += new System.EventHandler(this.listBox1_DoubleClick);
             // 
             // button1
             // 
@@ -184,7 +183,6 @@
             this.button1.TabIndex = 35;
             this.button1.Text = "Izmeni mušteriju";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // button2
             // 
@@ -198,7 +196,6 @@
             this.button2.TabIndex = 36;
             this.button2.Text = "Otvori novi račun";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label5
             // 
@@ -230,8 +227,6 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(237, 30);
             this.comboBox1.TabIndex = 39;
-            this.comboBox1.DropDown += new System.EventHandler(this.comboBox1_DropDown);
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -243,37 +238,37 @@
             this.label7.TabIndex = 40;
             this.label7.Text = "Otvoreni računi:";
             // 
-            // button3
+            // btnObrisiMusteriju
             // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
-            this.button3.Location = new System.Drawing.Point(554, 270);
-            this.button3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(122, 112);
-            this.button3.TabIndex = 42;
-            this.button3.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.btnObrisiMusteriju.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.btnObrisiMusteriju.FlatAppearance.BorderSize = 0;
+            this.btnObrisiMusteriju.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnObrisiMusteriju.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnObrisiMusteriju.Image = ((System.Drawing.Image)(resources.GetObject("btnObrisiMusteriju.Image")));
+            this.btnObrisiMusteriju.Location = new System.Drawing.Point(554, 270);
+            this.btnObrisiMusteriju.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnObrisiMusteriju.Name = "btnObrisiMusteriju";
+            this.btnObrisiMusteriju.Size = new System.Drawing.Size(122, 112);
+            this.btnObrisiMusteriju.TabIndex = 42;
+            this.btnObrisiMusteriju.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnObrisiMusteriju.UseVisualStyleBackColor = false;
+            this.btnObrisiMusteriju.Click += new System.EventHandler(this.btnObrisiMusteriju_Click);
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.panel2);
-            this.panel1.Controls.Add(this.textBox2);
-            this.panel1.Controls.Add(this.textBox1);
-            this.panel1.Controls.Add(this.button3);
-            this.panel1.Controls.Add(this.textBox3);
+            this.panel1.Controls.Add(this.txtBoxBrojTel);
+            this.panel1.Controls.Add(this.txtBoxImePrezime);
+            this.panel1.Controls.Add(this.btnObrisiMusteriju);
+            this.panel1.Controls.Add(this.txtBoxAdresa);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.textBox4);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.btnDodaj);
-            this.panel1.Location = new System.Drawing.Point(3, 13);
+            this.panel1.Controls.Add(this.btnDodajMusteriju);
+            this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(679, 530);
             this.panel1.TabIndex = 44;
@@ -292,23 +287,18 @@
             this.panel2.Size = new System.Drawing.Size(679, 102);
             this.panel2.TabIndex = 45;
             // 
-            // dodavanjeTepihaControl1
+            // _TepisiBaza_2018DataSet11
             // 
-            this.dodavanjeTepihaControl1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dodavanjeTepihaControl1.Location = new System.Drawing.Point(0, 0);
-            this.dodavanjeTepihaControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.dodavanjeTepihaControl1.Name = "dodavanjeTepihaControl1";
-            this.dodavanjeTepihaControl1.Size = new System.Drawing.Size(1062, 618);
-            this.dodavanjeTepihaControl1.TabIndex = 51;
+            this._TepisiBaza_2018DataSet11.DataSetName = "_TepisiBaza_2018DataSet1";
+            this._TepisiBaza_2018DataSet11.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // DodavanjeMusterijeControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.dodavanjeTepihaControl1);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.listBox1);
             this.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "DodavanjeMusterijeControl";
@@ -318,6 +308,7 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._TepisiBaza_2018DataSet11)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -327,10 +318,10 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button btnDodaj;
+        private System.Windows.Forms.TextBox txtBoxAdresa;
+        private System.Windows.Forms.TextBox txtBoxBrojTel;
+        private System.Windows.Forms.TextBox txtBoxImePrezime;
+        private System.Windows.Forms.Button btnDodajMusteriju;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label2;
@@ -341,9 +332,9 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnObrisiMusteriju;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private DodavanjeTepihaControl dodavanjeTepihaControl1;
+        private _TepisiBaza_2018DataSet1 _TepisiBaza_2018DataSet11;
     }
 }

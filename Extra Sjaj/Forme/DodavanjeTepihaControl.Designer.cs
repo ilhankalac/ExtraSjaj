@@ -46,10 +46,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -85,7 +83,6 @@
             this.btnDodajTepih.TabIndex = 16;
             this.btnDodajTepih.Text = "Dodaj tepih";
             this.btnDodajTepih.UseVisualStyleBackColor = false;
-            this.btnDodajTepih.Click += new System.EventHandler(this.btnDodajTepih_Click_1);
             // 
             // label4
             // 
@@ -155,7 +152,6 @@
             this.btnNaplati.TabIndex = 10;
             this.btnNaplati.Text = "Naplati";
             this.btnNaplati.UseVisualStyleBackColor = true;
-            this.btnNaplati.Click += new System.EventHandler(this.btnNaplati_Click_1);
             // 
             // comboBox1
             // 
@@ -180,7 +176,6 @@
             this.comboBox1.Size = new System.Drawing.Size(48, 24);
             this.comboBox1.TabIndex = 18;
             this.comboBox1.Text = "1";
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged_1);
             // 
             // panel2
             // 
@@ -220,7 +215,6 @@
             this.button1.TabIndex = 21;
             this.button1.Text = "Vrati se nazad";
             this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // listBox1
             // 
@@ -273,22 +267,11 @@
             this.label6.TabIndex = 11;
             this.label6.Text = "Plaćeno:";
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(31, 109);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(80, 98);
-            this.dataGridView1.TabIndex = 11;
-            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
-            // 
             // DodavanjeTepihaControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.dataGridView1);
             this.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "DodavanjeTepihaControl";
@@ -297,7 +280,6 @@
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -321,6 +303,5 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
