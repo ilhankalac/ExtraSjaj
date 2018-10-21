@@ -50,10 +50,10 @@ namespace ExtraSjaj.Forme
 
         public void dodajTepih()
         {
-            var racun = _context.Racuni.Where(x=> x.Id == racunID).SingleOrDefault();
+            
             Tepih tepih = new Tepih()
             {
-                Duzina = Convert.ToSingle( txtBoxSirina.Text),
+                Duzina = Convert.ToSingle( txtBoxDuzina.Text),
                 Sirina = Convert.ToSingle(txtBoxSirina.Text),
                 Kvadratura = Convert.ToSingle(txtBoxSirina.Text) * Convert.ToSingle(txtBoxDuzina.Text),
                 RacunId = racunID
@@ -66,9 +66,7 @@ namespace ExtraSjaj.Forme
                 _context.SaveChanges();
                 //update vrijednosti racuna u tabeli racuni
                 //ovde ces trebati da dodas jos sa cijenom da se mnozi
-                racun.Vrijednost += tepih.Kvadratura;
-                _context.SaveChanges();
-
+                updateVrijednostiRacuna();
                 iscitavanjeTepiha(racunID);
             }
             catch (Exception ex)
@@ -89,6 +87,7 @@ namespace ExtraSjaj.Forme
                     _context.Tepisi.Remove(tepihZaBrisanje);
                     _context.SaveChanges();
                     MessageBox.Show("Uspešno brisanje tepiha.", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    updateVrijednostiRacuna();
                     iscitavanjeTepiha(racunID);
                 }
 
@@ -97,6 +96,16 @@ namespace ExtraSjaj.Forme
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void updateVrijednostiRacuna()
+        {
+            var racun = _context.Racuni.Where(x => x.Id == racunID).SingleOrDefault();
+            var sviTepisi = _context.Tepisi.Where(x => x.RacunId == racunID).ToList();
+            racun.Vrijednost = 0;
+            foreach (var item in sviTepisi)
+                racun.Vrijednost += item.Kvadratura;
+            _context.SaveChanges();
         }
         void sakrijObjekteNaKontroli()
         {
@@ -129,6 +138,10 @@ namespace ExtraSjaj.Forme
             txtBoxDuzina.Clear();
         }
 
-        
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            frmPocetna frm = new frmPocetna();
+            frm.ShowDialog();
+        }
     }
 }

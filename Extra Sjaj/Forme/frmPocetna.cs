@@ -24,12 +24,11 @@ namespace ExtraSjaj
             InitializeComponent();
             _context = new ModelContext();
             _context.Racuni.Load();
-            listaRacuna.Visible = false;
             dodavanjeTepihaControl1.Visible = false;
             this.musterijasBindingSource3.DataSource = _context.Musterije.Local.ToBindingList();
-          
+            iscitavanjeRacunaMusterija();
         }
-        void iscitavanjeRacunaMusterija()
+        public void iscitavanjeRacunaMusterija()
         {
             listaRacuna.Items.Clear();
             int i = 1;
@@ -87,17 +86,29 @@ namespace ExtraSjaj
 
         private void btnRacuni_Click(object sender, EventArgs e)
         {
+            timer1.Enabled = false;
+            listaRacuna.Width = 490;
+            listaRacuna.Height = 603;
             iscitavanjeRacunaMusterija();
+            dodavanjeMusterijeControl1.Visible = false;
             listaRacuna.Visible = true;
         }
 
         private void listaRacuna_DoubleClick(object sender, EventArgs e)
         {
+            this.timer1.Enabled = true;
             int racunID = listaID[listaRacuna.SelectedIndices[0]];
             dodavanjeTepihaControl1.iscitavanjeTepiha(racunID);
             dodavanjeTepihaControl1.Visible = true;
-         
+            
+        }
 
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (listaRacuna.Height < 0)
+                this.timer1.Enabled = false;
+            else
+                listaRacuna.Width -= 200;
         }
     }
     }

@@ -52,11 +52,12 @@
             this.musterijasBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.listaRacuna = new System.Windows.Forms.ListView();
             this.button6 = new System.Windows.Forms.Button();
+            this.cmbBrojaRacuna = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.dodavanjeTepihaControl1 = new ExtraSjaj.Forme.DodavanjeTepihaControl();
             this.btnHomePage = new ExtraSjaj.Forme.ArhivaMusterijaControl();
             this.dodavanjeMusterijeControl1 = new ExtraSjaj.Forme.DodavanjeMusterijeControl();
-            this.cmbBrojaRacuna = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._TepisiBaza_2018DataSet1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -289,6 +290,32 @@
             this.button6.Text = "Računi ovog mjeseca";
             this.button6.UseVisualStyleBackColor = true;
             // 
+            // cmbBrojaRacuna
+            // 
+            this.cmbBrojaRacuna.FormattingEnabled = true;
+            this.cmbBrojaRacuna.Items.AddRange(new object[] {
+            "50",
+            "100",
+            "200"});
+            this.cmbBrojaRacuna.Location = new System.Drawing.Point(683, 298);
+            this.cmbBrojaRacuna.Name = "cmbBrojaRacuna";
+            this.cmbBrojaRacuna.Size = new System.Drawing.Size(59, 24);
+            this.cmbBrojaRacuna.TabIndex = 27;
+            this.cmbBrojaRacuna.Text = "50";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(680, 279);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(133, 16);
+            this.label3.TabIndex = 28;
+            this.label3.Text = "Broj računa za pregled:";
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // dodavanjeTepihaControl1
             // 
             this.dodavanjeTepihaControl1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -314,28 +341,6 @@
             this.dodavanjeMusterijeControl1.Name = "dodavanjeMusterijeControl1";
             this.dodavanjeMusterijeControl1.Size = new System.Drawing.Size(1059, 684);
             this.dodavanjeMusterijeControl1.TabIndex = 22;
-            // 
-            // cmbBrojaRacuna
-            // 
-            this.cmbBrojaRacuna.FormattingEnabled = true;
-            this.cmbBrojaRacuna.Items.AddRange(new object[] {
-            "50",
-            "100",
-            "200"});
-            this.cmbBrojaRacuna.Location = new System.Drawing.Point(683, 298);
-            this.cmbBrojaRacuna.Name = "cmbBrojaRacuna";
-            this.cmbBrojaRacuna.Size = new System.Drawing.Size(59, 24);
-            this.cmbBrojaRacuna.TabIndex = 27;
-            this.cmbBrojaRacuna.Text = "50";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(680, 279);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(133, 16);
-            this.label3.TabIndex = 28;
-            this.label3.Text = "Broj računa za pregled:";
             // 
             // frmPocetna
             // 
@@ -404,6 +409,7 @@
         private Forme.ArhivaMusterijaControl btnHomePage;
         private System.Windows.Forms.ComboBox cmbBrojaRacuna;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 
