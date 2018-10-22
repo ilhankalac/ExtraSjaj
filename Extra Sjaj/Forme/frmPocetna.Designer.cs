@@ -140,7 +140,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1246, 48);
+            this.panel1.Size = new System.Drawing.Size(1247, 48);
             this.panel1.TabIndex = 19;
             // 
             // closeButton
@@ -165,7 +165,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 48);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1246, 73);
+            this.panel2.Size = new System.Drawing.Size(1247, 73);
             this.panel2.TabIndex = 20;
             // 
             // button3
@@ -218,7 +218,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 121);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(184, 603);
+            this.panel3.Size = new System.Drawing.Size(188, 558);
             this.panel3.TabIndex = 21;
             // 
             // btnRacuni
@@ -271,9 +271,10 @@
             this.listaRacuna.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
             this.listaRacuna.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listaRacuna.ForeColor = System.Drawing.SystemColors.Info;
-            this.listaRacuna.Location = new System.Drawing.Point(184, 121);
+            this.listaRacuna.Location = new System.Drawing.Point(218, 121);
             this.listaRacuna.Name = "listaRacuna";
-            this.listaRacuna.Size = new System.Drawing.Size(490, 603);
+            this.listaRacuna.Scrollable = false;
+            this.listaRacuna.Size = new System.Drawing.Size(369, 603);
             this.listaRacuna.TabIndex = 25;
             this.listaRacuna.UseCompatibleStateImageBehavior = false;
             this.listaRacuna.View = System.Windows.Forms.View.Tile;
@@ -319,7 +320,7 @@
             // dodavanjeTepihaControl1
             // 
             this.dodavanjeTepihaControl1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dodavanjeTepihaControl1.Location = new System.Drawing.Point(396, 120);
+            this.dodavanjeTepihaControl1.Location = new System.Drawing.Point(397, 76);
             this.dodavanjeTepihaControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dodavanjeTepihaControl1.Name = "dodavanjeTepihaControl1";
             this.dodavanjeTepihaControl1.Size = new System.Drawing.Size(850, 604);
@@ -327,7 +328,7 @@
             // 
             // btnHomePage
             // 
-            this.btnHomePage.Location = new System.Drawing.Point(215, 149);
+            this.btnHomePage.Location = new System.Drawing.Point(187, 122);
             this.btnHomePage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnHomePage.Name = "btnHomePage";
             this.btnHomePage.Size = new System.Drawing.Size(1689, 1116);
@@ -336,17 +337,17 @@
             // dodavanjeMusterijeControl1
             // 
             this.dodavanjeMusterijeControl1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dodavanjeMusterijeControl1.Location = new System.Drawing.Point(184, 120);
+            this.dodavanjeMusterijeControl1.Location = new System.Drawing.Point(203, 120);
             this.dodavanjeMusterijeControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dodavanjeMusterijeControl1.Name = "dodavanjeMusterijeControl1";
-            this.dodavanjeMusterijeControl1.Size = new System.Drawing.Size(1059, 684);
+            this.dodavanjeMusterijeControl1.Size = new System.Drawing.Size(1043, 591);
             this.dodavanjeMusterijeControl1.TabIndex = 22;
             // 
             // frmPocetna
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1246, 724);
+            this.ClientSize = new System.Drawing.Size(1247, 679);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cmbBrojaRacuna);
             this.Controls.Add(this.button6);

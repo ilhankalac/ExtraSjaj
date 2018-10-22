@@ -16,13 +16,15 @@ namespace ExtraSjaj.Forme
     public partial class DodavanjeMusterijeControl : UserControl
     {
         ModelContext _context;
-        List<int> idLista;
+        List<int> listaID;
+        int IDRacunaMusterije;
         public DodavanjeMusterijeControl()
         {
             InitializeComponent();
             _context = new ModelContext();
             _context.Musterije.Load();
             iscitavanjeMusterija();
+            
         }
 
         private void btnDodajMusteriju_Click(object sender, EventArgs e)
@@ -43,10 +45,12 @@ namespace ExtraSjaj.Forme
             try
             {
                 prikazInformacijaMusterijeNakonKlikaNaListBox();
+                iscitavanjeRacunaSelektovanogMusterije(listaID[listBoxMusterija.SelectedIndices[0]]);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Niste korektno izabrali mušteriju.");
+               
+                MessageBox.Show(ex.Message+" Niste korektno izabrali mušteriju.");
             }
            
         }
@@ -55,13 +59,13 @@ namespace ExtraSjaj.Forme
         {
             listBoxMusterija.Items.Clear();
             int i = 1;
-            idLista = new List<int>();
+            listaID = new List<int>();
             foreach (var item in _context.Musterije.ToList())
             {
                 listBoxMusterija.Items.Add((i++) + ". " + item.ImePrezime + " (" + item.BrojTelefona + " )");
-                idLista.Add(item.Id);
+                listaID.Add(item.Id);
             }
-         
+
         }
         private void dodajMusteriju()
         {
@@ -88,7 +92,7 @@ namespace ExtraSjaj.Forme
         }
        private void brisanjeMusterije()
         {
-            int idZaBrisanje = idLista[listBoxMusterija.SelectedIndices[0]];
+            int idZaBrisanje = listaID[listBoxMusterija.SelectedIndices[0]];
             Musterija musterijaZaBrisanje = _context.Musterije.SingleOrDefault(x => x.Id == idZaBrisanje);
             try
             {
@@ -125,7 +129,7 @@ namespace ExtraSjaj.Forme
         }
         private void updateMusterije()
         {
-            int idZaUpdate = idLista[listBoxMusterija.SelectedIndices[0]];
+            int idZaUpdate = listaID[listBoxMusterija.SelectedIndices[0]];
             Musterija stariMusterija = _context.Musterije.SingleOrDefault(x => x.Id == idZaUpdate);
 
             try
@@ -145,12 +149,28 @@ namespace ExtraSjaj.Forme
         }
         void prikazInformacijaMusterijeNakonKlikaNaListBox()
         {
-            int idSelektovanogMusterije = idLista[listBoxMusterija.SelectedIndices[0]];
+            int idSelektovanogMusterije = listaID[listBoxMusterija.SelectedIndices[0]];
             Musterija stariMusterija = _context.Musterije.SingleOrDefault(x => x.Id == idSelektovanogMusterije);
             txtBoxImePrezime.Text = stariMusterija.ImePrezime;
             txtBoxAdresa.Text = stariMusterija.Adresa;
             txtBoxBrojTel.Text = stariMusterija.BrojTelefona;
         }
-
+        public void iscitavanjeRacunaSelektovanogMusterije(int IDMusterija)
+        {
+            listaViewRacuna.Items.Clear();
+            int i = 1;
+            int j = 0;
+            foreach (var item in _context.Racuni.ToList().Where(x=> x.MusterijaId==IDMusterija))
+            {
+                listaViewRacuna.Items.Add((i++) +". "+ item.Vrijednost + " EUR. - " + item.VrijemeKreiranjaRacuna.ToShortDateString());
+                IDRacunaMusterije = item.Id;
+                if (item.Placen)
+                    listaViewRacuna.Items[j].BackColor = Color.Green;
+                else
+                    listaViewRacuna.Items[j].BackColor = Color.Red;
+                j++;
+            }
+        }
+     
     }
 }
