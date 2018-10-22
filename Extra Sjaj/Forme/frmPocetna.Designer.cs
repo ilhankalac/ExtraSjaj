@@ -218,7 +218,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 121);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(188, 583);
+            this.panel3.Size = new System.Drawing.Size(182, 583);
             this.panel3.TabIndex = 21;
             // 
             // btnRacuni
@@ -269,11 +269,12 @@
             // listaRacuna
             // 
             this.listaRacuna.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.listaRacuna.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listaRacuna.Dock = System.Windows.Forms.DockStyle.Left;
+            this.listaRacuna.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listaRacuna.ForeColor = System.Drawing.SystemColors.Info;
-            this.listaRacuna.Location = new System.Drawing.Point(218, 121);
+            this.listaRacuna.Location = new System.Drawing.Point(182, 121);
             this.listaRacuna.Name = "listaRacuna";
-            this.listaRacuna.Size = new System.Drawing.Size(498, 603);
+            this.listaRacuna.Size = new System.Drawing.Size(554, 583);
             this.listaRacuna.TabIndex = 25;
             this.listaRacuna.UseCompatibleStateImageBehavior = false;
             this.listaRacuna.View = System.Windows.Forms.View.Tile;
@@ -305,7 +306,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(754, 281);
+            this.label3.Location = new System.Drawing.Point(742, 281);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(133, 16);
             this.label3.TabIndex = 28;
@@ -319,7 +320,7 @@
             // dodavanjeTepihaControl1
             // 
             this.dodavanjeTepihaControl1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dodavanjeTepihaControl1.Location = new System.Drawing.Point(185, 120);
+            this.dodavanjeTepihaControl1.Location = new System.Drawing.Point(393, 120);
             this.dodavanjeTepihaControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dodavanjeTepihaControl1.Name = "dodavanjeTepihaControl1";
             this.dodavanjeTepihaControl1.Size = new System.Drawing.Size(850, 604);
