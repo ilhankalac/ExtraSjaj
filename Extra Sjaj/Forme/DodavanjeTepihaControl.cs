@@ -52,6 +52,10 @@ namespace ExtraSjaj.Forme
         {
             updateRacun();
         }
+        private void btnNaplati_Click(object sender, EventArgs e)
+        {
+            naplati();
+       }
 
         public void dodajTepih()
         {
@@ -113,6 +117,8 @@ namespace ExtraSjaj.Forme
             labelRacun.Text +=" "+ racun.Vrijednost+" EUR.";
             labelImePrezime.Text = musterija.ImePrezime;
             labelPlaceno.Text +=Convert.ToString(racun.Placen);
+
+            textBoxNaplate.Text = racun.Vrijednost.ToString();
         }
 
         private void updateRacun()
@@ -136,6 +142,35 @@ namespace ExtraSjaj.Forme
 
                 MessageBox.Show(ex.Message);
             }
+        }
+        private void naplati()
+        {
+            var racun = _context.Racuni.Where(x => x.Id == racunID).SingleOrDefault();
+            try
+            {
+                DialogResult dialogResult = MessageBox.Show("Da li si siguran da je mušterija platio?", "Poruka", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                if ((dialogResult == DialogResult.Yes) && Convert.ToDouble(textBoxNaplate.Text) <= racun.Vrijednost && Convert.ToDouble(textBoxNaplate.Text) > 0)
+                {
+                    if ((racun.Vrijednost - Convert.ToSingle(textBoxNaplate.Text) == 0))
+                        racun.Placen = true;
+                    else
+                        racun.Vrijednost -= Convert.ToSingle(textBoxNaplate.Text);
+                    sakrijObjekteNaKontroli();
+                    _context.SaveChanges();
+                    MessageBox.Show("Uspešno naplaćeno.", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else if (Convert.ToDouble(textBoxNaplate.Text) > racun.Vrijednost || Convert.ToDouble(textBoxNaplate.Text) < 0)
+                {
+                    MessageBox.Show("Ispravno unesi koliko је mušterija ostavio novca.(ne mozeš uneti negativan broj, niti više od njegovog računa.");
+                }
+              
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+
         }
         void sakrijObjekteNaKontroli()
         {
@@ -167,7 +202,5 @@ namespace ExtraSjaj.Forme
         }
 
 
-
-        
     }
 }

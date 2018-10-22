@@ -274,7 +274,7 @@
             this.listaRacuna.ForeColor = System.Drawing.SystemColors.Info;
             this.listaRacuna.Location = new System.Drawing.Point(182, 121);
             this.listaRacuna.Name = "listaRacuna";
-            this.listaRacuna.Size = new System.Drawing.Size(554, 583);
+            this.listaRacuna.Size = new System.Drawing.Size(490, 583);
             this.listaRacuna.TabIndex = 25;
             this.listaRacuna.UseCompatibleStateImageBehavior = false;
             this.listaRacuna.View = System.Windows.Forms.View.Tile;

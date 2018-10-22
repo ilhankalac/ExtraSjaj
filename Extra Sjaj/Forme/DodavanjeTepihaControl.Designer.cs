@@ -41,6 +41,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.labelPlaceno = new System.Windows.Forms.Label();
+            this.textBoxNaplate = new System.Windows.Forms.TextBox();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -124,6 +125,7 @@
             this.btnNaplati.TabIndex = 10;
             this.btnNaplati.Text = "Naplati";
             this.btnNaplati.UseVisualStyleBackColor = false;
+            this.btnNaplati.Click += new System.EventHandler(this.btnNaplati_Click);
             // 
             // comboBoxCijena
             // 
@@ -183,6 +185,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.textBoxNaplate);
             this.panel1.Controls.Add(this.comboBoxCijena);
             this.panel1.Controls.Add(this.btnNaplati);
             this.panel1.Controls.Add(this.label3);
@@ -218,6 +221,16 @@
             this.labelPlaceno.TabIndex = 11;
             this.labelPlaceno.Text = "Plaćeno:";
             // 
+            // textBoxNaplate
+            // 
+            this.textBoxNaplate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxNaplate.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxNaplate.Location = new System.Drawing.Point(265, 86);
+            this.textBoxNaplate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxNaplate.Name = "textBoxNaplate";
+            this.textBoxNaplate.Size = new System.Drawing.Size(48, 33);
+            this.textBoxNaplate.TabIndex = 23;
+            // 
             // DodavanjeTepihaControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -249,5 +262,6 @@
         private System.Windows.Forms.Label labelPlaceno;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ListBox listBoxTepiha;
+        private System.Windows.Forms.TextBox textBoxNaplate;
     }
 }
