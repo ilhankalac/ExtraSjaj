@@ -58,6 +58,8 @@ namespace ExtraSjaj
         }
         private void prikaziOpcijeSaMusterijama(object sender, EventArgs e)
         {
+            _context = new ModelContext();
+            _context.Racuni.Load();
             btnHomePage.Visible = false;
             dodavanjeTepihaControl1.Visible = false;
             dodavanjeMusterijeControl1.Visible = true;
@@ -88,6 +90,8 @@ namespace ExtraSjaj
 
         private void btnRacuni_Click(object sender, EventArgs e)
         {
+            _context = new ModelContext();
+            _context.Racuni.Load();
             timer1.Enabled = false;
             listaRacuna.Width = 490;
             listaRacuna.Height = 603;

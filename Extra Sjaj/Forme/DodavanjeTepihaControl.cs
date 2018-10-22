@@ -140,8 +140,7 @@ namespace ExtraSjaj.Forme
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            frmPocetna frm = new frmPocetna();
-            frm.ShowDialog();
+            
         }
     }
 }

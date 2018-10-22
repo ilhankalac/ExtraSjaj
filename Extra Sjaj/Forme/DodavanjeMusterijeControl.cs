@@ -44,6 +44,7 @@ namespace ExtraSjaj.Forme
         {
             try
             {
+                _context.Musterije.Load();
                 prikazInformacijaMusterijeNakonKlikaNaListBox();
                 iscitavanjeRacunaSelektovanogMusterije(listaID[listBoxMusterija.SelectedIndices[0]]);
             }
@@ -54,7 +55,12 @@ namespace ExtraSjaj.Forme
             }
            
         }
-       
+        private void btnKreirajNoviRacun_Click(object sender, EventArgs e)
+        {
+            kreiranjeNovogRacuna(listaID[listBoxMusterija.SelectedIndices[0]]);
+            iscitavanjeRacunaSelektovanogMusterije(listaID[listBoxMusterija.SelectedIndices[0]]);
+        }
+
         private  void iscitavanjeMusterija()
         {
             listBoxMusterija.Items.Clear();
@@ -127,6 +133,27 @@ namespace ExtraSjaj.Forme
                 MessageBox.Show(ex.Message);
             }
         }
+        private void kreiranjeNovogRacuna(int IDMusterije)
+        {
+            try
+            {
+                _context.Racuni.Add(new Racun()
+                {
+                    MusterijaId = IDMusterije,
+                    BrojTepiha = 0,
+                    Placen = false,
+                    Vrijednost = 0,
+                    VrijemeKreiranjaRacuna = DateTime.Now
+                }
+                );
+                _context.SaveChanges();
+                MessageBox.Show("Uspešno napravljen  novi račun!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         private void updateMusterije()
         {
             int idZaUpdate = listaID[listBoxMusterija.SelectedIndices[0]];
@@ -171,6 +198,7 @@ namespace ExtraSjaj.Forme
                 j++;
             }
         }
-     
+
+      
     }
 }

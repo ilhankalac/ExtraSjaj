@@ -140,7 +140,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1247, 48);
+            this.panel1.Size = new System.Drawing.Size(1243, 48);
             this.panel1.TabIndex = 19;
             // 
             // closeButton
@@ -165,7 +165,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 48);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1247, 73);
+            this.panel2.Size = new System.Drawing.Size(1243, 73);
             this.panel2.TabIndex = 20;
             // 
             // button3
@@ -218,7 +218,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 121);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(188, 558);
+            this.panel3.Size = new System.Drawing.Size(188, 583);
             this.panel3.TabIndex = 21;
             // 
             // btnRacuni
@@ -273,8 +273,7 @@
             this.listaRacuna.ForeColor = System.Drawing.SystemColors.Info;
             this.listaRacuna.Location = new System.Drawing.Point(218, 121);
             this.listaRacuna.Name = "listaRacuna";
-            this.listaRacuna.Scrollable = false;
-            this.listaRacuna.Size = new System.Drawing.Size(369, 603);
+            this.listaRacuna.Size = new System.Drawing.Size(498, 603);
             this.listaRacuna.TabIndex = 25;
             this.listaRacuna.UseCompatibleStateImageBehavior = false;
             this.listaRacuna.View = System.Windows.Forms.View.Tile;
@@ -283,7 +282,7 @@
             // button6
             // 
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Location = new System.Drawing.Point(680, 169);
+            this.button6.Location = new System.Drawing.Point(725, 171);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(79, 94);
             this.button6.TabIndex = 26;
@@ -297,7 +296,7 @@
             "50",
             "100",
             "200"});
-            this.cmbBrojaRacuna.Location = new System.Drawing.Point(683, 298);
+            this.cmbBrojaRacuna.Location = new System.Drawing.Point(745, 300);
             this.cmbBrojaRacuna.Name = "cmbBrojaRacuna";
             this.cmbBrojaRacuna.Size = new System.Drawing.Size(59, 24);
             this.cmbBrojaRacuna.TabIndex = 27;
@@ -306,7 +305,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(680, 279);
+            this.label3.Location = new System.Drawing.Point(754, 281);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(133, 16);
             this.label3.TabIndex = 28;
@@ -320,7 +319,7 @@
             // dodavanjeTepihaControl1
             // 
             this.dodavanjeTepihaControl1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dodavanjeTepihaControl1.Location = new System.Drawing.Point(397, 76);
+            this.dodavanjeTepihaControl1.Location = new System.Drawing.Point(185, 120);
             this.dodavanjeTepihaControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dodavanjeTepihaControl1.Name = "dodavanjeTepihaControl1";
             this.dodavanjeTepihaControl1.Size = new System.Drawing.Size(850, 604);
@@ -328,7 +327,7 @@
             // 
             // btnHomePage
             // 
-            this.btnHomePage.Location = new System.Drawing.Point(187, 122);
+            this.btnHomePage.Location = new System.Drawing.Point(185, 122);
             this.btnHomePage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnHomePage.Name = "btnHomePage";
             this.btnHomePage.Size = new System.Drawing.Size(1689, 1116);
@@ -340,14 +339,14 @@
             this.dodavanjeMusterijeControl1.Location = new System.Drawing.Point(203, 120);
             this.dodavanjeMusterijeControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dodavanjeMusterijeControl1.Name = "dodavanjeMusterijeControl1";
-            this.dodavanjeMusterijeControl1.Size = new System.Drawing.Size(1043, 591);
+            this.dodavanjeMusterijeControl1.Size = new System.Drawing.Size(1043, 616);
             this.dodavanjeMusterijeControl1.TabIndex = 22;
             // 
             // frmPocetna
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1247, 679);
+            this.ClientSize = new System.Drawing.Size(1243, 704);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cmbBrojaRacuna);
             this.Controls.Add(this.button6);
@@ -364,7 +363,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "frmPocetna";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Extra Sjaj";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._TepisiBaza_2018DataSet1)).EndInit();

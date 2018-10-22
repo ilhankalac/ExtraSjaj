@@ -42,11 +42,12 @@
             this.btnUpdateMusterija = new System.Windows.Forms.Button();
             this.btnObrisiMusteriju = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnKreirajNoviRacun = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.listaViewRacuna = new System.Windows.Forms.ListView();
             this._TepisiBaza_2018DataSet11 = new ExtraSjaj._TepisiBaza_2018DataSet1();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._TepisiBaza_2018DataSet11)).BeginInit();
@@ -150,10 +151,10 @@
             this.listBoxMusterija.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
             this.listBoxMusterija.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listBoxMusterija.Dock = System.Windows.Forms.DockStyle.Right;
-            this.listBoxMusterija.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBoxMusterija.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxMusterija.ForeColor = System.Drawing.Color.White;
             this.listBoxMusterija.FormattingEnabled = true;
-            this.listBoxMusterija.ItemHeight = 33;
+            this.listBoxMusterija.ItemHeight = 24;
             this.listBoxMusterija.Location = new System.Drawing.Point(518, 0);
             this.listBoxMusterija.Name = "listBoxMusterija";
             this.listBoxMusterija.Size = new System.Drawing.Size(426, 596);
@@ -192,6 +193,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnKreirajNoviRacun);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.txtBoxBrojTel);
@@ -210,6 +212,29 @@
             this.panel1.Size = new System.Drawing.Size(587, 540);
             this.panel1.TabIndex = 44;
             // 
+            // btnKreirajNoviRacun
+            // 
+            this.btnKreirajNoviRacun.FlatAppearance.BorderSize = 0;
+            this.btnKreirajNoviRacun.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnKreirajNoviRacun.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnKreirajNoviRacun.Location = new System.Drawing.Point(436, 320);
+            this.btnKreirajNoviRacun.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnKreirajNoviRacun.Name = "btnKreirajNoviRacun";
+            this.btnKreirajNoviRacun.Size = new System.Drawing.Size(126, 60);
+            this.btnKreirajNoviRacun.TabIndex = 47;
+            this.btnKreirajNoviRacun.Text = "Kreiraj novi račun";
+            this.btnKreirajNoviRacun.UseVisualStyleBackColor = true;
+            this.btnKreirajNoviRacun.Click += new System.EventHandler(this.btnKreirajNoviRacun_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(416, 12);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(96, 16);
+            this.label5.TabIndex = 46;
+            this.label5.Text = "Otvoreni računi:";
+            // 
             // panel2
             // 
             this.panel2.AutoSize = true;
@@ -217,7 +242,7 @@
             this.panel2.Controls.Add(this.listaViewRacuna);
             this.panel2.Location = new System.Drawing.Point(396, 31);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(246, 368);
+            this.panel2.Size = new System.Drawing.Size(269, 282);
             this.panel2.TabIndex = 45;
             // 
             // listaViewRacuna
@@ -229,7 +254,7 @@
             this.listaViewRacuna.Location = new System.Drawing.Point(0, 0);
             this.listaViewRacuna.Name = "listaViewRacuna";
             this.listaViewRacuna.Scrollable = false;
-            this.listaViewRacuna.Size = new System.Drawing.Size(246, 368);
+            this.listaViewRacuna.Size = new System.Drawing.Size(269, 282);
             this.listaViewRacuna.TabIndex = 0;
             this.listaViewRacuna.UseCompatibleStateImageBehavior = false;
             this.listaViewRacuna.View = System.Windows.Forms.View.List;
@@ -246,15 +271,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(617, 224);
             this.panel3.TabIndex = 46;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(393, 12);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(96, 16);
-            this.label5.TabIndex = 46;
-            this.label5.Text = "Otvoreni računi:";
             // 
             // DodavanjeMusterijeControl
             // 
@@ -295,5 +311,6 @@
         private System.Windows.Forms.ListView listaViewRacuna;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnKreirajNoviRacun;
     }
 }
