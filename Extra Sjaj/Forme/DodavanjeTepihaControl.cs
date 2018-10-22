@@ -155,7 +155,8 @@ namespace ExtraSjaj.Forme
                         racun.Placen = true;
                     else
                         racun.Vrijednost -= Convert.ToSingle(textBoxNaplate.Text);
-                    sakrijObjekteNaKontroli();
+
+
                     _context.SaveChanges();
                     MessageBox.Show("Uspešno naplaćeno.", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
