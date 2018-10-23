@@ -199,6 +199,21 @@ namespace ExtraSjaj.Forme
             }
         }
 
-      
+        private void textBoxPretrazivanja_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            listBoxMusterija.Items.Clear();
+            listaID.Clear();
+            int i = 1;
+            var rezultatPretrage = _context.Musterije
+                            .Where(x => x.ImePrezime.Contains(textBoxPretrazivanja.Text))
+                            .ToList();
+
+            foreach (var item in rezultatPretrage)
+            {
+                listBoxMusterija.Items.Add((i++) + ". " + item.ImePrezime + " (" + item.BrojTelefona + " )");
+                listaID.Add(item.Id);
+            }
+
+        }
     }
 }

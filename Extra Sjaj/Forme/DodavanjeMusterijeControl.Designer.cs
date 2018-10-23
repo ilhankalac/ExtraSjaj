@@ -36,7 +36,7 @@
             this.txtBoxBrojTel = new System.Windows.Forms.TextBox();
             this.txtBoxImePrezime = new System.Windows.Forms.TextBox();
             this.btnDodajMusteriju = new System.Windows.Forms.Button();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBoxPretrazivanja = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.listBoxMusterija = new System.Windows.Forms.ListBox();
             this.btnUpdateMusterija = new System.Windows.Forms.Button();
@@ -125,16 +125,17 @@
             this.btnDodajMusteriju.UseVisualStyleBackColor = false;
             this.btnDodajMusteriju.Click += new System.EventHandler(this.btnDodajMusteriju_Click);
             // 
-            // textBox4
+            // textBoxPretrazivanja
             // 
-            this.textBox4.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(116, 23);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.textBox4.Size = new System.Drawing.Size(226, 42);
-            this.textBox4.TabIndex = 31;
-            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBoxPretrazivanja.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxPretrazivanja.Location = new System.Drawing.Point(116, 23);
+            this.textBoxPretrazivanja.Multiline = true;
+            this.textBoxPretrazivanja.Name = "textBoxPretrazivanja";
+            this.textBoxPretrazivanja.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.textBoxPretrazivanja.Size = new System.Drawing.Size(226, 42);
+            this.textBoxPretrazivanja.TabIndex = 31;
+            this.textBoxPretrazivanja.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBoxPretrazivanja.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxPretrazivanja_KeyPress);
             // 
             // label2
             // 
@@ -203,7 +204,7 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.textBox4);
+            this.panel1.Controls.Add(this.textBoxPretrazivanja);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.btnUpdateMusterija);
             this.panel1.Controls.Add(this.btnDodajMusteriju);
@@ -300,7 +301,7 @@
         private System.Windows.Forms.TextBox txtBoxBrojTel;
         private System.Windows.Forms.TextBox txtBoxImePrezime;
         private System.Windows.Forms.Button btnDodajMusteriju;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBoxPretrazivanja;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ListBox listBoxMusterija;
         private System.Windows.Forms.Button btnUpdateMusterija;

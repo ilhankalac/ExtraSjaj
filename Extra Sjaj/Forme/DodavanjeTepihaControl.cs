@@ -151,6 +151,7 @@ namespace ExtraSjaj.Forme
                 DialogResult dialogResult = MessageBox.Show("Da li si siguran da je mušterija platio?", "Poruka", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 if ((dialogResult == DialogResult.Yes) && Convert.ToDouble(textBoxNaplate.Text) <= racun.Vrijednost && Convert.ToDouble(textBoxNaplate.Text) > 0)
                 {
+                    //ne radi ti ovaj if matematicki kako treba
                     if ((racun.Vrijednost - Convert.ToSingle(textBoxNaplate.Text) == 0))
                         racun.Placen = true;
                     else
