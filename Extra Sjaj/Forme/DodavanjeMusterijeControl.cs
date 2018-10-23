@@ -204,15 +204,24 @@ namespace ExtraSjaj.Forme
             listBoxMusterija.Items.Clear();
             listaID.Clear();
             int i = 1;
+
+            /*
+              linq koji selektuje one redove koje sadrze karaktere unijete u textbox-u
+              pretrazuje po svim atributima u musteriji
+             */
             var rezultatPretrage = _context.Musterije
-                            .Where(x => x.ImePrezime.Contains(textBoxPretrazivanja.Text))
-                            .ToList();
+                                    .Where(x => x.ImePrezime.Contains(textBoxPretrazivanja.Text) || 
+                                    x.BrojTelefona.Contains(textBoxPretrazivanja.Text) ||
+                                    x.Adresa.Contains(textBoxPretrazivanja.Text))
+                                    .ToList();
 
             foreach (var item in rezultatPretrage)
             {
                 listBoxMusterija.Items.Add((i++) + ". " + item.ImePrezime + " (" + item.BrojTelefona + " )");
                 listaID.Add(item.Id);
             }
+            if (listBoxMusterija.Items.Count == 0)
+                listBoxMusterija.Items.Add("Nema rezultata pretrage: " + textBoxPretrazivanja.Text+".");
 
         }
     }
