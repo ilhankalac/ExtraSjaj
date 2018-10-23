@@ -203,6 +203,9 @@ namespace ExtraSjaj.Forme
             txtBoxDuzina.Clear();
         }
 
-
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Visible = false;
+        }
     }
 }

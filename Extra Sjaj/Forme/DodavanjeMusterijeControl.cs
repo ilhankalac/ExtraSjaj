@@ -17,6 +17,7 @@ namespace ExtraSjaj.Forme
     {
         ModelContext _context;
         List<int> listaID;
+        List<int> listaRacunaID;
         int IDRacunaMusterije;
         public DodavanjeMusterijeControl()
         {
@@ -24,7 +25,7 @@ namespace ExtraSjaj.Forme
             _context = new ModelContext();
             _context.Musterije.Load();
             iscitavanjeMusterija();
-            
+            dodavanjeTepihaControl1.Visible = false;
         }
 
         private void btnDodajMusteriju_Click(object sender, EventArgs e)
@@ -59,6 +60,10 @@ namespace ExtraSjaj.Forme
         {
             kreiranjeNovogRacuna(listaID[listBoxMusterija.SelectedIndices[0]]);
             iscitavanjeRacunaSelektovanogMusterije(listaID[listBoxMusterija.SelectedIndices[0]]);
+        }
+        private void textBoxPretrazivanja_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            pretragaMusterija();
         }
 
         private  void iscitavanjeMusterija()
@@ -185,12 +190,14 @@ namespace ExtraSjaj.Forme
         public void iscitavanjeRacunaSelektovanogMusterije(int IDMusterija)
         {
             listaViewRacuna.Items.Clear();
+            listaRacunaID = new List<int>();
             int i = 1;
             int j = 0;
             foreach (var item in _context.Racuni.ToList().Where(x=> x.MusterijaId==IDMusterija))
             {
                 listaViewRacuna.Items.Add((i++) +". "+ item.Vrijednost + " EUR. - " + item.VrijemeKreiranjaRacuna.ToShortDateString());
                 IDRacunaMusterije = item.Id;
+                listaRacunaID.Add(item.Id);
                 if (item.Placen)
                     listaViewRacuna.Items[j].BackColor = Color.Green;
                 else
@@ -199,7 +206,9 @@ namespace ExtraSjaj.Forme
             }
         }
 
-        private void textBoxPretrazivanja_KeyPress(object sender, KeyPressEventArgs e)
+        
+
+        private void pretragaMusterija()
         {
             listBoxMusterija.Items.Clear();
             listaID.Clear();
@@ -210,7 +219,7 @@ namespace ExtraSjaj.Forme
               pretrazuje po svim atributima u musteriji
              */
             var rezultatPretrage = _context.Musterije
-                                    .Where(x => x.ImePrezime.Contains(textBoxPretrazivanja.Text) || 
+                                    .Where(x => x.ImePrezime.Contains(textBoxPretrazivanja.Text) ||
                                     x.BrojTelefona.Contains(textBoxPretrazivanja.Text) ||
                                     x.Adresa.Contains(textBoxPretrazivanja.Text))
                                     .ToList();
@@ -221,8 +230,18 @@ namespace ExtraSjaj.Forme
                 listaID.Add(item.Id);
             }
             if (listBoxMusterija.Items.Count == 0)
-                listBoxMusterija.Items.Add("Nema rezultata pretrage: " + textBoxPretrazivanja.Text+".");
+                listBoxMusterija.Items.Add("Nema rezultata pretrage: " + textBoxPretrazivanja.Text + ".");
 
+        }
+
+        private void listaViewRacuna_DoubleClick(object sender, EventArgs e)
+        {
+            
+            dodavanjeTepihaControl1.Visible = true ;
+            int racunID = listaRacunaID[listaViewRacuna.SelectedIndices[0]];
+            dodavanjeTepihaControl1.iscitavanjeTepiha(racunID);
+            dodavanjeTepihaControl1.Visible = true;
+           
         }
     }
 }

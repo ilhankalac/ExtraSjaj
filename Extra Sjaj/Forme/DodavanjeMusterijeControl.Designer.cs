@@ -48,6 +48,7 @@
             this.listaViewRacuna = new System.Windows.Forms.ListView();
             this._TepisiBaza_2018DataSet11 = new ExtraSjaj._TepisiBaza_2018DataSet1();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.dodavanjeTepihaControl1 = new ExtraSjaj.Forme.DodavanjeTepihaControl();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._TepisiBaza_2018DataSet11)).BeginInit();
@@ -243,7 +244,7 @@
             this.panel2.Controls.Add(this.listaViewRacuna);
             this.panel2.Location = new System.Drawing.Point(396, 31);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(269, 282);
+            this.panel2.Size = new System.Drawing.Size(220, 285);
             this.panel2.TabIndex = 45;
             // 
             // listaViewRacuna
@@ -255,10 +256,11 @@
             this.listaViewRacuna.Location = new System.Drawing.Point(0, 0);
             this.listaViewRacuna.Name = "listaViewRacuna";
             this.listaViewRacuna.Scrollable = false;
-            this.listaViewRacuna.Size = new System.Drawing.Size(269, 282);
+            this.listaViewRacuna.Size = new System.Drawing.Size(220, 285);
             this.listaViewRacuna.TabIndex = 0;
             this.listaViewRacuna.UseCompatibleStateImageBehavior = false;
             this.listaViewRacuna.View = System.Windows.Forms.View.List;
+            this.listaViewRacuna.DoubleClick += new System.EventHandler(this.listaViewRacuna_DoubleClick);
             // 
             // _TepisiBaza_2018DataSet11
             // 
@@ -273,10 +275,20 @@
             this.panel3.Size = new System.Drawing.Size(617, 224);
             this.panel3.TabIndex = 46;
             // 
+            // dodavanjeTepihaControl1
+            // 
+            this.dodavanjeTepihaControl1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dodavanjeTepihaControl1.Location = new System.Drawing.Point(0, -2);
+            this.dodavanjeTepihaControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dodavanjeTepihaControl1.Name = "dodavanjeTepihaControl1";
+            this.dodavanjeTepihaControl1.Size = new System.Drawing.Size(1038, 593);
+            this.dodavanjeTepihaControl1.TabIndex = 48;
+            // 
             // DodavanjeMusterijeControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.dodavanjeTepihaControl1);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.listBoxMusterija);
@@ -313,5 +325,6 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnKreirajNoviRacun;
+        private DodavanjeTepihaControl dodavanjeTepihaControl1;
     }
 }

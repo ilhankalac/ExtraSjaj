@@ -58,7 +58,9 @@ namespace ExtraSjaj
         }
         private void prikaziOpcijeSaMusterijama(object sender, EventArgs e)
         {
+           
             _context = new ModelContext();
+            _context.Musterije.Load();
             _context.Racuni.Load();
             btnHomePage.Visible = false;
             dodavanjeTepihaControl1.Visible = false;
@@ -67,6 +69,7 @@ namespace ExtraSjaj
             button6.Visible = false;
             label3.Visible = false;
             cmbBrojaRacuna.Visible = false;
+         
         }
 
         private void prikaziStatistikuFirme(object sender, EventArgs e)
@@ -97,6 +100,7 @@ namespace ExtraSjaj
             listaRacuna.Height = 603;
             iscitavanjeRacunaMusterija();
             dodavanjeMusterijeControl1.Visible = false;
+            dodavanjeTepihaControl1.Visible = false;
             listaRacuna.Visible = true;
         }
 
@@ -106,15 +110,15 @@ namespace ExtraSjaj
             int racunID = listaID[listaRacuna.SelectedIndices[0]];
             dodavanjeTepihaControl1.iscitavanjeTepiha(racunID);
             dodavanjeTepihaControl1.Visible = true;
-            
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+
             if (listaRacuna.Width < 0)
                 this.timer1.Enabled = false;
             else
-                listaRacuna.Width -= 25;
+                listaRacuna.Width -= 35;
         }
     }
     }
