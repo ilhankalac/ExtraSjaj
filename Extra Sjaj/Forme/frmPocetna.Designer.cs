@@ -278,6 +278,7 @@
             this.listaRacuna.TabIndex = 25;
             this.listaRacuna.UseCompatibleStateImageBehavior = false;
             this.listaRacuna.View = System.Windows.Forms.View.Tile;
+            this.listaRacuna.Click += new System.EventHandler(this.listaRacuna_Click);
             this.listaRacuna.DoubleClick += new System.EventHandler(this.listaRacuna_DoubleClick);
             // 
             // button6

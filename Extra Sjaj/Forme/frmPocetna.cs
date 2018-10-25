@@ -36,16 +36,21 @@ namespace ExtraSjaj
             int i = 1;
             int j = 0;
             listaID = new List<int>();
-            foreach (var item in _context.Racuni.ToList())
+            var racuni = _context.Racuni.ToList();
+
+
+            for (int k = _context.Racuni.ToList().Count-1; k >= 0; k--)
             {
-                listaRacuna.Items.Add((i++) + ". " + item.Musterija.ImePrezime +" = "+item.Vrijednost+ " EUR. - " + item.VrijemeKreiranjaRacuna.ToShortDateString());
-                listaID.Add(item.Id);
-                if (item.Placen)
+                listaRacuna.Items.Add((i++) + ". " + racuni[k].Musterija.ImePrezime + " = " + racuni[k].Vrijednost + " EUR. - " + racuni[k].VrijemeKreiranjaRacuna.ToShortDateString());
+                listaID.Add(racuni[k].Id);
+                if (racuni[k].Placen)
                     listaRacuna.Items[j].BackColor = Color.Green;
                 else
                     listaRacuna.Items[j].BackColor = Color.Red;
                 j++;
             }
+            listaRacuna.Items.Add("Prikaži još računa...");
+
         }
      
 
@@ -106,6 +111,7 @@ namespace ExtraSjaj
 
         private void listaRacuna_DoubleClick(object sender, EventArgs e)
         {
+           
             this.timer1.Enabled = true;
             int racunID = listaID[listaRacuna.SelectedIndices[0]];
             dodavanjeTepihaControl1.iscitavanjeTepiha(racunID);
@@ -119,6 +125,19 @@ namespace ExtraSjaj
                 this.timer1.Enabled = false;
             else
                 listaRacuna.Width -= 35;
+        }
+
+        private void listaRacuna_Click(object sender, EventArgs e)
+        {
+            //funkcija koja uzima tacan tekst za prosirivanje liste racuna na klik
+            string a = listaRacuna.SelectedItems[0].ToString().Substring(15,21);
+            if(a == "Prikaži još računa...")
+            {
+                MessageBox.Show(a);
+            }
+
+
+           
         }
     }
     }
