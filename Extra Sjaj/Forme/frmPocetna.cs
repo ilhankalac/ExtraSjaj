@@ -33,13 +33,17 @@ namespace ExtraSjaj
         public void iscitavanjeRacunaMusterija()
         {
             listaRacuna.Items.Clear();
-            int i = 1;
-            int j = 0;
+            int i = 1, j = 0, r = 0;
             listaID = new List<int>();
             var racuni = _context.Racuni.ToList();
+            var brojRacuna = _context.Racuni.ToList().Count();
 
-
-            for (int k = _context.Racuni.ToList().Count-1; k >= 0; k--)
+            if (brojRacuna > 50)
+                r = brojRacuna - 50;
+            else
+                r = 0;
+               
+            for (int k = brojRacuna - 1; k >= r; k--)
             {
                 listaRacuna.Items.Add((i++) + ". " + racuni[k].Musterija.ImePrezime + " = " + racuni[k].Vrijednost + " EUR. - " + racuni[k].VrijemeKreiranjaRacuna.ToShortDateString());
                 listaID.Add(racuni[k].Id);
