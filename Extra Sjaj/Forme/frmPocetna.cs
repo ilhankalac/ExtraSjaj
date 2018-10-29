@@ -134,13 +134,10 @@ namespace ExtraSjaj
         private void listaRacuna_Click(object sender, EventArgs e)
         {
             //funkcija koja uzima tacan tekst za prosirivanje liste racuna na klik
-            string a = listaRacuna.SelectedItems[0].ToString().Substring(15,21);
-            if(a == "Prikaži još računa...")
+            string a = listaRacuna.SelectedItems[0].ToString().Substring(15, 21);
+            if (a == "Prikaži još računa...")
                 ucitajNoveRacune();
-            
 
-
-           
         }
 
         private void ucitajNoveRacune()

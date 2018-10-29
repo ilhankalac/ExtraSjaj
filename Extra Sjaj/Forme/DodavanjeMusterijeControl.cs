@@ -16,7 +16,7 @@ namespace ExtraSjaj.Forme
     public partial class DodavanjeMusterijeControl : UserControl
     {
         ModelContext _context;
-        List<int> listaID;
+        List<int> listaID = new List<int>();
         List<int> listaRacunaID;
         int IDRacunaMusterije;
         public DodavanjeMusterijeControl()
@@ -41,10 +41,27 @@ namespace ExtraSjaj.Forme
         {
             updateMusterije();
         }
+        private void listaViewRacuna_DoubleClick(object sender, EventArgs e)
+        {
+
+            dodavanjeTepihaControl1.Visible = true;
+            int racunID = listaRacunaID[listaViewRacuna.SelectedIndices[0]];
+            dodavanjeTepihaControl1.iscitavanjeTepiha(racunID);
+            dodavanjeTepihaControl1.Visible = true;
+
+        }
         private void listBoxMusterija_Click(object sender, EventArgs e)
         {
+
             try
             {
+                string a = listBoxMusterija.SelectedItems[0].ToString();
+                if (a == "Prikaži još mušterija...")
+                {
+                    ucitajNoveMusterije();
+                    return;
+                }
+
                 _context.Musterije.Load();
                 prikazInformacijaMusterijeNakonKlikaNaListBox();
                 iscitavanjeRacunaSelektovanogMusterije(listaID[listBoxMusterija.SelectedIndices[0]]);
@@ -68,14 +85,24 @@ namespace ExtraSjaj.Forme
 
         private  void iscitavanjeMusterija()
         {
+           
             listBoxMusterija.Items.Clear();
-            int i = 1;
-            listaID = new List<int>();
-            foreach (var item in _context.Musterije.ToList())
+            listaID.Clear();
+            int i = 1, r = 0;
+            var musterije = _context.Musterije.ToList();
+            var brojMusterija = _context.Musterije.ToList().Count();
+
+            if (brojMusterija > 5)
+                r = brojMusterija - 5;
+            else
+                r = 0;
+
+            for (int k = brojMusterija - 1; k >= r; k--)
             {
-                listBoxMusterija.Items.Add((i++) + ". " + item.ImePrezime + " (" + item.BrojTelefona + " )");
-                listaID.Add(item.Id);
+                listBoxMusterija.Items.Add((i++) + ". " + musterije[k].ImePrezime + " (" + musterije[k].BrojTelefona + " )");
+                listaID.Add(musterije[k].Id);
             }
+            listBoxMusterija.Items.Add("Prikaži još mušterija...");
 
         }
         private void dodajMusteriju()
@@ -233,15 +260,31 @@ namespace ExtraSjaj.Forme
                 listBoxMusterija.Items.Add("Nema rezultata pretrage: " + textBoxPretrazivanja.Text + ".");
 
         }
-
-        private void listaViewRacuna_DoubleClick(object sender, EventArgs e)
+        private void ucitajNoveMusterije()
         {
-            
-            dodavanjeTepihaControl1.Visible = true ;
-            int racunID = listaRacunaID[listaViewRacuna.SelectedIndices[0]];
-            dodavanjeTepihaControl1.iscitavanjeTepiha(racunID);
-            dodavanjeTepihaControl1.Visible = true;
-           
+            listBoxMusterija.Items.RemoveAt(listBoxMusterija.Items.Count - 1);
+            int j = listBoxMusterija.Items.Count, i = listBoxMusterija.Items.Count + 1, r;
+            var musterije = _context.Musterije.ToList();
+            r = musterije.Count - listBoxMusterija.Items.Count; ;
+
+
+            /*
+             ako budes htio da dodajes feature da se izabere na aplikaciji
+             koliko da  se redova cita iz baze, samo promjenis r - 5 u (r - Convert.toInt32(textBox.Text));
+             */
+            for (int k = r - 1; k >= r - 10; k--)
+            {
+                if (k != -1)
+                {
+                    listBoxMusterija.Items.Add((i++) + ". " + musterije[k].ImePrezime + " (" + musterije[k].BrojTelefona + " )");
+                    listaID.Add(musterije[k].Id);
+
+                }
+                else break;
+            }
+            listBoxMusterija.Items.Add("Prikaži još mušterija...");
         }
+
+      
     }
 }
