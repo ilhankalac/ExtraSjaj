@@ -18,7 +18,7 @@ namespace ExtraSjaj
     public partial class frmPocetna : Form
     {
         ModelContext _context;
-        List<int> listaID;
+        List<int> listaID = new List<int>();
         public frmPocetna()
         {
             InitializeComponent();
@@ -33,13 +33,13 @@ namespace ExtraSjaj
         public void iscitavanjeRacunaMusterija()
         {
             listaRacuna.Items.Clear();
+            listaID.Clear();
             int i = 1, j = 0, r = 0;
-            listaID = new List<int>();
             var racuni = _context.Racuni.ToList();
             var brojRacuna = _context.Racuni.ToList().Count();
 
-            if (brojRacuna > 50)
-                r = brojRacuna - 50;
+            if (brojRacuna > 5)
+                r = brojRacuna - 5;
             else
                 r = 0;
                
@@ -136,12 +136,40 @@ namespace ExtraSjaj
             //funkcija koja uzima tacan tekst za prosirivanje liste racuna na klik
             string a = listaRacuna.SelectedItems[0].ToString().Substring(15,21);
             if(a == "Prikaži još računa...")
-            {
-                MessageBox.Show(a);
-            }
+                ucitajNoveRacune();
+            
 
 
            
+        }
+
+        private void ucitajNoveRacune()
+        {
+            listaRacuna.Items.RemoveAt(listaRacuna.Items.Count - 1);
+            int j = listaRacuna.Items.Count, i = listaRacuna.Items.Count + 1, r;
+            var racuni = _context.Racuni.ToList();
+            r = racuni.Count - listaRacuna.Items.Count; ;
+
+
+            /*
+             ako budes htio da dodajes feature da se izabere na aplikaciji
+             koliko da  se redova cita iz baze, samo promjenis r - 5 u (r - Convert.toInt32(textBox.Text));
+             */
+            for (int k = r-1; k >= r-5; k--)
+            {
+                if (k != -1)
+                {
+                    listaRacuna.Items.Add((i++) + ". " + racuni[k].Musterija.ImePrezime + " = " + racuni[k].Vrijednost + " EUR. - " + racuni[k].VrijemeKreiranjaRacuna.ToShortDateString());
+                    listaID.Add(racuni[k].Id);
+                    if (racuni[k].Placen)
+                        listaRacuna.Items[j].BackColor = Color.Green;
+                    else
+                        listaRacuna.Items[j].BackColor = Color.Red;
+                    j++;
+                }
+                else break;
+            }
+            listaRacuna.Items.Add("Prikaži još računa...");
         }
     }
     }
