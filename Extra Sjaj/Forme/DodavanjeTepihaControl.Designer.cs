@@ -43,6 +43,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.labelPlaceno = new System.Windows.Forms.Label();
             this.btnBack = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -164,10 +165,10 @@
             this.panel2.Controls.Add(this.txtBoxSirina);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(403, 0);
+            this.panel2.Location = new System.Drawing.Point(593, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(426, 629);
+            this.panel2.Size = new System.Drawing.Size(426, 638);
             this.panel2.TabIndex = 19;
             // 
             // listBoxTepiha
@@ -195,7 +196,7 @@
             this.panel1.Controls.Add(this.labelPlaceno);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.ForeColor = System.Drawing.Color.White;
-            this.panel1.Location = new System.Drawing.Point(0, 431);
+            this.panel1.Location = new System.Drawing.Point(0, 440);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(426, 198);
             this.panel1.TabIndex = 21;
@@ -239,7 +240,7 @@
             this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBack.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBack.ForeColor = System.Drawing.Color.Black;
-            this.btnBack.Location = new System.Drawing.Point(315, 0);
+            this.btnBack.Location = new System.Drawing.Point(505, 4);
             this.btnBack.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(82, 76);
@@ -248,16 +249,25 @@
             this.btnBack.UseVisualStyleBackColor = false;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
+            // panel3
+            // 
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Location = new System.Drawing.Point(27, 87);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(548, 436);
+            this.panel3.TabIndex = 21;
+            // 
             // DodavanjeTepihaControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.panel2);
             this.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "DodavanjeTepihaControl";
-            this.Size = new System.Drawing.Size(829, 629);
+            this.Size = new System.Drawing.Size(1019, 638);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -282,5 +292,6 @@
         private System.Windows.Forms.ListBox listBoxTepiha;
         private System.Windows.Forms.TextBox textBoxNaplate;
         private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.Panel panel3;
     }
 }

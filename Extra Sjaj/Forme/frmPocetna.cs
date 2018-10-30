@@ -84,6 +84,7 @@ namespace ExtraSjaj
         private void prikaziStatistikuFirme(object sender, EventArgs e)
         {
             btnHomePage.Visible = true;
+          
         }
 
         private void closeForm(object sender, EventArgs e)
@@ -115,7 +116,9 @@ namespace ExtraSjaj
 
         private void listaRacuna_DoubleClick(object sender, EventArgs e)
         {
-           
+            button6.Visible = false;
+            label3.Visible = false;
+            cmbBrojaRacuna.Visible = false;
             this.timer1.Enabled = true;
             int racunID = listaID[listaRacuna.SelectedIndices[0]];
             dodavanjeTepihaControl1.iscitavanjeTepiha(racunID);

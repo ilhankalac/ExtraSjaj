@@ -24,6 +24,7 @@ namespace ExtraSjaj.Forme
             InitializeComponent();
             _context = new ModelContext();
             _context.Tepisi.Load();
+          
         }
 
 
@@ -39,6 +40,7 @@ namespace ExtraSjaj.Forme
                 idLista.Add(item.Id);
             }
             informacijeORacunu();
+            iscrtajTepihe();
         }
         private void btnDodajTepih_Click(object sender, EventArgs e)
         {
@@ -55,7 +57,11 @@ namespace ExtraSjaj.Forme
         private void btnNaplati_Click(object sender, EventArgs e)
         {
             naplati();
-       }
+        }
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Visible = false;
+        }
 
         public void dodajTepih()
         {
@@ -75,6 +81,7 @@ namespace ExtraSjaj.Forme
                 //update vrijednosti racuna u tabeli racuni
                 updateRacun();
                 iscitavanjeTepiha(racunID);
+                iscrtajTepihe();
             }
             catch (Exception ex)
             {
@@ -96,6 +103,7 @@ namespace ExtraSjaj.Forme
                     MessageBox.Show("Uspešno brisanje tepiha.", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     updateRacun();
                     iscitavanjeTepiha(racunID);
+                    iscrtajTepihe();
                 }
 
             }
@@ -174,6 +182,49 @@ namespace ExtraSjaj.Forme
             }
 
         }
+        
+        private void iscrtajTepihe()
+        {
+
+            int top = 50;
+            int left = 50;
+            int k = 0;
+            int i = 0;
+            var tepisi = _context.Tepisi.Where(x => x.RacunId == racunID).ToList();
+            /*petlja koja brise sva dugmad na panelu, kako bismo obezbijedili
+             da nakon  brisanja krece ispocetka sa iscrtavanjem
+            */
+            foreach (var button in panel3.Controls.OfType<Button>())
+                panel3.Controls.Remove(button);
+
+            foreach (var tepih in tepisi)
+            {
+                /*if sa kojim se pomera iscrtavanje tepiha nakon svakog petog tepiha
+                  vrijednosti su izabrane otprilike, tj na osnovu mojih nekih procjena
+                */
+                if (i %5 == 0 && i !=0)
+                {
+                    k++;
+                    left = 50;
+                    top = 50 + (k * 120);               
+                }
+                Button button = new Button();
+                button.Left = left;
+                button.Top = top;
+                button.Width = Convert.ToInt32( tepih.Sirina)*25;
+                button.Height = Convert.ToInt32(tepih.Duzina)*25;
+                button.Text =  tepih.Sirina +" X "+ tepih.Duzina.ToString();
+                button.BackColor = Color.OrangeRed;
+                button.Enabled = false;
+                button.FlatAppearance.BorderSize = 0;
+                button.FlatStyle = FlatStyle.Popup;
+                panel3.Controls.Add(button);
+                left += 100;
+                i++;
+            }
+
+           
+        }
         void sakrijObjekteNaKontroli()
         {
             txtBoxSirina.Visible = false;
@@ -203,9 +254,6 @@ namespace ExtraSjaj.Forme
             txtBoxDuzina.Clear();
         }
 
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-            this.Visible = false;
-        }
+       
     }
 }
