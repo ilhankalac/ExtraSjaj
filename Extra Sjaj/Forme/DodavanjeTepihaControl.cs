@@ -186,10 +186,7 @@ namespace ExtraSjaj.Forme
         private void iscrtajTepihe()
         {
 
-            int top = 50;
-            int left = 50;
-            int k = 0;
-            int i = 0;
+            int top = 50, left = 50, k = 0, i = 0;
             var tepisi = _context.Tepisi.Where(x => x.RacunId == racunID).ToList();
             /*petlja koja brise sva dugmad na panelu, kako bismo obezbijedili
              da nakon  brisanja krece ispocetka sa iscrtavanjem
@@ -199,7 +196,7 @@ namespace ExtraSjaj.Forme
 
             foreach (var tepih in tepisi)
             {
-                /*if sa kojim se pomera iscrtavanje tepiha nakon svakog petog tepiha
+                /*if sa kojim se pomera u novi red iscrtavanje tepiha nakon svakog petog tepiha
                   vrijednosti su izabrane otprilike, tj na osnovu mojih nekih procjena
                 */
                 if (i %5 == 0 && i !=0)

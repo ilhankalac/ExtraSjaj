@@ -58,6 +58,14 @@
             this.dodavanjeTepihaControl1 = new ExtraSjaj.Forme.DodavanjeTepihaControl();
             this.btnHomePage = new ExtraSjaj.Forme.ArhivaMusterijaControl();
             this.dodavanjeMusterijeControl1 = new ExtraSjaj.Forme.DodavanjeMusterijeControl();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._TepisiBaza_2018DataSet1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -66,6 +74,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource2)).BeginInit();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // listBox1
@@ -284,7 +293,7 @@
             // button6
             // 
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Location = new System.Drawing.Point(725, 171);
+            this.button6.Location = new System.Drawing.Point(727, 490);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(79, 94);
             this.button6.TabIndex = 26;
@@ -298,7 +307,7 @@
             "50",
             "100",
             "200"});
-            this.cmbBrojaRacuna.Location = new System.Drawing.Point(745, 300);
+            this.cmbBrojaRacuna.Location = new System.Drawing.Point(747, 619);
             this.cmbBrojaRacuna.Name = "cmbBrojaRacuna";
             this.cmbBrojaRacuna.Size = new System.Drawing.Size(59, 24);
             this.cmbBrojaRacuna.TabIndex = 27;
@@ -307,7 +316,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(742, 281);
+            this.label3.Location = new System.Drawing.Point(744, 600);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(133, 16);
             this.label3.TabIndex = 28;
@@ -344,11 +353,98 @@
             this.dodavanjeMusterijeControl1.Size = new System.Drawing.Size(1043, 616);
             this.dodavanjeMusterijeControl1.TabIndex = 22;
             // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.label10);
+            this.panel4.Controls.Add(this.label9);
+            this.panel4.Controls.Add(this.label8);
+            this.panel4.Controls.Add(this.label7);
+            this.panel4.Controls.Add(this.label6);
+            this.panel4.Controls.Add(this.label5);
+            this.panel4.Controls.Add(this.label4);
+            this.panel4.Location = new System.Drawing.Point(671, 121);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(378, 297);
+            this.panel4.TabIndex = 29;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(79, 4);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(29, 16);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Pon";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(180, 4);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(19, 16);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Sri";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(229, 4);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(28, 16);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "Čet";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(281, 4);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(26, 16);
+            this.label7.TabIndex = 3;
+            this.label7.Text = "Pet";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.Location = new System.Drawing.Point(327, 4);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(29, 16);
+            this.label8.TabIndex = 4;
+            this.label8.Text = "Sub";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(29, 4);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(31, 16);
+            this.label9.TabIndex = 5;
+            this.label9.Text = "Ned";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.ForeColor = System.Drawing.Color.White;
+            this.label10.Location = new System.Drawing.Point(130, 4);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(27, 16);
+            this.label10.TabIndex = 6;
+            this.label10.Text = "Uto";
+            // 
             // frmPocetna
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1243, 704);
+            this.Controls.Add(this.panel4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cmbBrojaRacuna);
             this.Controls.Add(this.button6);
@@ -376,6 +472,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource2)).EndInit();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -412,6 +510,14 @@
         private System.Windows.Forms.ComboBox cmbBrojaRacuna;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
     }
 }
 

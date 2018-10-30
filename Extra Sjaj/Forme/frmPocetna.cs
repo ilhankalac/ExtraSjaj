@@ -29,6 +29,7 @@ namespace ExtraSjaj
             btnHomePage.Visible = false;
             dodavanjeMusterijeControl1.Visible = false;
             iscitavanjeRacunaMusterija();
+            kalendar();
         }
         public void iscitavanjeRacunaMusterija()
         {
@@ -78,6 +79,7 @@ namespace ExtraSjaj
             button6.Visible = false;
             label3.Visible = false;
             cmbBrojaRacuna.Visible = false;
+            panel4.Visible = false;
          
         }
 
@@ -112,11 +114,13 @@ namespace ExtraSjaj
             dodavanjeMusterijeControl1.Visible = false;
             dodavanjeTepihaControl1.Visible = false;
             listaRacuna.Visible = true;
+            panel4.Visible = true;
         }
 
         private void listaRacuna_DoubleClick(object sender, EventArgs e)
         {
             button6.Visible = false;
+            panel4.Visible = false;
             label3.Visible = false;
             cmbBrojaRacuna.Visible = false;
             this.timer1.Enabled = true;
@@ -171,5 +175,51 @@ namespace ExtraSjaj
             }
             listaRacuna.Items.Add("Prikaži još računa...");
         }
+
+        private void kalendar()
+        {
+            int top = 30, left = 30, k = 0, i =0;
+
+            /*petlja koja brise sva dugmad na panelu, kako bismo obezbijedili
+             da nakon  brisanja krece ispocetka sa iscrtavanjem
+            */
+            foreach (var button in panel4.Controls.OfType<Button>())
+                panel3.Controls.Remove(button);
+
+            foreach (DateTime dan in EachDay(DateTime.Now.AddDays(-30), DateTime.Now))
+            {
+                /*if sa kojim se pomera u novi red iscrtavanje tepiha nakon svakog petog tepiha
+                 vrijednosti su izabrane otprilike, tj na osnovu mojih nekih procjena
+               */
+                if (i % 7 == 0 && i != 0)
+                {
+                    k++;
+                    left = 30;
+                    top = 30 + (k * 50);
+                }
+                Button button = new Button();
+                button.Left = left;
+                button.Top = top;
+                button.Width = 30;
+                button.Height = 30;
+                button.Text = dan.Day.ToString();
+                button.FlatAppearance.BorderSize = 0;
+                button.FlatStyle = FlatStyle.Popup;
+                button.BackColor = Color.White;
+       
+                panel4.Controls.Add(button);
+                left += 50;
+                i++;
+            }
+               
+            
+
+        }
+        public IEnumerable<DateTime> EachDay(DateTime from, DateTime thru)
+        {
+            for (var day = from.Date; day.Date <= thru.Date; day = day.AddDays(1))
+                yield return day;
+        }
     }
-    }
+}
+    
