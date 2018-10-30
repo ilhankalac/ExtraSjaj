@@ -146,6 +146,35 @@ namespace ExtraSjaj
                 ucitajNoveRacune();
 
         }
+        private void btnIzaberiDatum_Click(object sender, EventArgs e)
+        {
+            Button btnSender = (Button)sender;
+            Button clickedButton = new Button();
+            int j = 0, i = 1;
+
+            foreach (var button in panel4.Controls.OfType<Button>())
+                if (btnSender == button)
+                    clickedButton = button;
+
+           
+            var date = Convert.ToDateTime(clickedButton.Tag);
+            //linq sa kojim se selektuju racuni izabranog dana u datumu
+            var racuni = _context.Racuni
+                        .Where(x => x.VrijemeKreiranjaRacuna.Day == date.Day).ToList();
+
+
+            listaRacuna.Items.Clear();
+            for (int k = 0; k < racuni.Count; k++)
+            {
+                listaRacuna.Items.Add((i++) + ". " + racuni[k].Musterija.ImePrezime + " = " + racuni[k].Vrijednost + " EUR. - " + racuni[k].VrijemeKreiranjaRacuna.ToShortDateString());
+                listaID.Add(racuni[k].Id);
+                if (racuni[k].Placen)
+                    listaRacuna.Items[j].BackColor = Color.Green;
+                else
+                    listaRacuna.Items[j].BackColor = Color.Red;
+                j++;
+            }
+        }
 
         private void ucitajNoveRacune()
         {
@@ -184,7 +213,7 @@ namespace ExtraSjaj
              da nakon  brisanja krece ispocetka sa iscrtavanjem
             */
             foreach (var button in panel4.Controls.OfType<Button>())
-                panel3.Controls.Remove(button);
+                panel4.Controls.Remove(button);
 
             foreach (DateTime dan in EachDay(DateTime.Now.AddDays(-30), DateTime.Now))
             {
@@ -206,7 +235,8 @@ namespace ExtraSjaj
                 button.FlatAppearance.BorderSize = 0;
                 button.FlatStyle = FlatStyle.Popup;
                 button.BackColor = Color.White;
-       
+                button.Tag = dan;
+                button.Click += new EventHandler(btnIzaberiDatum_Click);
                 panel4.Controls.Add(button);
                 left += 50;
                 i++;
