@@ -177,7 +177,8 @@ namespace ExtraSjaj.Forme
                     BrojTepiha = 0,
                     Placen = false,
                     Vrijednost = 0,
-                    VrijemeKreiranjaRacuna = DateTime.Now
+                    VrijemeKreiranjaRacuna = DateTime.Now,
+                    VrijemePlacanjaRacuna = Convert.ToDateTime("1.1.2001")
                 }
                 );
                 _context.SaveChanges();
@@ -192,10 +193,11 @@ namespace ExtraSjaj.Forme
         {
             int idZaUpdate = listaID[listBoxMusterija.SelectedIndices[0]];
             Musterija stariMusterija = _context.Musterije.SingleOrDefault(x => x.Id == idZaUpdate);
-
+           
             try
             {
-                stariMusterija.Ime = txtBoxImePrezime.Text;
+                stariMusterija.Ime = txtBoxImePrezime.Text.Substring(0, txtBoxImePrezime.Text.IndexOf(' '));
+                stariMusterija.Prezime = txtBoxImePrezime.Text.Substring(txtBoxImePrezime.Text.IndexOf(' ') + 1);
                 stariMusterija.BrojTelefona = txtBoxBrojTel.Text;
                 stariMusterija.Adresa = txtBoxAdresa.Text;
                 _context.SaveChanges();
@@ -212,7 +214,7 @@ namespace ExtraSjaj.Forme
         {
             int idSelektovanogMusterije = listaID[listBoxMusterija.SelectedIndices[0]];
             Musterija stariMusterija = _context.Musterije.SingleOrDefault(x => x.Id == idSelektovanogMusterije);
-            txtBoxImePrezime.Text = stariMusterija.Ime;
+            txtBoxImePrezime.Text = stariMusterija.Ime + " " + stariMusterija.Prezime;
             txtBoxAdresa.Text = stariMusterija.Adresa;
             txtBoxBrojTel.Text = stariMusterija.BrojTelefona;
         }
@@ -249,13 +251,14 @@ namespace ExtraSjaj.Forme
              */
             var rezultatPretrage = _context.Musterije
                                     .Where(x => x.Ime.Contains(textBoxPretrazivanja.Text) ||
+                                    x.Prezime.Contains(textBoxPretrazivanja.Text) ||
                                     x.BrojTelefona.Contains(textBoxPretrazivanja.Text) ||
                                     x.Adresa.Contains(textBoxPretrazivanja.Text))
                                     .ToList();
 
             foreach (var item in rezultatPretrage)
             {
-                listBoxMusterija.Items.Add((i++) + ". " + item.Ime + " (" + item.BrojTelefona + " )");
+                listBoxMusterija.Items.Add((i++) + ". " + item.Ime +" "+item.Prezime+ " (" + item.BrojTelefona + " )");
                 listaID.Add(item.Id);
             }
             if (listBoxMusterija.Items.Count == 0)

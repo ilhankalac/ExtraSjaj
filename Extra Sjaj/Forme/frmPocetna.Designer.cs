@@ -63,8 +63,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.dodavanjeTepihaControl1 = new ExtraSjaj.Forme.DodavanjeTepihaControl();
             this.btnHomePage = new ExtraSjaj.Forme.ArhivaMusterijaControl();
+            this.dodavanjeTepihaControl1 = new ExtraSjaj.Forme.DodavanjeTepihaControl();
             this.dodavanjeMusterijeControl1 = new ExtraSjaj.Forme.DodavanjeMusterijeControl();
             ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._TepisiBaza_2018DataSet1)).BeginInit();
@@ -338,6 +338,7 @@
             this.panel4.Controls.Add(this.label6);
             this.panel4.Controls.Add(this.label5);
             this.panel4.Controls.Add(this.label4);
+            this.panel4.Controls.Add(this.btnHomePage);
             this.panel4.Location = new System.Drawing.Point(671, 121);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(378, 297);
@@ -413,6 +414,14 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "Pon";
             // 
+            // btnHomePage
+            // 
+            this.btnHomePage.Location = new System.Drawing.Point(-490, 1);
+            this.btnHomePage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnHomePage.Name = "btnHomePage";
+            this.btnHomePage.Size = new System.Drawing.Size(1689, 1116);
+            this.btnHomePage.TabIndex = 23;
+            // 
             // dodavanjeTepihaControl1
             // 
             this.dodavanjeTepihaControl1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -422,18 +431,10 @@
             this.dodavanjeTepihaControl1.Size = new System.Drawing.Size(1061, 604);
             this.dodavanjeTepihaControl1.TabIndex = 24;
             // 
-            // btnHomePage
-            // 
-            this.btnHomePage.Location = new System.Drawing.Point(185, 122);
-            this.btnHomePage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnHomePage.Name = "btnHomePage";
-            this.btnHomePage.Size = new System.Drawing.Size(1689, 1116);
-            this.btnHomePage.TabIndex = 23;
-            // 
             // dodavanjeMusterijeControl1
             // 
             this.dodavanjeMusterijeControl1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dodavanjeMusterijeControl1.Location = new System.Drawing.Point(203, 120);
+            this.dodavanjeMusterijeControl1.Location = new System.Drawing.Point(182, 121);
             this.dodavanjeMusterijeControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dodavanjeMusterijeControl1.Name = "dodavanjeMusterijeControl1";
             this.dodavanjeMusterijeControl1.Size = new System.Drawing.Size(1043, 616);
@@ -450,7 +451,6 @@
             this.Controls.Add(this.button6);
             this.Controls.Add(this.listaRacuna);
             this.Controls.Add(this.dodavanjeTepihaControl1);
-            this.Controls.Add(this.btnHomePage);
             this.Controls.Add(this.dodavanjeMusterijeControl1);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
