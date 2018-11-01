@@ -81,6 +81,10 @@
     <Compile Include="Migrations\201810211607195_MusterijaRacuniTepisi.Designer.cs">
       <DependentUpon>201810211607195_MusterijaRacuniTepisi.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811012112561_VrijemePlacanjaRacuna.cs" />
+    <Compile Include="Migrations\201811012112561_VrijemePlacanjaRacuna.Designer.cs">
+      <DependentUpon>201811012112561_VrijemePlacanjaRacuna.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Modeli\ModelContext.cs" />
     <Compile Include="Modeli\Musterija.cs" />
@@ -107,6 +111,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810211607195_MusterijaRacuniTepisi.resx">
       <DependentUpon>201810211607195_MusterijaRacuniTepisi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811012112561_VrijemePlacanjaRacuna.resx">
+      <DependentUpon>201811012112561_VrijemePlacanjaRacuna.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

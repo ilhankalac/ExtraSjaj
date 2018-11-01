@@ -121,6 +121,16 @@ namespace ExtraSjaj.Forme
 
             labelRacun.Text = "Račun: ";
             labelPlaceno.Text = "Plaćeno: ";
+            if (racun.Placen)
+            {
+                labelPlaceno.Text = "Plaćen račun: " + racun.VrijemePlacanjaRacuna.Date+" - ";
+                sakrijObjekteNaKontroli();
+            }
+            else
+                otkrijObjekteNaKontroli();
+
+
+         
 
             labelRacun.Text +=" "+ racun.Vrijednost+" EUR.";
             labelImePrezime.Text = musterija.ImePrezime;
@@ -165,7 +175,11 @@ namespace ExtraSjaj.Forme
                 if ((dialogResult == DialogResult.Yes) && Convert.ToDouble(textBoxNaplate.Text) <= racun.Vrijednost && Convert.ToDouble(textBoxNaplate.Text) > 0)
                 {
                     if ((racun.Vrijednost - Convert.ToDouble(textBoxNaplate.Text) == 0))
+                    {
                         racun.Placen = true;
+                        racun.VrijemePlacanjaRacuna = DateTime.Now;
+                    }
+                       
                     else
                         racun.Vrijednost -= Convert.ToSingle(textBoxNaplate.Text);
 
@@ -235,7 +249,9 @@ namespace ExtraSjaj.Forme
             comboBoxCijena.Visible = false;
             label4.Visible = false;
             label3.Visible = false;
-
+            textBoxNaplate.Visible = false;
+            label1.Visible = false;
+            label2.Visible = false;
         }
         void otkrijObjekteNaKontroli()
         {
@@ -246,7 +262,9 @@ namespace ExtraSjaj.Forme
             comboBoxCijena.Visible = true;
             label4.Visible = true;
             label3.Visible = true;
-
+            textBoxNaplate.Visible = true;
+            label1.Visible = true;
+            label2.Visible = true;
         }
         void resetujObjekte()
         {
