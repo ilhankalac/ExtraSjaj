@@ -14,7 +14,8 @@ namespace ExtraSjaj.Modeli
     public class Musterija
     {
         public int Id { get; set; }
-        public string ImePrezime { get; set; }
+        public string Ime { get; set; }
+        public string Prezime { get; set; }
         public string BrojTelefona { get; set; }
         public string Adresa { get; set; }
         public DateTime VrijemeKreiranjaMusterije { get; set; }

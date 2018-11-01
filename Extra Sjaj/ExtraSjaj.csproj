@@ -85,6 +85,10 @@
     <Compile Include="Migrations\201811012112561_VrijemePlacanjaRacuna.Designer.cs">
       <DependentUpon>201811012112561_VrijemePlacanjaRacuna.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811012154130_RazdvajanjeImenaIPrezimenaMusterije.cs" />
+    <Compile Include="Migrations\201811012154130_RazdvajanjeImenaIPrezimenaMusterije.Designer.cs">
+      <DependentUpon>201811012154130_RazdvajanjeImenaIPrezimenaMusterije.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Modeli\ModelContext.cs" />
     <Compile Include="Modeli\Musterija.cs" />
@@ -114,6 +118,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811012112561_VrijemePlacanjaRacuna.resx">
       <DependentUpon>201811012112561_VrijemePlacanjaRacuna.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811012154130_RazdvajanjeImenaIPrezimenaMusterije.resx">
+      <DependentUpon>201811012154130_RazdvajanjeImenaIPrezimenaMusterije.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

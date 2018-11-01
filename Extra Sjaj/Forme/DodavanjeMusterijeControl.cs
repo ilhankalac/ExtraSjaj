@@ -92,14 +92,14 @@ namespace ExtraSjaj.Forme
             var musterije = _context.Musterije.ToList();
             var brojMusterija = _context.Musterije.ToList().Count();
 
-            if (brojMusterija > 5)
-                r = brojMusterija - 5;
+            if (brojMusterija > 10)
+                r = brojMusterija - 10;
             else
                 r = 0;
 
             for (int k = brojMusterija - 1; k >= r; k--)
             {
-                listBoxMusterija.Items.Add((i++) + ". " + musterije[k].ImePrezime + " (" + musterije[k].BrojTelefona + " )");
+                listBoxMusterija.Items.Add((i++) + ". " + musterije[k].Ime +" " + musterije[k].Prezime+ " (" + musterije[k].BrojTelefona + " )");
                 listaID.Add(musterije[k].Id);
             }
             listBoxMusterija.Items.Add("Prikaži još mušterija...");
@@ -109,7 +109,8 @@ namespace ExtraSjaj.Forme
         {
             Musterija musterija = new Musterija()
             {
-                ImePrezime = txtBoxImePrezime.Text,
+                Ime = txtBoxImePrezime.Text.Substring(0, txtBoxImePrezime.Text.IndexOf(' ')),
+                Prezime = txtBoxImePrezime.Text.Substring(txtBoxImePrezime.Text.IndexOf(' ')+1),
                 BrojTelefona = txtBoxBrojTel.Text,
                 Adresa = txtBoxAdresa.Text,
                 VrijemeKreiranjaMusterije = DateTime.Now
@@ -155,7 +156,8 @@ namespace ExtraSjaj.Forme
                     BrojTepiha = 0,
                     Placen = false,
                     Vrijednost = 0,
-                    VrijemeKreiranjaRacuna = DateTime.Now
+                    VrijemeKreiranjaRacuna = DateTime.Now,
+                    VrijemePlacanjaRacuna = Convert.ToDateTime("1.1.2001")
                 }
                 );
                 _context.SaveChanges();
@@ -193,7 +195,7 @@ namespace ExtraSjaj.Forme
 
             try
             {
-                stariMusterija.ImePrezime = txtBoxImePrezime.Text;
+                stariMusterija.Ime = txtBoxImePrezime.Text;
                 stariMusterija.BrojTelefona = txtBoxBrojTel.Text;
                 stariMusterija.Adresa = txtBoxAdresa.Text;
                 _context.SaveChanges();
@@ -210,7 +212,7 @@ namespace ExtraSjaj.Forme
         {
             int idSelektovanogMusterije = listaID[listBoxMusterija.SelectedIndices[0]];
             Musterija stariMusterija = _context.Musterije.SingleOrDefault(x => x.Id == idSelektovanogMusterije);
-            txtBoxImePrezime.Text = stariMusterija.ImePrezime;
+            txtBoxImePrezime.Text = stariMusterija.Ime;
             txtBoxAdresa.Text = stariMusterija.Adresa;
             txtBoxBrojTel.Text = stariMusterija.BrojTelefona;
         }
@@ -246,14 +248,14 @@ namespace ExtraSjaj.Forme
               pretrazuje po svim atributima u musteriji
              */
             var rezultatPretrage = _context.Musterije
-                                    .Where(x => x.ImePrezime.Contains(textBoxPretrazivanja.Text) ||
+                                    .Where(x => x.Ime.Contains(textBoxPretrazivanja.Text) ||
                                     x.BrojTelefona.Contains(textBoxPretrazivanja.Text) ||
                                     x.Adresa.Contains(textBoxPretrazivanja.Text))
                                     .ToList();
 
             foreach (var item in rezultatPretrage)
             {
-                listBoxMusterija.Items.Add((i++) + ". " + item.ImePrezime + " (" + item.BrojTelefona + " )");
+                listBoxMusterija.Items.Add((i++) + ". " + item.Ime + " (" + item.BrojTelefona + " )");
                 listaID.Add(item.Id);
             }
             if (listBoxMusterija.Items.Count == 0)
@@ -276,7 +278,7 @@ namespace ExtraSjaj.Forme
             {
                 if (k != -1)
                 {
-                    listBoxMusterija.Items.Add((i++) + ". " + musterije[k].ImePrezime + " (" + musterije[k].BrojTelefona + " )");
+                    listBoxMusterija.Items.Add((i++) + ". " + musterije[k].Ime + " " + musterije[k].Prezime + " (" + musterije[k].BrojTelefona + " )");
                     listaID.Add(musterije[k].Id);
 
                 }
