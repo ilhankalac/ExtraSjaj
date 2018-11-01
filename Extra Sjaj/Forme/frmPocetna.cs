@@ -49,7 +49,7 @@ namespace ExtraSjaj
                
             for (int k = brojRacuna - 1; k >= r; k--)
             {
-                listaRacuna.Items.Add((i++) + ". " + racuni[k].Musterija.Ime + " = " + racuni[k].Vrijednost + " EUR. - " + racuni[k].VrijemeKreiranjaRacuna.ToShortDateString());
+                listaRacuna.Items.Add((i++) + ". " + racuni[k].Musterija.Ime + " " + racuni[k].Musterija.Prezime + " = " + racuni[k].Vrijednost + " EUR. - " + racuni[k].VrijemeKreiranjaRacuna.ToShortDateString());
                 listaID.Add(racuni[k].Id);
                 if (racuni[k].Placen)
                     listaRacuna.Items[j].BackColor = Color.Green;
@@ -178,9 +178,9 @@ namespace ExtraSjaj
             listaRacuna.Items.Clear();
             for (int k = 0; k < racuni.Count; k++)
             {
-                
 
-                listaRacuna.Items.Add((i++) + ". " + racuni[k].Musterija.Ime + " = " + racuni[k].Vrijednost + " EUR. - " + racuni[k].VrijemeKreiranjaRacuna.ToShortDateString());
+
+                listaRacuna.Items.Add((i++) + ". " + racuni[k].Musterija.Ime + " " + racuni[k].Musterija.Prezime + " = " + racuni[k].Vrijednost + " EUR. - " + racuni[k].VrijemeKreiranjaRacuna.ToShortDateString());
                 listaID.Add(racuni[k].Id);
                 if (racuni[k].Placen)
                     listaRacuna.Items[j].BackColor = Color.Green;
@@ -207,7 +207,7 @@ namespace ExtraSjaj
             {
                 if (k != -1)
                 {
-                    listaRacuna.Items.Add((i++) + ". " + racuni[k].Musterija.Ime + " = " + racuni[k].Vrijednost + " EUR. - " + racuni[k].VrijemeKreiranjaRacuna.ToShortDateString());
+                    listaRacuna.Items.Add((i++) + ". " + racuni[k].Musterija.Ime +" " + racuni[k].Musterija.Prezime + " = " + racuni[k].Vrijednost + " EUR. - " + racuni[k].VrijemeKreiranjaRacuna.ToShortDateString());
                     listaID.Add(racuni[k].Id);
                     if (racuni[k].Placen)
                         listaRacuna.Items[j].BackColor = Color.Green;

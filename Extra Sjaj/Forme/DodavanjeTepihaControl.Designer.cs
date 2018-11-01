@@ -37,6 +37,8 @@
             this.btnNaplati = new System.Windows.Forms.Button();
             this.comboBoxCijena = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.listBoxTepiha = new System.Windows.Forms.ListBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.textBoxNaplate = new System.Windows.Forms.TextBox();
@@ -44,8 +46,6 @@
             this.labelPlaceno = new System.Windows.Forms.Label();
             this.btnBack = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -78,7 +78,7 @@
             this.btnDodajTepih.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnDodajTepih.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDodajTepih.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDodajTepih.ForeColor = System.Drawing.Color.White;
+            this.btnDodajTepih.ForeColor = System.Drawing.Color.Black;
             this.btnDodajTepih.Location = new System.Drawing.Point(67, 77);
             this.btnDodajTepih.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDodajTepih.Name = "btnDodajTepih";
@@ -175,6 +175,28 @@
             this.panel2.Size = new System.Drawing.Size(342, 193);
             this.panel2.TabIndex = 19;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(221, 6);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(45, 16);
+            this.label2.TabIndex = 18;
+            this.label2.Text = "Dužina";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(78, 6);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(36, 16);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "Širina";
+            // 
             // listBoxTepiha
             // 
             this.listBoxTepiha.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -258,28 +280,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(589, 315);
             this.panel3.TabIndex = 21;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(78, 6);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(36, 16);
-            this.label1.TabIndex = 17;
-            this.label1.Text = "Širina";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(221, 6);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(45, 16);
-            this.label2.TabIndex = 18;
-            this.label2.Text = "Dužina";
             // 
             // DodavanjeTepihaControl
             // 

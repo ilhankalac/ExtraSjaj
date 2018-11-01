@@ -133,7 +133,7 @@ namespace ExtraSjaj.Forme
          
 
             labelRacun.Text +=" "+ racun.Vrijednost+" EUR.";
-            labelImePrezime.Text = musterija.Ime;
+            labelImePrezime.Text = musterija.Ime + " "+ musterija.Prezime;
             labelPlaceno.Text +=Convert.ToString(racun.Placen);
 
             textBoxNaplate.Text = racun.Vrijednost.ToString();
