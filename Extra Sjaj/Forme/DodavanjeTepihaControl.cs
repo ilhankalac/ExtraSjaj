@@ -133,14 +133,19 @@ namespace ExtraSjaj.Forme
         {
             var racun = _context.Racuni.Where(x => x.Id == racunID).SingleOrDefault();
             double sumaKvadrature = 0;
+            int brojTepiha = 0;
 
-            //linq koji prolazi kroz sve tepihe selektovanog racuna i racuna sumu kvadrature
+            //linq koji prolazi kroz sve tepihe selektovanog racuna i racuna sumu kvadrature kao i broj tepiha
             foreach (var tepih in _context.Tepisi.Where(x => x.RacunId == racunID).ToList())
+            {
                 sumaKvadrature += tepih.Kvadratura;
+                brojTepiha++;
+            }
 
             try
             {
                 racun.Vrijednost = Math.Round((Convert.ToSingle(comboBoxCijena.Text) * sumaKvadrature), 2);
+                racun.BrojTepiha = brojTepiha;
                 _context.SaveChanges();
                 informacijeORacunu();
 
@@ -159,8 +164,7 @@ namespace ExtraSjaj.Forme
                 DialogResult dialogResult = MessageBox.Show("Da li si siguran da je mušterija platio?", "Poruka", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 if ((dialogResult == DialogResult.Yes) && Convert.ToDouble(textBoxNaplate.Text) <= racun.Vrijednost && Convert.ToDouble(textBoxNaplate.Text) > 0)
                 {
-                    //ne radi ti ovaj if matematicki kako treba
-                    if ((racun.Vrijednost - Convert.ToSingle(textBoxNaplate.Text) == 0))
+                    if ((racun.Vrijednost - Convert.ToDouble(textBoxNaplate.Text) == 0))
                         racun.Placen = true;
                     else
                         racun.Vrijednost -= Convert.ToSingle(textBoxNaplate.Text);
