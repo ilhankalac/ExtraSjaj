@@ -227,23 +227,23 @@
             this.panel3.Controls.Add(this.listaViewRacuna);
             this.panel3.Location = new System.Drawing.Point(353, 372);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(594, 224);
+            this.panel3.Size = new System.Drawing.Size(690, 224);
             this.panel3.TabIndex = 46;
             // 
             // dodavanjeTepihaControl1
             // 
             this.dodavanjeTepihaControl1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dodavanjeTepihaControl1.Location = new System.Drawing.Point(0, 0);
+            this.dodavanjeTepihaControl1.Location = new System.Drawing.Point(-3, -9);
             this.dodavanjeTepihaControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dodavanjeTepihaControl1.Name = "dodavanjeTepihaControl1";
-            this.dodavanjeTepihaControl1.Size = new System.Drawing.Size(1058, 593);
+            this.dodavanjeTepihaControl1.Size = new System.Drawing.Size(1043, 612);
             this.dodavanjeTepihaControl1.TabIndex = 48;
             // 
             // DodavanjeMusterijeControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.dodavanjeTepihaControl1);
             this.Controls.Add(this.listBoxMusterija);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnObrisiMusteriju);
@@ -257,11 +257,11 @@
             this.Controls.Add(this.textBoxPretrazivanja);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.dodavanjeTepihaControl1);
+            this.Controls.Add(this.panel3);
             this.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "DodavanjeMusterijeControl";
-            this.Size = new System.Drawing.Size(944, 596);
+            this.Size = new System.Drawing.Size(1051, 603);
             ((System.ComponentModel.ISupportInitialize)(this._TepisiBaza_2018DataSet11)).EndInit();
             this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
