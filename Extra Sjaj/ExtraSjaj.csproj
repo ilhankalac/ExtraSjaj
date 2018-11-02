@@ -89,10 +89,19 @@
     <Compile Include="Migrations\201811012154130_RazdvajanjeImenaIPrezimenaMusterije.Designer.cs">
       <DependentUpon>201811012154130_RazdvajanjeImenaIPrezimenaMusterije.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811022239445_StatistikaMusterija.cs" />
+    <Compile Include="Migrations\201811022239445_StatistikaMusterija.Designer.cs">
+      <DependentUpon>201811022239445_StatistikaMusterija.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811022242430_SpajanjeStatistikeSaMusterijom.cs" />
+    <Compile Include="Migrations\201811022242430_SpajanjeStatistikeSaMusterijom.Designer.cs">
+      <DependentUpon>201811022242430_SpajanjeStatistikeSaMusterijom.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Modeli\ModelContext.cs" />
     <Compile Include="Modeli\Musterija.cs" />
     <Compile Include="Modeli\Racun.cs" />
+    <Compile Include="Modeli\StatistikaMusterija.cs" />
     <Compile Include="Modeli\Tepih.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -121,6 +130,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811012154130_RazdvajanjeImenaIPrezimenaMusterije.resx">
       <DependentUpon>201811012154130_RazdvajanjeImenaIPrezimenaMusterije.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811022239445_StatistikaMusterija.resx">
+      <DependentUpon>201811022239445_StatistikaMusterija.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811022242430_SpajanjeStatistikeSaMusterijom.resx">
+      <DependentUpon>201811022242430_SpajanjeStatistikeSaMusterijom.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

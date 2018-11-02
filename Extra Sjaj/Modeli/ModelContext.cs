@@ -16,5 +16,6 @@ namespace ExtraSjaj.Modeli
         public DbSet<Musterija> Musterije { get; set; }
         public DbSet<Racun> Racuni { get; set; }
         public DbSet<Tepih> Tepisi { get; set; }
+        public DbSet<StatistikaMusterija> StatistikeMusterija { get; set; }
     }
 }
