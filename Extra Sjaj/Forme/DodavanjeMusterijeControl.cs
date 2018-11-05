@@ -32,7 +32,7 @@ namespace ExtraSjaj.Forme
         {
             dodajMusteriju();
         }
-      
+
         private void btnObrisiMusteriju_Click(object sender, EventArgs e)
         {
             brisanjeMusterije();
@@ -65,13 +65,14 @@ namespace ExtraSjaj.Forme
                 _context.Musterije.Load();
                 prikazInformacijaMusterijeNakonKlikaNaListBox();
                 iscitavanjeRacunaSelektovanogMusterije(listaID[listBoxMusterija.SelectedIndices[0]]);
+                racunanjeStatistike(listaID[listBoxMusterija.SelectedIndices[0]]);
             }
             catch (Exception ex)
             {
-               
-                MessageBox.Show(ex.Message+" Niste korektno izabrali mušteriju.");
+
+                MessageBox.Show(ex.Message + " Niste korektno izabrali mušteriju.");
             }
-           
+
         }
         private void btnKreirajNoviRacun_Click(object sender, EventArgs e)
         {
@@ -83,9 +84,9 @@ namespace ExtraSjaj.Forme
             pretragaMusterija();
         }
 
-        private  void iscitavanjeMusterija()
+        private void iscitavanjeMusterija()
         {
-           
+
             listBoxMusterija.Items.Clear();
             listaID.Clear();
             int i = 1, r = 0;
@@ -99,7 +100,7 @@ namespace ExtraSjaj.Forme
 
             for (int k = brojMusterija - 1; k >= r; k--)
             {
-                listBoxMusterija.Items.Add((i++) + ". " + musterije[k].Ime +" " + musterije[k].Prezime+ " (" + musterije[k].BrojTelefona + " )");
+                listBoxMusterija.Items.Add((i++) + ". " + musterije[k].Ime + " " + musterije[k].Prezime + " (" + musterije[k].BrojTelefona + " )");
                 listaID.Add(musterije[k].Id);
             }
             listBoxMusterija.Items.Add("Prikaži još mušterija...");
@@ -110,7 +111,7 @@ namespace ExtraSjaj.Forme
             Musterija musterija = new Musterija()
             {
                 Ime = txtBoxImePrezime.Text.Substring(0, txtBoxImePrezime.Text.IndexOf(' ')),
-                Prezime = txtBoxImePrezime.Text.Substring(txtBoxImePrezime.Text.IndexOf(' ')+1),
+                Prezime = txtBoxImePrezime.Text.Substring(txtBoxImePrezime.Text.IndexOf(' ') + 1),
                 BrojTelefona = txtBoxBrojTel.Text,
                 Adresa = txtBoxAdresa.Text,
                 VrijemeKreiranjaMusterije = DateTime.Now
@@ -129,7 +130,7 @@ namespace ExtraSjaj.Forme
                 MessageBox.Show(ex.Message);
             }
         }
-       private void brisanjeMusterije()
+        private void brisanjeMusterije()
         {
             int idZaBrisanje = listaID[listBoxMusterija.SelectedIndices[0]];
             Musterija musterijaZaBrisanje = _context.Musterije.SingleOrDefault(x => x.Id == idZaBrisanje);
@@ -193,7 +194,7 @@ namespace ExtraSjaj.Forme
         {
             int idZaUpdate = listaID[listBoxMusterija.SelectedIndices[0]];
             Musterija stariMusterija = _context.Musterije.SingleOrDefault(x => x.Id == idZaUpdate);
-           
+
             try
             {
                 stariMusterija.Ime = txtBoxImePrezime.Text.Substring(0, txtBoxImePrezime.Text.IndexOf(' '));
@@ -224,9 +225,9 @@ namespace ExtraSjaj.Forme
             listaRacunaID = new List<int>();
             int i = 1;
             int j = 0;
-            foreach (var item in _context.Racuni.ToList().Where(x=> x.MusterijaId==IDMusterija))
+            foreach (var item in _context.Racuni.ToList().Where(x => x.MusterijaId == IDMusterija))
             {
-                listaViewRacuna.Items.Add((i++) +". "+ item.Vrijednost + " EUR. - " + item.VrijemeKreiranjaRacuna.ToShortDateString());
+                listaViewRacuna.Items.Add((i++) + ". " + item.Vrijednost + " EUR. - " + item.VrijemeKreiranjaRacuna.ToShortDateString());
                 IDRacunaMusterije = item.Id;
                 listaRacunaID.Add(item.Id);
                 if (item.Placen)
@@ -237,7 +238,7 @@ namespace ExtraSjaj.Forme
             }
         }
 
-        
+
 
         private void pretragaMusterija()
         {
@@ -258,7 +259,7 @@ namespace ExtraSjaj.Forme
 
             foreach (var item in rezultatPretrage)
             {
-                listBoxMusterija.Items.Add((i++) + ". " + item.Ime +" "+item.Prezime+ " (" + item.BrojTelefona + " )");
+                listBoxMusterija.Items.Add((i++) + ". " + item.Ime + " " + item.Prezime + " (" + item.BrojTelefona + " )");
                 listaID.Add(item.Id);
             }
             if (listBoxMusterija.Items.Count == 0)
@@ -290,6 +291,31 @@ namespace ExtraSjaj.Forme
             listBoxMusterija.Items.Add("Prikaži još mušterija...");
         }
 
-      
+
+
+        private void racunanjeStatistike(int IDMusterije)
+        {
+            var racuniMusterije = _context.Racuni.
+                                  Where(x => x.MusterijaId == IDMusterije).ToList();
+
+            labelUkupnogNovca.Visible = true;
+            labelOpranihTepiha.Visible = true;
+            labelUkupnogNovca.Text = "Total profit: ";
+            labelOpranihTepiha.Text = "Broj opranih tepiha: ";
+            labelUkupnogNovca.Text += racuniMusterije.Sum(x => x.Vrijednost).ToString() + " EUR.";
+            labelOpranihTepiha.Text += racuniMusterije.Sum(x => x.BrojTepiha).ToString() + ".";
+
+
+            int i = 1;
+            chartRacuni.Visible = true;
+            chartRacuni.Series["Racuni"].Points.Clear();
+            foreach (var racun in racuniMusterije)
+                chartRacuni.Series["Racuni"].Points.AddXY(i++, racun.Vrijednost);
+
+
+
+
+
+        }
     }
 }
