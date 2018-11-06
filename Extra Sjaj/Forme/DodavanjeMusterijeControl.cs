@@ -23,14 +23,15 @@ namespace ExtraSjaj.Forme
         {
             InitializeComponent();
             _context = new ModelContext();
-            _context.Musterije.Load();
-            iscitavanjeMusterija();
+            // _context.Musterije.LoadAsync();
+            //pozivanje asihrone metode u konstruktoru
+            Task.Run(() => this.iscitavanjeMusterija()).Wait();
             dodavanjeTepihaControl1.Visible = false;
         }
 
-        private void btnDodajMusteriju_Click(object sender, EventArgs e)
+        private  void btnDodajMusteriju_Click(object sender, EventArgs e)
         {
-            dodajMusteriju();
+             dodajMusteriju();
         }
 
         private void btnObrisiMusteriju_Click(object sender, EventArgs e)
@@ -50,7 +51,7 @@ namespace ExtraSjaj.Forme
             dodavanjeTepihaControl1.Visible = true;
 
         }
-        private void listBoxMusterija_Click(object sender, EventArgs e)
+        private async void listBoxMusterija_Click(object sender, EventArgs e)
         {
 
             try
@@ -59,12 +60,12 @@ namespace ExtraSjaj.Forme
                 if (a == "Prikaži još mušterija...")
                 {
                     ucitajNoveMusterije();
-                    return;
+                    //return;
                 }
 
-                _context.Musterije.Load();
-                prikazInformacijaMusterijeNakonKlikaNaListBox();
-                iscitavanjeRacunaSelektovanogMusterije(listaID[listBoxMusterija.SelectedIndices[0]]);
+                
+                await prikazInformacijaMusterijeNakonKlikaNaListBox();
+                await  iscitavanjeRacunaSelektovanogMusterije(listaID[listBoxMusterija.SelectedIndices[0]]);
                 racunanjeStatistike(listaID[listBoxMusterija.SelectedIndices[0]]);
             }
             catch (Exception ex)
@@ -74,24 +75,25 @@ namespace ExtraSjaj.Forme
             }
 
         }
-        private void btnKreirajNoviRacun_Click(object sender, EventArgs e)
+        private async void btnKreirajNoviRacun_Click(object sender, EventArgs e)
         {
-            kreiranjeNovogRacuna(listaID[listBoxMusterija.SelectedIndices[0]]);
-            iscitavanjeRacunaSelektovanogMusterije(listaID[listBoxMusterija.SelectedIndices[0]]);
+            await kreiranjeNovogRacuna(listaID[listBoxMusterija.SelectedIndices[0]]);
+            await iscitavanjeRacunaSelektovanogMusterije(listaID[listBoxMusterija.SelectedIndices[0]]);
         }
         private void textBoxPretrazivanja_KeyPress(object sender, KeyPressEventArgs e)
         {
             pretragaMusterija();
         }
 
-        private void iscitavanjeMusterija()
+        private async void iscitavanjeMusterija()
         {
 
             listBoxMusterija.Items.Clear();
             listaID.Clear();
             int i = 1, r = 0;
-            var musterije = _context.Musterije.ToList();
-            var brojMusterija = _context.Musterije.ToList().Count();
+            var musterije = await _context.Musterije.ToListAsync();
+
+            var brojMusterija = musterije.Count();
 
             if (brojMusterija > 10)
                 r = brojMusterija - 10;
@@ -106,7 +108,7 @@ namespace ExtraSjaj.Forme
             listBoxMusterija.Items.Add("Prikaži još mušterija...");
 
         }
-        private void dodajMusteriju()
+        private async void dodajMusteriju()
         {
             Musterija musterija = new Musterija()
             {
@@ -119,7 +121,7 @@ namespace ExtraSjaj.Forme
             try
             {
                 _context.Musterije.Add(musterija);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 MessageBox.Show("Uspešno dodavavanje mušterije i njenog računa.", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 iscitavanjeMusterija();
                 kreiranjeRacuna();
@@ -130,14 +132,14 @@ namespace ExtraSjaj.Forme
                 MessageBox.Show(ex.Message);
             }
         }
-        private void brisanjeMusterije()
+        private async void brisanjeMusterije()
         {
             int idZaBrisanje = listaID[listBoxMusterija.SelectedIndices[0]];
             Musterija musterijaZaBrisanje = _context.Musterije.SingleOrDefault(x => x.Id == idZaBrisanje);
             try
             {
                 _context.Musterije.Remove(musterijaZaBrisanje);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 MessageBox.Show("Uspešno brisanje mušterije.", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 iscitavanjeMusterija();
             }
@@ -146,7 +148,7 @@ namespace ExtraSjaj.Forme
                 MessageBox.Show(ex.Message);
             }
         }
-        private void kreiranjeRacuna()
+        private async void kreiranjeRacuna()
         {
             int lastIdMusterije = _context.Musterije.Max(x => x.Id);
             try
@@ -161,14 +163,14 @@ namespace ExtraSjaj.Forme
                     VrijemePlacanjaRacuna = Convert.ToDateTime("1.1.2001")
                 }
                 );
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
-        private void kreiranjeNovogRacuna(int IDMusterije)
+        private async Task kreiranjeNovogRacuna(int IDMusterije)
         {
             try
             {
@@ -182,7 +184,7 @@ namespace ExtraSjaj.Forme
                     VrijemePlacanjaRacuna = Convert.ToDateTime("1.1.2001")
                 }
                 );
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 MessageBox.Show("Uspešno napravljen  novi račun!");
             }
             catch (Exception ex)
@@ -190,10 +192,10 @@ namespace ExtraSjaj.Forme
                 MessageBox.Show(ex.Message);
             }
         }
-        private void updateMusterije()
+        private async void updateMusterije()
         {
             int idZaUpdate = listaID[listBoxMusterija.SelectedIndices[0]];
-            Musterija stariMusterija = _context.Musterije.SingleOrDefault(x => x.Id == idZaUpdate);
+            Musterija stariMusterija = await _context.Musterije.SingleOrDefaultAsync(x => x.Id == idZaUpdate);
 
             try
             {
@@ -201,7 +203,7 @@ namespace ExtraSjaj.Forme
                 stariMusterija.Prezime = txtBoxImePrezime.Text.Substring(txtBoxImePrezime.Text.IndexOf(' ') + 1);
                 stariMusterija.BrojTelefona = txtBoxBrojTel.Text;
                 stariMusterija.Adresa = txtBoxAdresa.Text;
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 iscitavanjeMusterija();
             }
             catch (Exception ex)
@@ -211,21 +213,24 @@ namespace ExtraSjaj.Forme
 
 
         }
-        void prikazInformacijaMusterijeNakonKlikaNaListBox()
+        private async Task  prikazInformacijaMusterijeNakonKlikaNaListBox()
         {
             int idSelektovanogMusterije = listaID[listBoxMusterija.SelectedIndices[0]];
-            Musterija stariMusterija = _context.Musterije.SingleOrDefault(x => x.Id == idSelektovanogMusterije);
+            Musterija stariMusterija = await _context.Musterije.SingleOrDefaultAsync(x => x.Id == idSelektovanogMusterije);
             txtBoxImePrezime.Text = stariMusterija.Ime + " " + stariMusterija.Prezime;
             txtBoxAdresa.Text = stariMusterija.Adresa;
             txtBoxBrojTel.Text = stariMusterija.BrojTelefona;
         }
-        public void iscitavanjeRacunaSelektovanogMusterije(int IDMusterija)
+        public async Task iscitavanjeRacunaSelektovanogMusterije(int IDMusterija)
         {
             listaViewRacuna.Items.Clear();
             listaRacunaID = new List<int>();
             int i = 1;
             int j = 0;
-            foreach (var item in _context.Racuni.ToList().Where(x => x.MusterijaId == IDMusterija))
+            var racuni = await _context.Racuni.Where(x => x.MusterijaId == IDMusterija).ToListAsync();
+
+
+            foreach (var item in racuni)
             {
                 listaViewRacuna.Items.Add((i++) + ". " + item.Vrijednost + " EUR. - " + item.VrijemeKreiranjaRacuna.ToShortDateString());
                 IDRacunaMusterije = item.Id;
@@ -240,7 +245,7 @@ namespace ExtraSjaj.Forme
 
 
 
-        private void pretragaMusterija()
+        private async void pretragaMusterija()
         {
             listBoxMusterija.Items.Clear();
             listaID.Clear();
@@ -250,12 +255,12 @@ namespace ExtraSjaj.Forme
               linq koji selektuje one redove koje sadrze karaktere unijete u textbox-u
               pretrazuje po svim atributima u musteriji
              */
-            var rezultatPretrage = _context.Musterije
+            var rezultatPretrage = await _context.Musterije
                                     .Where(x => x.Ime.Contains(textBoxPretrazivanja.Text) ||
                                     x.Prezime.Contains(textBoxPretrazivanja.Text) ||
                                     x.BrojTelefona.Contains(textBoxPretrazivanja.Text) ||
                                     x.Adresa.Contains(textBoxPretrazivanja.Text))
-                                    .ToList();
+                                    .ToListAsync();
 
             foreach (var item in rezultatPretrage)
             {

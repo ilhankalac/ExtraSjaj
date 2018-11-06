@@ -23,23 +23,25 @@ namespace ExtraSjaj
         {
             InitializeComponent();
             _context = new ModelContext();
-            _context.Racuni.Load();
             dodavanjeTepihaControl1.Visible = false;
             this.musterijasBindingSource3.DataSource = _context.Musterije.Local.ToBindingList();
             btnHomePage.Visible = false;
             dodavanjeMusterijeControl1.Visible = false;
-            iscitavanjeRacunaMusterija();
+
+            //pozivanje asihrone metode u konstruktoru
+            Task.Run(() =>this.iscitavanjeRacunaMusterija()).Wait(); 
+
             kalendar();
             prikrijLabele();
            
 
         }
-        public void iscitavanjeRacunaMusterija()
+        public async Task iscitavanjeRacunaMusterija()
         {
             listaRacuna.Items.Clear();
             listaID.Clear();
             int i = 1, j = 0, r = 0;
-            var racuni = _context.Racuni.ToList();
+            var racuni = await _context.Racuni.ToListAsync();
             var brojRacuna = _context.Racuni.ToList().Count();
 
             if (brojRacuna > 5)
@@ -61,16 +63,16 @@ namespace ExtraSjaj
 
         }
      
-        private void Form1_Load(object sender, EventArgs e)
+        private async void Form1_Load(object sender, EventArgs e)
         {
-            iscitavanjeRacunaMusterija();
+            await iscitavanjeRacunaMusterija();
         }
         private void prikaziOpcijeSaMusterijama(object sender, EventArgs e)
         {
            
             _context = new ModelContext();
-            _context.Musterije.Load();
-            _context.Racuni.Load();
+            _context.Musterije.LoadAsync();
+            _context.Racuni.LoadAsync();
             btnHomePage.Visible = false;
             dodavanjeTepihaControl1.Visible = false;
             dodavanjeMusterijeControl1.Visible = true;
@@ -102,14 +104,14 @@ namespace ExtraSjaj
             dodavanjeTepihaControl1.Visible = false;
         }
 
-        private void btnRacuni_Click(object sender, EventArgs e)
+        private async void btnRacuni_Click(object sender, EventArgs e)
         {
             _context = new ModelContext();
-            _context.Racuni.Load();
+            await _context.Racuni.LoadAsync();
             timer1.Enabled = false;
             listaRacuna.Width = 490;
             listaRacuna.Height = 603;
-            iscitavanjeRacunaMusterija();
+            await iscitavanjeRacunaMusterija();
             dodavanjeMusterijeControl1.Visible = false;
             dodavanjeTepihaControl1.Visible = false;
             listaRacuna.Visible = true;
@@ -145,7 +147,7 @@ namespace ExtraSjaj
                 ucitajNoveRacune();
 
         }
-        private void btnIzaberiDatum_Click(object sender, EventArgs e)
+        private async void btnIzaberiDatum_Click(object sender, EventArgs e)
         {
             Button btnSender = (Button)sender;
             Button clickedButton = new Button();
@@ -171,8 +173,8 @@ namespace ExtraSjaj
 
             DateTime date = Convert.ToDateTime(clickedButton.Tag);
             //linq sa kojim se selektuju racuni izabranog dana u datumu
-            var racuni = _context.Racuni
-                        .Where(x => x.VrijemeKreiranjaRacuna.Day == date.Day).ToList();
+            var racuni = await _context.Racuni
+                        .Where(x => x.VrijemeKreiranjaRacuna.Day == date.Day).ToListAsync();
 
 
             listaRacuna.Items.Clear();
@@ -191,11 +193,11 @@ namespace ExtraSjaj
         }
 
         
-        private void ucitajNoveRacune()
+        private async void ucitajNoveRacune()
         {
             listaRacuna.Items.RemoveAt(listaRacuna.Items.Count - 1);
             int j = listaRacuna.Items.Count, i = listaRacuna.Items.Count + 1, r;
-            var racuni = _context.Racuni.ToList();
+            var racuni = await _context.Racuni.ToListAsync();
             r = racuni.Count - listaRacuna.Items.Count; ;
 
 
