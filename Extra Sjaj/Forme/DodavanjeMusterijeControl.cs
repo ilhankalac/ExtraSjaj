@@ -24,7 +24,7 @@ namespace ExtraSjaj.Forme
             InitializeComponent();
             _context = new ModelContext();
             // _context.Musterije.LoadAsync();
-            //pozivanje asihrone metode u konstruktoru
+            //pozivanje asinhrone metode u konstruktoru
             Task.Run(() => this.iscitavanjeMusterija()).Wait();
             dodavanjeTepihaControl1.Visible = false;
         }

@@ -28,7 +28,7 @@ namespace ExtraSjaj
             btnHomePage.Visible = false;
             dodavanjeMusterijeControl1.Visible = false;
 
-            //pozivanje asihrone metode u konstruktoru
+            //pozivanje asinhrone metode u konstruktoru
             Task.Run(() =>this.iscitavanjeRacunaMusterija()).Wait(); 
 
             kalendar();
