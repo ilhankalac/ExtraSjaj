@@ -23,24 +23,24 @@ namespace ExtraSjaj.Forme
         {
             InitializeComponent();
             _context = new ModelContext();
-            _context.Tepisi.Load();
+            _context.Tepisi.LoadAsync();
           
         }
 
 
-        public void iscitavanjeTepiha(int racunID)
+        public async Task iscitavanjeTepiha(int racunID)
         {
             this.racunID = racunID;
             listBoxTepiha.Items.Clear();
             int i = 1;
             idLista = new List<int>();
-            foreach (var item in _context.Tepisi.ToList().Where(x=> x.RacunId == racunID))
+            foreach (var item in await _context.Tepisi.Where(x => x.RacunId == racunID).ToListAsync())
             {
                 listBoxTepiha.Items.Add((i++)+". "+item.Sirina +" X " +item.Duzina+" = "+item.Kvadratura + "m²");
                 idLista.Add(item.Id);
             }
-            informacijeORacunu();
-            iscrtajTepihe();
+            await informacijeORacunu();
+            await iscrtajTepihe();
         }
         private void btnDodajTepih_Click(object sender, EventArgs e)
         {
@@ -50,9 +50,9 @@ namespace ExtraSjaj.Forme
         {
             brisanjeTepiha();
         }
-        private void comboBoxCijena_SelectedIndexChanged(object sender, EventArgs e)
+        private async void comboBoxCijena_SelectedIndexChanged(object sender, EventArgs e)
         {
-            updateRacun();
+             await updateRacun();
         }
         private void btnNaplati_Click(object sender, EventArgs e)
         {
@@ -63,7 +63,7 @@ namespace ExtraSjaj.Forme
             this.Visible = false;
         }
 
-        public void dodajTepih()
+        private async void dodajTepih()
         {
             Tepih tepih = new Tepih()
             {
@@ -77,11 +77,11 @@ namespace ExtraSjaj.Forme
 
                 //dodavanje tepiha u tabeli tepisi
                 _context.Tepisi.Add(tepih);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 //update vrijednosti racuna u tabeli racuni
-                updateRacun();
-                iscitavanjeTepiha(racunID);
-                iscrtajTepihe();
+                await updateRacun();
+                await iscitavanjeTepiha(racunID);
+                await iscrtajTepihe();
             }
             catch (Exception ex)
             {
@@ -89,21 +89,21 @@ namespace ExtraSjaj.Forme
                 MessageBox.Show(ex.Message);
             }
         }
-        private void brisanjeTepiha()
+        private async void brisanjeTepiha()
         {
             int idZaBrisanje = idLista[listBoxTepiha.SelectedIndices[0]];
-            Tepih tepihZaBrisanje = _context.Tepisi.SingleOrDefault(x => x.Id == idZaBrisanje);
+            Tepih tepihZaBrisanje = await _context.Tepisi.SingleOrDefaultAsync(x => x.Id == idZaBrisanje);
             try
             {
                 DialogResult dialogResult = MessageBox.Show("Da li si siguran da želiš da obrišeš ovaj tepih?", "Pitanje", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
                     _context.Tepisi.Remove(tepihZaBrisanje);
-                    _context.SaveChanges();
+                    await _context.SaveChangesAsync();
                     MessageBox.Show("Uspešno brisanje tepiha.", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    updateRacun();
-                    iscitavanjeTepiha(racunID);
-                    iscrtajTepihe();
+                    await updateRacun();
+                    await iscitavanjeTepiha(racunID);
+                    await iscrtajTepihe();
                 }
 
             }
@@ -112,11 +112,11 @@ namespace ExtraSjaj.Forme
                 MessageBox.Show(ex.Message);
             }
         }
-        private void informacijeORacunu()
+        private async Task informacijeORacunu()
         {
 
-            var racun = _context.Racuni.FirstOrDefault(x => x.Id==racunID);
-            var musterija = _context.Musterije.FirstOrDefault(x => x.Id == racun.MusterijaId);
+            var racun = await _context.Racuni.FirstOrDefaultAsync(x => x.Id==racunID);
+            var musterija = await _context.Musterije.FirstOrDefaultAsync(x => x.Id == racun.MusterijaId);
 
 
             labelRacun.Text = "Račun: ";
@@ -139,14 +139,14 @@ namespace ExtraSjaj.Forme
             textBoxNaplate.Text = racun.Vrijednost.ToString();
         }
 
-        private void updateRacun()
+        private async Task updateRacun()
         {
-            var racun = _context.Racuni.Where(x => x.Id == racunID).SingleOrDefault();
+            var racun = await _context.Racuni.Where(x => x.Id == racunID).SingleOrDefaultAsync();
             double sumaKvadrature = 0;
             int brojTepiha = 0;
 
             //linq koji prolazi kroz sve tepihe selektovanog racuna i racuna sumu kvadrature kao i broj tepiha
-            foreach (var tepih in _context.Tepisi.Where(x => x.RacunId == racunID).ToList())
+            foreach (var tepih in await _context.Tepisi.Where(x => x.RacunId == racunID).ToListAsync())
             {
                 sumaKvadrature += tepih.Kvadratura;
                 brojTepiha++;
@@ -156,8 +156,8 @@ namespace ExtraSjaj.Forme
             {
                 racun.Vrijednost = Math.Round((Convert.ToSingle(comboBoxCijena.Text) * sumaKvadrature), 2);
                 racun.BrojTepiha = brojTepiha;
-                _context.SaveChanges();
-                informacijeORacunu();
+                await _context.SaveChangesAsync();
+                await informacijeORacunu();
 
             }
             catch (Exception ex)
@@ -166,9 +166,9 @@ namespace ExtraSjaj.Forme
                 MessageBox.Show(ex.Message);
             }
         }
-        private void naplati()
+        private async void naplati()
         {
-            var racun = _context.Racuni.Where(x => x.Id == racunID).SingleOrDefault();
+            var racun = await _context.Racuni.Where(x => x.Id == racunID).SingleOrDefaultAsync();
             try
             {
                 DialogResult dialogResult = MessageBox.Show("Da li si siguran da je mušterija platio?", "Poruka", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
@@ -184,7 +184,7 @@ namespace ExtraSjaj.Forme
                         racun.Vrijednost -= Convert.ToSingle(textBoxNaplate.Text);
 
 
-                    _context.SaveChanges();
+                    await _context.SaveChangesAsync();
                     MessageBox.Show("Uspešno naplaćeno.", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else if (Convert.ToDouble(textBoxNaplate.Text) > racun.Vrijednost || Convert.ToDouble(textBoxNaplate.Text) < 0)
@@ -201,11 +201,11 @@ namespace ExtraSjaj.Forme
 
         }
         
-        private void iscrtajTepihe()
+        private async Task iscrtajTepihe()
         {
 
             int top = 50, left = 50, k = 0, i = 0;
-            var tepisi = _context.Tepisi.Where(x => x.RacunId == racunID).ToList();
+            var tepisi = await _context.Tepisi.Where(x => x.RacunId == racunID).ToListAsync();
             /*petlja koja brise sva dugmad na panelu, kako bismo obezbijedili
              da nakon  brisanja krece ispocetka sa iscrtavanjem
             */
