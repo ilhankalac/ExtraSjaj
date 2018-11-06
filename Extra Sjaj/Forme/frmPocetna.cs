@@ -30,8 +30,6 @@ namespace ExtraSjaj
 
             //pozivanje asinhrone metode u konstruktoru
             Task.Run(() =>this.iscitavanjeRacunaMusterija()).Wait(); 
-
-            kalendar();
             prikrijLabele();
            
 
@@ -118,7 +116,7 @@ namespace ExtraSjaj
             panel4.Visible = true;
         }
 
-        private void listaRacuna_DoubleClick(object sender, EventArgs e)
+        private async void listaRacuna_DoubleClick(object sender, EventArgs e)
         {
             button6.Visible = false;
             panel4.Visible = false;
@@ -126,7 +124,7 @@ namespace ExtraSjaj
             cmbBrojaRacuna.Visible = false;
             this.timer1.Enabled = true;
             int racunID = listaID[listaRacuna.SelectedIndices[0]];
-            dodavanjeTepihaControl1.iscitavanjeTepiha(racunID);
+            await dodavanjeTepihaControl1.iscitavanjeTepiha(racunID);
             dodavanjeTepihaControl1.Visible = true;
         }
 
@@ -147,52 +145,11 @@ namespace ExtraSjaj
                 ucitajNoveRacune();
 
         }
-        private async void btnIzaberiDatum_Click(object sender, EventArgs e)
+        private void monthCalendar1_DateSelected(object sender, DateRangeEventArgs e)
         {
-            Button btnSender = (Button)sender;
-            Button clickedButton = new Button();
-            int j = 0, i = 1, brojacProlaza = 0;
-            List<DateTime> listaprvihDatuma = new List<DateTime>();
-
-            //foreach sa kojim se uzima vrijednost sa kliknutog dugmeta koje je dinamicki napravljen
-            foreach (var button in panel4.Controls.OfType<Button>())
-            {
-                //if koji uzima vrijednosti datuma  prvog reda dana dinamickog kalendara
-                if(brojacProlaza < 7)
-                {
-                    listaprvihDatuma.Add(Convert.ToDateTime( button.Tag));
-                    brojacProlaza++;
-                }
-
-                if (btnSender == button)
-                    clickedButton = button;
-            }
-
-            ispisiDaneUKalendaru(listaprvihDatuma);
-
-
-            DateTime date = Convert.ToDateTime(clickedButton.Tag);
-            //linq sa kojim se selektuju racuni izabranog dana u datumu
-            var racuni = await _context.Racuni
-                        .Where(x => x.VrijemeKreiranjaRacuna.Day == date.Day).ToListAsync();
-
-
-            listaRacuna.Items.Clear();
-            for (int k = 0; k < racuni.Count; k++)
-            {
-
-
-                listaRacuna.Items.Add((i++) + ". " + racuni[k].Musterija.Ime + " " + racuni[k].Musterija.Prezime + " = " + racuni[k].Vrijednost + " EUR. - " + racuni[k].VrijemeKreiranjaRacuna.ToShortDateString());
-                listaID.Add(racuni[k].Id);
-                if (racuni[k].Placen)
-                    listaRacuna.Items[j].BackColor = Color.Green;
-                else
-                    listaRacuna.Items[j].BackColor = Color.Red;
-                j++;
-            }
+            selekcijaRacunaPoDatumu();
         }
-
-        
+      
         private async void ucitajNoveRacune()
         {
             listaRacuna.Items.RemoveAt(listaRacuna.Items.Count - 1);
@@ -221,6 +178,35 @@ namespace ExtraSjaj
             }
             listaRacuna.Items.Add("Prikaži još računa...");
         }
+    
+        private async void selekcijaRacunaPoDatumu()
+        {
+
+            int j = 0, i = 1;
+
+            /*
+                 linq sa kojim se prikazuje lista racuna 
+                 selektovanog datuma na kalendaru, po danu, mjesecu i godini              
+            */
+            var racuni = await _context.Racuni
+                        .Where(x => x.VrijemeKreiranjaRacuna.Day == monthCalendar1.SelectionRange.Start.Day)
+                        .Where(x => x.VrijemeKreiranjaRacuna.Month == monthCalendar1.SelectionRange.Start.Month)
+                        .Where(x => x.VrijemeKreiranjaRacuna.Year == monthCalendar1.SelectionRange.Start.Year)
+                        .ToListAsync();
+
+
+            listaRacuna.Items.Clear();
+            for (int k = 0; k < racuni.Count; k++)
+            {
+                listaRacuna.Items.Add((i++) + ". " + racuni[k].Musterija.Ime + " " + racuni[k].Musterija.Prezime + " = " + racuni[k].Vrijednost + " EUR. - " + racuni[k].VrijemeKreiranjaRacuna.ToShortDateString());
+                listaID.Add(racuni[k].Id);
+                if (racuni[k].Placen)
+                    listaRacuna.Items[j].BackColor = Color.Green;
+                else
+                    listaRacuna.Items[j].BackColor = Color.Red;
+                j++;
+            }
+        }
         private void prikrijLabele()
         {
 
@@ -232,61 +218,8 @@ namespace ExtraSjaj
             label7.Text = "";
             label8.Text = "";
         }
-        private void kalendar()
-        {
-            int top = 30, left = 30, k = 0, i =0;
 
-            /*petlja koja brise sva dugmad na panelu, kako bismo obezbijedili
-             da nakon  brisanja krece ispocetka sa iscrtavanjem
-            */
-            foreach (var button in panel4.Controls.OfType<Button>())
-                panel4.Controls.Remove(button);
 
-            foreach (DateTime dan in EachDay(DateTime.Now.AddDays(-30), DateTime.Now))
-            {
-                /*if sa kojim se pomera u novi red iscrtavanje tepiha nakon svakog petog tepiha
-                 vrijednosti su izabrane otprilike, tj na osnovu mojih nekih procjena
-               */
-                if (i % 7 == 0 && i != 0)
-                {
-                    k++;
-                    left = 30;
-                    top = 30 + (k * 50);
-                }
-                Button button = new Button();
-                button.Left = left;
-                button.Top = top;
-                button.Width = 30;
-                button.Height = 30;
-                button.Text = dan.Day.ToString();
-                button.FlatAppearance.BorderSize = 0;
-                button.FlatStyle = FlatStyle.Popup;
-                button.BackColor = Color.White;
-                button.Tag = dan;
-                button.Click += new EventHandler(btnIzaberiDatum_Click);
-                panel4.Controls.Add(button);
-                left += 50;
-                i++;
-            }
-        }
-        public IEnumerable<DateTime> EachDay(DateTime from, DateTime thru)
-        {
-            for (var day = from.Date; day.Date <= thru.Date; day = day.AddDays(1))
-                yield return day;
-        }
-        private void ispisiDaneUKalendaru(List<DateTime> listaPrvihDatuma)
-        {
-            //ispis prva 3 slova imena dana po kolonama dinamickih buttona
-
-            label9.Text = listaPrvihDatuma[0].DayOfWeek.ToString().Substring(0, 3);
-            label4.Text = listaPrvihDatuma[1].DayOfWeek.ToString().Substring(0, 3);
-            label10.Text = listaPrvihDatuma[2].DayOfWeek.ToString().Substring(0, 3);
-            label5.Text = listaPrvihDatuma[3].DayOfWeek.ToString().Substring(0, 3);
-            label6.Text = listaPrvihDatuma[4].DayOfWeek.ToString().Substring(0, 3);
-            label7.Text = listaPrvihDatuma[5].DayOfWeek.ToString().Substring(0, 3);
-            label8.Text = listaPrvihDatuma[6].DayOfWeek.ToString().Substring(0, 3);
-        }
-        
     }
 }
     

@@ -63,8 +63,9 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.btnHomePage = new ExtraSjaj.Forme.ArhivaMusterijaControl();
+            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.dodavanjeTepihaControl1 = new ExtraSjaj.Forme.DodavanjeTepihaControl();
+            this.btnHomePage = new ExtraSjaj.Forme.ArhivaMusterijaControl();
             this.dodavanjeMusterijeControl1 = new ExtraSjaj.Forme.DodavanjeMusterijeControl();
             ((System.ComponentModel.ISupportInitialize)(this.musterijasBindingSource3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._TepisiBaza_2018DataSet1)).BeginInit();
@@ -331,6 +332,7 @@
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.monthCalendar1);
             this.panel4.Controls.Add(this.label10);
             this.panel4.Controls.Add(this.label9);
             this.panel4.Controls.Add(this.label8);
@@ -339,9 +341,9 @@
             this.panel4.Controls.Add(this.label5);
             this.panel4.Controls.Add(this.label4);
             this.panel4.Controls.Add(this.btnHomePage);
-            this.panel4.Location = new System.Drawing.Point(671, 121);
+            this.panel4.Location = new System.Drawing.Point(678, 121);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(378, 297);
+            this.panel4.Size = new System.Drawing.Size(488, 297);
             this.panel4.TabIndex = 29;
             // 
             // label10
@@ -414,13 +416,12 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "Pon";
             // 
-            // btnHomePage
+            // monthCalendar1
             // 
-            this.btnHomePage.Location = new System.Drawing.Point(-490, 1);
-            this.btnHomePage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnHomePage.Name = "btnHomePage";
-            this.btnHomePage.Size = new System.Drawing.Size(1689, 1116);
-            this.btnHomePage.TabIndex = 23;
+            this.monthCalendar1.Location = new System.Drawing.Point(-7, -2);
+            this.monthCalendar1.Name = "monthCalendar1";
+            this.monthCalendar1.TabIndex = 26;
+            this.monthCalendar1.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateSelected);
             // 
             // dodavanjeTepihaControl1
             // 
@@ -430,6 +431,14 @@
             this.dodavanjeTepihaControl1.Name = "dodavanjeTepihaControl1";
             this.dodavanjeTepihaControl1.Size = new System.Drawing.Size(1061, 604);
             this.dodavanjeTepihaControl1.TabIndex = 24;
+            // 
+            // btnHomePage
+            // 
+            this.btnHomePage.Location = new System.Drawing.Point(-518, 64);
+            this.btnHomePage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnHomePage.Name = "btnHomePage";
+            this.btnHomePage.Size = new System.Drawing.Size(1689, 1116);
+            this.btnHomePage.TabIndex = 23;
             // 
             // dodavanjeMusterijeControl1
             // 
@@ -445,17 +454,17 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1201, 704);
+            this.Controls.Add(this.dodavanjeTepihaControl1);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cmbBrojaRacuna);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.listaRacuna);
-            this.Controls.Add(this.dodavanjeTepihaControl1);
-            this.Controls.Add(this.dodavanjeMusterijeControl1);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.dodavanjeMusterijeControl1);
             this.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -518,6 +527,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.MonthCalendar monthCalendar1;
     }
 }
 

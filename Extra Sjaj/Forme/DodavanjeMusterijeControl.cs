@@ -42,12 +42,12 @@ namespace ExtraSjaj.Forme
         {
             updateMusterije();
         }
-        private void listaViewRacuna_DoubleClick(object sender, EventArgs e)
+        private async void listaViewRacuna_DoubleClick(object sender, EventArgs e)
         {
 
             dodavanjeTepihaControl1.Visible = true;
             int racunID = listaRacunaID[listaViewRacuna.SelectedIndices[0]];
-            dodavanjeTepihaControl1.iscitavanjeTepiha(racunID);
+            await dodavanjeTepihaControl1.iscitavanjeTepiha(racunID);
             dodavanjeTepihaControl1.Visible = true;
 
         }
