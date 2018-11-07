@@ -56,5 +56,11 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ExtraSjaj.Common.Models\ExtraSjaj.Common.Models.csproj">
+      <Project>{8853FC60-485B-40B8-A528-FED20AE8CEEE}</Project>
+      <Name>ExtraSjaj.Common.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

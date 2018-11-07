@@ -132,6 +132,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ExtraSjaj.Common.Interfaces\ExtraSjaj.Common.Interfaces.csproj">
+      <Project>{965D1C41-DAF8-4437-BE56-0DF3B4DB2590}</Project>
+      <Name>ExtraSjaj.Common.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ExtraSjaj.Common.Models\ExtraSjaj.Common.Models.csproj">
       <Project>{8853FC60-485B-40B8-A528-FED20AE8CEEE}</Project>
       <Name>ExtraSjaj.Common.Models</Name>
@@ -139,6 +143,10 @@
     <ProjectReference Include="..\ExtraSjaj.DAL.Context\ExtraSjaj.DAL.Context.csproj">
       <Project>{b1150af9-70f3-49ea-8ca9-dc43edc2a013}</Project>
       <Name>ExtraSjaj.DAL.Context</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ExtraSjaj.DAL.RepoPattern\ExtraSjaj.DAL.RepoPattern.csproj">
+      <Project>{9273D98F-568B-464F-846E-D82BEA2EAE51}</Project>
+      <Name>ExtraSjaj.DAL.RepoPattern</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

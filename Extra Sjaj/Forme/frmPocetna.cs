@@ -1,4 +1,5 @@
-﻿using ExtraSjaj.Modeli;
+﻿using ExtraSjaj.DAL.RepoPattern;
+using ExtraSjaj.Modeli;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -13,11 +14,18 @@ namespace ExtraSjaj
     public partial class frmPocetna : Form
     {
         ModelContext _context;
+        UnitOfWork unitOfWork;
+
+
         List<int> listaID = new List<int>();
         public frmPocetna()
         {
             InitializeComponent();
+
             _context = new ModelContext();
+            unitOfWork = new UnitOfWork(_context);
+
+
             dodavanjeTepihaControl1.Visible = false;
             this.musterijasBindingSource3.DataSource = _context.Musterije.Local.ToBindingList();
             btnHomePage.Visible = false;
