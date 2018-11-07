@@ -8,7 +8,6 @@ namespace ExtraSjaj.Modeli
     [Table("Tepisi")]
     public class Tepih
     {
-        //fdsa
         public int Id { get; set; }
         public float Duzina { get; set; }
         public float Sirina { get; set; }

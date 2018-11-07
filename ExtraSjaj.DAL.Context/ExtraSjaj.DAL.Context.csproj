@@ -64,10 +64,6 @@
       <Project>{8853fc60-485b-40b8-a528-fed20ae8ceee}</Project>
       <Name>ExtraSjaj.Common.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ExtraSjaj.DAL.RepoPattern\ExtraSjaj.DAL.RepoPattern.csproj">
-      <Project>{9273d98f-568b-464f-846e-d82bea2eae51}</Project>
-      <Name>ExtraSjaj.DAL.RepoPattern</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201811071914479_InitialCreate.resx">
