@@ -156,10 +156,11 @@ namespace ExtraSjaj.Forme
         }
         private async void kreiranjeRacuna()
         {
+            //metoda za musterija repository
             int lastIdMusterije = _context.Musterije.Max(x => x.Id);
             try
             {
-                _context.Racuni.Add(new Racun()
+                unitOfWork.Racuni.Add(new Racun()
                 {
                     MusterijaId = lastIdMusterije,
                     BrojTepiha = 0,
@@ -180,7 +181,7 @@ namespace ExtraSjaj.Forme
         {
             try
             {
-                _context.Racuni.Add(new Racun()
+                unitOfWork.Racuni.Add(new Racun()
                 {
                     MusterijaId = IDMusterije,
                     BrojTepiha = 0,
@@ -209,7 +210,9 @@ namespace ExtraSjaj.Forme
                 stariMusterija.Prezime = txtBoxImePrezime.Text.Substring(txtBoxImePrezime.Text.IndexOf(' ') + 1);
                 stariMusterija.BrojTelefona = txtBoxBrojTel.Text;
                 stariMusterija.Adresa = txtBoxAdresa.Text;
+
                 await unitOfWork.SaveChangesAsync();
+
                 iscitavanjeMusterija();
             }
             catch (Exception ex)
@@ -233,6 +236,8 @@ namespace ExtraSjaj.Forme
             listaRacunaID = new List<int>();
             int i = 1;
             int j = 0;
+
+            //metoda za racuni repo 
             var racuni = await _context.Racuni.Where(x => x.MusterijaId == IDMusterija).ToListAsync();
 
 
@@ -261,6 +266,7 @@ namespace ExtraSjaj.Forme
               linq koji selektuje one redove koje sadrze karaktere unijete u textbox-u
               pretrazuje po svim atributima u musteriji
              */
+             
             var rezultatPretrage = await _context.Musterije
                                     .Where(x => x.Ime.Contains(textBoxPretrazivanja.Text) ||
                                     x.Prezime.Contains(textBoxPretrazivanja.Text) ||
@@ -322,9 +328,6 @@ namespace ExtraSjaj.Forme
             chartRacuni.Series["Racuni"].Points.Clear();
             foreach (var racun in racuniMusterije)
                 chartRacuni.Series["Racuni"].Points.AddXY(i++, racun.Vrijednost);
-
-
-
 
 
         }

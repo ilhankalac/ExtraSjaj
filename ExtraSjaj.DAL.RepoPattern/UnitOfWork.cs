@@ -12,10 +12,12 @@ namespace ExtraSjaj.DAL.RepoPattern
     {
         private readonly ModelContext _context;
         public IMusterijaRepository Musterije { get; private set; }
+        public IRacunRepository Racuni { get; private set; }
         public UnitOfWork(ModelContext context)
         {
             _context = context;
             Musterije = new MusterijaRepository(_context);
+            Racuni = new RacunRepository(_context);
 
         }
 

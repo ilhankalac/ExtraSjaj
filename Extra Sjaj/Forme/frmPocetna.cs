@@ -1,4 +1,5 @@
-﻿using ExtraSjaj.DAL.RepoPattern;
+﻿using ExtraSjaj.Common.Interfaces;
+using ExtraSjaj.DAL.RepoPattern;
 using ExtraSjaj.Modeli;
 using System;
 using System.Collections.Generic;
@@ -14,14 +15,15 @@ namespace ExtraSjaj
     public partial class frmPocetna : Form
     {
         ModelContext _context;
-        UnitOfWork unitOfWork;
-
+        IUnitOfWork unitOfWork;
 
         List<int> listaID = new List<int>();
         public frmPocetna()
         {
             InitializeComponent();
-
+        }
+        private async void Form1_Load(object sender, EventArgs e)
+        {
             _context = new ModelContext();
             unitOfWork = new UnitOfWork(_context);
 
@@ -32,17 +34,15 @@ namespace ExtraSjaj
             dodavanjeMusterijeControl1.Visible = false;
 
             //pozivanje asinhrone metode u konstruktoru
-            Task.Run(() =>this.iscitavanjeRacunaMusterija()).Wait(); 
-          
-           
-
+            Task.Run(() => this.iscitavanjeRacunaMusterija()).Wait();
+            await iscitavanjeRacunaMusterija();
         }
         public async Task iscitavanjeRacunaMusterija()
         {
             listaRacuna.Items.Clear();
             listaID.Clear();
             int i = 1, j = 0, r = 0;
-            var racuni = await _context.Racuni.ToListAsync();
+            var racuni = (List<Racun>) await unitOfWork.Racuni.GetAllAsync();
             var brojRacuna = _context.Racuni.ToList().Count();
 
             if (brojRacuna > 5)
@@ -64,16 +64,10 @@ namespace ExtraSjaj
 
         }
      
-        private async void Form1_Load(object sender, EventArgs e)
-        {
-            await iscitavanjeRacunaMusterija();
-        }
+     
         private void prikaziOpcijeSaMusterijama(object sender, EventArgs e)
         {
            
-            _context = new ModelContext();
-            _context.Musterije.LoadAsync();
-            _context.Racuni.LoadAsync();
             btnHomePage.Visible = false;
             dodavanjeTepihaControl1.Visible = false;
             dodavanjeMusterijeControl1.Visible = true;
@@ -107,8 +101,6 @@ namespace ExtraSjaj
 
         private async void btnRacuni_Click(object sender, EventArgs e)
         {
-            _context = new ModelContext();
-            await _context.Racuni.LoadAsync();
             timer1.Enabled = false;
             listaRacuna.Width = 490;
             listaRacuna.Height = 603;
@@ -157,7 +149,8 @@ namespace ExtraSjaj
         {
             listaRacuna.Items.RemoveAt(listaRacuna.Items.Count - 1);
             int j = listaRacuna.Items.Count, i = listaRacuna.Items.Count + 1, r;
-            var racuni = await _context.Racuni.ToListAsync();
+
+            var racuni =  (List<Racun>) await unitOfWork.Racuni.GetAllAsync();
             r = racuni.Count - listaRacuna.Items.Count; ;
 
 
@@ -217,9 +210,7 @@ namespace ExtraSjaj
             label4.Text = "Potencijalna zarada: " + racuni.Sum(n => n.Vrijednost).ToString() + " EUR.";
             label5.Text = "Zarada: " + racuni.Where(n => n.Placen == true).
                                         Sum(n => n.Vrijednost).ToString() + " EUR.";
-
             label6.Text = "Broj opranih tepiha: " + racuni.Sum(n => n.BrojTepiha).ToString() + ".";
-
         }
 
 
