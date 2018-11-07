@@ -78,32 +78,6 @@
     <Compile Include="Forme\frmPocetna.Designer.cs">
       <DependentUpon>frmPocetna.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201810211607195_MusterijaRacuniTepisi.cs" />
-    <Compile Include="Migrations\201810211607195_MusterijaRacuniTepisi.Designer.cs">
-      <DependentUpon>201810211607195_MusterijaRacuniTepisi.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811012112561_VrijemePlacanjaRacuna.cs" />
-    <Compile Include="Migrations\201811012112561_VrijemePlacanjaRacuna.Designer.cs">
-      <DependentUpon>201811012112561_VrijemePlacanjaRacuna.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811012154130_RazdvajanjeImenaIPrezimenaMusterije.cs" />
-    <Compile Include="Migrations\201811012154130_RazdvajanjeImenaIPrezimenaMusterije.Designer.cs">
-      <DependentUpon>201811012154130_RazdvajanjeImenaIPrezimenaMusterije.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811022239445_StatistikaMusterija.cs" />
-    <Compile Include="Migrations\201811022239445_StatistikaMusterija.Designer.cs">
-      <DependentUpon>201811022239445_StatistikaMusterija.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811022242430_SpajanjeStatistikeSaMusterijom.cs" />
-    <Compile Include="Migrations\201811022242430_SpajanjeStatistikeSaMusterijom.Designer.cs">
-      <DependentUpon>201811022242430_SpajanjeStatistikeSaMusterijom.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Modeli\ModelContext.cs" />
-    <Compile Include="Modeli\Musterija.cs" />
-    <Compile Include="Modeli\Racun.cs" />
-    <Compile Include="Modeli\StatistikaMusterija.cs" />
-    <Compile Include="Modeli\Tepih.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="_TepisiBaza_2018DataSet1.Designer.cs">
@@ -122,21 +96,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forme\frmPocetna.resx">
       <DependentUpon>frmPocetna.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810211607195_MusterijaRacuniTepisi.resx">
-      <DependentUpon>201810211607195_MusterijaRacuniTepisi.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811012112561_VrijemePlacanjaRacuna.resx">
-      <DependentUpon>201811012112561_VrijemePlacanjaRacuna.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811012154130_RazdvajanjeImenaIPrezimenaMusterije.resx">
-      <DependentUpon>201811012154130_RazdvajanjeImenaIPrezimenaMusterije.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811022239445_StatistikaMusterija.resx">
-      <DependentUpon>201811022239445_StatistikaMusterija.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811022242430_SpajanjeStatistikeSaMusterijom.resx">
-      <DependentUpon>201811022242430_SpajanjeStatistikeSaMusterijom.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -171,6 +130,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ExtraSjaj.Common.Models\ExtraSjaj.Common.Models.csproj">
+      <Project>{8853FC60-485B-40B8-A528-FED20AE8CEEE}</Project>
+      <Name>ExtraSjaj.Common.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ExtraSjaj.DAL.Context\ExtraSjaj.DAL.Context.csproj">
+      <Project>{b1150af9-70f3-49ea-8ca9-dc43edc2a013}</Project>
+      <Name>ExtraSjaj.DAL.Context</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

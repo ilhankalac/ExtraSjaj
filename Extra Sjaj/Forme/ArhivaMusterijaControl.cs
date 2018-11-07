@@ -8,8 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-using ExtraSjaj.Modeli;
-
 namespace ExtraSjaj.Forme
 {
     public partial class ArhivaMusterijaControl : UserControl
