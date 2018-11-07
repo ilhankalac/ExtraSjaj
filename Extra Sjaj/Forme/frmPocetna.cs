@@ -30,7 +30,7 @@ namespace ExtraSjaj
 
             //pozivanje asinhrone metode u konstruktoru
             Task.Run(() =>this.iscitavanjeRacunaMusterija()).Wait(); 
-            prikrijLabele();
+          
            
 
         }
@@ -195,6 +195,8 @@ namespace ExtraSjaj
                         .ToListAsync();
 
 
+            statistikaNaDnevnomNivou(racuni);
+
             listaRacuna.Items.Clear();
             for (int k = 0; k < racuni.Count; k++)
             {
@@ -207,16 +209,14 @@ namespace ExtraSjaj
                 j++;
             }
         }
-        private void prikrijLabele()
+        private void statistikaNaDnevnomNivou(List<Racun> racuni)
         {
+            label4.Text = "Potencijalna zarada: " + racuni.Sum(n => n.Vrijednost).ToString() + " EUR.";
+            label5.Text = "Zarada: " + racuni.Where(n => n.Placen == true).
+                                        Sum(n => n.Vrijednost).ToString() + " EUR.";
 
-            label9.Text = "";
-            label4.Text = "";
-            label10.Text = "";
-            label5.Text = "";
-            label6.Text = "";
-            label7.Text = "";
-            label8.Text = "";
+            label6.Text = "Broj opranih tepiha: " + racuni.Sum(n => n.BrojTepiha).ToString() + ".";
+
         }
 
 
