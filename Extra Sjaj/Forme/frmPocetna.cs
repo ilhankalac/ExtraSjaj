@@ -62,21 +62,6 @@ namespace ExtraSjaj
 
         }
      
-     
-        private void prikaziOpcijeSaMusterijama(object sender, EventArgs e)
-        {
-           
-            btnHomePage.Visible = false;
-            dodavanjeTepihaControl1.Visible = false;
-            dodavanjeMusterijeControl1.Visible = true;
-            listaRacuna.Visible = false;
-            button6.Visible = false;
-            label3.Visible = false;
-            cmbBrojaRacuna.Visible = false;
-            panel4.Visible = false;
-         
-        }
-
         private void prikaziStatistikuFirme(object sender, EventArgs e)
         {
             btnHomePage.Visible = true;
@@ -174,17 +159,10 @@ namespace ExtraSjaj
     
         private async void selekcijaRacunaPoDatumu()
         {
-
             int j = 0, i = 1;
 
-            /*
-                 linq sa kojim se prikazuje lista racuna 
-                 selektovanog datuma na kalendaru, po danu, mjesecu i godini              
-            */
-            var racuni = (List<Racun>) await unitOfWork.Racuni.racuniSelektovanogDatuma(monthCalendar1);
-
-            
-            statistikaNaDnevnomNivou(racuni);
+            var racuni =  await unitOfWork.Racuni.racuniSelektovanogDatuma(monthCalendar1);
+            unitOfWork.Racuni.statistikaRacunaNaDnevnomNivou(racuni, new Label[] {label4, label5, label6 });
 
             listaRacuna.Items.Clear();
             for (int k = 0; k < racuni.Count; k++)
@@ -198,12 +176,18 @@ namespace ExtraSjaj
                 j++;
             }
         }
-        private void statistikaNaDnevnomNivou(List<Racun> racuni)
+        private void prikaziOpcijeSaMusterijama(object sender, EventArgs e)
         {
-            label4.Text = "Potencijalna zarada: " + racuni.Sum(n => n.Vrijednost).ToString() + " EUR.";
-            label5.Text = "Zarada: " + racuni.Where(n => n.Placen == true).
-                                        Sum(n => n.Vrijednost).ToString() + " EUR.";
-            label6.Text = "Broj opranih tepiha: " + racuni.Sum(n => n.BrojTepiha).ToString() + ".";
+
+            btnHomePage.Visible = false;
+            dodavanjeTepihaControl1.Visible = false;
+            dodavanjeMusterijeControl1.Visible = true;
+            listaRacuna.Visible = false;
+            button6.Visible = false;
+            label3.Visible = false;
+            cmbBrojaRacuna.Visible = false;
+            panel4.Visible = false;
+
         }
 
 
