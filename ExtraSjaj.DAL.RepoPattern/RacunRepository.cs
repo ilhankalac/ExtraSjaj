@@ -42,6 +42,12 @@ namespace ExtraSjaj.DAL.RepoPattern
                         .ToListAsync();
         }
 
+        public async Task<List<Racun>> racuniMusterije(int IDMusterije)
+        {
+            return await _context.Racuni.Where(x => x.MusterijaId == IDMusterije).ToListAsync();
+        }
+
+
         public void statistikaRacunaNaDnevnomNivou(List<Racun> racuni, Label[] labels)
         {
             labels[0].Text = "Potencijalna zarada: " + racuni.Sum(n => n.Vrijednost).ToString() + " EUR.";

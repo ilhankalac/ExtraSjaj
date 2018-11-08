@@ -21,13 +21,10 @@ namespace ExtraSjaj
         public frmPocetna()
         {
             InitializeComponent();
+            unitOfWork = new UnitOfWork(new ModelContext());
         }
         private async void Form1_Load(object sender, EventArgs e)
         {
-            
-            unitOfWork = new UnitOfWork(new ModelContext());
-
-
             dodavanjeTepihaControl1.Visible = false;
             this.musterijasBindingSource3.DataSource = new ModelContext().Musterije.Local.ToBindingList();
             btnHomePage.Visible = false;

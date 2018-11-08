@@ -320,6 +320,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "DodavanjeMusterijeControl";
             this.Size = new System.Drawing.Size(1051, 603);
+            this.Load += new System.EventHandler(this.DodavanjeMusterijeControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this._TepisiBaza_2018DataSet11)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();

@@ -14,7 +14,7 @@ namespace ExtraSjaj.Forme
 {
     public partial class DodavanjeMusterijeControl : UserControl
     {
-        ModelContext _context;
+     
         IUnitOfWork unitOfWork;
         List<int> listaID = new List<int>();
         List<int> listaRacunaID;
@@ -24,16 +24,13 @@ namespace ExtraSjaj.Forme
         public DodavanjeMusterijeControl()
         {
             InitializeComponent();
-            _context = new ModelContext();
-            unitOfWork = new UnitOfWork(_context);
-
-
-            // _context.Musterije.LoadAsync();
-            //pozivanje asinhrone metode u konstruktoru
+            unitOfWork = new UnitOfWork(new ModelContext()); 
+        }
+        private void DodavanjeMusterijeControl_Load(object sender, EventArgs e)
+        {
             Task.Run(() => this.iscitavanjeMusterija()).Wait();
             dodavanjeTepihaControl1.Visible = false;
         }
-
         private  void btnDodajMusteriju_Click(object sender, EventArgs e)
         {
              dodajMusteriju();
@@ -67,15 +64,15 @@ namespace ExtraSjaj.Forme
                     ucitajNoveMusterije();
                     //return;
                 }
-
-                
-                await prikazInformacijaMusterijeNakonKlikaNaListBox();
-                await  iscitavanjeRacunaSelektovanogMusterije(listaID[listBoxMusterija.SelectedIndices[0]]);
-                racunanjeStatistike(listaID[listBoxMusterija.SelectedIndices[0]]);
+                else
+                {
+                    await prikazInformacijaMusterijeNakonKlikaNaListBox();
+                    await iscitavanjeRacunaSelektovanogMusterije(listaID[listBoxMusterija.SelectedIndices[0]]);
+                    racunanjeStatistike(listaID[listBoxMusterija.SelectedIndices[0]]);
+                }
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message + " Niste korektno izabrali mušteriju.");
             }
 
@@ -92,10 +89,10 @@ namespace ExtraSjaj.Forme
 
         private async void iscitavanjeMusterija()
         {
-
             listBoxMusterija.Items.Clear();
             listaID.Clear();
             int i = 1, r = 0;
+
             var musterije = (List<Musterija>) (await unitOfWork.Musterije.GetAllAsync());
 
             var brojMusterija = musterije.Count();
@@ -105,13 +102,13 @@ namespace ExtraSjaj.Forme
             else
                 r = 0;
 
-
             for (int k = brojMusterija - 1; k >= r; k--)
             {
                 listBoxMusterija.Items.Add((i++) + ". " + musterije[k].Ime + " " + musterije[k].Prezime + " (" + musterije[k].BrojTelefona + " )");
                 listaID.Add(musterije[k].Id);
             }
             listBoxMusterija.Items.Add("Prikaži još mušterija...");
+
 
         }
         private async void dodajMusteriju()
@@ -134,7 +131,6 @@ namespace ExtraSjaj.Forme
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message);
             }
         }
@@ -157,7 +153,8 @@ namespace ExtraSjaj.Forme
         private async void kreiranjeRacuna()
         {
             //metoda za musterija repository
-            int lastIdMusterije = _context.Musterije.Max(x => x.Id);
+            int lastIdMusterije = new ModelContext().Musterije.Max(x=>x.Id);
+
             try
             {
                 unitOfWork.Racuni.Add(new Racun()
@@ -230,16 +227,13 @@ namespace ExtraSjaj.Forme
             txtBoxAdresa.Text = stariMusterija.Adresa;
             txtBoxBrojTel.Text = stariMusterija.BrojTelefona;
         }
-        public async Task iscitavanjeRacunaSelektovanogMusterije(int IDMusterija)
+        public async Task iscitavanjeRacunaSelektovanogMusterije(int IDMusterije)
         {
             listaViewRacuna.Items.Clear();
             listaRacunaID = new List<int>();
-            int i = 1;
-            int j = 0;
+            int i = 1, j = 0;
 
-            //metoda za racuni repo 
-            var racuni = await _context.Racuni.Where(x => x.MusterijaId == IDMusterija).ToListAsync();
-
+            var racuni = await unitOfWork.Racuni.racuniMusterije(IDMusterije);
 
             foreach (var item in racuni)
             {
@@ -262,17 +256,7 @@ namespace ExtraSjaj.Forme
             listaID.Clear();
             int i = 1;
 
-            /*
-              linq koji selektuje one redove koje sadrze karaktere unijete u textbox-u
-              pretrazuje po svim atributima u musteriji
-             */
-             
-            var rezultatPretrage = await _context.Musterije
-                                    .Where(x => x.Ime.Contains(textBoxPretrazivanja.Text) ||
-                                    x.Prezime.Contains(textBoxPretrazivanja.Text) ||
-                                    x.BrojTelefona.Contains(textBoxPretrazivanja.Text) ||
-                                    x.Adresa.Contains(textBoxPretrazivanja.Text))
-                                    .ToListAsync();
+            var rezultatPretrage = await unitOfWork.Musterije.pretragaMusterija(textBoxPretrazivanja);
 
             foreach (var item in rezultatPretrage)
             {
@@ -283,14 +267,14 @@ namespace ExtraSjaj.Forme
                 listBoxMusterija.Items.Add("Nema rezultata pretrage: " + textBoxPretrazivanja.Text + ".");
 
         }
-        private void ucitajNoveMusterije()
+        private async void ucitajNoveMusterije()
         {
             listBoxMusterija.Items.RemoveAt(listBoxMusterija.Items.Count - 1);
-            int j = listBoxMusterija.Items.Count, i = listBoxMusterija.Items.Count + 1, r; 
-            var musterije = _context.Musterije.ToList();
-            r = musterije.Count - listBoxMusterija.Items.Count;
-            ;
+            int j = listBoxMusterija.Items.Count, i = listBoxMusterija.Items.Count + 1, r;
 
+
+            var musterije = (List<Musterija>) await unitOfWork.Musterije.GetAllAsync();
+            r = musterije.Count - listBoxMusterija.Items.Count;
 
             /*
              ako budes htio da dodajes feature da se izabere na aplikaciji
@@ -301,7 +285,7 @@ namespace ExtraSjaj.Forme
                 if (k != -1)
                 {
                     listBoxMusterija.Items.Add((i++) + ". " + musterije[k].Ime + " " + musterije[k].Prezime + " (" + musterije[k].BrojTelefona + " )");
-                    listaID.Add(musterije[k].Id); 
+                    listaID.Add(musterije[k].Id);
 
                 }
                 else break;
@@ -311,10 +295,9 @@ namespace ExtraSjaj.Forme
 
 
 
-        private void racunanjeStatistike(int IDMusterije)
+        private async void racunanjeStatistike(int IDMusterije)
         {
-            var racuniMusterije = _context.Racuni.
-                                  Where(x => x.MusterijaId == IDMusterije).ToList();
+            var racuniMusterije = await unitOfWork.Racuni.racuniMusterije(IDMusterije);
 
             labelUkupnogNovca.Visible = true;
             labelOpranihTepiha.Visible = true;
@@ -329,8 +312,8 @@ namespace ExtraSjaj.Forme
             chartRacuni.Series["Racuni"].Points.Clear();
             foreach (var racun in racuniMusterije)
                 chartRacuni.Series["Racuni"].Points.AddXY(i++, racun.Vrijednost);
-
-
         }
+
+      
     }
 }

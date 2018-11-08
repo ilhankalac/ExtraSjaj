@@ -12,7 +12,9 @@ namespace ExtraSjaj.Common.Interfaces
     {
         int ukupanBrojRacuna();
         Task<List<Racun>> racuniSelektovanogDatuma(MonthCalendar monthCalendar);
-
         void statistikaRacunaNaDnevnomNivou(List<Racun> racuni, Label[] labels);
+        Task<List<Racun>> racuniMusterije(int IDMusterije);
+
+
     }
 }
