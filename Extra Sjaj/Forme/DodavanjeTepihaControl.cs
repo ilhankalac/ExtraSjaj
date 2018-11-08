@@ -131,8 +131,6 @@ namespace ExtraSjaj.Forme
                 otkrijObjekteNaKontroli();
 
 
-         
-
             labelRacun.Text +=" "+ racun.Vrijednost+" EUR.";
             labelImePrezime.Text = musterija.Ime + " "+ musterija.Prezime;
             labelPlaceno.Text +=Convert.ToString(racun.Placen);

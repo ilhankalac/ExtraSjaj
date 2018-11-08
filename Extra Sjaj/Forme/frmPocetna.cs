@@ -14,7 +14,7 @@ namespace ExtraSjaj
 {
     public partial class frmPocetna : Form
     {
-        ModelContext _context;
+     
         IUnitOfWork unitOfWork;
 
         List<int> listaID = new List<int>();
@@ -24,17 +24,14 @@ namespace ExtraSjaj
         }
         private async void Form1_Load(object sender, EventArgs e)
         {
-            _context = new ModelContext();
-            unitOfWork = new UnitOfWork(_context);
+            
+            unitOfWork = new UnitOfWork(new ModelContext());
 
 
             dodavanjeTepihaControl1.Visible = false;
-            this.musterijasBindingSource3.DataSource = _context.Musterije.Local.ToBindingList();
+            this.musterijasBindingSource3.DataSource = new ModelContext().Musterije.Local.ToBindingList();
             btnHomePage.Visible = false;
             dodavanjeMusterijeControl1.Visible = false;
-
-            //pozivanje asinhrone metode u konstruktoru
-            Task.Run(() => this.iscitavanjeRacunaMusterija()).Wait();
             await iscitavanjeRacunaMusterija();
         }
         public async Task iscitavanjeRacunaMusterija()
@@ -42,8 +39,9 @@ namespace ExtraSjaj
             listaRacuna.Items.Clear();
             listaID.Clear();
             int i = 1, j = 0, r = 0;
+            
             var racuni = (List<Racun>) await unitOfWork.Racuni.GetAllAsync();
-            var brojRacuna = _context.Racuni.ToList().Count();
+            var brojRacuna = unitOfWork.Racuni.ukupanBrojRacuna();
 
             if (brojRacuna > 5)
                 r = brojRacuna - 5;
@@ -82,7 +80,6 @@ namespace ExtraSjaj
         private void prikaziStatistikuFirme(object sender, EventArgs e)
         {
             btnHomePage.Visible = true;
-          
         }
 
         private void closeForm(object sender, EventArgs e)
@@ -184,13 +181,9 @@ namespace ExtraSjaj
                  linq sa kojim se prikazuje lista racuna 
                  selektovanog datuma na kalendaru, po danu, mjesecu i godini              
             */
-            var racuni = await _context.Racuni
-                        .Where(x => x.VrijemeKreiranjaRacuna.Day == monthCalendar1.SelectionRange.Start.Day)
-                        .Where(x => x.VrijemeKreiranjaRacuna.Month == monthCalendar1.SelectionRange.Start.Month)
-                        .Where(x => x.VrijemeKreiranjaRacuna.Year == monthCalendar1.SelectionRange.Start.Year)
-                        .ToListAsync();
+            var racuni = (List<Racun>) await unitOfWork.Racuni.racuniSelektovanogDatuma(monthCalendar1);
 
-
+            
             statistikaNaDnevnomNivou(racuni);
 
             listaRacuna.Items.Clear();
