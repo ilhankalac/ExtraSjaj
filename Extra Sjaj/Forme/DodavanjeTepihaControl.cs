@@ -9,12 +9,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.Entity;
 using ExtraSjaj.Modeli;
+using ExtraSjaj.Common.Interfaces;
+using ExtraSjaj.DAL.RepoPattern;
 
 namespace ExtraSjaj.Forme
 {
     public partial class DodavanjeTepihaControl : UserControl
     {
-
+        IUnitOfWork unitOfWork;
         ModelContext _context;
         List<int> idLista;
         int racunID;
@@ -22,8 +24,8 @@ namespace ExtraSjaj.Forme
         {
             InitializeComponent();
             _context = new ModelContext();
-            _context.Tepisi.LoadAsync();
-          
+            unitOfWork = new UnitOfWork(_context);
+            _context.Tepisi.LoadAsync();        
         }
 
 
@@ -75,8 +77,8 @@ namespace ExtraSjaj.Forme
             {
 
                 //dodavanje tepiha u tabeli tepisi
-                _context.Tepisi.Add(tepih);
-                await _context.SaveChangesAsync();
+                unitOfWork.Tepisi.Add(tepih);
+                await unitOfWork.SaveChangesAsync();
                 //update vrijednosti racuna u tabeli racuni
                 await updateRacun();
                 await iscitavanjeTepiha(racunID);
@@ -91,14 +93,14 @@ namespace ExtraSjaj.Forme
         private async void brisanjeTepiha()
         {
             int idZaBrisanje = idLista[listBoxTepiha.SelectedIndices[0]];
-            Tepih tepihZaBrisanje = await _context.Tepisi.SingleOrDefaultAsync(x => x.Id == idZaBrisanje);
+            Tepih tepihZaBrisanje = await unitOfWork.Tepisi.GetAsync(idZaBrisanje);
             try
             {
                 DialogResult dialogResult = MessageBox.Show("Da li si siguran da želiš da obrišeš ovaj tepih?", "Pitanje", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    _context.Tepisi.Remove(tepihZaBrisanje);
-                    await _context.SaveChangesAsync();
+                    unitOfWork.Tepisi.Remove(tepihZaBrisanje);
+                    await unitOfWork.SaveChangesAsync();
                     MessageBox.Show("Uspešno brisanje tepiha.", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     await updateRacun();
                     await iscitavanjeTepiha(racunID);
@@ -114,8 +116,8 @@ namespace ExtraSjaj.Forme
         private async Task informacijeORacunu()
         {
 
-            var racun = await _context.Racuni.FirstOrDefaultAsync(x => x.Id==racunID);
-            var musterija = await _context.Musterije.FirstOrDefaultAsync(x => x.Id == racun.MusterijaId);
+            var racun = await unitOfWork.Racuni.GetAsync(racunID);
+            var musterija = await unitOfWork.Musterije.GetAsync(racun.MusterijaId);
 
 
             labelRacun.Text = "Račun: ";
@@ -155,7 +157,7 @@ namespace ExtraSjaj.Forme
             {
                 racun.Vrijednost = Math.Round((Convert.ToSingle(comboBoxCijena.Text) * sumaKvadrature), 2);
                 racun.BrojTepiha = brojTepiha;
-                await _context.SaveChangesAsync();
+                await unitOfWork.SaveChangesAsync();
                 await informacijeORacunu();
 
             }
@@ -167,7 +169,7 @@ namespace ExtraSjaj.Forme
         }
         private async void naplati()
         {
-            var racun = await _context.Racuni.Where(x => x.Id == racunID).SingleOrDefaultAsync();
+            var racun = await unitOfWork.Racuni.GetAsync(racunID);
             try
             {
                 DialogResult dialogResult = MessageBox.Show("Da li si siguran da je mušterija platio?", "Poruka", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
@@ -183,7 +185,7 @@ namespace ExtraSjaj.Forme
                         racun.Vrijednost -= Convert.ToSingle(textBoxNaplate.Text);
 
 
-                    await _context.SaveChangesAsync();
+                    await unitOfWork.SaveChangesAsync();
                     MessageBox.Show("Uspešno naplaćeno.", "Poruka", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else if (Convert.ToDouble(textBoxNaplate.Text) > racun.Vrijednost || Convert.ToDouble(textBoxNaplate.Text) < 0)

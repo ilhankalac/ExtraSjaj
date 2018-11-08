@@ -10,6 +10,7 @@ namespace ExtraSjaj.Common.Interfaces
     {
         IMusterijaRepository Musterije { get; }
         IRacunRepository Racuni { get; }
+        ITepihRepository Tepisi { get; }
         int SaveChanges();
         Task<int> SaveChangesAsync();
 

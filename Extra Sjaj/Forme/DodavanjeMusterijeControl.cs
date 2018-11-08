@@ -286,9 +286,10 @@ namespace ExtraSjaj.Forme
         private void ucitajNoveMusterije()
         {
             listBoxMusterija.Items.RemoveAt(listBoxMusterija.Items.Count - 1);
-            int j = listBoxMusterija.Items.Count, i = listBoxMusterija.Items.Count + 1, r;
+            int j = listBoxMusterija.Items.Count, i = listBoxMusterija.Items.Count + 1, r; 
             var musterije = _context.Musterije.ToList();
-            r = musterije.Count - listBoxMusterija.Items.Count; ;
+            r = musterije.Count - listBoxMusterija.Items.Count;
+            ;
 
 
             /*
@@ -300,7 +301,7 @@ namespace ExtraSjaj.Forme
                 if (k != -1)
                 {
                     listBoxMusterija.Items.Add((i++) + ". " + musterije[k].Ime + " " + musterije[k].Prezime + " (" + musterije[k].BrojTelefona + " )");
-                    listaID.Add(musterije[k].Id);
+                    listaID.Add(musterije[k].Id); 
 
                 }
                 else break;
