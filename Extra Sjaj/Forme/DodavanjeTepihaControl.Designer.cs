@@ -44,7 +44,6 @@
             this.textBoxNaplate = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.labelPlaceno = new System.Windows.Forms.Label();
-            this.btnBack = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -55,7 +54,7 @@
             this.labelRacun.AutoSize = true;
             this.labelRacun.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelRacun.ForeColor = System.Drawing.Color.Black;
-            this.labelRacun.Location = new System.Drawing.Point(69, 171);
+            this.labelRacun.Location = new System.Drawing.Point(0, 159);
             this.labelRacun.Name = "labelRacun";
             this.labelRacun.Size = new System.Drawing.Size(135, 41);
             this.labelRacun.TabIndex = 2;
@@ -125,7 +124,7 @@
             this.btnNaplati.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNaplati.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNaplati.ForeColor = System.Drawing.Color.Black;
-            this.btnNaplati.Location = new System.Drawing.Point(467, 159);
+            this.btnNaplati.Location = new System.Drawing.Point(390, 159);
             this.btnNaplati.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnNaplati.Name = "btnNaplati";
             this.btnNaplati.Size = new System.Drawing.Size(195, 76);
@@ -152,7 +151,7 @@
             "1.4",
             "1.5",
             "1.6"});
-            this.comboBoxCijena.Location = new System.Drawing.Point(614, 20);
+            this.comboBoxCijena.Location = new System.Drawing.Point(537, 20);
             this.comboBoxCijena.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBoxCijena.Name = "comboBoxCijena";
             this.comboBoxCijena.Size = new System.Drawing.Size(48, 28);
@@ -222,14 +221,14 @@
             this.panel1.ForeColor = System.Drawing.Color.White;
             this.panel1.Location = new System.Drawing.Point(343, 317);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(676, 272);
+            this.panel1.Size = new System.Drawing.Size(588, 272);
             this.panel1.TabIndex = 21;
             // 
             // textBoxNaplate
             // 
             this.textBoxNaplate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxNaplate.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxNaplate.Location = new System.Drawing.Point(594, 118);
+            this.textBoxNaplate.Location = new System.Drawing.Point(517, 118);
             this.textBoxNaplate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxNaplate.Name = "textBoxNaplate";
             this.textBoxNaplate.Size = new System.Drawing.Size(67, 33);
@@ -240,7 +239,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(552, 23);
+            this.label3.Location = new System.Drawing.Point(475, 23);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 18);
             this.label3.TabIndex = 20;
@@ -257,22 +256,6 @@
             this.labelPlaceno.TabIndex = 11;
             this.labelPlaceno.Text = "Plaćeno:";
             // 
-            // btnBack
-            // 
-            this.btnBack.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.btnBack.FlatAppearance.BorderSize = 0;
-            this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBack.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBack.ForeColor = System.Drawing.Color.Black;
-            this.btnBack.Location = new System.Drawing.Point(937, 0);
-            this.btnBack.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(82, 76);
-            this.btnBack.TabIndex = 20;
-            this.btnBack.Text = "Back";
-            this.btnBack.UseVisualStyleBackColor = false;
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
-            // 
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -288,12 +271,11 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.listBoxTepiha);
-            this.Controls.Add(this.btnBack);
             this.Controls.Add(this.panel3);
             this.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "DodavanjeTepihaControl";
-            this.Size = new System.Drawing.Size(1019, 638);
+            this.Size = new System.Drawing.Size(945, 638);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -317,7 +299,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ListBox listBoxTepiha;
         private System.Windows.Forms.TextBox textBoxNaplate;
-        private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;

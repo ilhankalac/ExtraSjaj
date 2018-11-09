@@ -1,5 +1,6 @@
 ﻿using ExtraSjaj.Common.Interfaces;
 using ExtraSjaj.DAL.RepoPattern;
+using ExtraSjaj.Forme;
 using ExtraSjaj.Modeli;
 using System;
 using System.Collections.Generic;
@@ -31,13 +32,16 @@ namespace ExtraSjaj
             dodavanjeMusterijeControl1.Visible = false;
             await iscitavanjeRacunaMusterija();
         }
+       
         public async Task iscitavanjeRacunaMusterija()
         {
+
             listaRacuna.Items.Clear();
             listaID.Clear();
             int i = 1, j = 0, r = 0;
             
             var racuni = (List<Racun>) await unitOfWork.Racuni.GetAllAsync();
+
             var brojRacuna = unitOfWork.Racuni.ukupanBrojRacuna();
 
             if (brojRacuna > 5)
@@ -80,6 +84,7 @@ namespace ExtraSjaj
 
         private async void btnRacuni_Click(object sender, EventArgs e)
         {
+            unitOfWork = new UnitOfWork(new ModelContext());
             timer1.Enabled = false;
             listaRacuna.Width = 490;
             listaRacuna.Height = 603;
@@ -175,7 +180,7 @@ namespace ExtraSjaj
         }
         private void prikaziOpcijeSaMusterijama(object sender, EventArgs e)
         {
-
+            this.Refresh();
             btnHomePage.Visible = false;
             dodavanjeTepihaControl1.Visible = false;
             dodavanjeMusterijeControl1.Visible = true;

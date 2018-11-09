@@ -26,9 +26,18 @@ namespace ExtraSjaj.Forme
             InitializeComponent();
             unitOfWork = new UnitOfWork(new ModelContext()); 
         }
-        private void DodavanjeMusterijeControl_Load(object sender, EventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
         {
-            Task.Run(() => this.iscitavanjeMusterija()).Wait();
+            this.Refresh();
+            unitOfWork = new UnitOfWork(new ModelContext());
+            dodavanjeTepihaControl1.Visible = false;
+            btnClose.Visible = false;
+
+        }
+        private  void DodavanjeMusterijeControl_Load(object sender, EventArgs e)
+        {
+            btnClose.Visible = false;
+            iscitavanjeMusterija();
             dodavanjeTepihaControl1.Visible = false;
         }
         private  void btnDodajMusteriju_Click(object sender, EventArgs e)
@@ -46,12 +55,11 @@ namespace ExtraSjaj.Forme
         }
         private async void listaViewRacuna_DoubleClick(object sender, EventArgs e)
         {
-
             dodavanjeTepihaControl1.Visible = true;
             int racunID = listaRacunaID[listaViewRacuna.SelectedIndices[0]];
             await dodavanjeTepihaControl1.iscitavanjeTepiha(racunID);
             dodavanjeTepihaControl1.Visible = true;
-
+            btnClose.Visible = true;
         }
         private async void listBoxMusterija_Click(object sender, EventArgs e)
         {
@@ -314,6 +322,6 @@ namespace ExtraSjaj.Forme
                 chartRacuni.Series["Racuni"].Points.AddXY(i++, racun.Vrijednost);
         }
 
-      
+       
     }
 }

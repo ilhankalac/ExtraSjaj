@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DodavanjeMusterijeControl));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -52,6 +52,7 @@
             this.chartRacuni = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.labelOpranihTepiha = new System.Windows.Forms.Label();
             this.labelUkupnogNovca = new System.Windows.Forms.Label();
+            this.btnClose = new System.Windows.Forms.Button();
             this.dodavanjeTepihaControl1 = new ExtraSjaj.Forme.DodavanjeTepihaControl();
             ((System.ComponentModel.ISupportInitialize)(this._TepisiBaza_2018DataSet11)).BeginInit();
             this.panel3.SuspendLayout();
@@ -238,32 +239,32 @@
             this.panel3.Controls.Add(this.listaViewRacuna);
             this.panel3.Location = new System.Drawing.Point(353, 372);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(690, 224);
+            this.panel3.Size = new System.Drawing.Size(653, 224);
             this.panel3.TabIndex = 46;
             // 
             // chartRacuni
             // 
             this.chartRacuni.BackColor = System.Drawing.Color.Transparent;
             this.chartRacuni.BorderlineColor = System.Drawing.Color.Transparent;
-            chartArea1.Name = "ChartArea1";
-            this.chartRacuni.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartRacuni.Legends.Add(legend1);
+            chartArea3.Name = "ChartArea1";
+            this.chartRacuni.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chartRacuni.Legends.Add(legend3);
             this.chartRacuni.Location = new System.Drawing.Point(305, 55);
             this.chartRacuni.Name = "chartRacuni";
             this.chartRacuni.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Bright;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
-            series1.Legend = "Legend1";
-            series1.Name = "Racuni";
-            series1.YValuesPerPoint = 2;
-            this.chartRacuni.Series.Add(series1);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
+            series3.Legend = "Legend1";
+            series3.Name = "Racuni";
+            series3.YValuesPerPoint = 2;
+            this.chartRacuni.Series.Add(series3);
             this.chartRacuni.Size = new System.Drawing.Size(331, 160);
             this.chartRacuni.TabIndex = 40;
             this.chartRacuni.Text = "chart1";
-            title1.Name = "Title1";
-            title1.Text = "Graf za račune";
-            this.chartRacuni.Titles.Add(title1);
+            title3.Name = "Title1";
+            title3.Text = "Graf za račune";
+            this.chartRacuni.Titles.Add(title3);
             this.chartRacuni.Visible = false;
             // 
             // labelOpranihTepiha
@@ -288,19 +289,30 @@
             this.labelUkupnogNovca.Text = "Total profit: ";
             this.labelUkupnogNovca.Visible = false;
             // 
+            // btnClose
+            // 
+            this.btnClose.Location = new System.Drawing.Point(932, 7);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(57, 45);
+            this.btnClose.TabIndex = 49;
+            this.btnClose.Text = "Zatvori";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // dodavanjeTepihaControl1
             // 
             this.dodavanjeTepihaControl1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dodavanjeTepihaControl1.Location = new System.Drawing.Point(0, -1);
             this.dodavanjeTepihaControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dodavanjeTepihaControl1.Name = "dodavanjeTepihaControl1";
-            this.dodavanjeTepihaControl1.Size = new System.Drawing.Size(1043, 612);
+            this.dodavanjeTepihaControl1.Size = new System.Drawing.Size(1006, 612);
             this.dodavanjeTepihaControl1.TabIndex = 48;
             // 
             // DodavanjeMusterijeControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.dodavanjeTepihaControl1);
             this.Controls.Add(this.listBoxMusterija);
             this.Controls.Add(this.label4);
@@ -319,7 +331,7 @@
             this.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "DodavanjeMusterijeControl";
-            this.Size = new System.Drawing.Size(1051, 603);
+            this.Size = new System.Drawing.Size(1092, 603);
             this.Load += new System.EventHandler(this.DodavanjeMusterijeControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this._TepisiBaza_2018DataSet11)).EndInit();
             this.panel3.ResumeLayout(false);
@@ -352,5 +364,6 @@
         private System.Windows.Forms.Label labelOpranihTepiha;
         private System.Windows.Forms.Label labelUkupnogNovca;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartRacuni;
+        private System.Windows.Forms.Button btnClose;
     }
 }

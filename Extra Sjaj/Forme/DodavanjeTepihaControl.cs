@@ -53,7 +53,7 @@ namespace ExtraSjaj.Forme
         }
         private async void comboBoxCijena_SelectedIndexChanged(object sender, EventArgs e)
         {
-             await updateRacun();
+            await updateRacun();
         }
         private void btnNaplati_Click(object sender, EventArgs e)
         {
@@ -124,7 +124,10 @@ namespace ExtraSjaj.Forme
             labelPlaceno.Text = "Plaćeno: ";
             if (racun.Placen)
             {
-                labelPlaceno.Text = "Plaćen račun: " + racun.VrijemePlacanjaRacuna.Date+" - ";
+                string datumPlacanja = racun.VrijemePlacanjaRacuna.Day.ToString() + "." +
+                                        racun.VrijemePlacanjaRacuna.Month.ToString() + "." +
+                                         racun.VrijemePlacanjaRacuna.Year.ToString(); 
+                labelPlaceno.Text = "Plaćen račun: " + datumPlacanja + " - ";
                 sakrijObjekteNaKontroli();
             }
             else
