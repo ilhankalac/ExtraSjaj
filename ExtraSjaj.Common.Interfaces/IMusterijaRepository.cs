@@ -12,5 +12,6 @@ namespace ExtraSjaj.Common.Interfaces
     {
      
         Task<List<Musterija>> pretragaMusterija(TextBox textBox);
+        Task<List<Musterija>> sortiranjeMusterijaPoProfitu();
     }
 }

@@ -24,7 +24,7 @@ namespace ExtraSjaj.Forme
         public DodavanjeMusterijeControl()
         {
             InitializeComponent();
-            unitOfWork = new UnitOfWork(new ModelContext()); 
+            unitOfWork = new UnitOfWork(new ModelContext());
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -39,6 +39,8 @@ namespace ExtraSjaj.Forme
             btnClose.Visible = false;
             iscitavanjeMusterija();
             dodavanjeTepihaControl1.Visible = false;
+            unitOfWork.Musterije.sortiranjeMusterijaPoProfitu();
+
         }
         private  void btnDodajMusteriju_Click(object sender, EventArgs e)
         {

@@ -21,7 +21,7 @@ namespace ExtraSjaj.DAL.RepoPattern
         {
             get { return context as ModelContext; }
         }
-     
+        public IRacunRepository Racuni { get; }
        
         public async Task<List<Musterija>> pretragaMusterija(TextBox textBox)
         {
@@ -35,6 +35,27 @@ namespace ExtraSjaj.DAL.RepoPattern
                                  x.BrojTelefona.Contains(textBox.Text) ||
                                  x.Adresa.Contains(textBox.Text))
                                  .ToListAsync();
+        }
+
+        public async Task<List<Musterija>> sortiranjeMusterijaPoProfitu()
+        {
+
+
+            var sortiraniRacuni = await _context.Racuni
+                                                .GroupBy(n => n.MusterijaId)
+                                                .Select(
+                                                    n => new
+                                                    {
+                                                        SumaRacuna = n.Sum(o => o.Vrijednost),
+                                                        Musterija = n.Select(m=> m.Musterija)
+                                                    })
+                                                .OrderByDescending(n=> n.SumaRacuna)
+                                                .ToListAsync();
+
+
+            var djesi = sortiraniRacuni.GetType();                                   
+            
+            return await _context.Musterije.ToListAsync();
         }
     }
 }
