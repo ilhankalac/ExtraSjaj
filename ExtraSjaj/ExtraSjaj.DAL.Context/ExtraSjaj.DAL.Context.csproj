@@ -6,6 +6,11 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ExtraSjaj.Common.Models\ExtraSjaj.Common.Models.csproj" />
   </ItemGroup>
 
 </Project>
