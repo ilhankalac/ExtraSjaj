@@ -2,7 +2,6 @@
 import { Button, Table } from 'reactstrap';
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-import { Redirect } from 'react-router-dom'
 
 
 
@@ -12,7 +11,6 @@ export class Musterije extends Component {
 
 
     routeChange() {
-
         browserHistory.push('/CreateMusterija');
     }
    
@@ -66,7 +64,9 @@ export class Musterije extends Component {
 
     render() {
 
-        //let musterije = this.state.musterije.map((musterija) =)
+        //refreshing data from database on page redirections to this page
+        this.componentWillMount();
+
         let contents = this.state.loading
             ? <p><em>Loading...</em></p>
             : Musterije.renderMusterijasTable(this.state.musterijeNiz);
@@ -75,7 +75,6 @@ export class Musterije extends Component {
             <div>
                 <center> <h1>Lista mušterija</h1> </center>
                 <Button color="success" className="mr-3" onClick={this.routeChange}> Kreiraj mušteriju </Button> 
-
                 {contents}
             </div>
         );
