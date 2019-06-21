@@ -76,6 +76,7 @@ namespace ExtraSjaj.Controllers
         [HttpPost]
         public async Task<ActionResult<Musterija>> PostMusterija(Musterija musterija)
         {
+            musterija.VrijemeKreiranjaMusterije = DateTime.Now;
             _context.Musterije.Add(musterija);
             await _context.SaveChangesAsync();
 
