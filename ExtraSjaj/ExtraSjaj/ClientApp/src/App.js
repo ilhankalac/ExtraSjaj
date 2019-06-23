@@ -7,6 +7,7 @@ import { Counter } from './components/Counter';
 import { axios } from 'axios';
 import { Musterije } from './components/Musterije';
 import { CreateMusterija } from './components/Musterija/CreateMusterija';
+import { EditMusterija } from './components/Musterija/EditMusterija';
 
 export default class App extends Component {
   static displayName = App.name;
@@ -20,6 +21,7 @@ export default class App extends Component {
                 <Route path='/fetch-data' component={FetchData} />
                 <Route path='/Musterije' component={Musterije} />
                 <Route path='/CreateMusterija' component={CreateMusterija} />
+                <Route path='/EditMusterija' component={EditMusterija} />
             </Router>
       </Layout>
     );

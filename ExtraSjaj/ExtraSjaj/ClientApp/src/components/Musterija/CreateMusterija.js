@@ -6,17 +6,21 @@ import { browserHistory } from 'react-router';
 export class CreateMusterija extends Component {
 
     state = {
+
         novaMusterija: {
             ime: '',
             prezime: '',
             brojTelefona: '',
             adresa: ''
         }
+
     }
 
     createNewMusterija() {
+
         axios.post("api/Musterijas", this.state.novaMusterija);
         browserHistory.push('/Musterije');
+
     }
 
     render() {
@@ -26,7 +30,7 @@ export class CreateMusterija extends Component {
                 <Row>
                     <Col sm={{ size: 6, offset: 1 }}>
                         <Label className="mr-2" for="ime"> Ime </Label>
-                        <Input className="mr-2" id="ime"
+                        <Input className="mr-2" id="ime" placeholder="Ime"
                             onChange={(e) => {
                                 let { novaMusterija } = this.state;
                                 novaMusterija.ime = e.target.value;

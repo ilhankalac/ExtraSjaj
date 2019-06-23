@@ -10,8 +10,14 @@ export class Musterije extends Component {
     static displayName = Musterije.name;
 
 
-    routeChange() {
+    routeChangeToCreate() {
+
         browserHistory.push('/CreateMusterija');
+    }
+
+    routeChangeToEdit(Musterija) {
+
+        browserHistory.push({ pathname: '/EditMusterija', state: {Edit: Musterija } });
     }
 
 
@@ -30,7 +36,9 @@ export class Musterije extends Component {
     }
 
     deleteMusterija(id) {
+
         axios.delete("api/Musterijas/" + id);
+
     }
 
     render() {
@@ -46,7 +54,7 @@ export class Musterije extends Component {
                     <td>{item.adresa}</td>
                     <td>{item.vrijemeKreiranjaMusterije}</td>
                     <td>
-                        <Button color="success" size="sm" className="mr-2">Edit </Button>
+                        <Button color="success" size="sm" className="mr-2" onClick={this.routeChangeToEdit.bind(this, item)}>Edit </Button>
                         <Button color="danger" size="sm" className="mr-2" onClick={this.deleteMusterija.bind(this, item.id)}> Obriši </Button>
                     </td>
                 </tr>
@@ -55,7 +63,7 @@ export class Musterije extends Component {
         return (
             <div>
                 <center> <h1>Lista mušterija</h1> </center>
-                <Button color="success" className="mr-3" onClick={this.routeChange}> Kreiraj mušteriju </Button>
+                <Button color="success" className="mr-3" onClick={this.routeChangeToCreate}> Kreiraj mušteriju </Button>
                 <table className='table table-striped'>
                     <thead>
                         <tr>
