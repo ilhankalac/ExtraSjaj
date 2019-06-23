@@ -25,7 +25,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ExtraSjaj.Common.Interfaces\ExtraSjaj.Common.Interfaces.csproj" />
     <ProjectReference Include="..\ExtraSjaj.DAL.Context\ExtraSjaj.DAL.Context.csproj" />
+    <ProjectReference Include="..\ExtraSjaj.DAL.RepoPattern\ExtraSjaj.DAL.RepoPattern.csproj" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

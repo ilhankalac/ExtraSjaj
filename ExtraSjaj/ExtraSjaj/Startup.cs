@@ -1,4 +1,6 @@
+using ExtraSjaj.Common.Interfaces;
 using ExtraSjaj.DAL.Context;
+using ExtraSjaj.DAL.RepoPattern;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -25,6 +27,8 @@ namespace ExtraSjaj
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddDbContext<ExtraSjajContext>(options => options.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ExtraSjajWebApp;Integrated Security=True;Connect Timeout=30"));
             // In production, the React files will be served from this directory
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/build";
