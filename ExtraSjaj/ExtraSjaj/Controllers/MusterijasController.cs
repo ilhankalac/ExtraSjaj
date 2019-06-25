@@ -46,35 +46,35 @@ namespace ExtraSjaj.Controllers
             return musterija;
         }
 
-        //// PUT: api/Musterijas/5
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> PutMusterija(int id, Musterija musterija)
-        //{
-        //    if (id != musterija.Id)
-        //    {
-        //        return BadRequest();
-        //    }
+        // PUT: api/Musterijas/5
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutMusterija(int id, Musterija musterija)
+        {
+            if (id != musterija.Id)
+            {
+                return BadRequest();
+            }
 
-        //    _context.Entry(musterija).State = EntityState.Modified;
+            _unitOfWork.Musterije.Update(musterija);
 
-        //    try
-        //    {
-        //        await _context.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!MusterijaExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
+            try
+            {
+                await _unitOfWork.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!MusterijaExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
 
-        //    return NoContent();
-        //}
+            return NoContent();
+        }
 
         // POST: api/Musterijas
         [HttpPost]
@@ -103,9 +103,14 @@ namespace ExtraSjaj.Controllers
             return musterija;
         }
 
-        //private bool MusterijaExists(int id)
-        //{
-        //    return _unitOfWork.Musterije.(e => e.Id == id);
-        //}
+        private bool MusterijaExists(int id)
+        {
+            bool isNull = true;
+            var musterija = _unitOfWork.Musterije.Get(id);
+            if (musterija != null)
+                isNull = false;
+
+            return isNull ? false : true;
+        }
     }
 }

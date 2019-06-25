@@ -20,5 +20,6 @@ namespace ExtraSjaj.Common.Interfaces
 
         void RemoveRange(IEnumerable<TEntity> entities);
 
+        void Update(TEntity objekat);
     }
 }

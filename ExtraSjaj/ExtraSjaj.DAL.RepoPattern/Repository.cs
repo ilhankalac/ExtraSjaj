@@ -24,6 +24,8 @@ namespace ExtraSjaj.DAL.RepoPattern
         {
             return await Context.Set<TEntity>().FindAsync(id);
         }
+        
+
         public IEnumerable<TEntity> GetAll()
         {
             return Context.Set<TEntity>().ToList();
@@ -47,6 +49,11 @@ namespace ExtraSjaj.DAL.RepoPattern
         public void AddRange(IEnumerable<TEntity> entities)
         {
             Context.Set<TEntity>().AddRange(entities);
+        }
+
+        public void Update(TEntity objekat)
+        {
+            Context.Update(objekat);
         }
 
         public void Remove(TEntity entity)
