@@ -82,6 +82,16 @@ namespace ExtraSjaj.Controllers
         {
             musterija.VrijemeKreiranjaMusterije = DateTime.Now;
             _unitOfWork.Musterije.Add(musterija);
+            _unitOfWork.Racuni.Add(
+                new Racun()
+                {
+                    MusterijaId = musterija.Id,
+                    BrojTepiha = 0,
+                    Vrijednost = 0, 
+                    Placen= false,
+                    VrijemeKreiranjaRacuna = DateTime.Now
+                }
+            );
             await _unitOfWork.SaveChangesAsync();
 
             return CreatedAtAction("GetMusterija", new { id = musterija.Id }, musterija);
