@@ -15,5 +15,6 @@ namespace ExtraSjaj.DAL.Context
 
         public DbSet<Musterija> Musterije { get; set; }
 
+        public DbSet<Racun> Racuni { get; set; }
     }
 }

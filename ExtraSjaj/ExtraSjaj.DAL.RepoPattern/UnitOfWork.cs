@@ -12,12 +12,14 @@ namespace ExtraSjaj.DAL.RepoPattern
         private readonly ExtraSjajContext _context;
 
         public IMusterijaRepository Musterije { get; }
+        public IRacunRepository Racuni { get; set; }
 
 
         public UnitOfWork(ExtraSjajContext context)
         {
             _context = context;
             Musterije = new MusterijaRepository(_context);
+            Racuni = new RacunRepository(_context);
         }
         public int SaveChanges()
         {
@@ -31,7 +33,7 @@ namespace ExtraSjaj.DAL.RepoPattern
         }
         public void Dispose()
         {
-            throw new NotImplementedException();
+            _context.Dispose();
         }
     }
 }
