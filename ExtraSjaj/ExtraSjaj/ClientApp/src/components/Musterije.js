@@ -16,17 +16,14 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import SendIcon from '@material-ui/icons/Send';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import StarBorder from '@material-ui/icons/StarBorder';
-
-
-
-
-
-
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
+import DeleteIcon from '@material-ui/icons/Delete';
+import Icon from '@material-ui/core/Icon';
+import Box from '@material-ui/core/Box';
 
 export class Musterije extends Component {
 
@@ -96,18 +93,24 @@ export class Musterije extends Component {
     render() {
         //refreshing data from database on page redirections to this page
         this.componentWillMount();
-
+        let i = 1; 
         let tableData =
             this.state.musterijeNiz.map(item =>
                 <tr key={item.id}>
+                    <td> {i++} </td>
                     <td onClick={this.handleClickOpen.bind(this, item.id, item.ime, item.prezime)}>{item.ime}</td>
                     <td onClick={this.handleClickOpen.bind(this, item.id, item.ime, item.prezime)}>{item.prezime}</td>
                     <td onClick={this.handleClickOpen.bind(this, item.id, item.ime, item.prezime)}>{item.brojTelefona}</td>
                     <td onClick={this.handleClickOpen.bind(this, item.id, item.ime, item.prezime)}>{item.adresa}</td>
                     <td onClick={this.handleClickOpen.bind(this, item.id, item.ime, item.prezime)}>{item.vrijemeKreiranjaMusterije}</td>
-                    <td onClick={this.handleClickOpen.bind(this, item.id, item.ime, item.prezime)}>
-                        <Button color="success" size="sm" className="mr-2" onClick={this.routeChangeToEdit.bind(this, item)}>Edit </Button>
-                        <Button color="danger" size="sm" className="mr-2" onClick={this.deleteMusterija.bind(this, item.id)}> Obriši </Button>
+                    <td>
+
+                        <Fab size="small" spacing={5} color="inherit" aria-label="Edit" onClick={this.routeChangeToEdit.bind(this, item)}>
+                            <Icon>edit_icon</Icon>
+                        </Fab>
+                        <Fab size="small" aria-label="Delete" color="secondary" onClick={this.deleteMusterija.bind(this, item.id)}>
+                            <DeleteIcon />
+                        </Fab>   
                     </td>
                 </tr>
             );
@@ -161,10 +164,14 @@ export class Musterije extends Component {
                 </div>
 
                 <center> <h1>Lista mušterija</h1> </center>
-                <Button color="success" className="mr-3" onClick={this.routeChangeToCreate}> Kreiraj mušteriju </Button>
-                <Table dark bordered className='table table-striped'>
+                <Fab color="primary" aria-label="Add" onClick={this.routeChangeToCreate} >
+                    <AddIcon />
+                </Fab>
+                
+                <Table dark  className='table table-striped'>
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>Ime</th>
                             <th>Prezime</th>
                             <th>Broj telefona</th>
