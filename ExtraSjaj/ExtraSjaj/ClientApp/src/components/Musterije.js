@@ -99,16 +99,15 @@ export class Musterije extends Component {
 
         let tableData =
             this.state.musterijeNiz.map(item =>
-                <tr onClick={this.handleClickOpen.bind(this, item.id, item.ime, item.prezime)} key={item.id}>
-                    <td>{item.ime}</td>
-                    <td>{item.prezime}</td>
-                    <td>{item.brojTelefona}</td>
-                    <td>{item.adresa}</td>
-                    <td>{item.vrijemeKreiranjaMusterije}</td>
-                    <td>
+                <tr key={item.id}>
+                    <td onClick={this.handleClickOpen.bind(this, item.id, item.ime, item.prezime)}>{item.ime}</td>
+                    <td onClick={this.handleClickOpen.bind(this, item.id, item.ime, item.prezime)}>{item.prezime}</td>
+                    <td onClick={this.handleClickOpen.bind(this, item.id, item.ime, item.prezime)}>{item.brojTelefona}</td>
+                    <td onClick={this.handleClickOpen.bind(this, item.id, item.ime, item.prezime)}>{item.adresa}</td>
+                    <td onClick={this.handleClickOpen.bind(this, item.id, item.ime, item.prezime)}>{item.vrijemeKreiranjaMusterije}</td>
+                    <td onClick={this.handleClickOpen.bind(this, item.id, item.ime, item.prezime)}>
                         <Button color="success" size="sm" className="mr-2" onClick={this.routeChangeToEdit.bind(this, item)}>Edit </Button>
                         <Button color="danger" size="sm" className="mr-2" onClick={this.deleteMusterija.bind(this, item.id)}> Obriši </Button>
-
                     </td>
                 </tr>
             );

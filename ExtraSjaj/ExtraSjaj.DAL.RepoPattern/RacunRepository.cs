@@ -2,8 +2,12 @@
 using ExtraSjaj.Common.Models;
 using ExtraSjaj.DAL.Context;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace ExtraSjaj.DAL.RepoPattern
 {
@@ -20,5 +24,11 @@ namespace ExtraSjaj.DAL.RepoPattern
         {
             get { return context as ExtraSjajContext; }
         }
+
+        public async Task<IEnumerable<Racun>> getRacuniByMusterijaId(int MusterijaId){
+
+            return await _context.Racuni.Where(x => x.MusterijaId == MusterijaId).ToListAsync();
+        }
+
     }
 }

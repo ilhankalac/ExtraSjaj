@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ExtraSjaj.Common.Models;
 using ExtraSjaj.DAL.Context;
+using ExtraSjaj.Common.Interfaces;
 
 namespace ExtraSjaj.Controllers
 {
@@ -14,25 +15,27 @@ namespace ExtraSjaj.Controllers
     [ApiController]
     public class RacunsController : ControllerBase
     {
-        private readonly ExtraSjajContext _context;
 
-        public RacunsController(ExtraSjajContext context)
+        public IUnitOfWork _unitOfWork { get; }
+
+
+        public RacunsController(IUnitOfWork unitOfWork)
         {
-            _context = context;
+            _unitOfWork = unitOfWork;
         }
 
         // GET: api/Racuns
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Racun>>> GetRacuni()
+        public async Task<IEnumerable<Racun>> GetRacuni()
         {
-            return await _context.Racuni.ToListAsync();
+            return await _unitOfWork.Racuni.GetAllAsync();
         }
 
         // GET: api/Racuns/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Racun>> GetRacun(int id)
+        public async Task<ActionResult<Racun>> GetRacunById(int id)
         {
-            var racun = await _context.Racuni.FindAsync(id);
+            var racun = await _unitOfWork.Racuni.GetAsync(id);
 
             if (racun == null)
             {
@@ -41,25 +44,31 @@ namespace ExtraSjaj.Controllers
 
             return racun;
         }
+        // GET: api/Racuns/lista
+        [HttpGet("musterija/{MusterijaId}")]
+        public async Task<IEnumerable<Racun>> getRacuniByMusterijaId(int MusterijaId)
+        {
+            return await _unitOfWork.Racuni.getRacuniByMusterijaId(MusterijaId);
+        }
 
-        // PUT: api/Racuns/5
+        //PUT: api/Racuns/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutRacun(int id, Racun racun)
+        public async Task<IActionResult> PutRacuns(int id, Racun racun)
         {
             if (id != racun.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(racun).State = EntityState.Modified;
+            _unitOfWork.Racuni.Update(racun);
 
             try
             {
-                await _context.SaveChangesAsync();
+                await _unitOfWork.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!RacunExists(id))
+                if (!RacunsExists(id))
                 {
                     return NotFound();
                 }
@@ -76,31 +85,37 @@ namespace ExtraSjaj.Controllers
         [HttpPost]
         public async Task<ActionResult<Racun>> PostRacun(Racun racun)
         {
-            _context.Racuni.Add(racun);
-            await _context.SaveChangesAsync();
+            
+            _unitOfWork.Racuni.Add(racun);
+            await _unitOfWork.SaveChangesAsync();
 
-            return CreatedAtAction("GetRacun", new { id = racun.Id }, racun);
+            return CreatedAtAction("GetMusterija", new { id = racun.Id }, racun);
         }
 
         // DELETE: api/Racuns/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Racun>> DeleteRacun(int id)
+        public async Task<ActionResult<Racun>> DeleteMusterija(int id)
         {
-            var racun = await _context.Racuni.FindAsync(id);
+            var racun = await _unitOfWork.Racuni.GetAsync(id);
             if (racun == null)
             {
                 return NotFound();
             }
 
-            _context.Racuni.Remove(racun);
-            await _context.SaveChangesAsync();
+            _unitOfWork.Racuni.Remove(racun);
+            await _unitOfWork.SaveChangesAsync();
 
             return racun;
         }
 
-        private bool RacunExists(int id)
+        private bool RacunsExists(int id)
         {
-            return _context.Racuni.Any(e => e.Id == id);
+            bool isNull = true;
+            var racun = _unitOfWork.Racuni.Get(id);
+            if (racun != null)
+                isNull = false;
+
+            return isNull ? false : true;
         }
     }
 }
