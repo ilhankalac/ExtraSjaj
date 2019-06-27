@@ -2,7 +2,12 @@
 import { Button, Table } from 'reactstrap';
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 
 export class Musterije extends Component {
@@ -17,14 +22,34 @@ export class Musterije extends Component {
 
     routeChangeToEdit(Musterija) {
 
-        browserHistory.push({ pathname: '/EditMusterija', state: {Edit: Musterija } });
+        browserHistory.push({ pathname: '/EditMusterija', state: { Edit: Musterija } });
+    }
+
+    handleClickOpen(id, ime, prezime) {
+        this.setState({
+            RacuniModal: true,
+            DialogMusterija: {
+                id, ime, prezime
+            }
+        })
+    }
+
+    handleClose() {
+        this.setState({
+            RacuniModal: false
+        })
     }
 
 
     state = {
         musterijeNiz: [],
         loading: false,
-
+        RacuniModal: false,
+        DialogMusterija: {
+            id: '',
+            ime: '',
+            prezime: ''
+        }
     }
 
     componentWillMount() {
@@ -44,10 +69,11 @@ export class Musterije extends Component {
     render() {
         //refreshing data from database on page redirections to this page
         this.componentWillMount();
-
+        let i = 1;
         let tableData =
             this.state.musterijeNiz.map(item =>
-                <tr key={item.id}>
+                <tr key={item.id} onClick={this.handleClickOpen.bind(this, item.id, item.ime, item.prezime)}>
+                    <td>{i++}</td>
                     <td>{item.ime}</td>
                     <td>{item.prezime}</td>
                     <td>{item.brojTelefona}</td>
@@ -62,11 +88,35 @@ export class Musterije extends Component {
 
         return (
             <div>
+                <div>
+                    <Dialog open={this.state.RacuniModal} onClose={this.handleClose.bind(this)} aria-labelledby="form-dialog-title">
+                        <DialogTitle id="form-dialog-title"> Ovo su svi racuni {this.state.DialogMusterija.ime} {this.state.DialogMusterija.prezime}</DialogTitle>
+                        <DialogContent>
+                            <DialogContentText>
+                               
+                            </DialogContentText>
+                            <TextField
+                                autoFocus
+                                margin="dense"
+                                id="name"
+                                label="Email Address"
+                                type="email"
+                                fullWidth
+                            />
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={this.handleClose.bind(this)} color="primary">
+                                Pregled racuna
+                            </Button>
+                        </DialogActions>
+                    </Dialog>
+                </div>
                 <center> <h1>Lista mušterija</h1> </center>
                 <Button color="success" className="mr-3" onClick={this.routeChangeToCreate}> Kreiraj mušteriju </Button>
-                <table className='table table-striped'>
+                <Table dark bordered className='table table-striped'>
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>Ime</th>
                             <th>Prezime</th>
                             <th>Broj telefona</th>
@@ -78,7 +128,7 @@ export class Musterije extends Component {
                     <tbody>
                         {tableData}
                     </tbody>
-                </table>
+                </Table>
             </div>
         );
     }
