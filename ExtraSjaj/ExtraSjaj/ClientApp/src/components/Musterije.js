@@ -104,7 +104,6 @@ export class Musterije extends Component {
                     <td onClick={this.handleClickOpen.bind(this, item.id, item.ime, item.prezime)}>{item.adresa}</td>
                     <td onClick={this.handleClickOpen.bind(this, item.id, item.ime, item.prezime)}>{item.vrijemeKreiranjaMusterije}</td>
                     <td>
-
                         <Fab size="small" spacing={5} color="inherit" aria-label="Edit" onClick={this.routeChangeToEdit.bind(this, item)}>
                             <Icon>edit_icon</Icon>
                         </Fab>
@@ -117,7 +116,6 @@ export class Musterije extends Component {
 
         return (
             <div>
-
                 <div>
                     <Dialog open={this.state.RacuniModal} onClose={this.handleClose.bind(this)} aria-labelledby="form-dialog-title">
                         <DialogTitle id="form-dialog-title">     Ovo su svi racuni {this.state.DialogMusterija.ime} {this.state.DialogMusterija.prezime}</DialogTitle>
@@ -131,9 +129,8 @@ export class Musterije extends Component {
                                 subheader={
                                     <ListSubheader component="div" id="nested-list-subheader">
                                         Nested List Items
-        </ListSubheader>
+                                    </ListSubheader>
                                 }
-
                             >
                                 <ListItem button onClick={this.handleClick.bind(this)}>
                                     <ListItemIcon>
@@ -157,8 +154,7 @@ export class Musterije extends Component {
                         <DialogActions>
                             <Button onClick={this.handleClose.bind(this)} color="primary">
                                 Pregled racuna
-          </Button>
-
+                            </Button>
                         </DialogActions>
                     </Dialog>
                 </div>

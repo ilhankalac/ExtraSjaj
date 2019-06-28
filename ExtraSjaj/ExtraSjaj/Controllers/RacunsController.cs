@@ -94,7 +94,7 @@ namespace ExtraSjaj.Controllers
 
         // DELETE: api/Racuns/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Racun>> DeleteMusterija(int id)
+        public async Task<ActionResult<Racun>> DeleteRacun(int id)
         {
             var racun = await _unitOfWork.Racuni.GetAsync(id);
             if (racun == null)

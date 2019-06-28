@@ -4,11 +4,11 @@ using ExtraSjaj.DAL.Context;
 
 namespace ExtraSjaj.DAL.RepoPattern
 {
-    public class MusterijaRepository : Repository<Musterija>, IMusterijaRepository
+    public class TepihRepository : Repository<Tepih>, ITepihRepository
     {
         protected readonly ExtraSjajContext _context;
 
-        public MusterijaRepository(ExtraSjajContext context) : base(context)
+        public TepihRepository(ExtraSjajContext context) : base(context)
         {
             _context = context;
         }

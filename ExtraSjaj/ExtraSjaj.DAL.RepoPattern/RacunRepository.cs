@@ -1,10 +1,7 @@
 ﻿using ExtraSjaj.Common.Interfaces;
 using ExtraSjaj.Common.Models;
 using ExtraSjaj.DAL.Context;
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;

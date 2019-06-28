@@ -1,8 +1,5 @@
 ﻿using ExtraSjaj.Common.Interfaces;
 using ExtraSjaj.DAL.Context;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ExtraSjaj.DAL.RepoPattern
@@ -13,6 +10,8 @@ namespace ExtraSjaj.DAL.RepoPattern
 
         public IMusterijaRepository Musterije { get; }
         public IRacunRepository Racuni { get; set; }
+        public ITepihRepository Tepisi { get; set; }
+
 
 
         public UnitOfWork(ExtraSjajContext context)
@@ -20,6 +19,7 @@ namespace ExtraSjaj.DAL.RepoPattern
             _context = context;
             Musterije = new MusterijaRepository(_context);
             Racuni = new RacunRepository(_context);
+            Tepisi = new TepihRepository(_context);
         }
         public int SaveChanges()
         {
