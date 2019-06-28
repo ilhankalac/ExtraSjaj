@@ -37,6 +37,7 @@ const useStyles = makeStyles(theme => ({
             easing: theme.transitions.easing.easeOut,
             duration: theme.transitions.duration.enteringScreen,
         }),
+       
     },
     menuButton: {
         marginRight: theme.spacing(2),
@@ -47,6 +48,7 @@ const useStyles = makeStyles(theme => ({
     drawer: {
         width: drawerWidth,
         flexShrink: 0,
+        
     },
     drawerPaper: {
         width: drawerWidth,
@@ -66,6 +68,7 @@ const useStyles = makeStyles(theme => ({
             duration: theme.transitions.duration.leavingScreen,
         }),
         marginLeft: -drawerWidth,
+        
     },
     contentShift: {
         transition: theme.transitions.create('margin', {
@@ -152,7 +155,6 @@ export default function PersistentDrawerLeft({props}) {
                 })}
             >
                 <div className={classes.drawerHeader} />
-
                 {props}
             </main>
         </div>
