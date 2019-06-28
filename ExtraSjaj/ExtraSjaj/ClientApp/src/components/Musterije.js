@@ -12,7 +12,7 @@ import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Icon from '@material-ui/core/Icon';
 import RacunList from './ListGroupCollapse';
-
+import PlaylistAdd from '@material-ui/icons/PlaylistAdd';
 
 export class Musterije extends Component {
 
@@ -121,9 +121,9 @@ export class Musterije extends Component {
                         <Fab className="ml-3" size="small" aria-label="Delete" color="secondary" onClick={this.deleteMusterija.bind(this, item.id)}>
                             <DeleteIcon />
                         </Fab>
-                        <Button size="sm" className="ml-3" onClick={this.createNewRacun.bind(this, item.id)} color="success">
-                            Novi racun
-                            </Button>
+                        <PlaylistAdd size="sm" className="ml-3" onClick={this.createNewRacun.bind(this, item.id)} color="success"/>
+
+
                     </td>
                 </tr>
             );
@@ -132,7 +132,7 @@ export class Musterije extends Component {
             <div>
                 <div>
                     <Dialog size="lg" open={this.state.RacuniModal} onClose={this.handleClose.bind(this)} aria-labelledby="form-dialog-title">
-                        <DialogTitle id="form-dialog-title">     Ovo su svi racuni {this.state.DialogMusterija.ime} {this.state.DialogMusterija.prezime}</DialogTitle>
+                        <DialogTitle id="form-dialog-title">     {this.state.DialogMusterija.ime} {this.state.DialogMusterija.prezime} računi</DialogTitle>
                         <DialogActions>
 
                         </DialogActions>
@@ -155,7 +155,7 @@ export class Musterije extends Component {
                     <AddIcon />
                 </Fab>
 
-                <Table dark className='table table-striped'>
+                <Table  className='table table-striped'>
                     <thead>
                         <tr>
                             <th>#</th>

@@ -40,7 +40,7 @@ namespace ExtraSjaj.DAL.RepoPattern
 
             _context.Racuni.Update(stariRacun);
 
-             _context.SaveChangesAsync();
+            _context.SaveChangesAsync();
         }
 
         float ukupnaKvadratura(int RacunId)

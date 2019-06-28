@@ -85,7 +85,7 @@ namespace ExtraSjaj.Controllers
         [HttpPost]
         public async Task<ActionResult<Racun>> PostRacun(Racun racun)
         {
-            
+            racun.VrijemeKreiranjaRacuna = DateTime.Now; 
             _unitOfWork.Racuni.Add(racun);
             await _unitOfWork.SaveChangesAsync();
 

@@ -87,7 +87,9 @@ namespace ExtraSjaj.Controllers
         public async Task<IActionResult> PostTepih(Tepih tepih)
         {
 
-            tepih.Kvadratura = (float)Math.Round((float)(tepih.Duzina * tepih.Sirina),2);
+            tepih.Duzina =(float) Math.Round(tepih.Duzina, 2);
+            tepih.Sirina = (float)Math.Round(tepih.Sirina, 2);
+            tepih.Kvadratura = (float)Math.Round((tepih.Duzina * tepih.Sirina),2);
 
             _unitOfWork.Tepisi.Add(tepih);
 

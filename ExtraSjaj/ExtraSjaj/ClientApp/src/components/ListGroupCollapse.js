@@ -1,6 +1,5 @@
 ﻿import React from 'react';
 import { ListGroupItem, Collapse, Button, Input, Label, Row, Col } from 'reactstrap';
-
 import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -18,8 +17,22 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import TabUnselected from '@material-ui/icons/TabUnselected';
+
 
 class RacunList extends React.Component {
+    state = {
+        collapse: false,
+        Racun: this.props.racun,
+        tepisi: [],
+        TepihDialog: false,
+        newTepih: {
+            sirina: '',
+            duzina: '',
+            racunId: ''
+        }
+    };
+
     constructor(props) {
         super(props);
 
@@ -29,7 +42,11 @@ class RacunList extends React.Component {
             Racun: this.props.racun,
             tepisi: [],
             TepihDialog: false,
-            newTepih: ''
+            newTepih: {
+                sirina: '',
+                duzina: '',
+                racunId: ''
+            }
         };
 
     }
@@ -55,23 +72,38 @@ class RacunList extends React.Component {
     handleClose() {
         this.setState({
             TepihDialog: false,
-            newTepih: ''
+            newTepih: {
+                sirina: '',
+                duzina: '',
+                racunId: ''
+            }
         })
 
     }
     handleNewTepih() {
-        axios.post("api/Tepihs" + this.state.newTepih).then((response) => {
+
+        this.state.newTepih.racunId = this.state.Racun.id
+        axios.post("api/Tepihs", this.state.newTepih).then((response) => {
+            console.log(response)
             this.setState({
-                tepisi: this.state.tepisi.push(response.data),
+
                 TepihDialog: false,
-                newTepih: ''
-            });
+                newTepih:
+                {
+                    duzina: '',
+                    sirina: '',
+                    racunId: ''
+                },
+                tepisi: [...this.state.tepisi, response.data],
+                Racun: response.data.racun
+            })
+        }).catch(error => {
+            console.log(error.response)
         });
-
-
-
-
     }
+
+
+
     toggleTepihDialogue() {
         this.setState({
             TepihDialog: true
@@ -80,7 +112,7 @@ class RacunList extends React.Component {
 
     }
     render() {
-
+        let i = 1; 
         if (this.state.Racun)
             return (
                 <div>
@@ -149,13 +181,11 @@ class RacunList extends React.Component {
                                         {this.state.tepisi.map((item) =>
                                             <ListItem button >
                                                 <ListItemIcon>
-                                                    <StarBorder />
+                                                    <TabUnselected/>
                                                 </ListItemIcon>
-                                                <ListItemText primary={item.sirina + " x " + item.duzina} />
+                                                <ListItemText primary={item.sirina + " x " + item.duzina + " = " + (item.sirina * item.duzina) + "m²"} />
                                             </ListItem>
                                         )}
-
-
                                     </List>
                                 </Collapse>
                             </List>
