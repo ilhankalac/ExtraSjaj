@@ -46,11 +46,20 @@ class RacunList extends React.Component {
                 sirina: '',
                 duzina: '',
                 racunId: ''
-            }
+            },
+
+            Datum: (this.props.racun.vrijemeKreiranjaRacuna.toString().slice(5, 7)) + "." +
+                (this.props.racun.vrijemeKreiranjaRacuna.toString().slice(8, 10)) + "." +
+                (this.props.racun.vrijemeKreiranjaRacuna.toString().slice(0, 4)) + " u " +
+                (this.props.racun.vrijemeKreiranjaRacuna.toString().slice(11, 16))
         };
 
     }
+
+  
+
     componentWillMount() {
+
         axios.get("api/Tepihs/Racun/" + this.props.racun.id).then((response) => {
             this.setState({
                 tepisi: response.data,
@@ -113,6 +122,9 @@ class RacunList extends React.Component {
     }
     render() {
         let i = 1; 
+
+
+
         if (this.state.Racun)
             return (
                 <div>
@@ -172,7 +184,7 @@ class RacunList extends React.Component {
 
 
                                     <ListItemText primary={this.state.Racun.vrijednost + "€"} className="mr-3" />
-                                    <ListItemText className="ml-3" primary={this.state.Racun.vrijemeKreiranjaRacuna} color="secondary" />
+                                    <ListItemText className="ml-3" primary={this.state.Datum} color="secondary" />                                  
                                     <Button onClick={this.toggleTepihDialogue.bind(this)} size="sm" className="m-3"> Novi tepih</Button>
                                     {this.state.open ? <ExpandLess /> : <ExpandMore />}
                                 </ListItem>
@@ -183,7 +195,7 @@ class RacunList extends React.Component {
                                                 <ListItemIcon>
                                                     <TabUnselected/>
                                                 </ListItemIcon>
-                                                <ListItemText primary={item.sirina + " x " + item.duzina + " = " + (item.sirina * item.duzina) + "m²"} />
+                                                <ListItemText primary={(i++) + "-> "+ item.sirina + " x " + item.duzina + " = " + (item.sirina * item.duzina) + "m²"} />
                                             </ListItem>
                                         )}
                                     </List>
