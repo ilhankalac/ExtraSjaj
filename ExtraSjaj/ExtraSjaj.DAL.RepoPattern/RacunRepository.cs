@@ -36,7 +36,7 @@ namespace ExtraSjaj.DAL.RepoPattern
 
 
             stariRacun.BrojTepiha = _context.Tepisi.Count(x => x.RacunId == stariRacun.Id);
-            stariRacun.Vrijednost = ukupnaKvadratura(stariRacun.Id) * cijena;
+            stariRacun.Vrijednost = Math.Round((ukupnaKvadratura(stariRacun.Id) * cijena),2);
 
             _context.Racuni.Update(stariRacun);
 

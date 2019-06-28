@@ -2,34 +2,32 @@
 import { Button, Table } from 'reactstrap';
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { makeStyles } from '@material-ui/core/styles';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Collapse from '@material-ui/core/Collapse';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
-import StarBorder from '@material-ui/icons/StarBorder';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Icon from '@material-ui/core/Icon';
-import Box from '@material-ui/core/Box';
 import ListGroupCollapse from './ListGroupCollapse';
 
 export class Musterije extends Component {
 
     static displayName = Musterije.name;
-
+    state = {
+        musterijeNiz: [],
+        racuniMusterije: [],
+        loading: false,
+        RacuniModal: false,
+        DialogMusterija: {
+            id: '',
+            ime: '',
+            prezime: ''
+        },
+        open: false
+    }
 
     routeChangeToCreate() {
 
@@ -48,28 +46,22 @@ export class Musterije extends Component {
                 id, ime, prezime
             }
         })
-        this.loadRacuni(this.state.DialogMusterija.id)
+
+        this.loadRacuni(id)
+        console.log(JSON.stringify(this.state.racuniMusterije));
+
     }
 
     handleClose() {
         this.setState({
-            RacuniModal: false
+            RacuniModal: false,
+            racuniMusterije: []
         })
+
     }
 
 
-    state = {
-        musterijeNiz: [],
-        racuniMusterije: [],
-        loading: false,
-        RacuniModal: false,
-        DialogMusterija: {
-            id: '',
-            ime: '',
-            prezime: ''
-        },
-        open: false
-    }
+
 
     handleClick() {
         this.setState({
@@ -133,8 +125,8 @@ export class Musterije extends Component {
                             <DialogContentText>
 
                             </DialogContentText>
-                            {Object.keys(this.state.racuniMusterije).map((item) =>
-                                <ListGroupCollapse key={item.id} cat={item} />
+                            {this.state.racuniMusterije.map((item) =>
+                                <ListGroupCollapse key={item.id} racun={item} />
                             )}
 
                         </DialogContent>
