@@ -24,6 +24,7 @@ import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Icon from '@material-ui/core/Icon';
 import Box from '@material-ui/core/Box';
+import ListGroupCollapse from './ListGroupCollapse';
 
 export class Musterije extends Component {
 
@@ -40,13 +41,14 @@ export class Musterije extends Component {
         browserHistory.push({ pathname: '/EditMusterija', state: { Edit: Musterija } });
     }
 
-    handleClickOpen(id, ime, prezime) {
+    handleClickOpen = (id, ime, prezime) => {
         this.setState({
             RacuniModal: true,
             DialogMusterija: {
                 id, ime, prezime
             }
         })
+        this.loadRacuni(this.state.DialogMusterija.id)
     }
 
     handleClose() {
@@ -58,6 +60,7 @@ export class Musterije extends Component {
 
     state = {
         musterijeNiz: [],
+        racuniMusterije: [],
         loading: false,
         RacuniModal: false,
         DialogMusterija: {
@@ -74,6 +77,13 @@ export class Musterije extends Component {
         })
     }
 
+    loadRacuni = (id) => {
+        axios.get("api/Racuns/musterija/" + id).then((response) => {
+            this.setState({
+                racuniMusterije: response.data
+            });
+        });
+    }
 
 
     componentWillMount() {
@@ -93,7 +103,7 @@ export class Musterije extends Component {
     render() {
         //refreshing data from database on page redirections to this page
         this.componentWillMount();
-        let i = 1; 
+        let i = 1;
         let tableData =
             this.state.musterijeNiz.map(item =>
                 <tr key={item.id}>
@@ -109,7 +119,7 @@ export class Musterije extends Component {
                         </Fab>
                         <Fab size="small" aria-label="Delete" color="secondary" onClick={this.deleteMusterija.bind(this, item.id)}>
                             <DeleteIcon />
-                        </Fab>   
+                        </Fab>
                     </td>
                 </tr>
             );
@@ -123,33 +133,10 @@ export class Musterije extends Component {
                             <DialogContentText>
 
                             </DialogContentText>
-                            <List
-                                component="nav"
-                                aria-labelledby="nested-list-subheader"
-                                subheader={
-                                    <ListSubheader component="div" id="nested-list-subheader">
-                                        Nested List Items
-                                    </ListSubheader>
-                                }
-                            >
-                                <ListItem button onClick={this.handleClick.bind(this)}>
-                                    <ListItemIcon>
-                                        <InboxIcon />
-                                    </ListItemIcon>
-                                    <ListItemText primary="Inbox" />
-                                    {this.state.open ? <ExpandLess /> : <ExpandMore />}
-                                </ListItem>
-                                <Collapse in={this.state.open} timeout="auto" unmountOnExit>
-                                    <List component="div" disablePadding>
-                                        <ListItem button >
-                                            <ListItemIcon>
-                                                <StarBorder />
-                                            </ListItemIcon>
-                                            <ListItemText primary="Starred" />
-                                        </ListItem>
-                                    </List>
-                                </Collapse>
-                            </List>
+                            {Object.keys(this.state.racuniMusterije).map((item) =>
+                                <ListGroupCollapse key={item.id} cat={item} />
+                            )}
+
                         </DialogContent>
                         <DialogActions>
                             <Button onClick={this.handleClose.bind(this)} color="primary">
@@ -163,8 +150,8 @@ export class Musterije extends Component {
                 <Fab color="primary" aria-label="Add" onClick={this.routeChangeToCreate} >
                     <AddIcon />
                 </Fab>
-                
-                <Table dark  className='table table-striped'>
+
+                <Table dark className='table table-striped'>
                     <thead>
                         <tr>
                             <th>#</th>

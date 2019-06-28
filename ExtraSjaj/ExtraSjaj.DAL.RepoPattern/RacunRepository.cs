@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace ExtraSjaj.DAL.RepoPattern
 {
@@ -26,6 +27,27 @@ namespace ExtraSjaj.DAL.RepoPattern
 
             return await _context.Racuni.Where(x => x.MusterijaId == MusterijaId).ToListAsync();
         }
+
+        public  void dodajTepih(Tepih tepih)
+        {
+            var stariRacun = _context.Racuni.Where(x => x.Id == tepih.RacunId).FirstOrDefault();
+            //you will make this variable below optional
+            double cijena = 1;
+
+
+            stariRacun.BrojTepiha = _context.Tepisi.Count(x => x.RacunId == stariRacun.Id);
+            stariRacun.Vrijednost = ukupnaKvadratura(stariRacun.Id) * cijena;
+
+            _context.Racuni.Update(stariRacun);
+
+             _context.SaveChangesAsync();
+        }
+
+        float ukupnaKvadratura(int RacunId)
+        {
+            return _context.Tepisi.Where(x => x.RacunId == RacunId).Sum(x => x.Kvadratura);
+        }
+
 
     }
 }

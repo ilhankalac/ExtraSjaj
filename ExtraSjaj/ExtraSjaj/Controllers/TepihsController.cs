@@ -78,13 +78,19 @@ namespace ExtraSjaj.Controllers
 
         // POST: api/Tepihs
         [HttpPost]
-        public async Task<ActionResult<Tepih>> PostRacun(Tepih tepih)
+        public async Task<IActionResult> PostTepih(Tepih tepih)
         {
 
+            tepih.Kvadratura = tepih.Duzina * tepih.Sirina;
+
             _unitOfWork.Tepisi.Add(tepih);
+
             await _unitOfWork.SaveChangesAsync();
 
-            return CreatedAtAction("GetMusterija", new { id = tepih.Id }, tepih);
+
+            _unitOfWork.Racuni.dodajTepih(tepih);
+
+            return Ok(tepih);
         }
 
 

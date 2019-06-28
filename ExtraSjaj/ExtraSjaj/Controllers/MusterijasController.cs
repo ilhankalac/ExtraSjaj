@@ -29,6 +29,7 @@ namespace ExtraSjaj.Controllers
         [HttpGet]
         public async Task<IEnumerable<Musterija>> GetMusterije()
         {
+            
             return await _unitOfWork.Musterije.GetAllAsync();
         }
 

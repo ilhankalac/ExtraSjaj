@@ -7,5 +7,6 @@ namespace ExtraSjaj.Common.Interfaces
     public interface IRacunRepository : IRepository<Racun>
     {
         Task<IEnumerable<Racun>> getRacuniByMusterijaId(int MusterijaId);
+        void dodajTepih(Tepih tepih);
     }
 }
