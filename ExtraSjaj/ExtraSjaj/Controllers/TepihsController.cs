@@ -45,6 +45,12 @@ namespace ExtraSjaj.Controllers
             return tepih;
         }
 
+        [HttpGet("Racun/{RacunId}")]
+        public async Task<IEnumerable<Tepih>> GetTepisiByRacunId(int RacunId)
+        {
+            return await _unitOfWork.Tepisi.GetTepisiByRacunId(RacunId);
+        }
+
         // PUT: api/Tepihs/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutTepih(int id, Tepih tepih)
@@ -81,7 +87,7 @@ namespace ExtraSjaj.Controllers
         public async Task<IActionResult> PostTepih(Tepih tepih)
         {
 
-            tepih.Kvadratura = tepih.Duzina * tepih.Sirina;
+            tepih.Kvadratura = (float)Math.Round((float)(tepih.Duzina * tepih.Sirina),2);
 
             _unitOfWork.Tepisi.Add(tepih);
 
