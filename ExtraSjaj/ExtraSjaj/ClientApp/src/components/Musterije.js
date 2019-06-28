@@ -11,7 +11,8 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Icon from '@material-ui/core/Icon';
-import ListGroupCollapse from './ListGroupCollapse';
+import RacunList from './ListGroupCollapse';
+
 
 export class Musterije extends Component {
 
@@ -48,7 +49,7 @@ export class Musterije extends Component {
         })
 
         this.loadRacuni(id)
-        console.log(JSON.stringify(this.state.racuniMusterije));
+
 
     }
 
@@ -89,6 +90,14 @@ export class Musterije extends Component {
     deleteMusterija(id) {
 
         axios.delete("api/Musterijas/" + id);
+        this.handleClickOpen()
+    }
+
+    createNewRacun(id) {
+        let racun = {
+            musterijaId: id
+        }
+        axios.post("api/Racuns", racun);
 
     }
 
@@ -106,12 +115,15 @@ export class Musterije extends Component {
                     <td onClick={this.handleClickOpen.bind(this, item.id, item.ime, item.prezime)}>{item.adresa}</td>
                     <td onClick={this.handleClickOpen.bind(this, item.id, item.ime, item.prezime)}>{item.vrijemeKreiranjaMusterije}</td>
                     <td>
-                        <Fab size="small" spacing={5} color="inherit" aria-label="Edit" onClick={this.routeChangeToEdit.bind(this, item)}>
+                        <Fab size="small" spacing={5} color="primary" aria-label="Edit" onClick={this.routeChangeToEdit.bind(this, item)}>
                             <Icon>edit_icon</Icon>
                         </Fab>
-                        <Fab size="small" aria-label="Delete" color="secondary" onClick={this.deleteMusterija.bind(this, item.id)}>
+                        <Fab className="ml-3" size="small" aria-label="Delete" color="secondary" onClick={this.deleteMusterija.bind(this, item.id)}>
                             <DeleteIcon />
                         </Fab>
+                        <Button size="sm" className="ml-3" onClick={this.createNewRacun.bind(this, item.id)} color="success">
+                            Novi racun
+                            </Button>
                     </td>
                 </tr>
             );
@@ -119,22 +131,22 @@ export class Musterije extends Component {
         return (
             <div>
                 <div>
-                    <Dialog open={this.state.RacuniModal} onClose={this.handleClose.bind(this)} aria-labelledby="form-dialog-title">
+                    <Dialog size="lg" open={this.state.RacuniModal} onClose={this.handleClose.bind(this)} aria-labelledby="form-dialog-title">
                         <DialogTitle id="form-dialog-title">     Ovo su svi racuni {this.state.DialogMusterija.ime} {this.state.DialogMusterija.prezime}</DialogTitle>
+                        <DialogActions>
+
+                        </DialogActions>
                         <DialogContent>
                             <DialogContentText>
 
                             </DialogContentText>
+
                             {this.state.racuniMusterije.map((item) =>
-                                <ListGroupCollapse key={item.id} racun={item} />
+                                <RacunList key={item.id} racun={item} />
                             )}
 
                         </DialogContent>
-                        <DialogActions>
-                            <Button onClick={this.handleClose.bind(this)} color="primary">
-                                Pregled racuna
-                            </Button>
-                        </DialogActions>
+
                     </Dialog>
                 </div>
 

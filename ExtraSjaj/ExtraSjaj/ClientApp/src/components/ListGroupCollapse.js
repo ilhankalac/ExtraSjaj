@@ -1,5 +1,6 @@
 ﻿import React from 'react';
-import { ListGroupItem, Collapse } from 'reactstrap';
+import { ListGroupItem, Collapse, Button, Input, Label, Row, Col } from 'reactstrap';
+
 import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -11,70 +12,158 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import StarBorder from '@material-ui/icons/StarBorder';
 import CheckCircle from '@material-ui/icons/CheckCircle';
 import Block from '@material-ui/icons/Block';
+import axios from 'axios';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
-class ListGroupCollapse extends React.Component {
+class RacunList extends React.Component {
     constructor(props) {
         super(props);
 
         this.toggle = this.toggle.bind(this);
         this.state = {
             collapse: false,
-            Racun: this.props.racun
+            Racun: this.props.racun,
+            tepisi: [],
+            TepihDialog: false,
+            newTepih: ''
         };
+
     }
     componentWillMount() {
-        this.setState({
-            Racun: this.props.racun
-        })
+        axios.get("api/Tepihs/Racun/" + this.props.racun.id).then((response) => {
+            this.setState({
+                tepisi: response.data,
+                Racun: this.props.racun
+            });
+        });
+
     }
 
     toggle() {
         this.setState({ collapse: !this.state.collapse });
-
+        axios.get("api/Tepihs/Racun/" + this.props.racun.id).then((response) => {
+            this.setState({
+                tepisi: response.data
+            });
+        });
     }
 
+    handleClose() {
+        this.setState({
+            TepihDialog: false,
+            newTepih: ''
+        })
+
+    }
+    handleNewTepih() {
+        axios.post("api/Tepihs" + this.state.newTepih).then((response) => {
+            this.setState({
+                tepisi: this.state.tepisi.push(response.data),
+                TepihDialog: false,
+                newTepih: ''
+            });
+        });
+
+
+
+
+    }
+    toggleTepihDialogue() {
+        this.setState({
+            TepihDialog: true
+
+        })
+
+    }
     render() {
 
         if (this.state.Racun)
             return (
-                <ListGroupItem>
+                <div>
                     <div>
+                        <Dialog size="lg" open={this.state.TepihDialog} onClose={this.handleClose.bind(this)} aria-labelledby="form-dialog-title">
+                            <DialogTitle id="form-dialog-title">   Dodavanje novog tepiha   </DialogTitle>
 
-                        <List
-                            component="nav"
-                            aria-labelledby="nested-list-subheader"
-                            subheader={
-                                <ListSubheader component="div" id="nested-list-subheader">
+                            <DialogContent>
+                                <DialogContentText>
+                                    <Row>
+                                        <Col sm={{ size: 6, offset: 1 }}>
+                                            <Label className="mr-2" for="duzina"> duzina </Label>
+                                            <Input className="mr-2" id="duzina" placeholder="duzina"
+                                                onChange={(e) => {
+                                                    let { newTepih } = this.state;
+                                                    newTepih.duzina = e.target.value;
+                                                    this.setState({ newTepih });
+                                                }}
+                                            />
+                                        </Col>
+                                        <Col sm={{ size: 6, offset: 1 }}>
+                                            <Label className="mr-2" for="sirina"> sirina </Label>
+                                            <Input className="mr-2" type="sirina" id="sirina" placeholder="sirina"
+                                                onChange={(e) => {
+                                                    let { newTepih } = this.state;
+                                                    newTepih.sirina = e.target.value;
+                                                    this.setState({ newTepih });
+                                                }} />
+                                        </Col>
+                                    </Row>
+                                </DialogContentText>
 
-                                </ListSubheader>
-                            }
-                        >
-                            <ListItem button onClick={this.toggle.bind(this)}>
-                                <ListItemIcon>
-                                    {this.state.Racun.placen ? <CheckCircle color="primary" /> : <Block color="secondary" />}
-                                </ListItemIcon>
 
-
-                                <ListItemText primary={this.state.Racun.vrijednost +" €"}  /> 
-                                <ListItemText primary={this.state.Racun.vrijemeKreiranjaRacuna} ml="2" /> 
-                              
-                                {this.state.open ? <ExpandLess /> : <ExpandMore />}
-                            </ListItem>
-                            <Collapse isOpen={this.state.collapse}>
-                                <List component="div" disablePadding>
-                                    <ListItem button >
-                                        <ListItemIcon>
-                                            <StarBorder />
-                                        </ListItemIcon>
-                                        <ListItemText primary="Starred" />
-                                    </ListItem>
-                                </List>
-                            </Collapse>
-                        </List>
-                       
-
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={this.handleNewTepih.bind(this)} > Potvrdi </Button>
+                            </DialogActions>
+                        </Dialog>
                     </div>
-                </ListGroupItem>
+
+                    <ListGroupItem>
+                        <div>
+
+                            <List
+                                component="nav"
+                                aria-labelledby="nested-list-subheader"
+                                subheader={
+                                    <ListSubheader component="div" id="nested-list-subheader">
+
+                                    </ListSubheader>
+                                }
+                            >
+                                <ListItem button onClick={this.toggle.bind(this)}>
+                                    <ListItemIcon>
+                                        {this.state.Racun.placen ? <CheckCircle color="primary" /> : <Block color="secondary" />}
+                                    </ListItemIcon>
+
+
+                                    <ListItemText primary={this.state.Racun.vrijednost + "€"} className="mr-3" />
+                                    <ListItemText className="ml-3" primary={this.state.Racun.vrijemeKreiranjaRacuna} color="secondary" />
+                                    <Button onClick={this.toggleTepihDialogue.bind(this)} size="sm" className="m-3"> Novi tepih</Button>
+                                    {this.state.open ? <ExpandLess /> : <ExpandMore />}
+                                </ListItem>
+                                <Collapse isOpen={this.state.collapse}>
+                                    <List component="div" disablePadding>
+                                        {this.state.tepisi.map((item) =>
+                                            <ListItem button >
+                                                <ListItemIcon>
+                                                    <StarBorder />
+                                                </ListItemIcon>
+                                                <ListItemText primary={item.sirina + " x " + item.duzina} />
+                                            </ListItem>
+                                        )}
+
+
+                                    </List>
+                                </Collapse>
+                            </List>
+
+
+                        </div>
+                    </ListGroupItem>
+                </div>
             )
         else
             return (
@@ -83,4 +172,4 @@ class ListGroupCollapse extends React.Component {
     }
 }
 
-export default ListGroupCollapse
+export default RacunList
