@@ -113,7 +113,14 @@ export class Musterije extends Component {
                     <td onClick={this.handleClickOpen.bind(this, item.id, item.ime, item.prezime)}>{item.prezime}</td>
                     <td onClick={this.handleClickOpen.bind(this, item.id, item.ime, item.prezime)}>{item.brojTelefona}</td>
                     <td onClick={this.handleClickOpen.bind(this, item.id, item.ime, item.prezime)}>{item.adresa}</td>
-                    <td onClick={this.handleClickOpen.bind(this, item.id, item.ime, item.prezime)}>{item.vrijemeKreiranjaMusterije}</td>
+                    <td onClick={this.handleClickOpen.bind(this, item.id, item.ime, item.prezime)}>
+                    {
+                        (item.vrijemeKreiranjaMusterije.toString().slice(5, 7)) +"."+
+                        (item.vrijemeKreiranjaMusterije.toString().slice(8, 10)) +"."+
+                        (item.vrijemeKreiranjaMusterije.toString().slice(0, 4)) +" u "+
+                        (item.vrijemeKreiranjaMusterije.toString().slice(11, 16))
+                    }
+                    </td>
                     <td>
                         <Fab size="small" spacing={5} color="primary" aria-label="Edit" onClick={this.routeChangeToEdit.bind(this, item)}>
                             <Icon>edit_icon</Icon>
