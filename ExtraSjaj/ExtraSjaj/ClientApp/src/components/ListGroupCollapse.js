@@ -1,14 +1,12 @@
 ﻿import React from 'react';
-import { ListGroupItem, Collapse, Button, Input, Label, Row, Col } from 'reactstrap';
+import { ListGroupItem, Collapse, Button, Input, Row, Col } from 'reactstrap';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import StarBorder from '@material-ui/icons/StarBorder';
 import CheckCircle from '@material-ui/icons/CheckCircle';
 import Block from '@material-ui/icons/Block';
 import axios from 'axios';
@@ -19,13 +17,14 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TabUnselected from '@material-ui/icons/TabUnselected';
 import Icon from '@material-ui/core/Icon';
-import { red } from '@material-ui/core/colors';
+
 
 class RacunList extends React.Component {
     state = {
         collapse: false,
         Racun: this.props.racun,
         tepisi: [],
+        strelica: false,
         TepihDialog: false,
         newTepih: {
             sirina: '',
@@ -40,6 +39,7 @@ class RacunList extends React.Component {
         this.toggle = this.toggle.bind(this);
         this.state = {
             collapse: false,
+            strelica: false,
             Racun: this.props.racun,
             tepisi: [],
             TepihDialog: false,
@@ -57,7 +57,13 @@ class RacunList extends React.Component {
 
     }
 
-  
+    deleteTepih = (item) => {
+        axios.delete("api/Tepihs/" + item.id);
+        // this.state.tepisi = this.state.tepisi.filter(olditem => olditem !== item)
+
+    }
+
+
 
     componentWillMount() {
 
@@ -79,7 +85,7 @@ class RacunList extends React.Component {
         });
     }
 
-    handleClose() {
+    handleClose = () => {
         this.setState({
             TepihDialog: false,
             newTepih: {
@@ -90,13 +96,14 @@ class RacunList extends React.Component {
         })
 
     }
-    handleNewTepih() {
+    handleNewTepih = () => {
+
 
         this.state.newTepih.racunId = this.state.Racun.id
         axios.post("api/Tepihs", this.state.newTepih).then((response) => {
             console.log(response)
             this.setState({
-
+                strelica: false,
                 TepihDialog: false,
                 newTepih:
                 {
@@ -114,17 +121,21 @@ class RacunList extends React.Component {
 
 
 
-    toggleTepihDialogue() {
+    toggleTepihDialogue = () => {
         this.setState({
-            TepihDialog: true
-
+            TepihDialog: true,
+            strelica: true
         })
 
     }
     render() {
-        let i = 1; 
+        let i = 1;
+        let deleteRacun
 
-
+        if (this.state.Racun.vrijednost === 0) {
+            console.log(this.state.Racun.vrijednost)
+            deleteRacun = <Button> Delete racun </Button>
+        }
 
         if (this.state.Racun)
             return (
@@ -137,7 +148,7 @@ class RacunList extends React.Component {
                                 <DialogContentText>
                                     <Row>
                                         <Col sm={{ size: 3, offset: 1 }}>
-                                            
+
                                             <Input type="number" className="mr-2" id="duzina" placeholder="dužina"
                                                 onChange={(e) => {
                                                     let { newTepih } = this.state;
@@ -148,10 +159,10 @@ class RacunList extends React.Component {
                                         </Col>
 
                                         <Col disabled sm={{ size: 2, offset: 1 }}>
-                                            <Input disabled  className="mr-2" defaultValue="    X" />
+                                            <Input disabled className="mr-2" defaultValue="    X" />
                                         </Col>
                                         <Col sm={{ size: 3, offset: 1 }}>
-                                           
+
                                             <Input className="mr-2" type="sirina" id="sirina" placeholder="širina"
                                                 onChange={(e) => {
                                                     let { newTepih } = this.state;
@@ -189,20 +200,22 @@ class RacunList extends React.Component {
 
 
                                     <ListItemText primary={this.state.Racun.vrijednost + "€"} className="mr-3" />
-                                    <ListItemText className="ml-3" primary={this.state.Datum} color="secondary" />                                  
-                                    <Icon onClick={this.toggleTepihDialogue.bind(this)} className="m-2" color="primary" color="red" fontSize="large" >
+                                    <ListItemText className="ml-3" primary={this.state.Datum} color="secondary" />
+                                    <Icon onClick={this.toggleTepihDialogue.bind(this)} className="m-2" color="primary" fontSize="large" >
                                         add_circle
                                     </Icon>
-                                    {this.state.open ? <ExpandLess /> : <ExpandMore />}
+                                    {this.state.strelica ? <ExpandLess /> : <ExpandMore />}
+                                    {deleteRacun}
                                 </ListItem>
                                 <Collapse isOpen={this.state.collapse}>
                                     <List component="div" disablePadding>
                                         {this.state.tepisi.map((item) =>
                                             <ListItem button >
                                                 <ListItemIcon>
-                                                    <TabUnselected/>
+                                                    <TabUnselected />
                                                 </ListItemIcon>
-                                                <ListItemText primary={(i++) + "-> "+ item.sirina + " x " + item.duzina + " = " + (item.sirina * item.duzina) + "m²"} />
+                                                <ListItemText primary={(i++) + "-> " + item.sirina + " x " + item.duzina + " = " + (item.sirina * item.duzina) + "m²"} />
+                                                <Button onClick={this.deleteTepih.bind(this, item)}>Delete </Button>
                                             </ListItem>
                                         )}
                                     </List>
