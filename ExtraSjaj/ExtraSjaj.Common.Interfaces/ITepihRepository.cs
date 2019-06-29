@@ -6,6 +6,6 @@ namespace ExtraSjaj.Common.Interfaces
 {
     public interface ITepihRepository : IRepository<Tepih>
     {
-        Task<IEnumerable<Tepih>> GetTepisiByRacunId(int RacunId);
+        Task<IEnumerable<Tepih>> GetTepisiByRacunIdReversed(int RacunId);
     }
 }

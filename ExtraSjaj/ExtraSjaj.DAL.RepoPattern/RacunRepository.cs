@@ -25,7 +25,7 @@ namespace ExtraSjaj.DAL.RepoPattern
 
         public async Task<IEnumerable<Racun>> getRacuniByMusterijaId(int MusterijaId){
 
-            return await _context.Racuni.Where(x => x.MusterijaId == MusterijaId).ToListAsync();
+            return await _context.Racuni.Where(x => x.MusterijaId == MusterijaId).OrderByDescending(x=> x.Id).ToListAsync();
         }
 
         public  void dodajTepih(Tepih tepih)

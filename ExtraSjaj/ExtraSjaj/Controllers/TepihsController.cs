@@ -48,7 +48,7 @@ namespace ExtraSjaj.Controllers
         [HttpGet("Racun/{RacunId}")]
         public async Task<IEnumerable<Tepih>> GetTepisiByRacunId(int RacunId)
         {
-            return await _unitOfWork.Tepisi.GetTepisiByRacunId(RacunId);
+            return await _unitOfWork.Tepisi.GetTepisiByRacunIdReversed(RacunId);
         }
 
         // PUT: api/Tepihs/5

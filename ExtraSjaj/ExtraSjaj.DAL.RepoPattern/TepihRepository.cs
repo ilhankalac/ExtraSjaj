@@ -23,9 +23,9 @@ namespace ExtraSjaj.DAL.RepoPattern
         }
 
 
-        public async Task<IEnumerable<Tepih>> GetTepisiByRacunId(int RacunId)
+        public async Task<IEnumerable<Tepih>> GetTepisiByRacunIdReversed(int RacunId)
         {
-            return await _context.Tepisi.Where(x => x.RacunId == RacunId).ToListAsync();
+            return await _context.Tepisi.Where(x => x.RacunId == RacunId).OrderByDescending(x=> x.Id).ToListAsync();
         }
     }
 }
