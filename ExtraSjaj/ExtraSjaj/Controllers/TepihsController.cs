@@ -96,7 +96,7 @@ namespace ExtraSjaj.Controllers
             await _unitOfWork.SaveChangesAsync();
 
 
-            _unitOfWork.Racuni.dodajTepih(tepih);
+            _unitOfWork.Racuni.tepihAkcija(tepih);
 
             return Ok(tepih);
         }
@@ -114,6 +114,8 @@ namespace ExtraSjaj.Controllers
 
             _unitOfWork.Tepisi.Remove(tepih);
             await _unitOfWork.SaveChangesAsync();
+
+            _unitOfWork.Racuni.tepihAkcija(tepih);
 
             return tepih;
         }

@@ -28,7 +28,8 @@ namespace ExtraSjaj.DAL.RepoPattern
             return await _context.Racuni.Where(x => x.MusterijaId == MusterijaId).OrderByDescending(x=> x.Id).ToListAsync();
         }
 
-        public  void dodajTepih(Tepih tepih)
+        
+        public  void tepihAkcija(Tepih tepih)
         {
             var stariRacun = _context.Racuni.Where(x => x.Id == tepih.RacunId).FirstOrDefault();
             //you will make this variable below optional
@@ -48,6 +49,6 @@ namespace ExtraSjaj.DAL.RepoPattern
             return _context.Tepisi.Where(x => x.RacunId == RacunId).Sum(x => x.Kvadratura);
         }
 
-
+      
     }
 }
