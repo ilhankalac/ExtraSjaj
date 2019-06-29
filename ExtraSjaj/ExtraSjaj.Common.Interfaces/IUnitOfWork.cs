@@ -9,7 +9,7 @@ namespace ExtraSjaj.Common.Interfaces
         IRacunRepository Racuni { get; }
         ITepihRepository Tepisi { get; }
         IUserRepository Users { get; }
-
+        IRoleRepository Roles { get; }
         int SaveChanges();
         Task<int> SaveChangesAsync();
     }

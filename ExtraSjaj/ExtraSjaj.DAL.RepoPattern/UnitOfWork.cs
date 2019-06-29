@@ -12,6 +12,7 @@ namespace ExtraSjaj.DAL.RepoPattern
         public IRacunRepository Racuni { get; set; }
         public ITepihRepository Tepisi { get; set; }
         public IUserRepository Users { get; set; }
+        public IRoleRepository Roles { get; set; }
 
 
         public UnitOfWork(ExtraSjajContext context)
@@ -21,6 +22,7 @@ namespace ExtraSjaj.DAL.RepoPattern
             Racuni = new RacunRepository(_context);
             Tepisi = new TepihRepository(_context);
             Users = new UserRepository(_context);
+            Roles = new RoleRepository(_context);
         }
         public int SaveChanges()
         {

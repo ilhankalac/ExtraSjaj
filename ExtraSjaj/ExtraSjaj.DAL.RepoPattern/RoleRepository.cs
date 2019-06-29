@@ -4,11 +4,11 @@ using ExtraSjaj.DAL.Context;
 
 namespace ExtraSjaj.DAL.RepoPattern
 {
-    public class UserRepository : Repository<User>, IUserRepository
+    public class RoleRepository : Repository<Role>, IRoleRepository
     {
         protected readonly ExtraSjajContext _context;
 
-        public UserRepository(ExtraSjajContext context) : base(context)
+        public RoleRepository(ExtraSjajContext context) : base(context)
         {
             _context = context;
         }
@@ -17,5 +17,6 @@ namespace ExtraSjaj.DAL.RepoPattern
         {
             get { return context as ExtraSjajContext; }
         }
+
     }
 }

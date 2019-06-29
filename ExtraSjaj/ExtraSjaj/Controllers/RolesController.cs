@@ -13,47 +13,47 @@ namespace ExtraSjaj.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class RolesController : ControllerBase
     {
         public IUnitOfWork _unitOfWork { get; }
 
 
-        public UsersController(IUnitOfWork unitOfWork)
+        public RolesController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
-
-        // GET: api/Users
+        // GET: api/Roles
         [HttpGet]
-        public async Task<IEnumerable<User>> GetMusterije()
+        public async Task<IEnumerable<Role>> GetRoles()
         {
-            return await _unitOfWork.Users.GetAllAsync();
+            return await _unitOfWork.Roles.GetAllAsync();
         }
 
-        // GET: api/Users/5
+        // GET: api/Roles/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(int id)
+        public async Task<ActionResult<Role>> GetRole(int id)
         {
-            var user = await _unitOfWork.Users.GetAsync(id);
+            var role = await _unitOfWork.Roles.GetAsync(id);
 
-            if (user == null)
+            if (role == null)
             {
                 return NotFound();
             }
 
-            return user;
+            return role;
         }
 
-        // PUT: api/Users/5
+
+        // PUT: api/Roles/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutMusterija(int id, User user)
+        public async Task<IActionResult> PutRole(int id, Role role)
         {
-            if (id != user.Id)
+            if (id != role.Id)
             {
                 return BadRequest();
             }
 
-            _unitOfWork.Users.Update(user);
+            _unitOfWork.Roles.Update(role);
 
             try
             {
@@ -61,7 +61,7 @@ namespace ExtraSjaj.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(id))
+                if (!RoleExists(id))
                 {
                     return NotFound();
                 }
@@ -74,40 +74,41 @@ namespace ExtraSjaj.Controllers
             return NoContent();
         }
 
-        // POST: api/Users
-        [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
-        {
 
-            _unitOfWork.Users.Add(user);
+        // POST: api/Roles
+        [HttpPost]
+        public async Task<ActionResult<Role>> PostRole(Role role)
+        {
+            _unitOfWork.Roles.Add(role);
 
             await _unitOfWork.SaveChangesAsync();
 
-            return CreatedAtAction("GetUser", new { id = user.Id }, user);
+            return CreatedAtAction("GetRole", new { id = role.Id }, role);
         }
 
-        // DELETE: api/Users/5
+        // DELETE: api/Roles/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<User>> DeleteUser(int id)
+        public async Task<ActionResult<Role>> DeleteRole(int id)
         {
-            var user = await _unitOfWork.Users.GetAsync(id);
-            if (user == null)
+            var role = await _unitOfWork.Roles.GetAsync(id);
+            if (role == null)
             {
                 return NotFound();
             }
 
-            _unitOfWork.Users.Remove(user);
+            _unitOfWork.Roles.Remove(role);
             await _unitOfWork.SaveChangesAsync();
 
-            return user;
+            return role;
         }
 
-        private bool UserExists(int id)
+
+        private bool RoleExists(int id)
         {
             bool isNull = true;
 
-            var user = _unitOfWork.Users.Get(id);
-            if (user != null)
+            var role = _unitOfWork.Roles.Get(id);
+            if (role != null)
                 isNull = false;
 
             return isNull ? false : true;
