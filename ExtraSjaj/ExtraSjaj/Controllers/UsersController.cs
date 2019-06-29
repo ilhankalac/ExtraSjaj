@@ -79,12 +79,27 @@ namespace ExtraSjaj.Controllers
         public async Task<ActionResult<User>> PostUser(User user)
         {
 
-            _unitOfWork.Users.Add(user);
+            if ((_unitOfWork.Users.proveraJedinstvenosti(user)))
+                return BadRequest();
+            else
+            {
+                _unitOfWork.Users.Add(user);
 
-            await _unitOfWork.SaveChangesAsync();
+                await _unitOfWork.SaveChangesAsync();
+            }
 
-            return CreatedAtAction("GetUser", new { id = user.Id }, user);
+            return  CreatedAtAction("GetUser", new { id = user.Id }, user);
         }
+
+        [HttpPost("{LoginDetail}")]
+        public IActionResult LoginUser(User LoginDetail)
+        {
+            if (!(_unitOfWork.Users.proveraLogovanja(LoginDetail)))
+                return BadRequest();
+            else
+                return Ok();
+        }
+
 
         // DELETE: api/Users/5
         [HttpDelete("{id}")]

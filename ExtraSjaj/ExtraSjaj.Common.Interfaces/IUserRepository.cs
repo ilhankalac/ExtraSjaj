@@ -7,5 +7,8 @@ namespace ExtraSjaj.Common.Interfaces
 {
     public interface IUserRepository : IRepository<User>
     {
+        bool proveraJedinstvenosti(User user);
+
+        bool proveraLogovanja(User user);
     }
 }
