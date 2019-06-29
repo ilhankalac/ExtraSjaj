@@ -1,4 +1,4 @@
-﻿using ExtraSjaj.Common.Interfaces;
+using ExtraSjaj.Common.Interfaces;
 using ExtraSjaj.Common.Models;
 using ExtraSjaj.DAL.Context;
 using Microsoft.EntityFrameworkCore;

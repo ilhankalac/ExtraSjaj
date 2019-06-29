@@ -18,7 +18,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TabUnselected from '@material-ui/icons/TabUnselected';
-
+import Icon from '@material-ui/core/Icon';
+import { red } from '@material-ui/core/colors';
 
 class RacunList extends React.Component {
     state = {
@@ -135,9 +136,9 @@ class RacunList extends React.Component {
                             <DialogContent>
                                 <DialogContentText>
                                     <Row>
-                                        <Col sm={{ size: 6, offset: 1 }}>
-                                            <Label className="mr-2" for="duzina"> duzina </Label>
-                                            <Input className="mr-2" id="duzina" placeholder="duzina"
+                                        <Col sm={{ size: 3, offset: 1 }}>
+                                            
+                                            <Input type="number" className="mr-2" id="duzina" placeholder="dužina"
                                                 onChange={(e) => {
                                                     let { newTepih } = this.state;
                                                     newTepih.duzina = e.target.value;
@@ -145,9 +146,13 @@ class RacunList extends React.Component {
                                                 }}
                                             />
                                         </Col>
-                                        <Col sm={{ size: 6, offset: 1 }}>
-                                            <Label className="mr-2" for="sirina"> sirina </Label>
-                                            <Input className="mr-2" type="sirina" id="sirina" placeholder="sirina"
+
+                                        <Col disabled sm={{ size: 2, offset: 1 }}>
+                                            <Input disabled  className="mr-2" defaultValue="    X" />
+                                        </Col>
+                                        <Col sm={{ size: 3, offset: 1 }}>
+                                           
+                                            <Input className="mr-2" type="sirina" id="sirina" placeholder="širina"
                                                 onChange={(e) => {
                                                     let { newTepih } = this.state;
                                                     newTepih.sirina = e.target.value;
@@ -185,7 +190,9 @@ class RacunList extends React.Component {
 
                                     <ListItemText primary={this.state.Racun.vrijednost + "€"} className="mr-3" />
                                     <ListItemText className="ml-3" primary={this.state.Datum} color="secondary" />                                  
-                                    <Button onClick={this.toggleTepihDialogue.bind(this)} size="sm" className="m-3"> Novi tepih</Button>
+                                    <Icon onClick={this.toggleTepihDialogue.bind(this)} className="m-2" color="primary" color="red" fontSize="large" >
+                                        add_circle
+                                    </Icon>
                                     {this.state.open ? <ExpandLess /> : <ExpandMore />}
                                 </ListItem>
                                 <Collapse isOpen={this.state.collapse}>
@@ -201,8 +208,6 @@ class RacunList extends React.Component {
                                     </List>
                                 </Collapse>
                             </List>
-
-
                         </div>
                     </ListGroupItem>
                 </div>

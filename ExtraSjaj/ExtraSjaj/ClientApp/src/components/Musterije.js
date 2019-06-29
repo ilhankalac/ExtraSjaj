@@ -95,7 +95,7 @@ export class Musterije extends Component {
     deleteMusterija(id) {
 
         axios.delete("api/Musterijas/" + id);
-        this.handleClickOpen()
+
     }
 
     createNewRacun(id) {
@@ -142,8 +142,6 @@ export class Musterije extends Component {
                             <DeleteIcon />
                         </Fab>
                         <PlaylistAdd size="sm" className="ml-3" onClick={this.createNewRacun.bind(this, item.id)} color="success" />
-
-
                     </td>
                 </tr>
             );

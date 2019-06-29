@@ -72,6 +72,4 @@ export class CreateMusterija extends Component {
             </div>
         );
     }
-
-
 }
