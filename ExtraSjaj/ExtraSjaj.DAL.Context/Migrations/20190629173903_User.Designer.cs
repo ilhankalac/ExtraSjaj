@@ -4,14 +4,16 @@ using ExtraSjaj.DAL.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ExtraSjaj.DAL.Context.Migrations
 {
     [DbContext(typeof(ExtraSjajContext))]
-    partial class ExtraSjajContextModelSnapshot : ModelSnapshot
+    [Migration("20190629173903_User")]
+    partial class User
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -94,13 +96,9 @@ namespace ExtraSjaj.DAL.Context.Migrations
 
                     b.Property<string>("BrojTelefona");
 
-                    b.Property<string>("Ime");
-
                     b.Property<string>("JMBG");
 
                     b.Property<string>("Password");
-
-                    b.Property<string>("Prezime");
 
                     b.Property<string>("Username");
 

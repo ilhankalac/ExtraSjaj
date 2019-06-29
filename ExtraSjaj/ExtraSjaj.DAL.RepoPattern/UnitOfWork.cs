@@ -11,7 +11,7 @@ namespace ExtraSjaj.DAL.RepoPattern
         public IMusterijaRepository Musterije { get; }
         public IRacunRepository Racuni { get; set; }
         public ITepihRepository Tepisi { get; set; }
-
+        public IUserRepository Users { get; set; }
 
 
         public UnitOfWork(ExtraSjajContext context)
@@ -20,6 +20,7 @@ namespace ExtraSjaj.DAL.RepoPattern
             Musterije = new MusterijaRepository(_context);
             Racuni = new RacunRepository(_context);
             Tepisi = new TepihRepository(_context);
+            Users = new UserRepository(_context);
         }
         public int SaveChanges()
         {
