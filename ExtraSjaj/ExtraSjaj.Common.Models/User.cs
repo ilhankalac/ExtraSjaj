@@ -11,14 +11,11 @@ namespace ExtraSjaj.Common.Models
         public int Id { get; set; }
         public string Ime { get; set; }
         public string Prezime { get; set; }
-
         public string Username { get; set; }
-
         public string Password { get; set; }
-
         public string JMBG { get; set; }
-
         public string BrojTelefona { get; set; }
-
+        public int RoleId { get; set; }
+        public virtual Role Rola { get; set; }
     }
 }

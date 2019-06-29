@@ -4,14 +4,16 @@ using ExtraSjaj.DAL.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ExtraSjaj.DAL.Context.Migrations
 {
     [DbContext(typeof(ExtraSjajContext))]
-    partial class ExtraSjajContextModelSnapshot : ModelSnapshot
+    [Migration("20190629175703_Role")]
+    partial class Role
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -117,13 +119,9 @@ namespace ExtraSjaj.DAL.Context.Migrations
 
                     b.Property<string>("Prezime");
 
-                    b.Property<int>("RoleId");
-
                     b.Property<string>("Username");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("RoleId");
 
                     b.ToTable("Users");
                 });
@@ -141,14 +139,6 @@ namespace ExtraSjaj.DAL.Context.Migrations
                     b.HasOne("ExtraSjaj.Common.Models.Racun", "Racun")
                         .WithMany()
                         .HasForeignKey("RacunId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("ExtraSjaj.Common.Models.User", b =>
-                {
-                    b.HasOne("ExtraSjaj.Common.Models.Role", "Rola")
-                        .WithMany()
-                        .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

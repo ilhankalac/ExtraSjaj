@@ -17,5 +17,6 @@ namespace ExtraSjaj.DAL.Context
         public DbSet<Racun> Racuni { get; set; }
         public DbSet<Tepih> Tepisi { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
     }
 }
