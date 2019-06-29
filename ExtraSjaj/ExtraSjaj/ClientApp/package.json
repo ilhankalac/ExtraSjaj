@@ -9,6 +9,7 @@
     "bootstrap": "^4.3.1",
     "jquery": "3.3.1",
     "material-table": "^1.40.0",
+    "material-ui": "^1.0.0-beta.47",
     "material-ui-icons": "^1.0.0-beta.36",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",

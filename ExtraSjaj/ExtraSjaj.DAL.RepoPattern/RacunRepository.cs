@@ -49,6 +49,10 @@ namespace ExtraSjaj.DAL.RepoPattern
             return _context.Tepisi.Where(x => x.RacunId == RacunId).Sum(x => x.Kvadratura);
         }
 
+        public double zaradaNaOdabranomMesecu(DateTime dateTime)
+        {
+            return _context.Racuni.Where(x => x.Placen == true && x.VrijemePlacanjaRacuna.Month == dateTime.Month).Sum(x => x.Vrijednost);
+        }
       
     }
 }
