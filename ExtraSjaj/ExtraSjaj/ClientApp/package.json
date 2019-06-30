@@ -8,6 +8,7 @@
     "axios": "^0.19.0",
     "bootstrap": "^4.3.1",
     "jquery": "3.3.1",
+    "js-cookie": "^2.2.0",
     "material-table": "^1.40.0",
     "material-ui": "^1.0.0-beta.47",
     "material-ui-icons": "^1.0.0-beta.36",
@@ -29,7 +30,8 @@
     "eslint-plugin-flowtype": "^2.50.3",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
-    "eslint-plugin-react": "^7.11.1"
+    "eslint-plugin-react": "^7.11.1",
+    "react-router-role-authorization": "^1.1.4"
   },
   "eslintConfig": {
     "extends": "react-app"

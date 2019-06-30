@@ -91,7 +91,7 @@ namespace ExtraSjaj.Controllers
             return  CreatedAtAction("GetUser", new { id = user.Id }, user);
         }
 
-        [HttpPost("{LoginDetail}")]
+        [HttpPost("login/")]
         public IActionResult LoginUser(User LoginDetail)
         {
             if (!(_unitOfWork.Users.proveraLogovanja(LoginDetail)))

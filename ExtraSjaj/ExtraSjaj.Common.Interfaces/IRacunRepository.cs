@@ -11,6 +11,10 @@ namespace ExtraSjaj.Common.Interfaces
 
         //update Racuna after adding or removing tepih from the total
         void tepihAkcija(Tepih tepih);
-        double zaradaNaOdabranomMesecu(DateTime dateTime);
+        double zaradaNaOdabranomMesecu(DateTime time);
+        double zaradaOdabraneGodine(DateTime time);
+
+        double prosecnaMesecnaZarada(DateTime time);
+        double prosecnaGodisnjaZarada(DateTime time);
     }
 }

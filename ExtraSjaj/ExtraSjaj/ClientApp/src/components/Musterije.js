@@ -16,7 +16,17 @@ import PlaylistAdd from '@material-ui/icons/PlaylistAdd';
 import Grid from '@material-ui/core/Grid';
 import Input from '@material-ui/core/Input';
 import Search from '@material-ui/icons/Search';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
+const theme = createMuiTheme({
+    palette: {
+        inherit: '#37474f',
+        secondary: {
+            main: '#c62828'
+        },
+
+    }
+});
 
 export class Musterije extends Component {
 
@@ -35,12 +45,12 @@ export class Musterije extends Component {
         open: false
     }
 
-    routeChangeToCreate() {
+    routeChangeToCreate = () => {
 
         browserHistory.push('/CreateMusterija');
     }
 
-    routeChangeToEdit(Musterija) {
+    routeChangeToEdit = (Musterija) => {
 
         browserHistory.push({ pathname: '/EditMusterija', state: { Edit: Musterija } });
     }
@@ -58,7 +68,7 @@ export class Musterije extends Component {
 
     }
 
-    handleClose() {
+    handleClose = () => {
         this.setState({
             RacuniModal: false,
             racuniMusterije: []
@@ -69,7 +79,7 @@ export class Musterije extends Component {
 
 
 
-    handleClick() {
+    handleClick = () => {
         this.setState({
             open: !this.state.open
         })
@@ -92,13 +102,13 @@ export class Musterije extends Component {
         });
     }
 
-    deleteMusterija(id) {
+    deleteMusterija = (id) => {
 
         axios.delete("api/Musterijas/" + id);
 
     }
 
-    createNewRacun(id) {
+    createNewRacun = (id) => {
         let racun = {
             musterijaId: id
         }
@@ -135,13 +145,18 @@ export class Musterije extends Component {
                         }
                     </td>
                     <td>
-                        <Fab size="small" spacing={5} color="primary" aria-label="Edit" onClick={this.routeChangeToEdit.bind(this, item)}>
-                            <Icon>edit_icon</Icon>
-                        </Fab>
-                        <Fab className="ml-3" size="small" aria-label="Delete" color="secondary" onClick={this.deleteMusterija.bind(this, item.id)}>
-                            <DeleteIcon />
-                        </Fab>
-                        <PlaylistAdd size="sm" className="ml-3" onClick={this.createNewRacun.bind(this, item.id)} color="success" />
+                        <MuiThemeProvider theme={theme}>
+                            <Fab size="small" color="primary" aria-label="Edit" onClick={this.routeChangeToEdit.bind(this, item)}>
+                                <Icon>edit_icon</Icon>
+                            </Fab>
+                            <Fab className="ml-3" size="small" aria-label="Delete" color="secondary" onClick={this.deleteMusterija.bind(this, item.id)}>
+                                <DeleteIcon />
+                            </Fab>
+                            <Fab className="ml-3" size="small" color="inherit" aria-label="Add" onClick={this.createNewRacun.bind(this, item.id)} >
+                                <PlaylistAdd size="sm" color="inherit" />
+                            </Fab>
+
+                        </MuiThemeProvider>
                     </td>
                 </tr>
             );
@@ -173,7 +188,7 @@ export class Musterije extends Component {
                 <Grid
                     justify="space-between"
                     container
-                    spacing={24}
+
                 >
                     <Grid item>
                         <Fab className="mb-2" size="small" color="primary" aria-label="Add" onClick={this.routeChangeToCreate} >
@@ -193,7 +208,7 @@ export class Musterije extends Component {
                         </div>
                     </Grid>
                 </Grid>
-                <Table  className='table table-striped'>
+                <Table className='table table-striped'>
                     <thead>
                         <tr>
                             <th>#</th>

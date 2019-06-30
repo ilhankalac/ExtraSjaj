@@ -49,10 +49,42 @@ namespace ExtraSjaj.DAL.RepoPattern
             return _context.Tepisi.Where(x => x.RacunId == RacunId).Sum(x => x.Kvadratura);
         }
 
-        public double zaradaNaOdabranomMesecu(DateTime dateTime)
+        public double zaradaNaOdabranomMesecu(DateTime time)
         {
-            return _context.Racuni.Where(x => x.Placen == true && x.VrijemePlacanjaRacuna.Month == dateTime.Month).Sum(x => x.Vrijednost);
+            return _context.Racuni.Where
+                    (
+                           x => x.Placen == true && x.VrijemePlacanjaRacuna.Month == time.Month &&
+                           x.VrijemePlacanjaRacuna.Month == time.Month)
+                          .DefaultIfEmpty()
+                          .Sum(x => x.Vrijednost
+                    );
         }
-      
+
+        public double zaradaOdabraneGodine(DateTime time)
+        { 
+            return _context.Racuni.Where(x => x.Placen == true && x.VrijemePlacanjaRacuna.Year == time.Year)
+                  .DefaultIfEmpty()
+                  .Sum(x => x.Vrijednost);
+        }
+
+        public double prosecnaMesecnaZarada(DateTime time)
+        {
+            return _context.Racuni.Where
+                    (
+                           x => x.Placen == true && x.VrijemePlacanjaRacuna.Month == time.Month &&
+                           x.VrijemePlacanjaRacuna.Year == time.Year)
+                           .DefaultIfEmpty() 
+                          .Average(x => x.Vrijednost
+                    );
+        }
+
+
+        public double prosecnaGodisnjaZarada(DateTime time)
+        {
+            return _context.Racuni.Where(x => x.Placen == true && x.VrijemePlacanjaRacuna.Year == time.Year)
+                   .DefaultIfEmpty()
+                   .Average(x => x.Vrijednost);
+        }
+
     }
 }

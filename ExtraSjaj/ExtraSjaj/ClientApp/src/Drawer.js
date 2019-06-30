@@ -17,6 +17,14 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import Button from '@material-ui/core/Button';
+import { browserHistory } from 'react-router';
+import Cookies from 'js-cookie';
+import ShowChart from '@material-ui/icons/ShowChart';
+import SupervisorAccount from '@material-ui/icons/SupervisorAccount';
+import AttachMoney from '@material-ui/icons/AttachMoney';
+
+
 
 const drawerWidth = 240;
 
@@ -37,7 +45,7 @@ const useStyles = makeStyles(theme => ({
             easing: theme.transitions.easing.easeOut,
             duration: theme.transitions.duration.enteringScreen,
         }),
-       
+
     },
     menuButton: {
         marginRight: theme.spacing(2),
@@ -45,10 +53,13 @@ const useStyles = makeStyles(theme => ({
     hide: {
         display: 'none',
     },
+    title: {
+        flexGrow: 1,
+    },
     drawer: {
         width: drawerWidth,
         flexShrink: 0,
-        
+
     },
     drawerPaper: {
         width: drawerWidth,
@@ -68,7 +79,7 @@ const useStyles = makeStyles(theme => ({
             duration: theme.transitions.duration.leavingScreen,
         }),
         marginLeft: -drawerWidth,
-        
+
     },
     contentShift: {
         transition: theme.transitions.create('margin', {
@@ -79,10 +90,11 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function PersistentDrawerLeft({props}) {
+export default function PersistentDrawerLeft({ props }) {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
+    const [LogInOut, toggleLogInOut] = React.useState(false);
 
     function handleDrawerOpen() {
         setOpen(true);
@@ -91,6 +103,32 @@ export default function PersistentDrawerLeft({props}) {
     function handleDrawerClose() {
         setOpen(false);
     }
+    function Odjava() {
+        toggleLogInOut(false)
+        Cookies.remove('user');
+        browserHistory.push('/');
+    }
+
+    function UlogujSe() {
+        toggleLogInOut(true)
+        browserHistory.push('/Login');
+    }
+
+    function redirectToMusterije() {
+
+        browserHistory.push('/Musterije');
+    }
+
+    function redirectToKorisnici() {
+
+        browserHistory.push('/Korisnici');
+    }
+
+    function redirectToStatistika() {
+
+        browserHistory.push('/Statistika');
+    }
+
 
     return (
         <div className={classes.root}>
@@ -111,9 +149,10 @@ export default function PersistentDrawerLeft({props}) {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap>
-                        Persistent drawer
+                    <Typography variant="h6" className={classes.title}>
+                        Extra sjaj
           </Typography>
+                    {LogInOut ? <Button onClick={() => Odjava()} color="inherit">Odjavi se</Button> : <Button onClick={() => UlogujSe()} color="inherit">Uloguj se</Button>}
                 </Toolbar>
             </AppBar>
             <Drawer
@@ -132,22 +171,22 @@ export default function PersistentDrawerLeft({props}) {
                 </div>
                 <Divider />
                 <List>
-                    {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
+
+                    <ListItem onClick={() => redirectToMusterije()} button>
+                        <ListItemIcon> <AttachMoney /> </ListItemIcon>
+                        <ListItemText primary="Mušterije" />
+                    </ListItem>
+                    <ListItem onClick={() => redirectToKorisnici()} button >
+                        <ListItemIcon> <SupervisorAccount /></ListItemIcon>
+                        <ListItemText primary="Korisnici" />
+                    </ListItem>
+                    <ListItem onClick={() => redirectToStatistika()} button >
+                        <ListItemIcon> <ShowChart /></ListItemIcon>
+                        <ListItemText primary="Statistika" />
+                    </ListItem>
+
                 </List>
-                <Divider />
-                <List>
-                    {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
-                </List>
+
             </Drawer>
             <main
                 className={clsx(classes.content, {

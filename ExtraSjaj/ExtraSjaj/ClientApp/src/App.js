@@ -11,10 +11,20 @@ import { EditMusterija } from './components/Musterija/EditMusterija';
 import { Register } from './components/Register';
 import { Login } from './components/Login';
 import MusterijaTable from './components/MusterijaTable';
+import { NotFound } from './components/NotFound';
+import Cookies from 'js-cookie';
+import { Korisnici } from './components/Korisnici';
+import { EditKorisnik } from './components/EditKorisnik';
+
+
 
 export default class App extends Component {
     static displayName = App.name;
+    constructor() {
+        super();
+        Cookies.set('role', { roles: ['1', '2'] });
 
+    }
     render() {
         return (
             <Layout>
@@ -28,6 +38,9 @@ export default class App extends Component {
                     <Route path='/MusterijaTable' component={MusterijaTable} />
                     <Route path='/Register' component={Register} />
                     <Route path='/Login' component={Login} />
+                    <Route path="/not-found" component={NotFound} />
+                    <Route path="/Korisnici" component={Korisnici} />
+                    <Route path="/EditKorisnik" component={EditKorisnik} />
                 </Router>
             </Layout>
         );

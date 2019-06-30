@@ -26,6 +26,7 @@ class RacunList extends React.Component {
         tepisi: [],
         strelica: false,
         TepihDialog: false,
+        Hidden: false,
         newTepih: {
             sirina: '',
             duzina: '',
@@ -40,6 +41,7 @@ class RacunList extends React.Component {
         this.state = {
             collapse: false,
             strelica: false,
+            Hidden: false,
             Racun: this.props.racun,
             tepisi: [],
             TepihDialog: false,
@@ -56,14 +58,27 @@ class RacunList extends React.Component {
         };
 
     }
-
+    dismiss = () => {
+        this.setState({
+            Hidden: true
+        })
+    }
     deleteTepih = (item) => {
         axios.delete("api/Tepihs/" + item.id);
-        // this.state.tepisi = this.state.tepisi.filter(olditem => olditem !== item)
+
+        this.setState({
+            tepisi: this.state.tepisi.filter(olditem => olditem !== item),
+            Racun: this.props.racun
+        });
 
     }
 
+    deleteRacun = () => {
+        axios.delete("api/Racuns/" + this.state.Racun.id);
+        this.dismiss()
 
+
+    }
 
     componentWillMount() {
 
@@ -76,7 +91,7 @@ class RacunList extends React.Component {
 
     }
 
-    toggle() {
+    toggle = () => {
         this.setState({ collapse: !this.state.collapse });
         axios.get("api/Tepihs/Racun/" + this.props.racun.id).then((response) => {
             this.setState({
@@ -134,13 +149,14 @@ class RacunList extends React.Component {
 
         if (this.state.Racun.vrijednost === 0) {
             console.log(this.state.Racun.vrijednost)
-            deleteRacun = <Button> Delete racun </Button>
+            deleteRacun = <Button onClick={this.deleteRacun.bind(this)}> Delete racun </Button>
         }
 
-        if (this.state.Racun)
+        if (this.state.Racun && !this.state.Hidden)
             return (
-                <div>
-                    <div>
+
+                <div >
+                    <div >
                         <Dialog size="lg" open={this.state.TepihDialog} onClose={this.handleClose.bind(this)} aria-labelledby="form-dialog-title">
                             <DialogTitle id="form-dialog-title">   Dodavanje novog tepiha   </DialogTitle>
 
@@ -163,7 +179,7 @@ class RacunList extends React.Component {
                                         </Col>
                                         <Col sm={{ size: 3, offset: 1 }}>
 
-                                            <Input className="mr-2" type="sirina" id="sirina" placeholder="širina"
+                                            <Input type="number" className="mr-2" type="sirina" id="sirina" placeholder="širina"
                                                 onChange={(e) => {
                                                     let { newTepih } = this.state;
                                                     newTepih.sirina = e.target.value;
@@ -215,7 +231,12 @@ class RacunList extends React.Component {
                                                     <TabUnselected />
                                                 </ListItemIcon>
                                                 <ListItemText primary={(i++) + "-> " + item.sirina + " x " + item.duzina + " = " + (item.sirina * item.duzina) + "m²"} />
-                                                <Button onClick={this.deleteTepih.bind(this, item)}>Delete </Button>
+                                                {
+                                                    this.state.Racun.placen ? <p /> : <Button onClick={this.deleteTepih.bind(this, item)}>Delete </Button>
+
+
+                                                }
+
                                             </ListItem>
                                         )}
                                     </List>
@@ -228,7 +249,7 @@ class RacunList extends React.Component {
         else
             return (
 
-                <p>?</p>)
+                <p></p>)
     }
 }
 

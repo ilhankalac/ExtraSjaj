@@ -20,11 +20,37 @@ namespace ExtraSjaj.Controllers
         {
             _unitOfWork = unitOfWork;
         }
-        [HttpGet]
-        public IActionResult getZaradaByMonth(DateTime dateTime)
+
+        [HttpPost("totalYear/")]
+        public IActionResult getZaradaByYear(DateFormat dateTime)
         {
-            return Ok(_unitOfWork.Racuni.zaradaNaOdabranomMesecu(dateTime));
+            return Ok(_unitOfWork.Racuni.zaradaOdabraneGodine(dateTime.time));
+        }
+        [HttpPost("totalMonth/")]
+        public IActionResult getZaradaByMonth(DateFormat dateTime)
+        {
+            return Ok(_unitOfWork.Racuni.zaradaNaOdabranomMesecu(dateTime.time));
         }
 
+
+        [HttpPost("avgYear/")]
+        public IActionResult getProsecnaGodisnjaZarada(DateFormat dateTime)
+        {
+            return Ok(_unitOfWork.Racuni.prosecnaGodisnjaZarada(dateTime.time));
+        }
+
+        [HttpPost("avgMonth/")]
+        public IActionResult getProsecnaMesecnaZarada(DateFormat dateTime)
+        {
+            return Ok(_unitOfWork.Racuni.prosecnaMesecnaZarada(dateTime.time));
+        }
+
+
+        
+    }
+
+    public class DateFormat
+    {
+        public DateTime time { get; set; }
     }
 }

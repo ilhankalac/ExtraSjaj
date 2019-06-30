@@ -22,39 +22,46 @@ import { RoleAwareComponent } from 'react-router-role-authorization';
 import Cookies from 'js-cookie';
 
 
-export class Register extends RoleAwareComponent {
+export class EditKorisnik extends RoleAwareComponent {
 
-    state = {
-        radio: '1',
-        noviKorisnik: {
 
-            ime: '',
-            prezime: '',
-            username: '',
-            password: '',
-            jmbg: '',
-            brojTelefona: '',
-            roleId: 1
-        }
-
-    }
     constructor(props) {
         super(props);
 
         this.allowedRoles = '1';
         this.userRoles = Cookies.get('user');
-        console.log(this.userRoles)
-        console.log(this.allowedRoles)
-    }
-    createNewKorisnik = () => {
-        console.log(this.state.noviKorisnik)
-        axios.post("api/Users", this.state.noviKorisnik).then((response) => {
-            console.log(response)
 
-        }).catch(error => {
-            console.log(error.message);
-            browserHistory.push('/Register');
-        })
+
+    }
+
+
+    state = {
+
+        radio: '1',
+        noviKorisnik: {
+
+            id: this.props.location.state.Edit.id,
+            ime: this.props.location.state.Edit.ime,
+            prezime: this.props.location.state.Edit.prezime,
+            username: this.props.location.state.Edit.username,
+            password: this.props.location.state.Edit.password,
+            jmbg: this.props.location.state.Edit.jmbg,
+            brojTelefona: this.props.location.state.Edit.brojTelefona,
+            roleId: this.props.location.state.Edit.roleId
+        }
+    }
+
+    rolesMatched = () => {
+        if (this.allowedRoles === this.userRoles)
+            return true
+        else
+            return false
+
+    }
+
+    editMusterija() {
+
+        axios.put("api/Users/" + this.state.noviKorisnik.id, this.state.noviKorisnik);
         browserHistory.push('/Korisnici');
 
     }
@@ -233,7 +240,7 @@ export class Register extends RoleAwareComponent {
                             fullWidth
                             variant="contained"
                             color="primary"
-                            onClick={this.createNewKorisnik.bind(this)}
+                            onClick={this.editMusterija.bind(this)}
 
                         >
                             Kreiraj
@@ -257,4 +264,4 @@ export class Register extends RoleAwareComponent {
 
 }
 
-export default Register
+export default EditKorisnik

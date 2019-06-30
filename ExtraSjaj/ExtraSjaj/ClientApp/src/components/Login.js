@@ -1,19 +1,51 @@
 ﻿import React, { Component } from 'react';
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import axios from 'axios';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { browserHistory } from 'react-router';
+
+import Cookies from 'js-cookie';
+
+const theme = createMuiTheme({
+    palette: {
+        secondary: {
+            main: '#7e57c2'
+        }
+    },
+});
 
 export class Login extends Component {
+
+    state = {
+        radio: '1',
+        loginData: {
+
+
+            username: '',
+            password: '',
+
+        }
+
+    }
+
+    loginNewKorisnik = () => {
+        axios.post("api/Users/Login", this.state.loginData).then((response) => {
+            console.log(response)
+            Cookies.set('user', '1');
+            browserHistory.push('/Musterije');
+        }).catch(error => {
+            console.log(error.message);
+
+        })
+
+
+    }
+
 
 
 
@@ -22,12 +54,14 @@ export class Login extends Component {
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
                 <div >
-                    <Avatar >
-                        <LockOutlinedIcon />
-                    </Avatar>
-                    <Typography component="h1" variant="h5">
-                        Sign in
-        </Typography>
+                    <MuiThemeProvider theme={theme}>
+                        <center>
+                            <LockOutlinedIcon color="secondary" />
+
+                            <Typography component="h1" variant="h5">
+                                Prijavljivanje
+                     </Typography> </center>
+                    </MuiThemeProvider>
                     <form noValidate>
                         <TextField
                             variant="outlined"
@@ -35,10 +69,17 @@ export class Login extends Component {
                             required
                             fullWidth
                             id="email"
-                            label="Email Address"
+                            label="Korisnicko ime"
                             name="email"
                             autoComplete="email"
                             autoFocus
+                            placeholder="Korisnicko ime"
+                            value={this.state.loginData.username}
+                            onChange={(e) => {
+                                let { loginData } = this.state;
+                                loginData.username = e.target.value;
+                                this.setState({ loginData });
+                            }}
                         />
                         <TextField
                             variant="outlined"
@@ -46,41 +87,32 @@ export class Login extends Component {
                             required
                             fullWidth
                             name="password"
-                            label="Password"
+                            label="Lozinka"
                             type="password"
                             id="password"
                             autoComplete="current-password"
+                            placeholder="Lozinka"
+                            value={this.state.loginData.password}
+                            onChange={(e) => {
+                                let { loginData } = this.state;
+                                loginData.password = e.target.value;
+                                this.setState({ loginData });
+                            }}
                         />
-                        <FormControlLabel
-                            control={<Checkbox value="remember" color="primary" />}
-                            label="Remember me"
-                        />
+
                         <Button
-                            type="submit"
+
                             fullWidth
                             variant="contained"
                             color="primary"
-
+                            onClick={this.loginNewKorisnik.bind(this)}
                         >
-                            Sign In
+                            Uloguj se
           </Button>
-                        <Grid container>
-                            <Grid item xs>
-                                <Link href="#" variant="body2">
-                                    Forgot password?
-              </Link>
-                            </Grid>
-                            <Grid item>
-                                <Link href="#" variant="body2">
-                                    {"Don't have an account? Sign Up"}
-                                </Link>
-                            </Grid>
-                        </Grid>
+
                     </form>
                 </div>
-                <Box mt={5}>
-                    ahhaaaha
-                </Box>
+
             </Container>
         );
     }
