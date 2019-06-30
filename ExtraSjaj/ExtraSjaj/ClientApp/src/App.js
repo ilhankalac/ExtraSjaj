@@ -27,7 +27,7 @@ export default class App extends Component {
     }
     render() {
         return (
-            <Layout>
+            <Layout >
                 <Router history={browserHistory}>
                     <Route exact path='/' component={Home} />
                     <Route path='/counter' component={Counter} />

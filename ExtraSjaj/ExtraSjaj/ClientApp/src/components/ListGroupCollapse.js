@@ -189,7 +189,7 @@ class RacunList extends React.Component {
                                         </Col>
                                         <Col sm={{ size: 3, offset: 1 }}>
 
-                                            <Input type="number" className="mr-2" type="sirina" id="sirina" placeholder="širina"
+                                            <Input type="number" className="mr-2" id="sirina" placeholder="širina"
                                                 onChange={(e) => {
                                                     let { newTepih } = this.state;
                                                     newTepih.sirina = e.target.value;
@@ -227,9 +227,10 @@ class RacunList extends React.Component {
 
                                     <ListItemText primary={this.state.Racun.vrijednost + "€"} className="mr-3" />
                                     <ListItemText className="ml-3" primary={this.state.Datum} color="secondary" />
-                                    <Icon onClick={this.toggleTepihDialogue.bind(this)} className="m-2" color="primary" fontSize="large" >
+                                    {!this.state.Racun.placen ? <Icon onClick={this.toggleTepihDialogue.bind(this)} className="m-2" color="primary" fontSize="large" >
                                         add_circle
-                                    </Icon>
+                                    </Icon> : <p/>}
+                                    
                                     {this.state.strelica ? <ExpandLess /> : <ExpandMore />}
                                     {deleteRacun}
                                 </ListItem>

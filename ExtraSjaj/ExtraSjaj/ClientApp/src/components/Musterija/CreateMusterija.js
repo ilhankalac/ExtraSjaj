@@ -1,7 +1,7 @@
 ﻿import React, { Component } from 'react';
 import { Button, Input, Label, Row, Col } from 'reactstrap';
 import axios from 'axios';
-import { browserHistory } from 'react-router';
+import { browserHistory } from 'react-router'; import Cookies from 'js-cookie';
 
 export class CreateMusterija extends Component {
 
@@ -26,7 +26,7 @@ export class CreateMusterija extends Component {
     render() {
         return (
             <div>
-                <h1>Lista mušterija</h1>
+                <h1>Kreiranje mušterija</h1>
                 <Row>
                     <Col sm={{ size: 6, offset: 1 }}>
                         <Label className="mr-2" for="ime"> Ime </Label>

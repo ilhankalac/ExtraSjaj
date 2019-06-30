@@ -34,7 +34,7 @@ export class EditMusterija extends Component {
     render() {
         return (
             <div>
-                <h1>Lista mušterija</h1>
+                <h1>Izmena mušterija</h1>
                 <Row>
                     <Col sm={{ size: 6, offset: 1 }}>
                         <Label className="mr-2" for="ime"> Ime </Label>

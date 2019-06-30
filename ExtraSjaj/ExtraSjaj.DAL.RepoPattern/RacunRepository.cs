@@ -100,6 +100,7 @@ namespace ExtraSjaj.DAL.RepoPattern
         {
             //statistic grouped by years and months income
             return   _context.Racuni
+                             .Where(x => x.Placen == true)
                              .GroupBy(x => x.VrijemePlacanjaRacuna.Year)
                              .Select(g => new
                              {
@@ -111,7 +112,8 @@ namespace ExtraSjaj.DAL.RepoPattern
                                                   Mesec = mo.Select(m => m.VrijemePlacanjaRacuna.Month).FirstOrDefault(),
                                                   TotalMonthIncome = mo.Sum(m => m.Vrijednost)
                                               }).ToList()
-                             }).ToList();
+                             })
+                             .ToList();
         }
 
     }

@@ -4,7 +4,13 @@ import Drawer from '../Drawer';
 
 
 export class Layout extends Component {
-  static displayName = Layout.name;
+    static displayName = Layout.name;
+    state = {
+      
+        username: '',
+       roleId:''
+
+    }
 
   render () {
     return (
@@ -13,7 +19,7 @@ export class Layout extends Component {
             <link rel="stylesheet" href="cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" />
             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
             <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-            <Drawer props={this.props.children} />
+            <Drawer props={this.props.children}  />
       </div>
     );
   }

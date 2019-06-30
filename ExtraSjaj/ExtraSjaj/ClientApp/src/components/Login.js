@@ -20,7 +20,7 @@ const theme = createMuiTheme({
 });
 
 export class Login extends Component {
-
+  
     state = {
         radio: '1',
         loginData: {
@@ -39,6 +39,7 @@ export class Login extends Component {
             var pom = response.data.rolaId
             console.log(pom)
             Cookies.set('user', pom);
+         
             browserHistory.push('/Musterije');
         }).catch(error => {
             console.log(error.message);

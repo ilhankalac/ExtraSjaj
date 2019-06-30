@@ -17,6 +17,10 @@ import Grid from '@material-ui/core/Grid';
 import Input from '@material-ui/core/Input';
 import Search from '@material-ui/icons/Search';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import Popper from '@material-ui/core/Popper';
+import { RoleAwareComponent } from 'react-router-role-authorization';
+import Cookies from 'js-cookie';
+import { NotFound } from './NotFound';
 
 const theme = createMuiTheme({
     palette: {
@@ -28,8 +32,22 @@ const theme = createMuiTheme({
     }
 });
 
-export class Musterije extends Component {
+export class Musterije extends RoleAwareComponent {
+    constructor(props) {
+        super(props);
 
+        this.allowedRoles = '1';
+        this.userRoles = Cookies.get('user');
+
+
+    }
+    rolesMatched = () => {
+        if (this.allowedRoles === this.userRoles || '2' === this.userRoles )
+            return true
+        else
+            return false
+
+    }
     static displayName = Musterije.name;
     state = {
         musterijeNiz: [],
@@ -37,6 +55,7 @@ export class Musterije extends Component {
         loading: false,
         search: '',
         RacuniModal: false,
+        RacunCreated: false,
         DialogMusterija: {
             id: '',
             ime: '',
@@ -58,6 +77,7 @@ export class Musterije extends Component {
     handleClickOpen = (id, ime, prezime) => {
         this.setState({
             RacuniModal: true,
+
             DialogMusterija: {
                 id, ime, prezime
             }
@@ -76,8 +96,13 @@ export class Musterije extends Component {
 
     }
 
+    closeRacunCreated = () => {
+        this.setState({
+            RacunCreated: false,
+           
+        })
 
-
+    }
 
     handleClick = () => {
         this.setState({
@@ -112,6 +137,7 @@ export class Musterije extends Component {
         let racun = {
             musterijaId: id
         }
+        this.state.RacunCreated = true;
         axios.post("api/Racuns", racun);
 
     }
@@ -155,13 +181,18 @@ export class Musterije extends Component {
                             <Fab className="ml-3" size="small" color="inherit" aria-label="Add" onClick={this.createNewRacun.bind(this, item.id)} >
                                 <PlaylistAdd size="sm" color="inherit" />
                             </Fab>
-
+                            <Dialog open={this.state.RacunCreated} onClose={this.closeRacunCreated.bind(this)}>      <DialogTitle id="alert-dialog-title">{"Uspešno dodat račun"}</DialogTitle>
+                                <DialogContent>
+                                    <DialogContentText id="alert-dialog-description">
+                                        :)
+          </DialogContentText>
+                                </DialogContent></Dialog>
                         </MuiThemeProvider>
                     </td>
                 </tr>
             );
-
-        return (
+        let contents=
+         (
             <div>
                 <div>
                     <Dialog size="lg" open={this.state.RacuniModal} onClose={this.handleClose.bind(this)} aria-labelledby="form-dialog-title">
@@ -225,6 +256,10 @@ export class Musterije extends Component {
                     </tbody>
                 </Table>
             </div>
-        );
+            );
+        return (
+            
+            this.rolesMatched() ? contents : <NotFound />
+            )
     }
 }

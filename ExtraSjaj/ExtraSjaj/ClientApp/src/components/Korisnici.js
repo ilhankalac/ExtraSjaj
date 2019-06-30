@@ -18,6 +18,7 @@ import Input from '@material-ui/core/Input';
 import Search from '@material-ui/icons/Search';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { RoleAwareComponent } from 'react-router-role-authorization';
+import { NotFound } from './NotFound';
 import Cookies from 'js-cookie';
 
 
@@ -61,7 +62,11 @@ export class Korisnici extends RoleAwareComponent {
         },
         open: false
     }
+    notFoundPush = () => {
 
+        browserHistory.push({ pathname: '/' })
+           
+    }
 
     routeChangeToEdit = (Korisnik) => {
 
@@ -133,9 +138,11 @@ export class Korisnici extends RoleAwareComponent {
 
                 >
                     <Grid item>
+                      
                         <h1 className="mb-2" size="small" color="primary" aria-label="Add" >
                             Korisnici
                         </h1>
+                            
                     </Grid>
                     <Grid item>
                         <div>
@@ -169,7 +176,7 @@ export class Korisnici extends RoleAwareComponent {
         )
 
         return (
-            this.rolesMatched() ? contents : null
+            this.rolesMatched() ? contents : <NotFound/>
         );
     }
 }

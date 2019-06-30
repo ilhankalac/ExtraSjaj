@@ -20,6 +20,7 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import { RoleAwareComponent } from 'react-router-role-authorization';
 import Cookies from 'js-cookie';
+import { NotFound } from './NotFound';
 
 
 export class Register extends RoleAwareComponent {
@@ -249,7 +250,7 @@ export class Register extends RoleAwareComponent {
 
         )
 
-        return this.rolesMatched() ? contents : null;
+        return this.rolesMatched() ? contents :<NotFound/>
 
 
 
