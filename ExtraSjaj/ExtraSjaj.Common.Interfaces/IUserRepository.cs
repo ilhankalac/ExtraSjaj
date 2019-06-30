@@ -9,6 +9,6 @@ namespace ExtraSjaj.Common.Interfaces
     {
         bool proveraJedinstvenosti(User user);
 
-        bool proveraLogovanja(User user);
+        User proveraLogovanja(User user);
     }
 }

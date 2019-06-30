@@ -23,9 +23,9 @@ namespace ExtraSjaj.DAL.RepoPattern
         {
             return  _context.Users.Any(x => x.Username == user.Username || x.JMBG == user.JMBG || x.BrojTelefona == user.BrojTelefona);
         }
-        public bool proveraLogovanja(User user)
+        public User proveraLogovanja(User user)
         {
-            return _context.Users.Any(x => x.Username == user.Username && x.Password == user.Password);
+            return  _context.Users.Where(x => x.Username == user.Username && x.Password == user.Password).FirstOrDefault();
         }
     }
 }

@@ -15,6 +15,11 @@ namespace ExtraSjaj.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
+        public struct LoginDetails
+        {
+            public string Username { get; set; }
+            public int RolaId { get; set; }
+        }
         public IUnitOfWork _unitOfWork { get; }
 
 
@@ -94,13 +99,15 @@ namespace ExtraSjaj.Controllers
         [HttpPost("login/")]
         public IActionResult LoginUser(User LoginDetail)
         {
-            if (!(_unitOfWork.Users.proveraLogovanja(LoginDetail)))
+            User user = _unitOfWork.Users.proveraLogovanja(LoginDetail);
+
+            if (user == null)
                 return BadRequest();
             else
-                return Ok();
+                return Ok(new LoginDetails() { RolaId= user.RoleId, Username = user.Username});
         }
 
-
+        
         // DELETE: api/Users/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<User>> DeleteUser(int id)
