@@ -85,6 +85,15 @@ namespace ExtraSjaj.DAL.RepoPattern
                    .DefaultIfEmpty()
                    .Average(x => x.Vrijednost);
         }
+        public void naplacivanje(int id)
+        {
+            var racun = _context.Racuni.Where(x => x.Id == id).FirstOrDefault();
 
+            racun.Placen = true;
+
+            _context.Racuni.Update(racun);
+
+            _context.SaveChangesAsync();
+        }
     }
 }

@@ -79,7 +79,14 @@ class RacunList extends React.Component {
 
 
     }
+    naplatiRacun = () => {
+        axios.put("api/racuns/naplati/" + this.state.Racun.id).then((response) => {
+            this.state.Racun.placen = true
+        });
 
+
+
+    }
     componentWillMount() {
 
         axios.get("api/Tepihs/Racun/" + this.props.racun.id).then((response) => {
@@ -116,7 +123,7 @@ class RacunList extends React.Component {
 
         this.state.newTepih.racunId = this.state.Racun.id
         axios.post("api/Tepihs", this.state.newTepih).then((response) => {
-            console.log(response)
+            //   console.log(response)
             this.setState({
                 strelica: false,
                 TepihDialog: false,
@@ -148,8 +155,11 @@ class RacunList extends React.Component {
         let deleteRacun
 
         if (this.state.Racun.vrijednost === 0) {
-            console.log(this.state.Racun.vrijednost)
+
             deleteRacun = <Button onClick={this.deleteRacun.bind(this)}> Delete racun </Button>
+        }
+        else if (this.state.Racun.placen === false) {
+            deleteRacun = <Button onClick={this.naplatiRacun.bind(this)}> Naplati racun </Button>
         }
 
         if (this.state.Racun && !this.state.Hidden)

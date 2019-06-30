@@ -35,8 +35,10 @@ export class Login extends Component {
 
     loginNewKorisnik = () => {
         axios.post("api/Users/Login", this.state.loginData).then((response) => {
-            console.log(response)
-            Cookies.set('user', '1');
+            console.log(JSON.stringify(response))
+            var pom = response.data.rolaId
+            console.log(pom)
+            Cookies.set('user', pom);
             browserHistory.push('/Musterije');
         }).catch(error => {
             console.log(error.message);

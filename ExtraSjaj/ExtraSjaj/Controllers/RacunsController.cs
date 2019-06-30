@@ -81,6 +81,14 @@ namespace ExtraSjaj.Controllers
             return NoContent();
         }
 
+
+        [HttpPut("naplati/{id}")]
+        public  IActionResult naplatiRacun(int id)
+        {
+            _unitOfWork.Racuni.naplacivanje(id);
+            return Ok();
+        }
+
         // POST: api/Racuns
         [HttpPost]
         public async Task<ActionResult<Racun>> PostRacun(Racun racun)
@@ -89,7 +97,7 @@ namespace ExtraSjaj.Controllers
             _unitOfWork.Racuni.Add(racun);
             await _unitOfWork.SaveChangesAsync();
 
-            return CreatedAtAction("GetMusterija", new { id = racun.Id }, racun);
+            return CreatedAtAction("GetRacun", new { id = racun.Id }, racun);
         }
 
         // DELETE: api/Racuns/5

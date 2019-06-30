@@ -106,7 +106,7 @@ export class Korisnici extends RoleAwareComponent {
                     <td >{item.username}</td>
                     <td >{item.jmbg}</td>
                     <td >{item.brojTelefona}</td>
-                    <td >{item.roleId}</td>
+                    <td >{item.roleId === 1 ? 'Admin' : 'Radnik'}</td>
 
 
                     <td>
