@@ -13,6 +13,7 @@ namespace ExtraSjaj.Controllers
     [ApiController]
     public class StatistikaController : ControllerBase
     {
+
         public IUnitOfWork _unitOfWork { get; }
 
 
@@ -45,8 +46,12 @@ namespace ExtraSjaj.Controllers
             return Ok(_unitOfWork.Racuni.prosecnaMesecnaZarada(dateTime.time));
         }
 
+        [HttpGet]
+        public IActionResult getStatistika()
+        {            
+            return Ok(_unitOfWork.Racuni.statistika());
+        }
 
-        
     }
 
     public class DateFormat

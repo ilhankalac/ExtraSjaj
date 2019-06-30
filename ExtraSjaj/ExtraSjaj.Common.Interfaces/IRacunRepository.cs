@@ -18,5 +18,7 @@ namespace ExtraSjaj.Common.Interfaces
         double prosecnaGodisnjaZarada(DateTime time);
 
         void naplacivanje(int id);
+
+        object statistika();
     }
 }

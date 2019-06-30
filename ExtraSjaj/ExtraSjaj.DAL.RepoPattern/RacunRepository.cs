@@ -95,5 +95,24 @@ namespace ExtraSjaj.DAL.RepoPattern
 
             _context.SaveChangesAsync();
         }
+
+        public object statistika()
+        {
+            //statistic grouped by years and months income
+            return   _context.Racuni
+                             .GroupBy(x => x.VrijemePlacanjaRacuna.Year)
+                             .Select(g => new
+                             {
+                                 Godina = g.Select(x => x.VrijemePlacanjaRacuna.Year).FirstOrDefault(),
+                                 TotalYearIncome = g.Sum(x => x.Vrijednost),
+                                 Months = g.GroupBy(m => m.VrijemePlacanjaRacuna.Month)
+                                              .Select(mo => new
+                                              {
+                                                  Mesec = mo.Select(m => m.VrijemePlacanjaRacuna.Month).FirstOrDefault(),
+                                                  TotalMonthIncome = mo.Sum(m => m.Vrijednost)
+                                              }).ToList()
+                             }).ToList();
+        }
+
     }
 }
