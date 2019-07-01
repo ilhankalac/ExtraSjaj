@@ -15,8 +15,7 @@ import { NotFound } from './components/NotFound';
 import Cookies from 'js-cookie';
 import { Korisnici } from './components/Korisnici';
 import { EditKorisnik } from './components/EditKorisnik';
-
-
+import { Statistics } from './components/Statistics';
 
 export default class App extends Component {
     static displayName = App.name;
@@ -41,6 +40,7 @@ export default class App extends Component {
                     <Route path="/not-found" component={NotFound} />
                     <Route path="/Korisnici" component={Korisnici} />
                     <Route path="/EditKorisnik" component={EditKorisnik} />
+                    <Route path="/Statistika" component={Statistics} />
                 </Router>
             </Layout>
         );

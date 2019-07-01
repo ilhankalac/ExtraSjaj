@@ -122,8 +122,6 @@ export class Korisnici extends RoleAwareComponent {
                             <Fab className="ml-3" size="small" aria-label="Delete" color="secondary" onClick={this.deleteMusterija.bind(this, item.id)}>
                                 <DeleteIcon />
                             </Fab>
-
-
                         </MuiThemeProvider>
                     </td>
                 </tr>

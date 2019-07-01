@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Globalization;
 
 namespace ExtraSjaj.DAL.RepoPattern
 {
@@ -109,7 +110,7 @@ namespace ExtraSjaj.DAL.RepoPattern
                                  Months = g.GroupBy(m => m.VrijemePlacanjaRacuna.Month)
                                               .Select(mo => new
                                               {
-                                                  Mesec = mo.Select(m => m.VrijemePlacanjaRacuna.Month).FirstOrDefault(),
+                                                  Mesec = mo.Select(m => m.VrijemePlacanjaRacuna.ToString("MMMMM", new CultureInfo("sr"))).FirstOrDefault(),
                                                   TotalMonthIncome = mo.Sum(m => m.Vrijednost)
                                               }).ToList()
                              })

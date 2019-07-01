@@ -20,10 +20,10 @@ import MailIcon from '@material-ui/icons/Mail';
 import Button from '@material-ui/core/Button';
 import { browserHistory } from 'react-router';
 import Cookies from 'js-cookie';
-import ShowChart from '@material-ui/icons/ShowChart';
+import TrendingUp from '@material-ui/icons/TrendingUp';
 import SupervisorAccount from '@material-ui/icons/SupervisorAccount';
 import AttachMoney from '@material-ui/icons/AttachMoney';
-
+import AccessibilityNew from '@material-ui/icons/AccessibilityNew';
 
 
 const drawerWidth = 240;
@@ -130,6 +130,13 @@ export default function PersistentDrawerLeft({ props, status }) {
     }
 
 
+    function redirectToRegister(){
+
+        browserHistory.push('/Register');
+    }
+
+
+
     return (
         <div className={classes.root}>
             <CssBaseline />
@@ -181,10 +188,13 @@ export default function PersistentDrawerLeft({ props, status }) {
                         <ListItemText primary="Korisnici" />
                     </ListItem>
                     <ListItem onClick={() => redirectToStatistika()} button >
-                        <ListItemIcon> <ShowChart /></ListItemIcon>
+                        <ListItemIcon> <TrendingUp /></ListItemIcon>
                         <ListItemText primary="Statistika" />
                     </ListItem>
-
+                    <ListItem onClick={() => redirectToRegister()} button >
+                        <ListItemIcon> <AccessibilityNew /></ListItemIcon>
+                        <ListItemText primary="Kreiraj korisnika" />
+                    </ListItem>
                 </List>
 
             </Drawer>
