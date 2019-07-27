@@ -42,7 +42,7 @@ namespace ExtraSjaj.DAL.RepoPattern
 
             _context.Racuni.Update(stariRacun);
 
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
 
         double ukupnaKvadratura(int RacunId)
@@ -91,10 +91,11 @@ namespace ExtraSjaj.DAL.RepoPattern
             var racun = _context.Racuni.Where(x => x.Id == id).FirstOrDefault();
 
             racun.Placen = 1;
+            racun.VrijemePlacanjaRacuna = DateTime.Now;
 
             _context.Racuni.Update(racun);
 
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
 
         public object statistika()

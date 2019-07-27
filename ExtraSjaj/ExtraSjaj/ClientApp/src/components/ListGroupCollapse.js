@@ -158,7 +158,7 @@ class RacunList extends React.Component {
 
             deleteRacun = <Button onClick={this.deleteRacun.bind(this)}> Delete racun </Button>
         }
-        else if (this.state.Racun.placen === false) {
+        else if (this.state.Racun.placen === 0) {
             deleteRacun = <Button onClick={this.naplatiRacun.bind(this)}> Naplati racun </Button>
         }
 
