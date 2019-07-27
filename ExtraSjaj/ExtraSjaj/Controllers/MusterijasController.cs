@@ -88,7 +88,7 @@ namespace ExtraSjaj.Controllers
                     MusterijaId = musterija.Id,
                     BrojTepiha = 0,
                     Vrijednost = 0, 
-                    Placen= false,
+                    Placen= 0,
                     VrijemeKreiranjaRacuna = DateTime.Now
                 }
             );

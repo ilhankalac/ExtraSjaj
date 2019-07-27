@@ -11,7 +11,7 @@ namespace ExtraSjaj.Common.Models
         public int Id { get; set; }
         public double Vrijednost { get; set; }
 
-        public bool Placen { get; set; }
+        public int Placen { get; set; }
         public DateTime VrijemeKreiranjaRacuna { get; set; }
         public int BrojTepiha { get; set; }
         public DateTime VrijemePlacanjaRacuna { get; set; }

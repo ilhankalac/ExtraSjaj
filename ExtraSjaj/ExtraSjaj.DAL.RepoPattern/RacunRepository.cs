@@ -45,7 +45,7 @@ namespace ExtraSjaj.DAL.RepoPattern
             _context.SaveChangesAsync();
         }
 
-        float ukupnaKvadratura(int RacunId)
+        double ukupnaKvadratura(int RacunId)
         {
             return _context.Tepisi.Where(x => x.RacunId == RacunId).Sum(x => x.Kvadratura);
         }
@@ -54,7 +54,7 @@ namespace ExtraSjaj.DAL.RepoPattern
         {
             return _context.Racuni.Where
                     (
-                           x => x.Placen == true && x.VrijemePlacanjaRacuna.Month == time.Month &&
+                           x => x.Placen == 1 && x.VrijemePlacanjaRacuna.Month == time.Month &&
                            x.VrijemePlacanjaRacuna.Month == time.Month)
                           .DefaultIfEmpty()
                           .Sum(x => x.Vrijednost
@@ -63,7 +63,7 @@ namespace ExtraSjaj.DAL.RepoPattern
 
         public double zaradaOdabraneGodine(DateTime time)
         { 
-            return _context.Racuni.Where(x => x.Placen == true && x.VrijemePlacanjaRacuna.Year == time.Year)
+            return _context.Racuni.Where(x => x.Placen == 1 && x.VrijemePlacanjaRacuna.Year == time.Year)
                   .DefaultIfEmpty()
                   .Sum(x => x.Vrijednost);
         }
@@ -72,7 +72,7 @@ namespace ExtraSjaj.DAL.RepoPattern
         {
             return _context.Racuni.Where
                     (
-                           x => x.Placen == true && x.VrijemePlacanjaRacuna.Month == time.Month &&
+                           x => x.Placen == 1 && x.VrijemePlacanjaRacuna.Month == time.Month &&
                            x.VrijemePlacanjaRacuna.Year == time.Year)
                            .DefaultIfEmpty() 
                           .Average(x => x.Vrijednost
@@ -82,7 +82,7 @@ namespace ExtraSjaj.DAL.RepoPattern
 
         public double prosecnaGodisnjaZarada(DateTime time)
         {
-            return _context.Racuni.Where(x => x.Placen == true && x.VrijemePlacanjaRacuna.Year == time.Year)
+            return _context.Racuni.Where(x => x.Placen == 1 && x.VrijemePlacanjaRacuna.Year == time.Year)
                    .DefaultIfEmpty()
                    .Average(x => x.Vrijednost);
         }
@@ -90,7 +90,7 @@ namespace ExtraSjaj.DAL.RepoPattern
         {
             var racun = _context.Racuni.Where(x => x.Id == id).FirstOrDefault();
 
-            racun.Placen = true;
+            racun.Placen = 1;
 
             _context.Racuni.Update(racun);
 
@@ -101,7 +101,7 @@ namespace ExtraSjaj.DAL.RepoPattern
         {
             //statistic grouped by years and months income
             return   _context.Racuni
-                             .Where(x => x.Placen == true)
+                             .Where(x => x.Placen == 1)
                              .GroupBy(x => x.VrijemePlacanjaRacuna.Year)
                              .Select(g => new
                              {

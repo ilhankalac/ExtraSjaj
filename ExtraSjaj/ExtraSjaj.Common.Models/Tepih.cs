@@ -9,9 +9,9 @@ namespace ExtraSjaj.Common.Models
     public class Tepih
     {
         public int Id { get; set; }
-        public float Duzina { get; set; }
-        public float Sirina { get; set; }
-        public float Kvadratura { get; set; }
+        public double Duzina { get; set; }
+        public double Sirina { get; set; }
+        public double Kvadratura { get; set; }
 
         public int RacunId { get; set; }
         public virtual Racun Racun { get; set; }
