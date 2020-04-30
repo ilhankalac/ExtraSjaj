@@ -7,7 +7,7 @@
     "@material-ui/icons": "^4.2.1",
     "axios": "^0.19.0",
     "bootstrap": "^4.3.1",
-    "jquery": "3.3.1",
+    "jquery": "3.5.0",
     "js-cookie": "^2.2.0",
     "material-table": "^1.40.0",
     "material-ui": "^1.0.0-beta.47",
